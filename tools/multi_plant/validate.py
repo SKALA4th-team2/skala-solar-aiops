@@ -43,6 +43,7 @@ def summarize(loaded):
 
 
 def main():
+    C.use_utf8_output()
     p = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     p.add_argument("--data-root", type=Path, required=True)
     p.add_argument("--json", type=Path, help="결과를 JSON 으로도 쓴다")

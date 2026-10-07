@@ -457,6 +457,7 @@ CASES = [s01_convert, s02_normal, s03_duplicate_plant, s04_unit_confusion, s05_u
 
 
 def main():
+    C.use_utf8_output()
     p = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     p.add_argument("--out", type=Path, help="selftest.json 과 selftest.txt 를 둘 폴더")
     a = p.parse_args()

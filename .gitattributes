@@ -1,0 +1,14 @@
+# 줄 끝을 운영체제와 무관하게 같게 둔다.
+# Windows 의 Git 은 기본 설정에서 받을 때 LF 를 CRLF 로 바꾼다. 그러면 파일의 해시가 PC 마다 달라지고,
+# 컨테이너(리눅스) 안으로 복사되는 파일의 줄 끝도 달라진다. 저장소와 작업 폴더 모두 LF 로 고정한다.
+* text=auto eol=lf
+
+# 자료 파일은 바이트 그대로 둔다. 원자료의 해시를 공식 파일과 견주고, 변환 결과의 해시를 계보에 적기 때문이다.
+*.csv -text
+
+# 글자가 아닌 파일
+*.png binary
+*.ico binary
+*.pdf binary
+*.pkl binary
+*.keras binary

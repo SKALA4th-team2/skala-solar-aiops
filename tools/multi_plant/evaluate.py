@@ -277,6 +277,7 @@ def run(loaded, portfolio_id, start, end, predictions=None, members_override=Non
 
 
 def main():
+    C.use_utf8_output()
     p = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     p.add_argument("--data-root", type=Path, required=True)
     p.add_argument("--portfolio", required=True)

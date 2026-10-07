@@ -14,10 +14,13 @@ docs/proposal/single-pc-operation.md 의 규모 산정식에 넣을 "이 PC 의 
 
 주의:
     - 저장소의 project/ 가 아니라 **검증용 사본**에서 돌린다. 모델 파일, MLflow 기록, 업로드 파일이 생긴다.
-        mkdir -p <사본 폴더> && git archive HEAD project | tar -x -C <사본 폴더>
-        mkdir -p <사본 폴더>/project/data/uploads && cp datasets/hadong_upload_forecast_jma.csv <사본 폴더>/project/data/uploads/
+      사본은 --prepare 로 만든다. 커밋된 project/ 를 그 폴더에 풀고 하동의 업로드 파일을 넣는다(macOS, 리눅스, Windows 공통).
+        python tools/multi_plant/single_pc_probe.py --prepare <사본 폴더>
     - 지금의 게이트는 4.00 이라 태양광 자료에서는 통과하지 못한다. 여기서는 걸린 시간만 본다.
     - latency 는 HTTP 를 거치지 않은 모델 계산 시간이다. 엔드포인트의 응답 시간이 아니다.
+
+    - Windows 에서는 메모리를 운영체제의 다른 창구(작업 집합의 크기)로 읽는다. macOS·리눅스의 값과 재는 방법이 달라 그대로 견주지 않는다.
+      CPU 시간은 Windows 에서 재지 않는다. **Windows 쪽 코드는 Windows 에서 돌려 확인하지 못했다.** 읽지 못한 값은 null 로 남긴다.
 
 실행 (저장소 루트에서. 서빙 앱의 패키지가 설치된 파이썬으로):
     python tools/multi_plant/single_pc_probe.py --project <사본 폴더>/project --out <결과를 둘 폴더> [--steps env,baseline,mlflow,memory,latency,finetune,sqlite]
@@ -26,7 +29,6 @@ import argparse
 import json
 import os
 import platform
-import resource
 import shutil
 import statistics
 import subprocess
@@ -35,13 +37,74 @@ import threading
 import time
 from pathlib import Path
 
+try:
+    import resource                                      # 유닉스에만 있다
+except ImportError:                                      # Windows
+    resource = None
+
+IS_WINDOWS = sys.platform == "win32"
 RSS_UNIT = 1 if sys.platform == "darwin" else 1024      # ru_maxrss: macOS 는 바이트, 리눅스는 킬로바이트
 MB = 1024 * 1024
 
 
+def rounded(value, digits=1):
+    return None if value is None else round(value, digits)
+
+
+def windows_memory(handle=None):
+    """Windows 에서 프로세스의 (지금의 작업 집합, 최대 작업 집합)을 바이트로 읽는다. 읽지 못하면 (None, None).
+
+    handle 을 주지 않으면 이 프로세스다. 끝난 자식 프로세스도 핸들이 열려 있는 동안에는 최대값을 읽을 수 있다.
+    """
+    try:
+        import ctypes
+        from ctypes import wintypes
+
+        class Counters(ctypes.Structure):
+            _fields_ = [("cb", wintypes.DWORD), ("PageFaultCount", wintypes.DWORD),
+                        ("PeakWorkingSetSize", ctypes.c_size_t), ("WorkingSetSize", ctypes.c_size_t),
+                        ("QuotaPeakPagedPoolUsage", ctypes.c_size_t), ("QuotaPagedPoolUsage", ctypes.c_size_t),
+                        ("QuotaPeakNonPagedPoolUsage", ctypes.c_size_t), ("QuotaNonPagedPoolUsage", ctypes.c_size_t),
+                        ("PagefileUsage", ctypes.c_size_t), ("PeakPagefileUsage", ctypes.c_size_t)]
+
+        kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
+        psapi = ctypes.WinDLL("psapi", use_last_error=True)
+        kernel32.GetCurrentProcess.restype = wintypes.HANDLE
+        psapi.GetProcessMemoryInfo.argtypes = [wintypes.HANDLE, ctypes.POINTER(Counters), wintypes.DWORD]
+        psapi.GetProcessMemoryInfo.restype = wintypes.BOOL
+        target = kernel32.GetCurrentProcess() if handle is None else wintypes.HANDLE(int(handle))
+        counters = Counters()
+        counters.cb = ctypes.sizeof(Counters)
+        if not psapi.GetProcessMemoryInfo(target, ctypes.byref(counters), counters.cb):
+            return None, None
+        return counters.WorkingSetSize, counters.PeakWorkingSetSize
+    except Exception:
+        return None, None
+
+
 def current_rss_mb():
-    out = subprocess.run(["ps", "-o", "rss=", "-p", str(os.getpid())], capture_output=True, text=True).stdout.strip()
-    return int(out) / 1024 if out else None
+    """이 프로세스가 지금 쓰는 메모리(MB). 읽지 못하면 None."""
+    if IS_WINDOWS:
+        now, _ = windows_memory()
+        return now / MB if now else None
+    try:
+        out = subprocess.run(["ps", "-o", "rss=", "-p", str(os.getpid())], capture_output=True, text=True).stdout.strip()
+        return int(out) / 1024 if out else None
+    except (OSError, ValueError):
+        return None
+
+
+def peak_rss_mb():
+    """이 프로세스가 지금까지 가장 많이 쓴 메모리(MB). 읽지 못하면 None."""
+    if resource is not None:
+        return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss * RSS_UNIT / MB
+    _, peak = windows_memory()
+    return peak / MB if peak else None
+
+
+def child_env(extra=None):
+    """자식 파이썬이 한글을 UTF-8 로 내게 한다. Windows 에서 파이프로 받으면 기본이 콘솔의 코드 페이지다."""
+    return {**os.environ, "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8", **(extra or {})}
 
 
 def quantiles(ms):
@@ -63,28 +126,37 @@ def sample_sequence():
 def worker_run(command):
     """명령 하나를 돌려 시간과 최대 메모리를 잰다. 이 프로세스의 자식은 그 명령 하나뿐이다."""
     start = time.time()
-    r = subprocess.run(command, capture_output=True, text=True)
-    usage = resource.getrusage(resource.RUSAGE_CHILDREN)
-    tail = [l for l in (r.stdout + r.stderr).splitlines() if any(k in l for k in ("RMSE", "GATE", "saved", "scaler fit", "Error", "Traceback"))]
-    print(json.dumps({"seconds": round(time.time() - start, 2), "peak_rss_mb": round(usage.ru_maxrss * RSS_UNIT / MB, 1),
-                      "cpu_seconds": round(usage.ru_utime + usage.ru_stime, 2), "exit_code": r.returncode, "output": tail[-6:]}, ensure_ascii=False))
+    proc = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding="utf-8", errors="replace", env=child_env())
+    stdout, stderr = proc.communicate()
+    seconds = time.time() - start
+    if resource is not None:
+        usage = resource.getrusage(resource.RUSAGE_CHILDREN)
+        peak, cpu = usage.ru_maxrss * RSS_UNIT / MB, usage.ru_utime + usage.ru_stime
+    else:                                                # Windows: 끝난 자식의 핸들에서 최대 작업 집합을 읽는다
+        _, peak_bytes = windows_memory(getattr(proc, "_handle", None))
+        peak, cpu = (peak_bytes / MB if peak_bytes else None), None
+    tail = [l for l in (stdout + stderr).splitlines() if any(k in l for k in ("RMSE", "GATE", "saved", "scaler fit", "Error", "Traceback"))]
+    print(json.dumps({"seconds": round(seconds, 2), "peak_rss_mb": rounded(peak), "cpu_seconds": rounded(cpu, 2),
+                      "exit_code": proc.returncode, "output": tail[-6:]}, ensure_ascii=False))
 
 
 def worker_memory():
-    points = [{"stage": "start", "rss_mb": round(current_rss_mb(), 1)}]
+    points = [{"stage": "start", "rss_mb": rounded(current_rss_mb())}]
     from serving_app import model_loader
     import tensorflow  # noqa: F401
-    points.append({"stage": "tensorflow imported", "rss_mb": round(current_rss_mb(), 1)})
+    points.append({"stage": "tensorflow imported", "rss_mb": rounded(current_rss_mb())})
     seq, held = sample_sequence(), []
     for target in (1, 2, 4, 8):
         while len(held) < target:
             m = model_loader._load_from_local()
             m.predict_one(seq)            # 첫 예측 때 그래프가 만들어진다. 그것까지 넣어 잰다
             held.append(m)
-        points.append({"stage": f"{target} models loaded and used", "rss_mb": round(current_rss_mb(), 1)})
-    first, last = points[2]["rss_mb"], points[-1]["rss_mb"]
-    print(json.dumps({"points": points, "per_extra_model_mb": round((last - first) / 7, 1),
-                      "first_model_mb": round(points[2]["rss_mb"] - points[1]["rss_mb"], 1)}, ensure_ascii=False))
+        points.append({"stage": f"{target} models loaded and used", "rss_mb": rounded(current_rss_mb())})
+    values = [pt["rss_mb"] for pt in points]
+    readable = all(v is not None for v in values)
+    print(json.dumps({"points": points, "per_extra_model_mb": round((values[-1] - values[2]) / 7, 1) if readable else None,
+                      "first_model_mb": round(values[2] - values[1], 1) if readable else None,
+                      "method": "Windows 작업 집합" if IS_WINDOWS else "ps 의 rss"}, ensure_ascii=False))
 
 
 def timed_predictions(model, seq, stop=None, count=None):
@@ -158,7 +230,7 @@ def worker_finetune():
         model_loader._load_from_mlflow()
         loads.append(round(time.time() - start, 2))
     print(json.dumps({"base_training_seconds": round(base_seconds, 2), "fine_tune_rows": len(rows), "fine_tune_seconds": fine,
-                      "registry_load_seconds": loads, "last_version": r.get("version"), "peak_rss_mb": round(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss * RSS_UNIT / MB, 1),
+                      "registry_load_seconds": loads, "last_version": r.get("version"), "peak_rss_mb": rounded(peak_rss_mb()),
                       "note": "게이트 값을 이 측정 프로세스 안에서만 열었다. 통과는 품질의 근거가 아니다"}, ensure_ascii=False))
 
 
@@ -179,17 +251,42 @@ def worker_sqlite_writer(tag, n):
 
 # ───────────────────────────── 저장소 쪽에서 도는 부분 ─────────────────────────────
 
+def total_memory_gb(sh):
+    """PC 의 메모리(GB). 읽지 못하면 None."""
+    try:
+        if sys.platform == "darwin":
+            v = sh("sysctl", "-n", "hw.memsize")
+            return int(v) / MB / 1024 if v else None
+        if IS_WINDOWS:
+            import ctypes
+
+            class Status(ctypes.Structure):
+                _fields_ = [("dwLength", ctypes.c_ulong), ("dwMemoryLoad", ctypes.c_ulong),
+                            ("ullTotalPhys", ctypes.c_ulonglong), ("ullAvailPhys", ctypes.c_ulonglong),
+                            ("ullTotalPageFile", ctypes.c_ulonglong), ("ullAvailPageFile", ctypes.c_ulonglong),
+                            ("ullTotalVirtual", ctypes.c_ulonglong), ("ullAvailVirtual", ctypes.c_ulonglong),
+                            ("sullAvailExtendedVirtual", ctypes.c_ulonglong)]
+
+            status = Status()
+            status.dwLength = ctypes.sizeof(Status)
+            if not ctypes.WinDLL("kernel32").GlobalMemoryStatusEx(ctypes.byref(status)):
+                return None
+            return status.ullTotalPhys / MB / 1024
+        return os.sysconf("SC_PAGE_SIZE") * os.sysconf("SC_PHYS_PAGES") / MB / 1024
+    except Exception:
+        return None
+
+
 def environment(project):
     def sh(*cmd):
-        r = subprocess.run(cmd, capture_output=True, text=True)
+        try:
+            r = subprocess.run(cmd, capture_output=True, text=True)
+        except OSError:                                  # 그 명령이 이 PC 에 없다
+            return None
         return r.stdout.strip() if r.returncode == 0 else None
 
-    mem = None
-    if sys.platform == "darwin":
-        v = sh("sysctl", "-n", "hw.memsize")
-        mem = int(v) / MB / 1024 if v else None
-    else:
-        mem = os.sysconf("SC_PAGE_SIZE") * os.sysconf("SC_PHYS_PAGES") / MB / 1024
+    mem = total_memory_gb(sh)
+    physical = sh("sysctl", "-n", "hw.physicalcpu") if sys.platform == "darwin" else None
     disk = shutil.disk_usage(project)
     versions = {}
     for name in ("tensorflow", "mlflow", "numpy", "fastapi", "uvicorn"):
@@ -203,7 +300,7 @@ def environment(project):
         "os": f"{platform.system()} {platform.release()}", "machine": platform.machine(),
         "cpu_model": sh("sysctl", "-n", "machdep.cpu.brand_string") if sys.platform == "darwin" else platform.processor(),
         "cpu_logical": os.cpu_count(),
-        "cpu_physical": int(sh("sysctl", "-n", "hw.physicalcpu")) if sys.platform == "darwin" else None,
+        "cpu_physical": int(physical) if physical else None,
         "memory_gb": round(mem, 1) if mem else None,
         "disk_total_gb": round(disk.total / MB / 1024, 1), "disk_free_gb": round(disk.free / MB / 1024, 1),
         "python": platform.python_version(), "packages": versions,
@@ -219,16 +316,47 @@ def tree_size_mb(path):
 
 
 def call_worker(project, *args):
-    env = {**os.environ, "PYTHONPATH": str(project), "TF_CPP_MIN_LOG_LEVEL": "2"}
-    r = subprocess.run([sys.executable, str(Path(__file__).resolve()), "--worker", *args], cwd=project, env=env, capture_output=True, text=True)
+    env = child_env({"PYTHONPATH": str(project), "TF_CPP_MIN_LOG_LEVEL": "2"})
+    r = subprocess.run([sys.executable, str(Path(__file__).resolve()), "--worker", *args], cwd=project, env=env,
+                       capture_output=True, text=True, encoding="utf-8", errors="replace")
     lines = [l for l in r.stdout.splitlines() if l.startswith("{")]
     if r.returncode != 0 or not lines:
         return {"error": (r.stderr.strip().splitlines() or ["출력이 없다"])[-1][:300], "exit_code": r.returncode}
     return json.loads(lines[-1])
 
 
+def prepare(folder):
+    """커밋된 project/ 를 folder 에 풀고 하동의 업로드 파일을 넣는다. 셸 명령(tar, cp)을 쓰지 않아 Windows 에서도 돈다."""
+    import io
+    import tarfile
+    root = Path(__file__).resolve().parents[2]
+    folder = Path(folder).resolve()
+    if (folder / "project").exists():
+        raise SystemExit(f"{folder / 'project'} 가 이미 있다. 빈 폴더를 준다")
+    archive = subprocess.run(["git", "-C", str(root), "archive", "--format=tar", "HEAD", "project"], capture_output=True)
+    if archive.returncode != 0:
+        raise SystemExit("git archive 가 실패했다: " + archive.stderr.decode("utf-8", "replace").strip())
+    folder.mkdir(parents=True, exist_ok=True)
+    with tarfile.open(fileobj=io.BytesIO(archive.stdout)) as tar:
+        try:
+            tar.extractall(folder, filter="data")
+        except TypeError:                                # filter 인자가 없는 파이썬
+            tar.extractall(folder)
+    uploads = folder / "project" / "data" / "uploads"
+    uploads.mkdir(parents=True, exist_ok=True)
+    shutil.copy(root / "datasets" / "hadong_upload_forecast_jma.csv", uploads)
+    print(f"사본을 만들었다: {folder / 'project'}")
+    print(f"다음: python tools/multi_plant/single_pc_probe.py --project \"{folder / 'project'}\" --out <결과를 둘 폴더>")
+
+
 def main():
+    for stream in (sys.stdout, sys.stderr):              # Windows 에서 출력을 파일로 돌려도 한글이 깨지지 않게
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except (AttributeError, ValueError):
+            pass
     p = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    p.add_argument("--prepare", type=Path, help="검증용 사본을 이 폴더에 만든다")
     p.add_argument("--project", type=Path, help="검증용 사본의 project/")
     p.add_argument("--out", type=Path)
     p.add_argument("--steps", default="env,baseline,mlflow,memory,latency,finetune,sqlite")
@@ -241,12 +369,17 @@ def main():
          "sqlite": lambda: worker_sqlite_writer(rest[0], int(rest[1]))}[kind]()
         return
 
+    if a.prepare:
+        prepare(a.prepare)
+        return
+    if a.project is None:
+        raise SystemExit("--prepare <사본 폴더> 또는 --project <사본 폴더>/project 를 준다")
     project = a.project.resolve()
     if not (project / "serving_app").is_dir():
         raise SystemExit("--project 는 serving_app/ 이 있는 project/ 폴더여야 한다")
     uploads = sorted((project / "data" / "uploads").glob("*.csv"))
     if not uploads:
-        raise SystemExit("사본의 data/uploads/ 에 업로드 파일이 없다. 문서 맨 위의 준비 명령을 먼저 돌린다")
+        raise SystemExit("사본의 data/uploads/ 에 업로드 파일이 없다. --prepare 로 사본을 먼저 만든다")
     steps = a.steps.split(",")
     rows = sum(1 for _ in open(uploads[-1], encoding="utf-8-sig")) - 1
     result = {"input": {"upload_file": uploads[-1].name, "rows": rows}}
@@ -267,10 +400,11 @@ def main():
     if "finetune" in steps:
         result["fine_tune"] = call_worker(project, "finetune")
     if "sqlite" in steps:
-        env = {**os.environ, "PYTHONPATH": str(project)}
+        env = child_env({"PYTHONPATH": str(project)})
         start = time.time()
         procs = [subprocess.Popen([sys.executable, str(Path(__file__).resolve()), "--worker", "sqlite", tag, "30"], cwd=project, env=env,
-                                  stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True) for tag in ("a", "b")]
+                                  stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True, encoding="utf-8", errors="replace")
+                 for tag in ("a", "b")]
         outs = [json.loads([l for l in pr.communicate()[0].splitlines() if l.startswith("{")][-1]) for pr in procs]
         result["sqlite_two_writers"] = {"writers": outs, "seconds": round(time.time() - start, 2),
                                         "note": "두 프로세스가 같은 mlflow.db 에 실행 기록 30건씩을 동시에 쓴다"}

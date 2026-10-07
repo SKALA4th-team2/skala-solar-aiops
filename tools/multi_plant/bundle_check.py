@@ -75,6 +75,7 @@ def check_bundle(manifest, scaler_path, plant_id, feature_schema=FEATURE_SCHEMA,
 
 
 def main():
+    C.use_utf8_output()
     p = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     sub = p.add_subparsers(dest="command", required=True)
     w = sub.add_parser("write")

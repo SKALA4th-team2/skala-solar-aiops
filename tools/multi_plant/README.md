@@ -12,7 +12,7 @@
 
 ## 어디서 돌리는가
 
-`single_pc_probe.py` 를 뺀 나머지는 표준 라이브러리만 쓴다. `project/.venv` 의 파이썬이면 되고 저장소 루트에서 돌린다. `selftest.py` 는 지금의 서빙 코드를 불러 보는 항목이 있어 `project/data/` 를 읽는다(TensorFlow 는 필요 없다).
+`single_pc_probe.py` 를 뺀 나머지는 표준 라이브러리만 쓴다. `project/.venv` 의 파이썬이면 되고 저장소 루트에서 돌린다. Windows 에서는 `python` 대신 `project\.venv\Scripts\python` 으로 부른다. 출력은 UTF-8 로 고정했고 경로의 구분자에 기대지 않게 했다. **다만 Windows 에서 직접 돌려 확인하지는 못했다.** 검증은 macOS 에서 했다. `selftest.py` 는 지금의 서빙 코드를 불러 보는 항목이 있어 `project/data/` 를 읽는다(TensorFlow 는 필요 없다).
 
 ## 스크립트
 
@@ -50,11 +50,15 @@ python tools/multi_plant/evaluate.py --data-root <자료 폴더> --portfolio <po
 ## 백엔드를 돌릴 PC 에서 다시 잴 때
 
 ```bash
-# 저장소 루트에서. 커밋된 project/ 를 임시 폴더에 풀고 업로드 파일 하나를 넣는다
-mkdir -p /tmp/pc_probe && git archive HEAD project | tar -x -C /tmp/pc_probe
-mkdir -p /tmp/pc_probe/project/data/uploads && cp datasets/hadong_upload_forecast_jma.csv /tmp/pc_probe/project/data/uploads/
-python tools/multi_plant/single_pc_probe.py --project /tmp/pc_probe/project --out /tmp/pc_probe/out
+# 저장소 루트에서. --prepare 가 커밋된 project/ 를 빈 폴더에 풀고 하동의 업로드 파일을 넣는다 (운영체제 공통)
+python tools/multi_plant/single_pc_probe.py --prepare <사본 폴더>
+python tools/multi_plant/single_pc_probe.py --project <사본 폴더>/project --out <결과를 둘 폴더>
 ```
+
+`<사본 폴더>` 는 저장소 밖의 빈 폴더다. Windows 라면 예를 들어 `C:\temp\pc_probe` 다.
+
+- **Windows 에서의 차이.** 메모리는 프로세스의 작업 집합(Working Set)으로 읽는다. macOS 와 리눅스에서 읽는 값과 재는 방법이 달라, 이 문서의 macOS 값과 그대로 견주지 않는다. CPU 시간은 재지 않는다. 읽지 못한 값은 `null` 로 남긴다.
+- **Windows 쪽 코드는 Windows 에서 돌려 보지 못했다.** macOS 에서 "유닉스 전용 모듈이 없는 조건"을 흉내 내어 멈추지 않고 `null` 을 남기는 것까지만 확인했다. 처음 돌릴 때는 `--steps env,baseline` 처럼 앞의 단계부터 돌려 본다.
 
 몇 분 걸린다. `finetune` 단계는 시간을 재려고 **측정 프로세스 안에서만** 게이트 값을 연다. 코드의 값은 바꾸지 않고, 그 통과는 품질의 근거가 아니다. 결과의 숫자로 [`single-pc-operation.md`](../../docs/proposal/single-pc-operation.md)의 3절과 4절을 고친다.
 
