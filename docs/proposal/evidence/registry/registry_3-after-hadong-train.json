@@ -1,0 +1,60 @@
+{
+  "label": "3-after-hadong-train",
+  "dumped_at": "2026-10-07T15:21:07+09:00",
+  "cwd_name": "project",
+  "mlflow_db_exists": true,
+  "scaler": {
+    "close_min": 5.886,
+    "close_max": 338.832,
+    "volume_min": 0.9504,
+    "volume_max": 28.3608
+  },
+  "model_files": [
+    ".gitkeep",
+    "scaler.pkl"
+  ],
+  "uploads": [
+    "haic_1791353979.csv",
+    "haic_1791354033.csv"
+  ],
+  "tracking_uri": "sqlite:///(검증용 사본)/project/mlflow.db",
+  "runs": [
+    {
+      "run_id": "bc775708",
+      "run_name": "base-train",
+      "status": "FINISHED",
+      "started": "2026-10-07T15:19:57+09:00",
+      "params": {
+        "mode": "scratch",
+        "epochs": "100"
+      },
+      "metrics": {
+        "rmse": 2.0278
+      }
+    },
+    {
+      "run_id": "3b3d2fa3",
+      "run_name": "base-train",
+      "status": "FINISHED",
+      "started": "2026-10-07T15:20:49+09:00",
+      "params": {
+        "mode": "scratch",
+        "epochs": "100"
+      },
+      "metrics": {
+        "rmse": 41.5888
+      }
+    }
+  ],
+  "model_versions": [
+    {
+      "name": "HAIC_Predictor",
+      "version": 1,
+      "stage": "Production",
+      "run_id": "bc775708"
+    }
+  ],
+  "production_versions": [
+    1
+  ]
+}

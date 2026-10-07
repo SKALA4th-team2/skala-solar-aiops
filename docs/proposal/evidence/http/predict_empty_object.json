@@ -1,0 +1,30 @@
+{
+  "case": "predict_empty_object",
+  "note": "sequence 필드 자체가 없음",
+  "requested_at": "2026-10-07T15:19:31+09:00",
+  "request": {
+    "method": "POST",
+    "path": "/predict",
+    "json": {},
+    "files": null,
+    "body_note": null
+  },
+  "response": {
+    "status": 422,
+    "content_type": "application/json",
+    "elapsed_ms": 0.5,
+    "body": {
+      "detail": [
+        {
+          "type": "missing",
+          "loc": [
+            "body",
+            "sequence"
+          ],
+          "msg": "Field required",
+          "input": {}
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "case": "data_status_after_restore",
+  "note": "되돌린 뒤의 상태 조회",
+  "requested_at": "2026-10-07T15:43:12+09:00",
+  "request": {
+    "method": "GET",
+    "path": "/data/status",
+    "json": null,
+    "files": null,
+    "body_note": null
+  },
+  "response": {
+    "status": 200,
+    "content_type": "application/json",
+    "elapsed_ms": 6.1,
+    "body": {
+      "exists": true,
+      "filename": "haic_1791355392.csv",
+      "rows": 1337,
+      "start_date": "2022-07-02",
+      "end_date": "2026-02-27",
+      "min_close": 5.886,
+      "max_close": 338.832
+    }
+  }
+}

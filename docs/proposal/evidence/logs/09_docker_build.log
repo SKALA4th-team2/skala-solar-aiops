@@ -1,0 +1,76 @@
+# 정리본: 패키지 내려받기와 설치 진행 줄(단계 #8 의 본문)을 지우고 단계의 시작·끝과 오류만 남겼다.
+# 남긴 줄은 원본 그대로다. 정리 규칙은 tools/proposal/sanitize_logs.py 에 있다.
+2026-10-07 15:38:27 KST
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.00kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.11-slim
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/8] FROM docker.io/library/python:3.11-slim@sha256:6f31d6e9ba2b0a787a3f81c37b004155b87b9efa1b771182bd550c1615745be5
+#4 resolve docker.io/library/python:3.11-slim@sha256:6f31d6e9ba2b0a787a3f81c37b004155b87b9efa1b771182bd550c1615745be5 0.0s done
+#4 DONE 0.1s
+
+#5 [internal] load build context
+#5 transferring context: 835.23kB 0.0s done
+#5 DONE 0.0s
+
+#6 [2/8] WORKDIR /app
+#6 DONE 0.0s
+
+#7 [3/8] COPY requirements.txt .
+#7 DONE 0.0s
+
+#8 [4/8] RUN pip install --no-cache-dir -r requirements.txt
+#8 DONE 119.0s
+
+#9 [5/8] COPY serving_app/ serving_app/
+#9 DONE 0.5s
+
+#10 [6/8] COPY data/ data/
+#10 DONE 0.0s
+
+#11 [7/8] COPY scripts/ scripts/
+#11 DONE 0.0s
+
+#12 [8/8] RUN mkdir -p data/uploads  && cp data/sample_haic_prices.csv data/uploads/build_seed.csv  && python scripts/train_baseline_v1.py  && python serving_app/train_and_register.py
+#12 4.719 scaler fit on 756행 -> serving_app/models/scaler.pkl
+#12 4.719 Traceback (most recent call last):
+#12 4.719   File "/app/scripts/train_baseline_v1.py", line 118, in <module>
+#12 4.719     main()
+#12 4.719   File "/app/scripts/train_baseline_v1.py", line 99, in main
+#12 4.719     model.fit(___, ___, epochs=BASE_EPOCHS, verbose=0)
+#12 4.719               ^^^
+#12 4.719 NameError: name '___' is not defined
+#12 ERROR: process "/bin/sh -c mkdir -p data/uploads  && cp data/sample_haic_prices.csv data/uploads/build_seed.csv  && python scripts/train_baseline_v1.py  && python serving_app/train_and_register.py" did not complete successfully: exit code: 1
+------
+ > [8/8] RUN mkdir -p data/uploads  && cp data/sample_haic_prices.csv data/uploads/build_seed.csv  && python scripts/train_baseline_v1.py  && python serving_app/train_and_register.py:
+4.719 scaler fit on 756행 -> serving_app/models/scaler.pkl
+4.719 Traceback (most recent call last):
+4.719   File "/app/scripts/train_baseline_v1.py", line 118, in <module>
+4.719     main()
+4.719   File "/app/scripts/train_baseline_v1.py", line 99, in main
+4.719     model.fit(___, ___, epochs=BASE_EPOCHS, verbose=0)
+4.719               ^^^
+4.719 NameError: name '___' is not defined
+------
+Dockerfile:27
+--------------------
+  26 |     # 여러 컨테이너가 네트워크로 서로의 모델/아티팩트를 찾아가야 하는 구조 자체가 없습니다.
+  27 | >>> RUN mkdir -p data/uploads \
+  28 | >>>  && cp data/sample_haic_prices.csv data/uploads/build_seed.csv \
+  29 | >>>  && python scripts/train_baseline_v1.py \
+  30 | >>>  && python serving_app/train_and_register.py
+  31 |     
+--------------------
+ERROR: failed to build: failed to solve: process "/bin/sh -c mkdir -p data/uploads  && cp data/sample_haic_prices.csv data/uploads/build_seed.csv  && python scripts/train_baseline_v1.py  && python serving_app/train_and_register.py" did not complete successfully: exit code: 1
+
+종료 코드: 1
+2026-10-07 15:40:36 KST

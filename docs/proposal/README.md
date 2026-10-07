@@ -4,16 +4,28 @@
 
 ## 평가와의 대응
 
-| 평가 항목 | 배점 | 기획서 항목 | 파일 | 담당 |
-| --- | --- | --- | --- | --- |
-| 2-1 문제 정의 및 운영 시나리오 설계 | 40 | ① 이해관계자 가치 (Pain Point) | [`1-pain-point.md`](1-pain-point.md) | |
-| | | ② AI 솔루션과 운영 목표 | [`2-solution-and-goals.md`](2-solution-and-goals.md) | |
-| | | ③ 운영 설계 | [`3-operations-design.md`](3-operations-design.md) | |
-| 2-2 서빙~AIOps 파이프라인 구현 및 발표 완성도 | 60 | ④ 아키텍처 구성도 | [`4-architecture.md`](4-architecture.md) | |
-| | | ⑤ API 명세 | [`5-api-spec.md`](5-api-spec.md) | |
-| | | ⑥ 동작 화면 스냅샷 | [`6-demo.md`](6-demo.md) | |
+| 평가 항목 | 배점 | 기획서 항목 | 파일 | 담당 | 상태 |
+| --- | --- | --- | --- | --- | --- |
+| 2-1 문제 정의 및 운영 시나리오 설계 | 40 | ① 이해관계자 가치 (Pain Point) | [`1-pain-point.md`](1-pain-point.md) | | 초안 |
+| | | ② AI 솔루션과 운영 목표 | [`2-solution-and-goals.md`](2-solution-and-goals.md) | | 초안 |
+| | | ③ 운영 설계 | [`3-operations-design.md`](3-operations-design.md) | | 초안 |
+| 2-2 서빙~AIOps 파이프라인 구현 및 발표 완성도 | 60 | ④ 아키텍처 구성도 | [`4-architecture.md`](4-architecture.md) | | 초안. 그림의 일부는 제안이다 |
+| | | ⑤ API 명세 | [`5-api-spec.md`](5-api-spec.md) | | 초안. 지금의 API 는 실행 결과, 태양광용은 제안이다 |
+| | | ⑥ 동작 화면 스냅샷 | [`6-demo.md`](6-demo.md) | | 초안. 돌릴 수 있는 장면까지만 실제 결과가 있다 |
 
-먼저 [`domain-mapping.md`](domain-mapping.md)의 도메인 매핑표를 채운다. 통합가이드는 이 표가 채워지면 스키마, 게이트 기준, 드리프트 임계값, API 명세가 거의 자동으로 정해진다고 말한다.
+[`domain-mapping.md`](domain-mapping.md)의 도메인 매핑표가 여섯 항목의 출발점이다. 통합가이드는 이 표가 채워지면 스키마, 게이트 기준, 드리프트 임계값, API 명세가 거의 자동으로 정해진다고 말한다.
+
+## 지금의 상태 (2026-10-07)
+
+- **본문은 여섯 항목 모두 초안이 있다.** 고객, 입력, 지표, 목표, 게이트, 감시, 분기, 재학습, 시연에 관한 값은 [결정 기록](../decisions/) 아홉 건의 **제안**을 따랐다. 팀이 확정한 결정은 아직 없다. 확정하면서 값이 바뀌면 기획서의 해당 칸을 함께 고친다.
+- **지금의 코드는 끝까지 돌지 않는다.** `project/` 는 받은 스켈레톤 그대로이고 빈칸 11곳이 남아 있다. 직접 돌려 보니 다음과 같았다.
+
+| 돈다 | 돌지 않는다 (빈칸) | 코드에 없다 (제안) |
+| --- | --- | --- |
+| 서버 기동, 요청의 422 검증, 업로드와 상태 조회, 로그 조회, MLflow 학습과 게이트(통과와 차단), 게이트에서 막혔을 때의 기존 버전 유지 | 정상 입력의 예측(500), 배치 예측과 드리프트 판정(500), 경고와 재학습의 로그, MLflow 의 모델로 서빙, baseline 학습 스크립트, 컨테이너 빌드 | 태양광용 상대 게이트, 성능 지표로 하는 판정, 정지와 보류의 갈래, 승격 뒤 서빙 모델의 교체, 실제 버전 번호의 응답, 업로드 내용의 검증 |
+
+- 건별 기록은 [`evidence/validation.md`](evidence/validation.md)에 있다. 서른 건 가운데 돌리지 못한 것과 그 까닭, 고칠 곳이 맨 위에 모여 있다.
+- 다음에 할 일은 [③ 의 13절](3-operations-design.md#13-구현-과제와-확인하지-못한-것)의 순서다. 빈칸을 채운 뒤 [⑥ 의 마지막 절](6-demo.md#빈칸을-채운-뒤-다시-찍는-순서)대로 다시 돌려 "실제 결과"를 바꾼다.
 
 ## 여섯 항목은 이어져야 한다
 
@@ -29,6 +41,24 @@
 
 - ③ 의 게이트와 임계값은 ② 의 운영 목표에서 나와야 하고, ② 의 목표는 ① 의 불편에서 나와야 한다.
 - ⑥ 의 화면은 ③ 에서 설계한 정책이 실제로 동작하는 모습이어야 한다.
+- 이 줄기를 한 표로 묶은 것이 [① 의 8절](1-pain-point.md#8-불편에서-기능-목표-검증으로)이다.
+
+여섯 항목이 함께 쓰는 약속은 다음과 같다. 한 곳을 고치면 나머지도 맞춘다.
+
+| 약속 | 값 | 근거 |
+| --- | --- | --- |
+| 고객 | 가상의 전력 중개 사업자의 운영 담당자. 우리는 솔루션 공급자 | [0001](../decisions/0001-customer-and-scope.md) |
+| 예측 대상 | 발전소 한 곳의 다음 날 하루 발전량(kWh) 한 값 | [0002](../decisions/0002-inputs-and-prediction-time.md) |
+| 입력 | 최근 20일의 (그날의 발전량 kWh, 다음 날에 대한 하루 전 일사량 예보 MJ/m²) | [0002](../decisions/0002-inputs-and-prediction-time.md) |
+| 예측 시점 | 대상일 전날 20시 이후. 저장된 CSV 를 재생한다 | [0002](../decisions/0002-inputs-and-prediction-time.md) |
+| 자료 | `datasets/hadong_upload_forecast_jma.csv`(예측), `datasets/hadong_daily_full.csv`(사후 감시) | [0002](../decisions/0002-inputs-and-prediction-time.md), [0009](../decisions/0009-demo-plan.md) |
+| 지표 | RMSE(하루 kWh), 합계 오차율, 치우침. 용량은 55kW | [0003](../decisions/0003-capacity-and-error-metrics.md) |
+| 운영 목표 | 예측 응답 1초 이하, 예측 시간대의 가용성 99% 이상, 기준 예측 대비 품질, 수준 저하를 4주 안에 알림 | [0004](../decisions/0004-service-level-objectives.md) |
+| 배포 게이트 | 7일 평균 RMSE 의 80% 이하이면서 규칙C 의 105% 이하, 치우침 ±10% 이내 | [0005](../decisions/0005-deployment-gate.md) |
+| 감시 | 날마다 최근 41일을 본다. 뒤 21일의 성능 지표가 고정 기준선보다 7.5% 넘게 낮으면 수준 저하. 유효한 날 15일 이상 | [0006](../decisions/0006-monitoring-metric-and-thresholds.md) |
+| 분기와 알림 | 정지와 보류는 점검 알림과 재학습 보류. 그 밖의 수준 저하는 알림과 재학습 후보. 알림 창구는 `aiops.log` | [0007](../decisions/0007-facility-vs-model-branch-and-alerts.md) |
+| 재학습과 교체 | 앞 20일도 내려간 수준일 때 최근 41행으로 이어서 학습. 승격 뒤 서빙 모델을 다시 불러오고 실제 버전 번호를 싣는다 | [0008](../decisions/0008-retraining-and-version-switch.md) |
+| 시연 | 2021년의 실제 하락은 사후 감시로, 예측과 재학습은 2025년에 14% 하락을 넣어 | [0009](../decisions/0009-demo-plan.md) |
 
 ## 쓰는 규칙
 
@@ -36,3 +66,23 @@
 - 결과 수치는 직접 실행해 얻은 값만 적는다. 조사 보고서의 수치를 인용할 때는 출처와 조건을 붙인다.
 - 예측 시점에 받을 수 없는 값을 쓴 결과는 쓸 때마다 그렇게 표시한다.
 - 캡처와 로그는 [`evidence/`](evidence/)에 두고 ⑥ 에서 가리킨다.
+- 문장이나 표의 칸 앞에 내용의 성격을 적는다. 표기는 여섯 항목이 같다.
+
+| 표기 | 뜻 |
+| --- | --- |
+| **[사실]** | 공식 문서나 원자료에서 확인한 것 |
+| **[조사]** | 조사 보고서([`../research/`](../research/))의 결과나 권고. 팀이 확정한 결정이 아니다 |
+| **[제안]** | 이 기획서가 제안하는 설계나 운영 목표. 근거는 상태가 "제안"인 결정 기록에 있다 |
+| **[현재]** | 커밋된 코드가 지금 하는 일 |
+| **[실행]** | 직접 실행하거나 계산해 확인한 결과. [검증 기록](evidence/validation.md)의 번호를 붙인다 |
+| **[미확인]** | 확인하지 못한 것 |
+| **[과제]** | 구현해야 하는 것 |
+
+## 폴더
+
+| 폴더 | 내용 |
+| --- | --- |
+| [`assets/`](assets/) | 자료에서 직접 그린 그래프 여섯 장. 만드는 스크립트는 [`tools/proposal/make_figures.py`](../../tools/proposal/make_figures.py) |
+| [`evidence/`](evidence/) | 실행 증빙. 요청과 응답(`http/`), 로그(`logs/`), 레지스트리의 상태(`registry/`), 화면(`screens/`), 계산 결과, [검증 기록](evidence/validation.md) |
+
+구조도, 순서도, 갈래 그림은 문서 안에 Mermaid 로 그렸다. 문서를 고친 뒤에는 `python tools/proposal/check_docs.py` 로 링크와 표를, `python tools/proposal/check_mermaid.py` 로 그림을 점검한다. 도구의 설명은 [`tools/proposal/README.md`](../../tools/proposal/README.md)에 있다.

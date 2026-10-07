@@ -1,0 +1,21 @@
+{
+  "case": "docs_swagger",
+  "note": "자동 문서 화면",
+  "requested_at": "2026-10-07T15:19:31+09:00",
+  "request": {
+    "method": "GET",
+    "path": "/docs",
+    "json": null,
+    "files": null,
+    "body_note": null
+  },
+  "response": {
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "elapsed_ms": 0.9,
+    "body": {
+      "length": 1019,
+      "head": "\n    <!DOCTYPE html>\n    <html>\n    <head>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <link type=\"text/css\" rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css\">\n    <link rel=\"shortcut icon\" href=\"https://fastapi.tiangolo.com/img/"
+    }
+  }
+}

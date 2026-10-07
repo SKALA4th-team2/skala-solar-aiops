@@ -1,0 +1,354 @@
+{
+  "commit": "58d6ff8",
+  "project_dir_modified": false,
+  "blanks": [
+    {
+      "file": "scripts/train_baseline_v1.py",
+      "line": 99,
+      "count": 2,
+      "code": "model.fit(___, ___, epochs=BASE_EPOCHS, verbose=0)"
+    },
+    {
+      "file": "serving_app/model_loader.py",
+      "line": 74,
+      "count": 1,
+      "code": "scaled = [self.scaler.___(p[\"close\"], p[\"volume\"]) for p in sequence]"
+    },
+    {
+      "file": "serving_app/model_loader.py",
+      "line": 88,
+      "count": 1,
+      "code": "return self.scaler.___(pred_scaled)"
+    },
+    {
+      "file": "serving_app/model_loader.py",
+      "line": 125,
+      "count": 1,
+      "code": "scaler = ___"
+    },
+    {
+      "file": "serving_app/model_loader.py",
+      "line": 167,
+      "count": 1,
+      "code": "if ___:"
+    },
+    {
+      "file": "serving_app/model_loader.py",
+      "line": 169,
+      "count": 1,
+      "code": "_model_cache = ___"
+    },
+    {
+      "file": "serving_app/monitoring/drift_detector.py",
+      "line": 58,
+      "count": 1,
+      "code": "errors_sq = [(___) ** 2 for p in recent_predictions]"
+    },
+    {
+      "file": "serving_app/monitoring/drift_detector.py",
+      "line": 59,
+      "count": 1,
+      "code": "return math.sqrt(___)"
+    },
+    {
+      "file": "serving_app/monitoring/drift_detector.py",
+      "line": 73,
+      "count": 1,
+      "code": "if ___:"
+    },
+    {
+      "file": "serving_app/monitoring/retrain_trigger.py",
+      "line": 65,
+      "count": 1,
+      "code": "rows = load_rows(latest_upload())[-(___):]"
+    },
+    {
+      "file": "serving_app/monitoring/retrain_trigger.py",
+      "line": 75,
+      "count": 1,
+      "code": "result = ___"
+    },
+    {
+      "file": "serving_app/monitoring/retrain_trigger.py",
+      "line": 84,
+      "count": 1,
+      "code": "if ___:"
+    },
+    {
+      "file": "serving_app/routers/predict.py",
+      "line": 85,
+      "count": 2,
+      "code": "window = prices[___ : ___]"
+    },
+    {
+      "file": "serving_app/routers/predict.py",
+      "line": 88,
+      "count": 1,
+      "code": "actual = prices[___]"
+    }
+  ],
+  "blank_lines": 14,
+  "blank_marks": 16,
+  "constants": [
+    {
+      "file": "serving_app/train_and_register.py",
+      "name": "RMSE_GATE",
+      "line": 37,
+      "code": "RMSE_GATE = 4.00"
+    },
+    {
+      "file": "serving_app/train_and_register.py",
+      "name": "MODEL_NAME",
+      "line": 38,
+      "code": "MODEL_NAME = \"HAIC_Predictor\""
+    },
+    {
+      "file": "serving_app/train_and_register.py",
+      "name": "BASE_EPOCHS",
+      "line": 40,
+      "code": "BASE_EPOCHS = 100"
+    },
+    {
+      "file": "serving_app/train_and_register.py",
+      "name": "FINE_TUNE_EPOCHS",
+      "line": 41,
+      "code": "FINE_TUNE_EPOCHS = 10"
+    },
+    {
+      "file": "serving_app/train_and_register.py",
+      "name": "FINE_TUNE_LR",
+      "line": 42,
+      "code": "FINE_TUNE_LR = 1e-4"
+    },
+    {
+      "file": "serving_app/train_and_register.py",
+      "name": "SEED",
+      "line": 34,
+      "code": "SEED = 42"
+    },
+    {
+      "file": "serving_app/monitoring/drift_detector.py",
+      "name": "RMSE_THRESHOLD",
+      "line": 22,
+      "code": "RMSE_THRESHOLD = 4.00"
+    },
+    {
+      "file": "serving_app/monitoring/drift_detector.py",
+      "name": "WINDOW_SIZE",
+      "line": 23,
+      "code": "WINDOW_SIZE = 21"
+    },
+    {
+      "file": "data/features.py",
+      "name": "SEQ_LEN",
+      "line": 16,
+      "code": "SEQ_LEN = 20"
+    },
+    {
+      "file": "serving_app/lstm_model.py",
+      "name": "N_FEATURES",
+      "line": 14,
+      "code": "N_FEATURES = 2"
+    },
+    {
+      "file": "serving_app/routers/predict.py",
+      "name": "SIMULATED_VOLUME",
+      "line": 30,
+      "code": "SIMULATED_VOLUME = 1_200_000"
+    },
+    {
+      "file": "serving_app/routers/data.py",
+      "name": "REQUIRED_COLUMNS",
+      "line": 23,
+      "code": "REQUIRED_COLUMNS = {\"Date\", \"Close\", \"Volume\"}"
+    },
+    {
+      "file": "serving_app/routers/data.py",
+      "name": "MIN_ROWS",
+      "line": 24,
+      "code": "MIN_ROWS = SEQ_LEN + WINDOW_SIZE"
+    },
+    {
+      "file": "serving_app/model_loader.py",
+      "name": "MLFLOW_MODEL_URI",
+      "line": 40,
+      "code": "MLFLOW_MODEL_URI = \"models:/HAIC_Predictor/Production\""
+    },
+    {
+      "file": "serving_app/model_loader.py",
+      "name": "LOCAL_MODEL_PATH",
+      "line": 38,
+      "code": "LOCAL_MODEL_PATH = \"serving_app/models/haic_v1.keras\""
+    },
+    {
+      "file": "serving_app/model_loader.py",
+      "name": "SCALER_PATH",
+      "line": 39,
+      "code": "SCALER_PATH = \"serving_app/models/scaler.pkl\""
+    },
+    {
+      "file": "scripts/simulate_drift.py",
+      "name": "BATCH_N",
+      "line": 60,
+      "code": "BATCH_N = 41"
+    },
+    {
+      "file": "scripts/simulate_drift.py",
+      "name": "NORMAL_SIGMA",
+      "line": 66,
+      "code": "NORMAL_SIGMA = 0.012"
+    },
+    {
+      "file": "scripts/simulate_drift.py",
+      "name": "DRIFT_SIGMA",
+      "line": 67,
+      "code": "DRIFT_SIGMA = NORMAL_SIGMA * 3"
+    },
+    {
+      "file": "serving_app/static/index.html",
+      "name": "WINDOW_SIZE",
+      "line": 203,
+      "code": "const WINDOW_SIZE = 21;"
+    },
+    {
+      "file": "serving_app/static/index.html",
+      "name": "RMSE_THRESHOLD",
+      "line": 204,
+      "code": "const RMSE_THRESHOLD = 4.0;"
+    },
+    {
+      "file": "serving_app/static/index.html",
+      "name": "DEFAULT_BASE_PRICE",
+      "line": 210,
+      "code": "const DEFAULT_BASE_PRICE = 165.0;"
+    }
+  ],
+  "haic_wording": {
+    "HAIC": {
+      "total": 43,
+      "files": {
+        "data/features.py": 5,
+        "data/storage.py": 2,
+        "scripts/simulate_drift.py": 2,
+        "scripts/train_baseline_v1.py": 3,
+        "serving_app/Dockerfile": 1,
+        "serving_app/lstm_model.py": 1,
+        "serving_app/main.py": 3,
+        "serving_app/model_loader.py": 6,
+        "serving_app/monitoring/retrain_trigger.py": 2,
+        "serving_app/routers/data.py": 1,
+        "serving_app/static/index.html": 4,
+        "serving_app/train_and_register.py": 8,
+        "README.md": 5
+      }
+    },
+    "종가": {
+      "total": 25,
+      "files": {
+        "data/features.py": 4,
+        "scripts/train_baseline_v1.py": 4,
+        "serving_app/lstm_model.py": 1,
+        "serving_app/model_loader.py": 8,
+        "serving_app/routers/predict.py": 3,
+        "serving_app/schemas.py": 2,
+        "README.md": 3
+      }
+    },
+    "거래일": {
+      "total": 18,
+      "files": {
+        "data/features.py": 4,
+        "serving_app/lstm_model.py": 1,
+        "serving_app/monitoring/drift_detector.py": 1,
+        "serving_app/monitoring/retrain_trigger.py": 1,
+        "serving_app/schemas.py": 5,
+        "serving_app/train_and_register.py": 1,
+        "README.md": 5
+      }
+    },
+    "거래량": {
+      "total": 9,
+      "files": {
+        "scripts/train_baseline_v1.py": 3,
+        "serving_app/model_loader.py": 2,
+        "serving_app/routers/predict.py": 1,
+        "serving_app/schemas.py": 2,
+        "README.md": 1
+      }
+    },
+    "달러": {
+      "total": 23,
+      "files": {
+        "data/features.py": 1,
+        "scripts/train_baseline_v1.py": 7,
+        "serving_app/model_loader.py": 9,
+        "serving_app/monitoring/drift_detector.py": 6
+      }
+    },
+    "$4": {
+      "total": 15,
+      "files": {
+        "scripts/simulate_drift.py": 1,
+        "scripts/train_baseline_v1.py": 3,
+        "serving_app/monitoring/drift_detector.py": 3,
+        "serving_app/monitoring/retrain_trigger.py": 3,
+        "serving_app/train_and_register.py": 2,
+        "README.md": 3
+      }
+    },
+    "주가": {
+      "total": 2,
+      "files": {
+        "scripts/train_baseline_v1.py": 2
+      }
+    }
+  },
+  "model_cache_refs": [
+    {
+      "file": "serving_app/model_loader.py",
+      "line": 42,
+      "code": "_model_cache = None"
+    },
+    {
+      "file": "serving_app/model_loader.py",
+      "line": 144,
+      "code": "global _model_cache"
+    },
+    {
+      "file": "serving_app/model_loader.py",
+      "line": 145,
+      "code": "_model_cache = model"
+    },
+    {
+      "file": "serving_app/model_loader.py",
+      "line": 158,
+      "code": "global _model_cache"
+    },
+    {
+      "file": "serving_app/model_loader.py",
+      "line": 169,
+      "code": "_model_cache = ___"
+    },
+    {
+      "file": "serving_app/model_loader.py",
+      "line": 171,
+      "code": "return _model_cache"
+    },
+    {
+      "file": "serving_app/routers/health.py",
+      "line": 11,
+      "code": "model_loaded = model_loader._model_cache is not None"
+    }
+  ],
+  "model_cache_written_outside_loader": [],
+  "version_strings": [
+    {
+      "line": 99,
+      "code": "return LoadedModel(keras_model=keras_model, scaler=scaler, version=\"v1-local\")"
+    },
+    {
+      "line": 126,
+      "code": "return LoadedModel(keras_model=keras_model, scaler=scaler, version=\"production\")"
+    }
+  ]
+}

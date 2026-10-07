@@ -1,0 +1,64 @@
+{
+  "checked_at": "2026-10-07T15:43:50+09:00",
+  "what": "레지스트리의 승격과 되돌리기 동작. 앱의 재학습 경로를 실행한 결과가 아니다",
+  "mlflow_version": "3.16.0",
+  "source_run_of_new_version": "bc775708",
+  "steps": [
+    {
+      "step": "1. 처음 상태",
+      "versions": [
+        {
+          "version": 1,
+          "stage": "Production",
+          "run_id": "bc775708"
+        }
+      ],
+      "production_versions": [
+        1
+      ],
+      "uri": "models:/HAIC_Predictor/Production",
+      "uri_resolves_to_version": 1
+    },
+    {
+      "step": "2. v2 을 등록하고 Production 으로 올린 뒤 (앱의 승격과 같은 두 호출)",
+      "versions": [
+        {
+          "version": 1,
+          "stage": "Production",
+          "run_id": "bc775708"
+        },
+        {
+          "version": 2,
+          "stage": "Production",
+          "run_id": "bc775708"
+        }
+      ],
+      "production_versions": [
+        1,
+        2
+      ],
+      "uri": "models:/HAIC_Predictor/Production",
+      "uri_resolves_to_version": 2
+    },
+    {
+      "step": "3. v2 을 Archived 로 내린 뒤 (사람이 하는 되돌리기)",
+      "versions": [
+        {
+          "version": 1,
+          "stage": "Production",
+          "run_id": "bc775708"
+        },
+        {
+          "version": 2,
+          "stage": "Archived",
+          "run_id": "bc775708"
+        }
+      ],
+      "production_versions": [
+        1
+      ],
+      "uri": "models:/HAIC_Predictor/Production",
+      "uri_resolves_to_version": 1
+    }
+  ]
+}

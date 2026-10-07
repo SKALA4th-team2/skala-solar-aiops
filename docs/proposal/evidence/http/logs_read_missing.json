@@ -1,0 +1,20 @@
+{
+  "case": "logs_read_missing",
+  "note": "없는 로그 파일",
+  "requested_at": "2026-10-07T15:19:31+09:00",
+  "request": {
+    "method": "GET",
+    "path": "/logs/no-such-file.log",
+    "json": null,
+    "files": null,
+    "body_note": null
+  },
+  "response": {
+    "status": 404,
+    "content_type": "application/json",
+    "elapsed_ms": 0.8,
+    "body": {
+      "detail": "로그 파일을 찾을 수 없습니다"
+    }
+  }
+}

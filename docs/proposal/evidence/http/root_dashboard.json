@@ -1,0 +1,21 @@
+{
+  "case": "root_dashboard",
+  "note": "대시보드 화면(정적 파일)",
+  "requested_at": "2026-10-07T15:19:31+09:00",
+  "request": {
+    "method": "GET",
+    "path": "/",
+    "json": null,
+    "files": null,
+    "body_note": null
+  },
+  "response": {
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "elapsed_ms": 8.5,
+    "body": {
+      "length": 16933,
+      "head": "<!DOCTYPE html>\n<html lang=\"ko\">\n<head>\n<meta charset=\"UTF-8\" />\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n<title>AIOps · HAIC 재학습 파이프라인</title>\n<link rel=\"icon\" type=\"image/x-icon\" href=\"/favicon.ico\" />\n<style>\n  :root {\n    --bg: #0a0c10;\n    --panel: #12151c;\n    -"
+    }
+  }
+}

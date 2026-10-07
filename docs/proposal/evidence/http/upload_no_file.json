@@ -1,0 +1,30 @@
+{
+  "case": "upload_no_file",
+  "note": "file 필드 없이 호출",
+  "requested_at": "2026-10-07T15:20:32+09:00",
+  "request": {
+    "method": "POST",
+    "path": "/data/upload",
+    "json": null,
+    "files": null,
+    "body_note": null
+  },
+  "response": {
+    "status": 422,
+    "content_type": "application/json",
+    "elapsed_ms": 0.9,
+    "body": {
+      "detail": [
+        {
+          "type": "missing",
+          "loc": [
+            "body",
+            "file"
+          ],
+          "msg": "Field required",
+          "input": null
+        }
+      ]
+    }
+  }
+}

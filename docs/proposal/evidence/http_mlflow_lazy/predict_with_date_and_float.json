@@ -1,0 +1,344 @@
+{
+  "case": "predict_with_date_and_float",
+  "note": "서버를 MODEL_SOURCE=mlflow, LOADING_MODE 기본값(lazy)으로 띄운 상태에서 ⑤ 9절의 제안 본문(날짜와 소수 예보)을 그대로 보냄",
+  "requested_at": "2026-10-07T16:58:25+09:00",
+  "request": {
+    "method": "POST",
+    "path": "/predict",
+    "json": {
+      "sequence": [
+        {
+          "date": "2026-02-08",
+          "close": 292.674,
+          "volume": 15.6852
+        },
+        {
+          "date": "2026-02-09",
+          "close": 265.146,
+          "volume": 4.1544
+        },
+        {
+          "date": "2026-02-10",
+          "close": 45.42,
+          "volume": 15.1344
+        },
+        {
+          "date": "2026-02-11",
+          "close": 231.726,
+          "volume": 16.4304
+        },
+        {
+          "date": "2026-02-12",
+          "close": 262.698,
+          "volume": 15.2424
+        },
+        {
+          "date": "2026-02-13",
+          "close": 249.714,
+          "volume": 13.158
+        },
+        {
+          "date": "2026-02-14",
+          "close": 169.11,
+          "volume": 16.1424
+        },
+        {
+          "date": "2026-02-15",
+          "close": 243.468,
+          "volume": 14.7564
+        },
+        {
+          "date": "2026-02-16",
+          "close": 189.516,
+          "volume": 16.9704
+        },
+        {
+          "date": "2026-02-17",
+          "close": 273.84,
+          "volume": 16.9812
+        },
+        {
+          "date": "2026-02-18",
+          "close": 268.452,
+          "volume": 17.2368
+        },
+        {
+          "date": "2026-02-19",
+          "close": 278.286,
+          "volume": 17.0604
+        },
+        {
+          "date": "2026-02-20",
+          "close": 268.326,
+          "volume": 16.9272
+        },
+        {
+          "date": "2026-02-21",
+          "close": 265.8,
+          "volume": 15.408
+        },
+        {
+          "date": "2026-02-22",
+          "close": 214.044,
+          "volume": 16.6248
+        },
+        {
+          "date": "2026-02-23",
+          "close": 265.386,
+          "volume": 0.99
+        },
+        {
+          "date": "2026-02-24",
+          "close": 11.532,
+          "volume": 16.74
+        },
+        {
+          "date": "2026-02-25",
+          "close": 247.932,
+          "volume": 14.598
+        },
+        {
+          "date": "2026-02-26",
+          "close": 80.244,
+          "volume": 9.5004
+        },
+        {
+          "date": "2026-02-27",
+          "close": 94.848,
+          "volume": 18.3816
+        }
+      ]
+    },
+    "files": null,
+    "body_note": null
+  },
+  "response": {
+    "status": 422,
+    "content_type": "application/json",
+    "elapsed_ms": 7.1,
+    "body": {
+      "detail": [
+        {
+          "type": "int_from_float",
+          "loc": [
+            "body",
+            "sequence",
+            0,
+            "volume"
+          ],
+          "msg": "Input should be a valid integer, got a number with a fractional part",
+          "input": 15.6852
+        },
+        {
+          "type": "int_from_float",
+          "loc": [
+            "body",
+            "sequence",
+            1,
+            "volume"
+          ],
+          "msg": "Input should be a valid integer, got a number with a fractional part",
+          "input": 4.1544
+        },
+        {
+          "type": "int_from_float",
+          "loc": [
+            "body",
+            "sequence",
+            2,
+            "volume"
+          ],
+          "msg": "Input should be a valid integer, got a number with a fractional part",
+          "input": 15.1344
+        },
+        {
+          "type": "int_from_float",
+          "loc": [
+            "body",
+            "sequence",
+            3,
+            "volume"
+          ],
+          "msg": "Input should be a valid integer, got a number with a fractional part",
+          "input": 16.4304
+        },
+        {
+          "type": "int_from_float",
+          "loc": [
+            "body",
+            "sequence",
+            4,
+            "volume"
+          ],
+          "msg": "Input should be a valid integer, got a number with a fractional part",
+          "input": 15.2424
+        },
+        {
+          "type": "int_from_float",
+          "loc": [
+            "body",
+            "sequence",
+            5,
+            "volume"
+          ],
+          "msg": "Input should be a valid integer, got a number with a fractional part",
+          "input": 13.158
+        },
+        {
+          "type": "int_from_float",
+          "loc": [
+            "body",
+            "sequence",
+            6,
+            "volume"
+          ],
+          "msg": "Input should be a valid integer, got a number with a fractional part",
+          "input": 16.1424
+        },
+        {
+          "type": "int_from_float",
+          "loc": [
+            "body",
+            "sequence",
+            7,
+            "volume"
+          ],
+          "msg": "Input should be a valid integer, got a number with a fractional part",
+          "input": 14.7564
+        },
+        {
+          "type": "int_from_float",
+          "loc": [
+            "body",
+            "sequence",
+            8,
+            "volume"
+          ],
+          "msg": "Input should be a valid integer, got a number with a fractional part",
+          "input": 16.9704
+        },
+        {
+          "type": "int_from_float",
+          "loc": [
+            "body",
+            "sequence",
+            9,
+            "volume"
+          ],
+          "msg": "Input should be a valid integer, got a number with a fractional part",
+          "input": 16.9812
+        },
+        {
+          "type": "int_from_float",
+          "loc": [
+            "body",
+            "sequence",
+            10,
+            "volume"
+          ],
+          "msg": "Input should be a valid integer, got a number with a fractional part",
+          "input": 17.2368
+        },
+        {
+          "type": "int_from_float",
+          "loc": [
+            "body",
+            "sequence",
+            11,
+            "volume"
+          ],
+          "msg": "Input should be a valid integer, got a number with a fractional part",
+          "input": 17.0604
+        },
+        {
+          "type": "int_from_float",
+          "loc": [
+            "body",
+            "sequence",
+            12,
+            "volume"
+          ],
+          "msg": "Input should be a valid integer, got a number with a fractional part",
+          "input": 16.9272
+        },
+        {
+          "type": "int_from_float",
+          "loc": [
+            "body",
+            "sequence",
+            13,
+            "volume"
+          ],
+          "msg": "Input should be a valid integer, got a number with a fractional part",
+          "input": 15.408
+        },
+        {
+          "type": "int_from_float",
+          "loc": [
+            "body",
+            "sequence",
+            14,
+            "volume"
+          ],
+          "msg": "Input should be a valid integer, got a number with a fractional part",
+          "input": 16.6248
+        },
+        {
+          "type": "int_from_float",
+          "loc": [
+            "body",
+            "sequence",
+            15,
+            "volume"
+          ],
+          "msg": "Input should be a valid integer, got a number with a fractional part",
+          "input": 0.99
+        },
+        {
+          "type": "int_from_float",
+          "loc": [
+            "body",
+            "sequence",
+            16,
+            "volume"
+          ],
+          "msg": "Input should be a valid integer, got a number with a fractional part",
+          "input": 16.74
+        },
+        {
+          "type": "int_from_float",
+          "loc": [
+            "body",
+            "sequence",
+            17,
+            "volume"
+          ],
+          "msg": "Input should be a valid integer, got a number with a fractional part",
+          "input": 14.598
+        },
+        {
+          "type": "int_from_float",
+          "loc": [
+            "body",
+            "sequence",
+            18,
+            "volume"
+          ],
+          "msg": "Input should be a valid integer, got a number with a fractional part",
+          "input": 9.5004
+        },
+        {
+          "type": "int_from_float",
+          "loc": [
+            "body",
+            "sequence",
+            19,
+            "volume"
+          ],
+          "msg": "Input should be a valid integer, got a number with a fractional part",
+          "input": 18.3816
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "case": "upload_40_rows",
+  "note": "40행(최소 41행 미만)",
+  "requested_at": "2026-10-07T15:20:32+09:00",
+  "request": {
+    "method": "POST",
+    "path": "/data/upload",
+    "json": null,
+    "files": {
+      "file": "datasets/hadong_upload_forecast_jma.csv 의 앞 40행"
+    },
+    "body_note": null
+  },
+  "response": {
+    "status": 400,
+    "content_type": "application/json",
+    "elapsed_ms": 1.0,
+    "body": {
+      "detail": "최소 41행 이상의 데이터가 필요합니다."
+    }
+  }
+}

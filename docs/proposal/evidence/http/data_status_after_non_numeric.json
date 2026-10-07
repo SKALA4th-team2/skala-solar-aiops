@@ -1,0 +1,21 @@
+{
+  "case": "data_status_after_non_numeric",
+  "note": "발전량 칸 하나가 숫자가 아님(abc) 업로드 뒤의 상태 조회",
+  "requested_at": "2026-10-07T15:43:09+09:00",
+  "request": {
+    "method": "GET",
+    "path": "/data/status",
+    "json": null,
+    "files": null,
+    "body_note": null
+  },
+  "response": {
+    "status": 500,
+    "content_type": "text/plain; charset=utf-8",
+    "elapsed_ms": 2.4,
+    "body": {
+      "length": 21,
+      "head": "Internal Server Error"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+# 정리본: 경로를 짧은 표기로 바꾸고, 프레임워크 내부 호출을 한 줄로 접고, 진행 막대와 MLflow 안내 줄을 지웠다.
+# 결과와 오류 문장은 원본 그대로다. 정리 규칙은 tools/proposal/sanitize_logs.py 에 있다.
+2026-10-07 15:47:25 KST
+INFO:     Started server process [61998]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8077 (Press CTRL+C to quit)
+[lazy] 모델은 첫 /predict 요청이 들어올 때 로드됩니다.
+INFO:     127.0.0.1:59125 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59137 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59137 - "GET /logs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59137 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59149 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59155 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59155 - "GET /logs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59155 - "POST /data/upload HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59155 - "POST /predict/batch-test HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  ... (프레임워크 내부 호출 26개 생략)
+  File "(검증용 사본)/project/serving_app/routers/predict.py", line 72, in batch_test
+    model = model_loader.get_model()
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "(검증용 사본)/project/serving_app/model_loader.py", line 167, in get_model
+    if ___:
+       ^^^
+NameError: name '___' is not defined
+INFO:     127.0.0.1:59156 - "POST /predict/batch-test HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  ... (프레임워크 내부 호출 26개 생략)
+  File "(검증용 사본)/project/serving_app/routers/predict.py", line 72, in batch_test
+    model = model_loader.get_model()
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "(검증용 사본)/project/serving_app/model_loader.py", line 167, in get_model
+    if ___:
+       ^^^
+NameError: name '___' is not defined
+INFO:     127.0.0.1:59165 - "GET /logs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59165 - "GET /logs/aiops.log HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59165 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59165 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [61998]

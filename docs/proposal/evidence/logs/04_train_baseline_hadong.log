@@ -1,0 +1,12 @@
+# 정리본: 경로를 짧은 표기로 바꾸고, 프레임워크 내부 호출을 한 줄로 접고, 진행 막대와 MLflow 안내 줄을 지웠다.
+# 결과와 오류 문장은 원본 그대로다. 정리 규칙은 tools/proposal/sanitize_logs.py 에 있다.
+2026-10-07 15:20:33 KST
+scaler fit on 1337행 -> serving_app/models/scaler.pkl
+Traceback (most recent call last):
+  File "(검증용 사본)/project/scripts/train_baseline_v1.py", line 118, in <module>
+    main()
+  File "(검증용 사본)/project/scripts/train_baseline_v1.py", line 99, in main
+    model.fit(___, ___, epochs=BASE_EPOCHS, verbose=0)
+              ^^^
+NameError: name '___' is not defined
+종료 코드: 1

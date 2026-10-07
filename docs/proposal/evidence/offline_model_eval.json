@@ -1,0 +1,173 @@
+{
+  "evaluated_at": "2026-10-07T15:50:39+09:00",
+  "what": "저장소의 학습 코드로 직접 학습한 모델의 오프라인 평가. 서버가 응답한 값이 아니다",
+  "run": {
+    "run_id": "3b3d2fa3",
+    "logged_rmse": 41.5888,
+    "params": {
+      "mode": "scratch",
+      "epochs": "100"
+    },
+    "registered": false,
+    "why_not_registered": "현재 코드의 게이트가 RMSE 4.00 이하라서"
+  },
+  "scaler_equals_fit_on_this_file": true,
+  "test": {
+    "n": 264,
+    "start": "2025-06-09",
+    "end": "2026-02-27",
+    "mean_actual_kwh": 194.18
+  },
+  "model": {
+    "rmse_kwh": 41.5888,
+    "total_error_pct": 16.55,
+    "bias_pct": -5.95
+  },
+  "model_prediction_range_kwh": [
+    18.6,
+    305.5
+  ],
+  "model_negative_predictions": 0,
+  "baselines": {
+    "어제 값": {
+      "rmse_kwh": 82.4437,
+      "total_error_pct": 31.41,
+      "bias_pct": 0.28
+    },
+    "7일 평균": {
+      "rmse_kwh": 71.6519,
+      "total_error_pct": 28.23,
+      "bias_pct": 0.79
+    },
+    "20일 평균": {
+      "rmse_kwh": 74.0323,
+      "total_error_pct": 30.3,
+      "bias_pct": 0.77
+    },
+    "규칙C": {
+      "rmse_kwh": 45.2626,
+      "total_error_pct": 16.87,
+      "bias_pct": -0.13
+    }
+  },
+  "by_month": [
+    {
+      "month": "2025-06",
+      "n": 22,
+      "rmse_kwh": 60.3364,
+      "total_error_pct": 22.19,
+      "bias_pct": -9.98,
+      "rule_c_rmse_kwh": 81.81
+    },
+    {
+      "month": "2025-07",
+      "n": 31,
+      "rmse_kwh": 44.1476,
+      "total_error_pct": 15.64,
+      "bias_pct": -4.77,
+      "rule_c_rmse_kwh": 44.85
+    },
+    {
+      "month": "2025-08",
+      "n": 31,
+      "rmse_kwh": 29.9232,
+      "total_error_pct": 11.66,
+      "bias_pct": -4.69,
+      "rule_c_rmse_kwh": 36.1
+    },
+    {
+      "month": "2025-09",
+      "n": 30,
+      "rmse_kwh": 48.9857,
+      "total_error_pct": 23.94,
+      "bias_pct": -4.15,
+      "rule_c_rmse_kwh": 51.29
+    },
+    {
+      "month": "2025-10",
+      "n": 31,
+      "rmse_kwh": 48.6314,
+      "total_error_pct": 22.78,
+      "bias_pct": 5.97,
+      "rule_c_rmse_kwh": 51.37
+    },
+    {
+      "month": "2025-11",
+      "n": 30,
+      "rmse_kwh": 45.5852,
+      "total_error_pct": 19.7,
+      "bias_pct": -12.79,
+      "rule_c_rmse_kwh": 40.2
+    },
+    {
+      "month": "2025-12",
+      "n": 31,
+      "rmse_kwh": 30.1701,
+      "total_error_pct": 15.45,
+      "bias_pct": -8.22,
+      "rule_c_rmse_kwh": 29.64
+    },
+    {
+      "month": "2026-01",
+      "n": 31,
+      "rmse_kwh": 28.7779,
+      "total_error_pct": 11.82,
+      "bias_pct": -8.95,
+      "rule_c_rmse_kwh": 24.48
+    },
+    {
+      "month": "2026-02",
+      "n": 27,
+      "rmse_kwh": 31.5181,
+      "total_error_pct": 9.86,
+      "bias_pct": -5.29,
+      "rule_c_rmse_kwh": 36.44
+    }
+  ],
+  "demo_batch_2025-06-21": {
+    "rows": [
+      "2025-06-21",
+      "2025-07-31"
+    ],
+    "targets": [
+      "2025-07-11",
+      "2025-07-31"
+    ],
+    "note": "이 모델의 학습 정답일은 2025-06-08 까지라, 이 배치는 학습에 쓰이지 않은 날이다",
+    "cases": {
+      "주입 없음, 실제 예보를 넣음": {
+        "n": 21,
+        "rmse_kwh": 45.0557,
+        "total_error_pct": 17.38,
+        "bias_pct": -8.72,
+        "rmse_vs_test_rmse": 1.08,
+        "prediction_range_kwh": [
+          58.6,
+          287.4
+        ]
+      },
+      "발전량 × 0.86, 실제 예보를 넣음": {
+        "n": 21,
+        "rmse_kwh": 34.4528,
+        "total_error_pct": 15.16,
+        "bias_pct": 2.17,
+        "rmse_vs_test_rmse": 0.83,
+        "prediction_range_kwh": [
+          62.1,
+          265.3
+        ]
+      },
+      "주입 없음, 현재 코드처럼 둘째 값을 1,200,000 으로 고정": {
+        "n": 21,
+        "rmse_kwh": 111.071,
+        "total_error_pct": 32.9,
+        "bias_pct": 29.91,
+        "rmse_vs_test_rmse": 2.67,
+        "prediction_range_kwh": [
+          276.4,
+          276.4
+        ]
+      }
+    }
+  }
+}

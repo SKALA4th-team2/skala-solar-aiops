@@ -1,0 +1,20 @@
+{
+  "case": "data_status_empty",
+  "note": "업로드가 없을 때의 상태 조회",
+  "requested_at": "2026-10-07T15:19:31+09:00",
+  "request": {
+    "method": "GET",
+    "path": "/data/status",
+    "json": null,
+    "files": null,
+    "body_note": null
+  },
+  "response": {
+    "status": 200,
+    "content_type": "application/json",
+    "elapsed_ms": 1.1,
+    "body": {
+      "exists": false
+    }
+  }
+}
