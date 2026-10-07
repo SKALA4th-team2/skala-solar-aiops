@@ -15,7 +15,7 @@ from unittest.mock import Mock, patch
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'project'))
 from fastapi.testclient import TestClient
 from serving_app.main import app
-from serving_app import model_loader
+from serving_app import model_loader, aiops_adapter
 from serving_app.routers import data, predict, logs
 
 
@@ -35,7 +35,7 @@ class FastAPIContractTests(unittest.TestCase):
         self.enterContext(patch.object(data, 'UPLOAD_DIR', self.directory.name))
         self.enterContext(patch.object(logs, 'LOG_DIR', self.directory.name))
         self.enterContext(patch.object(model_loader, '_model_cache', None))
-        self.enterContext(patch.object(predict, 'recent_predictions', []))
+        self.enterContext(patch.object(aiops_adapter, '_evaluator', None))
         self.enterContext(patch.dict(os.environ, {'LOADING_MODE': 'lazy'}))
         self.client = self.enterContext(TestClient(app))
 
@@ -46,6 +46,14 @@ class FastAPIContractTests(unittest.TestCase):
 
     def sequence(self):
         return [{'date': (date(2025, 1, 1) + timedelta(days=i)).isoformat(), 'close': 100 + i, 'volume': 10.25} for i in range(20)]
+
+    def batch(self, count=41):
+        return {
+            'dates': [(date(2025, 1, 1) + timedelta(days=i)).isoformat() for i in range(count)],
+            'prices': list(range(100, 100 + count)),
+            'volumes': [10 + i / 100 for i in range(count)],
+            'expected': [120.0] * count,
+        }
 
     def test_health_does_not_load_model(self):
         with patch.object(model_loader, '_load_model') as load:
@@ -81,7 +89,7 @@ class FastAPIContractTests(unittest.TestCase):
 
     def test_missing_model_returns_503(self):
         with patch.object(model_loader, 'get_model', side_effect=FileNotFoundError('/private/model')):
-            for path, body in [('/predict', {'sequence': self.sequence()}), ('/predict/batch-test', {'prices': list(range(100, 141))})]:
+            for path, body in [('/predict', {'sequence': self.sequence()}), ('/predict/batch-test', self.batch())]:
                 response = self.client.post(path, json=body)
                 self.assertEqual(response.status_code, 503)
                 self.assertNotIn('/private/model', response.text)
@@ -95,15 +103,20 @@ class FastAPIContractTests(unittest.TestCase):
     def test_batch_windows_and_aiops_boundary(self):
         model = Mock(version='fixture')
         model.predict_one.side_effect = lambda sequence: sequence[-1]['close'] + 1
-        with patch.object(model_loader, 'get_model', return_value=model), patch.object(predict, 'check_and_trigger', return_value={'status': 'ok'}) as check:
-            response = self.client.post('/predict/batch-test', json={'prices': list(range(100, 141))})
+        with patch.object(model_loader, 'get_model', return_value=model), patch.object(predict, 'evaluate_batch', return_value={'status': 'ok', 'model_version': 'fixture'}) as check:
+            response = self.client.post('/predict/batch-test', json=self.batch())
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['predictions'], list(range(120, 141)))
-        self.assertEqual(response.json()['drift_check'], {'status': 'ok'})
-        self.assertEqual(len(check.call_args.args[0]), 21)
+        self.assertEqual(response.json()['drift_check'], {'status': 'ok', 'model_version': 'fixture'})
+        self.assertEqual(len(check.call_args.kwargs['predictions']), 21)
         for i, call in enumerate(model.predict_one.call_args_list):
             self.assertEqual([p['close'] for p in call.args[0]], list(range(100+i, 120+i)))
-        self.assertTrue(all(p['actual'] == p['predicted'] for p in check.call_args.args[0]))
+        self.assertTrue(all(p['actual'] == p['predicted'] for p in check.call_args.kwargs['predictions']))
+        self.assertEqual(check.call_args.kwargs['rows'][0], {'date': '2025-01-01', 'close': 100, 'volume': 10, 'expected': 120})
+        self.assertEqual(len(check.call_args.kwargs['rows']), 41)
+        self.assertEqual(check.call_args.kwargs['predictions'][0]['date'], '2025-01-21')
+        self.assertEqual(model.predict_one.call_args_list[0].args[0][-1]['volume'], 10.19)
+        self.assertEqual(set(model.predict_one.call_args_list[0].args[0][0]), {'close', 'volume'})
 
     def test_upload_roundtrip_and_unique_names(self):
         first = self.upload(csv_text())
@@ -227,6 +240,88 @@ class FastAPIContractTests(unittest.TestCase):
         self.assertEqual(self.upload(csv_text().replace('100,10.25', '1320,45', 1)).status_code, 200)
         dataset = Path(__file__).resolve().parents[2] / 'datasets/hadong_upload_forecast_jma.csv'
         self.assertEqual(self.upload(dataset.read_bytes()).status_code, 200)
+
+    def test_batch_rejects_misalignment_and_bad_values(self):
+        with patch.object(model_loader, 'get_model') as load:
+            for key in ['dates', 'prices', 'volumes', 'expected']:
+                payload = self.batch()
+                payload[key].pop()
+                self.assertEqual(self.client.post('/predict/batch-test', json=payload).status_code, 422)
+                del payload[key]
+                self.assertEqual(self.client.post('/predict/batch-test', json=payload).status_code, 422)
+            for key, value in [('dates', '2025-01-03'), ('prices', -1), ('prices', 1321), ('volumes', 45.01), ('volumes', True), ('expected', -1)]:
+                payload = self.batch()
+                payload[key][1] = value
+                self.assertEqual(self.client.post('/predict/batch-test', json=payload).status_code, 422)
+            self.assertEqual(self.client.post('/predict/batch-test', json=self.batch(20)).status_code, 422)
+            load.assert_not_called()
+
+    def test_batch_unconfigured_aiops_is_skipped_and_no_history(self):
+        model = Mock(version='fixture', source='local')
+        model.predict_one.return_value = 10
+        payload = self.batch(21)
+        payload['expected'] = [None] * 21
+        with patch.object(model_loader, 'get_model', return_value=model):
+            for _ in range(2):
+                response = self.client.post('/predict/batch-test', json=payload)
+                self.assertEqual(response.status_code, 200)
+                self.assertEqual(response.json()['predictions'], [10])
+                self.assertEqual(response.json()['drift_check'], {'status': 'skipped', 'model_version': 'fixture', 'reason': 'aiops_not_configured'})
+
+    def test_aiops_adapter_receives_full_rows_and_preserves_null(self):
+        model = Mock(version='fixture', source='local')
+        model.predict_one.return_value = 10
+        evaluator = Mock(return_value={'status': 'facility_check', 'model_version': 'fixture', 'pi': None, 'outage_days': 1})
+        aiops_adapter.configure_evaluator(evaluator)
+        with patch.object(model_loader, 'get_model', return_value=model):
+            response = self.client.post('/predict/batch-test', json=self.batch())
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['drift_check']['status'], 'facility_check')
+        self.assertIsNone(response.json()['drift_check']['pi'])
+        self.assertEqual(len(evaluator.call_args.kwargs['rows']), 41)
+        self.assertEqual(len(evaluator.call_args.kwargs['predictions']), 21)
+        aiops_adapter.configure_evaluator(None)
+
+    def test_expected_does_not_change_model_inputs(self):
+        model = Mock(version='fixture', source='local')
+        model.predict_one.return_value = 10
+        with patch.object(model_loader, 'get_model', return_value=model):
+            payload = self.batch(21)
+            self.client.post('/predict/batch-test', json=payload)
+            first = model.predict_one.call_args.args[0]
+            payload['expected'] = [9999] * 21
+            self.client.post('/predict/batch-test', json=payload)
+            self.assertEqual(model.predict_one.call_args.args[0], first)
+
+    def test_bad_model_output_does_not_trigger_aiops(self):
+        model = Mock(version='fixture', source='local')
+        with patch.object(model_loader, 'get_model', return_value=model), patch.object(predict, 'evaluate_batch') as check:
+            model.predict_one.return_value = float('nan')
+            self.assertEqual(self.client.post('/predict/batch-test', json=self.batch()).status_code, 503)
+            check.assert_not_called()
+
+    def test_csv_batch_builder_and_export(self):
+        from scripts.simulate_drift import build_batch, make_bundle
+        import json
+        import subprocess
+        root = Path(__file__).resolve().parents[2]
+        dataset = root / 'datasets/hadong_upload_forecast_jma.csv'
+        expected = root / 'datasets/hadong_daily_full.csv'
+        normal = build_batch(dataset, expected, '2025-07-31')
+        bundle = make_bundle(normal)
+        self.assertEqual(normal['dates'][0], '2025-06-21')
+        self.assertEqual(len(normal['prices']), 41)
+        self.assertTrue(all(v is not None for v in normal['expected']))
+        for key in ['dates', 'volumes', 'expected']:
+            self.assertEqual(bundle['normal'][key], bundle['drift'][key])
+        self.assertEqual(bundle['drift']['prices'], [v * 0.86 for v in normal['prices']])
+        self.assertEqual(build_batch(dataset, None)['expected'], [None] * 41)
+        with self.assertRaises(ValueError):
+            build_batch(dataset, expected, '1900-01-01')
+        output = Path(self.directory.name) / 'bundle.json'
+        result = subprocess.run([sys.executable, 'scripts/simulate_drift.py', '--csv', str(dataset), '--end-date', '2025-07-31', '--export-json', str(output)], capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(json.loads(output.read_text()), bundle)
 
     def test_openapi_and_dashboard(self):
         response = self.client.get('/openapi.json')

@@ -1,6 +1,6 @@
 """태양광 예측 API 계약. 한 행은 당일 발전량과 다음 날 일사량 예보다."""
-from datetime import date as Date, timedelta
-from typing import Annotated
+from datetime import date as Date
+from typing import Annotated, Literal
 
 from pydantic import BaseModel, BeforeValidator, ConfigDict, Field, model_validator
 
@@ -62,14 +62,44 @@ class PredictResponse(BaseModel):
     model_version: str
 
 
+Expected = Annotated[float, Field(ge=0, allow_inf_nan=False, strict=True)]
+
+
 class BatchTestRequest(BaseModel):
-    # 태양광 배치 계약은 후속 이슈에서 호출부와 함께 전환한다.
-    prices: list[float] = Field(..., min_length=SEQ_LEN + 1)
+    model_config = ConfigDict(extra='forbid')
+    dates: list[CalendarDate] = Field(min_length=SEQ_LEN + 1, description='하루씩 이어진 날짜(YYYY-MM-DD), 최소 21개')
+    prices: list[Generation] = Field(min_length=SEQ_LEN + 1, description='해당 날짜의 하루 발전량 (kWh)')
+    volumes: list[Forecast] = Field(min_length=SEQ_LEN + 1, description='다음 날 일사량 예보 (MJ/m²)')
+    expected: list[Expected | None] = Field(min_length=SEQ_LEN + 1, description='사후 관측 날씨로 계산한 해당 날짜의 기대 발전량(kWh). 없으면 null. 모델 입력에는 쓰지 않는다.')
+
+    @model_validator(mode='after')
+    def check_alignment(self):
+        if not (len(self.dates) == len(self.prices) == len(self.volumes) == len(self.expected)):
+            raise ValueError('dates, prices, volumes, expected는 같은 길이여야 합니다.')
+        validate_daily_dates(self.dates)
+        return self
+
+
+class DriftCheck(BaseModel):
+    model_config = ConfigDict(extra='forbid')
+    status: Literal['ok', 'drift_alerted', 'retrain_triggered', 'facility_check', 'skipped', 'input_anomaly']
+    model_version: str
+    reason: str | None = Field(default=None, description='미판정 등의 사유. aiops_not_configured는 판정기 미연결')
+    pi: float | None = Field(default=None, ge=0, allow_inf_nan=False)
+    baseline: float | None = Field(default=None, ge=0, allow_inf_nan=False)
+    deviation_pct: float | None = Field(default=None, allow_inf_nan=False)
+    head_deviation_pct: float | None = Field(default=None, allow_inf_nan=False)
+    valid_days: int | None = Field(default=None, ge=0)
+    outage_days: int | None = Field(default=None, ge=0)
+    hold_days: int | None = Field(default=None, ge=0)
+    rmse21: float | None = Field(default=None, ge=0, allow_inf_nan=False)
+    promoted: bool | None = None
+    rmse: float | None = Field(default=None, ge=0, allow_inf_nan=False)
 
 
 class BatchTestResponse(BaseModel):
-    predictions: list[float]
-    drift_check: dict
+    predictions: list[Annotated[float, Field(ge=0, allow_inf_nan=False)]]
+    drift_check: DriftCheck
 
 
 class HealthResponse(BaseModel):

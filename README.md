@@ -34,7 +34,8 @@ skala-solar-aiops/
 - [ ] 조사 보고서를 `docs/research/` 에 넣고, 팀이 정할 것을 `docs/decisions/` 에 기록
 - [ ] 업로드용 데이터를 `datasets/` 에 넣기
 - [ ] 도메인 매핑표 확정 ([`docs/proposal/domain-mapping.md`](docs/proposal/domain-mapping.md))
-- [ ] `project/` 를 태양광용으로 수정 (스키마, 게이트, 드리프트 판정, 시뮬레이션, 대시보드 문구)
+- [x] FastAPI 태양광 입력·업로드·배치 계약과 대시보드·시뮬레이션 호출부
+- [ ] MLOps·AIOps 태양광 모델·게이트·판정·재학습 연결 (팀원 담당)
 - [ ] 기획서 ①~③ (설계 40점)
 - [ ] 기획서 ④~⑥ 과 시연 (구현·발표 60점)
 - [ ] 발표 자료
@@ -76,4 +77,4 @@ docker compose -f serving_app/docker-compose.yml up --build
 python scripts/simulate_drift.py
 ```
 
-지금은 원본 스켈레톤 그대로라 예시 데이터가 HAIC 주가(`data/sample_haic_prices.csv`)다. 태양광 데이터로 바꾸는 작업은 진행 현황의 순서대로 한다.
+FastAPI는 태양광 예보 입력 계약을 사용한다. `datasets/hadong_upload_forecast_jma.csv`를 올리고 같은 의미로 학습한 모델·스케일러를 준비해야 한다. 기존 HAIC 모델은 호환되는 태양광 모델이 아니다. AIOps 판정기는 아직 미연결이며 배치 응답에 `skipped`를 표시한다. [인수인계](docs/fastapi-handoff.md)의 남은 MLOps·AIOps 작업을 이어서 진행한다.

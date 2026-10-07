@@ -1,0 +1,661 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "태양광 발전량 예측 API",
+    "description": "최근 20일의 하루 발전량과 다음 날 일사량 예보로 하루 발전량(kWh)을 예측합니다.",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/predict": {
+      "post": {
+        "summary": "Predict",
+        "description": "연속 20일의 발전량과 다음 날 예보로 대상일의 발전량(kWh)을 예측한다.",
+        "operationId": "predict_predict_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PredictRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredictResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "모델 또는 스케일러 미준비"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/predict/batch-test": {
+      "post": {
+        "summary": "Batch Test",
+        "description": "실제 예보로 배치 예측하고, 전체 행과 사후 기대 발전량을 AIOps 연결부에 전달한다.",
+        "operationId": "batch_test_predict_batch_test_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatchTestRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchTestResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "모델 또는 스케일러 미준비, 비유한 모델 출력"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/upload": {
+      "post": {
+        "summary": "Upload",
+        "operationId": "upload_data_upload_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_upload_data_upload_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "CSV 인코딩·열·행 수·값·날짜 검증 실패"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/status": {
+      "get": {
+        "summary": "Status",
+        "operationId": "status_data_status_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "409": {
+            "description": "기존 업로드 파일 검증 실패, 재업로드 필요"
+          }
+        }
+      }
+    },
+    "/logs": {
+      "get": {
+        "summary": "List Logs",
+        "operationId": "list_logs_logs_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/logs/{filename}": {
+      "get": {
+        "summary": "Read Log",
+        "operationId": "read_log_logs__filename__get",
+        "parameters": [
+          {
+            "name": "filename",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Filename"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BatchTestRequest": {
+        "properties": {
+          "dates": {
+            "items": {
+              "type": "string",
+              "format": "date"
+            },
+            "type": "array",
+            "minItems": 21,
+            "title": "Dates",
+            "description": "하루씩 이어진 날짜(YYYY-MM-DD), 최소 21개"
+          },
+          "prices": {
+            "items": {
+              "type": "number",
+              "maximum": 1320.0,
+              "minimum": 0.0
+            },
+            "type": "array",
+            "minItems": 21,
+            "title": "Prices",
+            "description": "해당 날짜의 하루 발전량 (kWh)"
+          },
+          "volumes": {
+            "items": {
+              "type": "number",
+              "maximum": 45.0,
+              "minimum": 0.0
+            },
+            "type": "array",
+            "minItems": 21,
+            "title": "Volumes",
+            "description": "다음 날 일사량 예보 (MJ/m²)"
+          },
+          "expected": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0.0
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "array",
+            "minItems": 21,
+            "title": "Expected",
+            "description": "사후 관측 날씨로 계산한 해당 날짜의 기대 발전량(kWh). 없으면 null. 모델 입력에는 쓰지 않는다."
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "dates",
+          "prices",
+          "volumes",
+          "expected"
+        ],
+        "title": "BatchTestRequest"
+      },
+      "BatchTestResponse": {
+        "properties": {
+          "predictions": {
+            "items": {
+              "type": "number",
+              "minimum": 0.0
+            },
+            "type": "array",
+            "title": "Predictions"
+          },
+          "drift_check": {
+            "$ref": "#/components/schemas/DriftCheck"
+          }
+        },
+        "type": "object",
+        "required": [
+          "predictions",
+          "drift_check"
+        ],
+        "title": "BatchTestResponse"
+      },
+      "Body_upload_data_upload_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_upload_data_upload_post"
+      },
+      "DailyPoint": {
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "title": "Date",
+            "description": "해당 행의 날짜 (YYYY-MM-DD)"
+          },
+          "close": {
+            "type": "number",
+            "maximum": 1320.0,
+            "minimum": 0.0,
+            "title": "Close",
+            "description": "해당 날짜의 하루 발전량 (kWh)"
+          },
+          "volume": {
+            "type": "number",
+            "maximum": 45.0,
+            "minimum": 0.0,
+            "title": "Volume",
+            "description": "다음 날에 대한 하루 전 일사량 예보의 하루 합계 (MJ/m²)"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "date",
+          "close",
+          "volume"
+        ],
+        "title": "DailyPoint"
+      },
+      "DriftCheck": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "drift_alerted",
+              "retrain_triggered",
+              "facility_check",
+              "skipped",
+              "input_anomaly"
+            ],
+            "title": "Status"
+          },
+          "model_version": {
+            "type": "string",
+            "title": "Model Version"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason",
+            "description": "미판정 등의 사유. aiops_not_configured는 판정기 미연결"
+          },
+          "pi": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pi"
+          },
+          "baseline": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Baseline"
+          },
+          "deviation_pct": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Deviation Pct"
+          },
+          "head_deviation_pct": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Head Deviation Pct"
+          },
+          "valid_days": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid Days"
+          },
+          "outage_days": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Outage Days"
+          },
+          "hold_days": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hold Days"
+          },
+          "rmse21": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rmse21"
+          },
+          "promoted": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Promoted"
+          },
+          "rmse": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rmse"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "status",
+          "model_version"
+        ],
+        "title": "DriftCheck"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "HealthResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "model_loaded": {
+            "type": "boolean",
+            "title": "Model Loaded"
+          },
+          "model_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model Version",
+            "description": "현재 메모리 모델의 버전. 미로딩이면 null"
+          },
+          "model_source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model Source",
+            "description": "현재 메모리 모델의 출처(local 또는 mlflow). 미로딩이면 null"
+          },
+          "loading_mode": {
+            "type": "string",
+            "title": "Loading Mode"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "model_loaded",
+          "model_version",
+          "model_source",
+          "loading_mode"
+        ],
+        "title": "HealthResponse"
+      },
+      "PredictRequest": {
+        "properties": {
+          "sequence": {
+            "items": {
+              "$ref": "#/components/schemas/DailyPoint"
+            },
+            "type": "array",
+            "maxItems": 20,
+            "minItems": 20,
+            "title": "Sequence",
+            "description": "대상일 직전의 연속 20일, 오래된 날짜부터. 마지막 행에 대상일의 예보를 담는다."
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "sequence"
+        ],
+        "title": "PredictRequest"
+      },
+      "PredictResponse": {
+        "properties": {
+          "predicted_close": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Predicted Close",
+            "description": "대상일의 하루 발전량 예측 (kWh)"
+          },
+          "target_date": {
+            "type": "string",
+            "format": "date",
+            "title": "Target Date",
+            "description": "예측 대상일: 입력 마지막 날짜의 다음 날"
+          },
+          "model_version": {
+            "type": "string",
+            "title": "Model Version"
+          }
+        },
+        "type": "object",
+        "required": [
+          "predicted_close",
+          "target_date",
+          "model_version"
+        ],
+        "title": "PredictResponse"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}
