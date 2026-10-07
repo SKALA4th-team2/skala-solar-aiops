@@ -24,6 +24,7 @@ SEQ = 20
 STEP = pd.Timestamp("2024-02-01")          # 센서 수준이 바뀐 날로 본 날짜 (02_compare_with_gwangyang.py 의 결과)
 a = load_joined()["2022-01-01":"2024-07-31"].copy()
 print("기간", a.index.min().date(), "~", a.index.max().date(), "| 적량 빈 날", int(a.jr_gsr.isna().sum()), "| 광양 빈 날", int(a.gy_gsr.isna().sum()), "| 정지 표시일", int(a.stop_day.sum()))
+print("적량이 비어서 앞뒤 값으로 메운 날:", [d.strftime("%Y-%m-%d") for d in a.index[a.jr_gsr.isna()]])
 a["jr"] = a.jr_gsr.interpolate(limit=5).ffill().bfill()      # 빈 날은 앞뒤 값으로 메운다
 a["gy"] = a.gy_gsr.interpolate(limit=5).ffill().bfill()
 
@@ -57,6 +58,7 @@ def new_model():
 
 day = pd.Timedelta(days=1)
 rows = []
+inject = []
 for col, label in (("jr", "적량 센서"), ("gy", "광양 관측(대조)")):
     close, vol, dates = build(col)
     train_end = STEP - 22 * day
@@ -98,11 +100,25 @@ for col, label in (("jr", "적량 센서"), ("gy", "광양 관측(대조)")):
             p = pred(m2, x[seg[name]])
             row["재학습 뒤 " + name + " RMSE"] = rmse(y[seg[name]], p)
             row["재학습 뒤 " + name + " 치우침%"] = bias_pct(y[seg[name]], p)
+        if col == "jr":
+            # 확인 실험: 실제 계단이 없는 구간(학습 때 시험 구간)에서 날씨 칸의 뒤쪽 j 칸만 1.3배로 올린다.
+            # j = 1 은 계단 바로 다음 날, j = 20 은 창이 새 수준으로 다 채워진 뒤에 해당한다.
+            xb, yb = xtr[k:], ytr[k:]
+            for j in (0, 1, 5, 10, 15, 20):
+                xs = xb.copy()
+                if j:
+                    raw = xs[:, SEQ - j:, 1] * (vmax - vmin) + vmin
+                    xs[:, SEQ - j:, 1] = (raw * 1.3 - vmin) / (vmax - vmin)
+                p = pred(m, xs)
+                inject.append({"씨앗": seed, "올린 칸 수": j, "표본": len(yb), "RMSE": rmse(yb, p), "치우침%": bias_pct(yb, p)})
         rows.append(row)
         print(json.dumps({kk: (round(v, 1) if isinstance(v, float) else v) for kk, v in row.items()}, ensure_ascii=False), flush=True)
 
 d = pd.DataFrame(rows)
 OUT.mkdir(exist_ok=True)
 d.round(3).to_csv(OUT / "04_lstm_sensor_step_result.csv", index=False)
+pd.DataFrame(inject).round(3).to_csv(OUT / "04_injected_step_check.csv", index=False)
+print("\n=== 인위 계단 확인 (적량 입력 모델, 계단이 없는 구간의 날씨 칸 뒤쪽 j 칸을 1.3배로) : 씨앗 3개 평균 ===")
+print(pd.DataFrame(inject).groupby("올린 칸 수")[["표본", "RMSE", "치우침%"]].mean().round(1).to_string())
 print("\n=== 씨앗 3개 평균 ===")
 print(d.drop(columns=["씨앗"]).groupby("입력").mean(numeric_only=True).round(1).T.to_string())
