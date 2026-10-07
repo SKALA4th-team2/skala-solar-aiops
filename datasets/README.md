@@ -1,3 +1,5 @@
+> **2026-10-07 시간별 전환 — 현행:** 현재 운영 입력은 hourly/README.md의 실제 시간별 실적·JMA48h선행예보다. 이전 일별파일은 보관자료이며 시간별자료로 분할하지 않는다. [운영 안내](../docs/backend-runbook.md) · [결정0014](../docs/decisions/0014-hourly-forecast-and-aiops.md). 이하 이전 계약·수치는 설계/검증 이력이며 현행 시간별 계약보다 우선하지 않는다.
+
 # 데이터
 
 대시보드에 올릴 업로드용 CSV 와 그 바탕이 되는 자료를 둔다. `project/data/` 는 서빙 앱의 코드 폴더이므로 데이터는 여기에 따로 둔다.
@@ -6,7 +8,7 @@ FastAPI 입력 계약은 사용자 승인으로 `hadong_upload_forecast_jma.csv`
 
 ## 업로드 파일
 
-모두 UTF-8 이고 열은 `Date, Close, Volume, Stop` 이다. `Close` 는 그날 하루 발전량(kWh)이다. 서빙 앱은 `Stop` 열을 읽지 않는다.
+아래 기존 하동 파일은 UTF-8 이고 열은 `Date, Close, Volume, Stop` 이다. `Close` 는 그날 하루 발전량(kWh)이다. 서빙 앱은 `Stop` 열을 읽지 않는다. 여러 발전소 확장 파일은 아래 별도 절을 참고한다.
 
 파일마다 `Volume` 에 든 값이 다르다. **대상일**은 맞히려는 날(내일)이다.
 
@@ -67,7 +69,7 @@ FastAPI 입력 계약은 사용자 승인으로 `hadong_upload_forecast_jma.csv`
 
 적량면 시간 자료(`하동_적량면_667831A001_시간자료_20130101_20260331.csv`, 11.6MB)는 넣지 않았다. 출처 기관과 이용 조건을 아직 확인하지 못했다([`../docs/followups.md`](../docs/followups.md) 6번). 하루 값을 다시 만들려면 이 파일을 받아 `tools/jeokryang/01_build_daily.py` 에 경로를 준다.
 
-광양시 관측값(업로드 파일의 일사량과 일조 시간, `hadong_daily_full.csv` 의 날씨 열)은 기상청 종관기상관측(ASOS) 일자료에서 왔다. 연도별 원본은 크기가 커서 넣지 않았다. 이 자료의 이용 조건은 아직 확인해 적지 않았다([`../docs/followups.md`](../docs/followups.md) 5번).
+광양시 관측값(업로드 파일의 일사량과 일조 시간, `hadong_daily_full.csv` 의 날씨 열)은 기상청 종관기상관측(ASOS) 일자료에서 왔다. 연도별 원본은 크기가 커서 넣지 않았다. 2026-10-07 데이터 확장 시 사용자 ASOS 원본과 하동 값을 대조하고 필요한 관측소·열을 `multi_plant/weather/`에 추가했다. [ASOS 일자료 API](https://www.data.go.kr/data/15059093/openapi.do)의 이용 조건은 무료·공공누리 제1유형(출처표시)임을 확인했다. 사용자 연도별 파일의 실제 수집 응답 기록은 없으므로 파일명·해시를 함께 남겼다.
 
 이용 조건의 근거는 [`../docs/research/prestudy/`](../docs/research/prestudy/)의 `research_2-data-definition.md` 와 `research_3b-weather-open.md` 에 있다.
 
@@ -106,7 +108,7 @@ python tools/multi_plant/convert_kospo_raw.py --raw datasets/raw/data_15043409.c
 
 ### 새 발전소를 등록하는 절차
 
-단계마다의 통과 조건은 [자료 계약 6절](../docs/proposal/multi-plant-data-contract.md#6-새-자료를-넣는-절차)에 있다.
+단계마다의 통과 조건은 [자료 계약 6절](../docs/proposal/multi-plant-data-contract.md)에 있다.
 
 1. 원자료를 받아 둔다. 출처의 주소, 이용 조건, 받은 날을 아래 "원본"의 표처럼 적는다. 파일을 고치지 않는다.
 2. `plants/plants.csv` 에 한 줄을 더한다. `plant_id` 는 영문 소문자, 숫자, 붙임표로 짓고 한번 정하면 바꾸지 않는다.
@@ -132,8 +134,25 @@ python tools/multi_plant/convert_kospo_raw.py --raw datasets/raw/data_15043409.c
 - 같은 군 안의 발전소라 같은 날씨를 겪는다. 다섯 곳을 더해도 설비 용량 합계는 606.17kW 다.
 - 하동 밖의 발전소는 아직 확인하지 않았다. 조사 기록에는 한국남부발전의 발전소별 실적 파일이 40개라고 적혀 있다([T1](../docs/research/merged/T1-plant-data.md)).
 
-## 규칙
+## 여러 발전소 확장 데이터
+
+[`multi_plant/`](multi_plant/README.md)에 추가 발전실적 원본 39개와 ASOS를 연결한 호기별 데이터를 둔다. 34개 실적 파일의 43개 호기에서 연속 날짜 검사를 통과한 업로드 CSV 78개(113,944행)를 만들었다. 위의 기존 하동 업로드 파일 목록과 별도의 확장 자료다.
+
+새 업로드 파일은 `Date,Close,Volume` 세 열이며, `Volume`은 달력상 하루 전 ASOS 일사량(MJ/m²)으로 통일했다. `Stop`은 임의 생성하지 않았다. 발전소별 시작 파일은 [`multi_plant/INDEX.md`](multi_plant/INDEX.md)에 있다. 여러 발전소나 떨어진 구간을 한 파일로 이어 붙이지 않는다.
+
+사용자 제공 ASOS 2013~2025 원본은 먼저 기존 하동 일별 4,748행·업로드 4,746행과 대조해 일치함을 확인한 뒤 필요한 관측소 18개와 열만 추렸다. 결과는 [`multi_plant/weather_verification.json`](multi_plant/weather_verification.json), 학습 코드 입력 검증은 [`multi_plant/validation.json`](multi_plant/validation.json)에 있다. 모델 학습과 다중 모델 서빙은 이번 데이터 추가에 포함하지 않는다.
+
+## 파일 관리 규칙
 
 - 여기 있는 파일은 손으로 고치지 않는다. 만든 스크립트는 [`../tools/`](../tools/)에 있다. 발전소 등록부와 포트폴리오 구성(`plants/*.csv`)은 사람이 적는 파일이고, 적은 뒤에 도구로 검증한다.
 - 서빙 앱이 실제로 읽는 것은 대시보드로 올린 사본(`project/data/uploads/`)이다. 그 폴더는 커밋하지 않는다.
 - Open-Meteo 자료를 다시 받을 때는 한 번 받아 파일로 저장하고 반복 호출하지 않는다. 무료 한도가 있다.
+
+
+## 발전소 지역별 과거 예보 저장
+
+[`plant_forecasts/`](plant_forecasts/README.md)에 Open-Meteo JMA MSM 과거 예보 원본과 지역별 일 집계, 발전소별 학습 테이블을 저장한다. 6개 변수(일사량·기온·일조시간·구름량·강수량·풍속)의 24/48시간 선행 예보를 요청하며 실제 유효 기간은 `coverage.csv`에 기록한다. 출처·CC BY 4.0 이용 조건·단위·집계법·지역 대표 좌표의 한계는 해당 README에 있다. 생성 도구는 [`../tools/build_plant_forecasts/`](../tools/build_plant_forecasts/README.md)다. **발표 시각이 없는 고정 선행시간 자료이므로 운영 예측 마감 기준의 누수 검증은 미완료다.**
+
+## 2026-10-07 백엔드 통합
+
+운영 등록부는 bootstrap.py가 source_id에서 생성한다. 업로드의 Volume은 d+1 예보, Expected는 d 관측 일사량으로 추정한 사후 기대 발전량이다. 기대 발전량 계수는 개소별 2022–2023년 자료에 맞추고, PI 기준선은 2024년 마지막 365일에서 정한다. 결측·설비 이상은 제외하며 용량 미확인 개소는 보류한다.

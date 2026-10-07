@@ -1,0 +1,17 @@
+{
+  "registered_plants": 43,
+  "approved_lstm": 33,
+  "held": 10,
+  "api_contract_tests": 27,
+  "policy_tests": 10,
+  "checks": {
+    "serving": true,
+    "lifecycle": true,
+    "recovery": true,
+    "latest-upload": true,
+    "http": true
+  },
+  "docker_verified": false,
+  "frontend_changed": false,
+  "upstream_commit": "c16b0364927b38aec404c547872ca726b7d9d90e"
+}

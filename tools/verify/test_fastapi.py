@@ -32,6 +32,9 @@ class FastAPIContractTests(unittest.TestCase):
     def setUp(self):
         self.directory = tempfile.TemporaryDirectory()
         self.addCleanup(self.directory.cleanup)
+        self.state_directory = tempfile.TemporaryDirectory()
+        self.addCleanup(self.state_directory.cleanup)
+        self.enterContext(patch.dict(os.environ, {'SOLAR_STATE_DIR': self.state_directory.name, 'AIOPS_ENABLED': '0'}))
         self.enterContext(patch.object(data, 'UPLOAD_DIR', self.directory.name))
         self.enterContext(patch.object(logs, 'LOG_DIR', self.directory.name))
         self.enterContext(patch.object(model_loader, '_model_cache', None))
@@ -124,7 +127,7 @@ class FastAPIContractTests(unittest.TestCase):
         self.assertEqual(first.status_code, 200)
         self.assertEqual(second.status_code, 200)
         self.assertNotEqual(first.json()['filename'], second.json()['filename'])
-        self.assertEqual(len(list(Path(self.directory.name).glob('*.csv'))), 2)
+        self.assertEqual(len(list(Path(self.directory.name,'hadong-sewage').glob('*.csv'))), 2)
         self.assertEqual(list(Path(self.directory.name).glob('*.tmp')), [])
         response = self.client.get('/data/status')
         self.assertEqual(response.status_code, 200)
@@ -157,7 +160,8 @@ class FastAPIContractTests(unittest.TestCase):
 
     def test_no_upload_and_corrupt_existing_upload(self):
         self.assertEqual(self.client.get('/data/status').json(), {'exists': False})
-        Path(self.directory.name, 'invalid.csv').write_text('Date,Close,Volume\n2025-01-01,abc,1\n')
+        Path(self.directory.name, 'hadong-sewage').mkdir()
+        Path(self.directory.name, 'hadong-sewage', 'invalid.csv').write_text('Date,Close,Volume\n2025-01-01,abc,1\n')
         response = self.client.get('/data/status')
         self.assertEqual(response.status_code, 409)
         self.assertIn('다시 업로드', response.json()['detail'])

@@ -1,4 +1,8 @@
+> 시간별 운영·입력·평가·모니터링의 현행 정책은 [결정0014](0014-hourly-forecast-and-aiops.md)가 대체한다. 아래는 당시 결정 기록이다.
+
 # 0011: 여러 발전소의 예측 방식, 식별자, 평가
+
+> 구현 적용: 이 제안의 채택 범위와 추가 보호 조건은 [0013](0013-backend-aiops-implementation.md)에 기록했다. 기존 제안 본문은 설계 이력으로 보존한다.
 
 - 상태: 제안
 - 날짜: 2026-10-07
@@ -8,7 +12,7 @@
 
 발전소가 여럿이 되면 세 가지를 정해야 한다. 예측을 발전소마다 따로 할지 한꺼번에 할지, 발전소와 모델을 무엇으로 가리킬지, 품질을 무엇으로 잴지다.
 
-지금의 코드는 발전소가 하나라는 전제로 짜여 있다. 업로드 폴더에서 가장 최근 파일 하나를 고르고, 스케일러와 모델의 경로와 레지스트리의 이름이 하나씩이고, 메모리의 모델 상자가 하나다. 찾은 곳의 목록은 [확장 문서 3절](../proposal/multi-plant-extension.md#3-지금-코드의-단일-발전소-가정)에 있다. HAIC 스켈레톤도 종목 하나였다.
+지금의 코드는 발전소가 하나라는 전제로 짜여 있다. 업로드 폴더에서 가장 최근 파일 하나를 고르고, 스케일러와 모델의 경로와 레지스트리의 이름이 하나씩이고, 메모리의 모델 상자가 하나다. 찾은 곳의 목록은 [확장 문서 3절](../proposal/multi-plant-extension.md)에 있다. HAIC 스켈레톤도 종목 하나였다.
 
 ## 검토한 선택지
 
@@ -71,7 +75,7 @@
 
 ## 함께 고칠 곳
 
-코드는 [확장 문서 9절](../proposal/multi-plant-extension.md#9-다음-구현-작업)의 순서를 따른다. 묶음은 [`../../AGENTS.md`](../../AGENTS.md)의 "발전소 식별자와 등록부", "모델과 스케일러의 짝", "요청과 응답의 모양"이다.
+코드는 [확장 문서 9절](../proposal/multi-plant-extension.md)의 순서를 따른다. 묶음은 [`../../AGENTS.md`](../../AGENTS.md)의 "발전소 식별자와 등록부", "모델과 스케일러의 짝", "요청과 응답의 모양"이다.
 
 - `data/storage.py` 의 `latest_upload()` 와 부르는 곳 다섯 군데, `serving_app/routers/data.py`
 - `serving_app/model_loader.py`, `serving_app/train_and_register.py`, `scripts/train_baseline_v1.py`, `data/features.py`

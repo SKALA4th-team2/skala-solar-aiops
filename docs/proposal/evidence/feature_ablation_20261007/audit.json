@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "prediction_files": 249,
+  "rows_checked": 135805,
+  "future_observation_perturbation_passed": true,
+  "source_hashes_passed": true
+}

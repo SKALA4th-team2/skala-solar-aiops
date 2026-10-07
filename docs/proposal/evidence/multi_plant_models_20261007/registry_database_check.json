@@ -1,0 +1,606 @@
+{
+  "passed": true,
+  "candidate_models_checked": 120,
+  "models": [
+    {
+      "name": "Solar_15096131_u1_LSTM",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15096131_u1_XGBoost",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15096131_u1_Prophet",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15096131_u1_Ensemble",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15096131_u1_LSTM_Main_Ensemble",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15096132_u1_LSTM",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15096132_u1_XGBoost",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15096132_u1_Prophet",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15096132_u1_Ensemble",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15096132_u1_LSTM_Main_Ensemble",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15096134_u1_LSTM",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15096134_u1_XGBoost",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15096134_u1_Prophet",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15096134_u1_Ensemble",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15096134_u1_LSTM_Main_Ensemble",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15096136_u1_LSTM",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15096136_u1_XGBoost",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15096136_u1_Prophet",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15096136_u1_Ensemble",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15096136_u1_LSTM_Main_Ensemble",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15109999_u1_LSTM",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15109999_u1_XGBoost",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15109999_u1_Prophet",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15109999_u1_Ensemble",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15109999_u1_LSTM_Main_Ensemble",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15124861_u1_LSTM",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15124861_u1_XGBoost",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15124861_u1_Prophet",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15124861_u1_Ensemble",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15124861_u1_LSTM_Main_Ensemble",
+      "version": "1",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043384_u1_LSTM",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043384_u1_XGBoost",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043384_u1_Prophet",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043384_u1_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043384_u1_LSTM_Main_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043394_u1_LSTM",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043394_u1_XGBoost",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043394_u1_Prophet",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043394_u1_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043394_u1_LSTM_Main_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043396_u1_LSTM",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043396_u1_XGBoost",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043396_u1_Prophet",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043396_u1_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043396_u1_LSTM_Main_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043399_u1_LSTM",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043399_u1_XGBoost",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043399_u1_Prophet",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043399_u1_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043399_u1_LSTM_Main_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043400_u1_LSTM",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043400_u1_XGBoost",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043400_u1_Prophet",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043400_u1_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043400_u1_LSTM_Main_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043402_u1_LSTM",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043402_u1_XGBoost",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043402_u1_Prophet",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043402_u1_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043402_u1_LSTM_Main_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043404_u1_LSTM",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043404_u1_XGBoost",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043404_u1_Prophet",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043404_u1_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043404_u1_LSTM_Main_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043405_u1_LSTM",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043405_u1_XGBoost",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043405_u1_Prophet",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043405_u1_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043405_u1_LSTM_Main_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043406_u1_LSTM",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043406_u1_XGBoost",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043406_u1_Prophet",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043406_u1_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043406_u1_LSTM_Main_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u1_LSTM",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u1_XGBoost",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u1_Prophet",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u1_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u1_LSTM_Main_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u2_LSTM",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u2_XGBoost",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u2_Prophet",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u2_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u2_LSTM_Main_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u3_LSTM",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u3_XGBoost",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u3_Prophet",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u3_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u3_LSTM_Main_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u4_LSTM",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u4_XGBoost",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u4_Prophet",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u4_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u4_LSTM_Main_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u5_LSTM",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u5_XGBoost",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u5_Prophet",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u5_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u5_LSTM_Main_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u6_LSTM",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u6_XGBoost",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u6_Prophet",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u6_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043407_u6_LSTM_Main_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043408_u1_LSTM",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043408_u1_XGBoost",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043408_u1_Prophet",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043408_u1_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15043408_u1_LSTM_Main_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15095374_u1_LSTM",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15095374_u1_XGBoost",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15095374_u1_Prophet",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15095374_u1_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15095374_u1_LSTM_Main_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15095404_u1_LSTM",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15095404_u1_XGBoost",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15095404_u1_Prophet",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15095404_u1_Ensemble",
+      "version": "2",
+      "ready": true
+    },
+    {
+      "name": "Solar_15095404_u1_LSTM_Main_Ensemble",
+      "version": "2",
+      "ready": true
+    }
+  ]
+}

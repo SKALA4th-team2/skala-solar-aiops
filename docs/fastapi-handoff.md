@@ -1,4 +1,8 @@
+> **2026-10-07 시간별 전환 — 현행:** 현재 엔트리는 scripts/run_backend.py→serving_app.hourly.app:app와hourly.worker. 일별 sequence20 대신history24/forecast24. 31개 모델쌍이 runtime-hourly에 있다. 아래는 이전 일별 인수인계다. [운영 안내](backend-runbook.md) · [결정0014](decisions/0014-hourly-forecast-and-aiops.md). 이하 이전 계약·수치는 설계/검증 이력이며 현행 시간별 계약보다 우선하지 않는다.
+
 # FastAPI 작업 범위와 인수인계
+
+> 2026-10-07 백엔드 통합 후속: 아래는 통합 이전의 인수인계 기록이다. 현재 다개소 서빙·AIOps 연결 상태와 실행법은 [백엔드 안내](backend-runbook.md), 적용 정책은 [0013](decisions/0013-backend-aiops-implementation.md)을 따른다. 아래의 미연결/단일 발전소 설명은 이전 상태이며, 프론트는 변경하지 않았다.
 
 2026-10-07. 본인은 백엔드 FastAPI까지 맡고, MLOps와 AIOps는 팀원이 이어받는다. 공통 준비인 HAIC 정답 빈칸 11개는 `347af06`에서 완료했다.
 

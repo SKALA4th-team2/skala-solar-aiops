@@ -1,0 +1,16 @@
+{
+  "upstream": "9bb7568",
+  "passed": true,
+  "api_plants": 33,
+  "fastapi_tests": 27,
+  "node_tests": 15,
+  "lifecycle": true,
+  "browser_checks": [
+    "plant_switch",
+    "live_prediction",
+    "41_row_csv_upload",
+    "missing_expected_hold",
+    "model_history"
+  ],
+  "note": "Latest Hadong historical sample lacks Expected; monitoring correctly holds instead of retraining."
+}

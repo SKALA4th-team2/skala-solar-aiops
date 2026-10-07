@@ -1,0 +1,223 @@
+{
+  "passed": true,
+  "partial": true,
+  "versions_checked": 36,
+  "checks": [
+    {
+      "plant_id": "15043409_u1",
+      "role": "evaluation",
+      "version": "1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043409_u1",
+      "role": "release",
+      "version": "2",
+      "passed": true
+    },
+    {
+      "plant_id": "15043384_u1",
+      "role": "evaluation",
+      "version": "1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043384_u1",
+      "role": "release",
+      "version": "2",
+      "passed": true
+    },
+    {
+      "plant_id": "15043385_u1",
+      "role": "evaluation",
+      "version": "1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043385_u1",
+      "role": "release",
+      "version": "2",
+      "passed": true
+    },
+    {
+      "plant_id": "15043386_u1",
+      "role": "evaluation",
+      "version": "1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043386_u1",
+      "role": "release",
+      "version": "2",
+      "passed": true
+    },
+    {
+      "plant_id": "15043386_u2",
+      "role": "evaluation",
+      "version": "1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043386_u2",
+      "role": "release",
+      "version": "2",
+      "passed": true
+    },
+    {
+      "plant_id": "15043387_u1",
+      "role": "evaluation",
+      "version": "1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043387_u1",
+      "role": "release",
+      "version": "2",
+      "passed": true
+    },
+    {
+      "plant_id": "15043388_u1",
+      "role": "evaluation",
+      "version": "1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043388_u1",
+      "role": "release",
+      "version": "2",
+      "passed": true
+    },
+    {
+      "plant_id": "15043389_u1",
+      "role": "evaluation",
+      "version": "1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043389_u1",
+      "role": "release",
+      "version": "2",
+      "passed": true
+    },
+    {
+      "plant_id": "15043391_u1",
+      "role": "evaluation",
+      "version": "1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043391_u1",
+      "role": "release",
+      "version": "2",
+      "passed": true
+    },
+    {
+      "plant_id": "15043391_u3",
+      "role": "evaluation",
+      "version": "1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043391_u3",
+      "role": "release",
+      "version": "2",
+      "passed": true
+    },
+    {
+      "plant_id": "15043391_u2",
+      "role": "evaluation",
+      "version": "1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043391_u2",
+      "role": "release",
+      "version": "2",
+      "passed": true
+    },
+    {
+      "plant_id": "15043391_u4",
+      "role": "evaluation",
+      "version": "1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043391_u4",
+      "role": "release",
+      "version": "2",
+      "passed": true
+    },
+    {
+      "plant_id": "15043394_u1",
+      "role": "evaluation",
+      "version": "1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043394_u1",
+      "role": "release",
+      "version": "2",
+      "passed": true
+    },
+    {
+      "plant_id": "15043395_u1",
+      "role": "evaluation",
+      "version": "1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043395_u1",
+      "role": "release",
+      "version": "2",
+      "passed": true
+    },
+    {
+      "plant_id": "15043396_u1",
+      "role": "evaluation",
+      "version": "1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043396_u1",
+      "role": "release",
+      "version": "2",
+      "passed": true
+    },
+    {
+      "plant_id": "15043399_u1",
+      "role": "evaluation",
+      "version": "1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043399_u1",
+      "role": "release",
+      "version": "2",
+      "passed": true
+    },
+    {
+      "plant_id": "15043400_u1",
+      "role": "evaluation",
+      "version": "1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043400_u1",
+      "role": "release",
+      "version": "2",
+      "passed": true
+    },
+    {
+      "plant_id": "15043401_u1",
+      "role": "evaluation",
+      "version": "1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043401_u1",
+      "role": "release",
+      "version": "2",
+      "passed": true
+    }
+  ]
+}

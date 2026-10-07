@@ -1,0 +1,132 @@
+{
+  "plant_id": "15095374_u1",
+  "name": "무릉리",
+  "unit": "1",
+  "completed_utc": "2026-10-07T10:44:20.359272+00:00",
+  "selected_by_validation": "Ensemble",
+  "splits": {
+    "train": {
+      "first": "2022-01-02",
+      "last": "2024-07-04",
+      "n": 915
+    },
+    "validation": {
+      "first": "2024-07-05",
+      "last": "2024-12-31",
+      "n": 180
+    },
+    "test": {
+      "first": "2025-01-01",
+      "last": "2025-12-31",
+      "n": 365
+    }
+  },
+  "test_metrics": {
+    "Persistence": {
+      "rmse_kwh": 1365.8705497509898,
+      "mae_kwh": 1052.4265452054794,
+      "wape_pct": 39.65641191350828,
+      "n": 365
+    },
+    "Mean7": {
+      "rmse_kwh": 1193.379055333421,
+      "mae_kwh": 976.9473553816048,
+      "wape_pct": 36.81228577834979,
+      "n": 365
+    },
+    "Seasonal7": {
+      "rmse_kwh": 1635.0620465674237,
+      "mae_kwh": 1310.3542,
+      "wape_pct": 49.37536604766082,
+      "n": 365
+    },
+    "XGBoost": {
+      "rmse_kwh": 1109.376009440679,
+      "mae_kwh": 928.0152480602526,
+      "wape_pct": 34.96847842421975,
+      "n": 365
+    },
+    "Prophet": {
+      "rmse_kwh": 1117.1248141592898,
+      "mae_kwh": 926.2135444355478,
+      "wape_pct": 34.90058855445843,
+      "n": 365
+    },
+    "LSTM": {
+      "rmse_kwh": 1134.1013879352952,
+      "mae_kwh": 938.1909816218964,
+      "wape_pct": 35.35190953728035,
+      "n": 365
+    },
+    "Ensemble": {
+      "rmse_kwh": 1114.083554751575,
+      "mae_kwh": 925.3190131455676,
+      "wape_pct": 34.86688178274445,
+      "n": 365
+    },
+    "LSTM_Main_Ensemble": {
+      "rmse_kwh": 1117.6557023818123,
+      "mae_kwh": 930.0468246318901,
+      "wape_pct": 35.04503012060722,
+      "n": 365
+    }
+  },
+  "validation_metrics": {
+    "Persistence": {
+      "rmse_kwh": 1156.4045212498763,
+      "mae_kwh": 928.4466555555556,
+      "wape_pct": 35.45102093351497,
+      "n": 180
+    },
+    "Mean7": {
+      "rmse_kwh": 969.2326680845554,
+      "mae_kwh": 789.7547912698413,
+      "wape_pct": 30.15532822496725,
+      "n": 180
+    },
+    "Seasonal7": {
+      "rmse_kwh": 1311.2384232576237,
+      "mae_kwh": 1060.925238888889,
+      "wape_pct": 40.50947098327271,
+      "n": 180
+    },
+    "XGBoost": {
+      "rmse_kwh": 952.3835603114701,
+      "mae_kwh": 798.4582149576822,
+      "wape_pct": 30.487652385439638,
+      "n": 180
+    },
+    "Prophet": {
+      "rmse_kwh": 925.5989011886037,
+      "mae_kwh": 766.458085579678,
+      "wape_pct": 29.265786541379917,
+      "n": 180
+    },
+    "LSTM": {
+      "rmse_kwh": 951.5758602977223,
+      "mae_kwh": 782.1846563368056,
+      "wape_pct": 29.866276602696068,
+      "n": 180
+    },
+    "Ensemble": {
+      "rmse_kwh": 925.3721431026366,
+      "mae_kwh": 768.5664080902543,
+      "wape_pct": 29.346288942901644,
+      "n": 180
+    },
+    "LSTM_Main_Ensemble": {
+      "rmse_kwh": 931.1168919755469,
+      "mae_kwh": 771.0962681542684,
+      "wape_pct": 29.44288697742692,
+      "n": 180
+    }
+  },
+  "reload_passed": true,
+  "artifact_hashes": {
+    "lstm.keras": "58dcf9b9f68c497cadafbd20c5e5cff0ba07796f066314317ef358b2285a469b",
+    "metadata.json": "3bc7e6c89bf4b4c1e016ac1d2276141d9d21927137e114dc29c8ae3d544f9183",
+    "prophet.json": "c4172e5f82317bc2b2109488a98a751874c88e15e32595a890b80cb5c5c160e7",
+    "scaler.json": "a113925b730537c3eee4af0fd97e2ab1fadded722d6ababf96a9f4a112d744ea",
+    "xgboost.ubj": "3b57387e8c88ceb919bd5a57c903e68f1bfb138e1f2f4e0225b49aa9bb5f51f3"
+  }
+}

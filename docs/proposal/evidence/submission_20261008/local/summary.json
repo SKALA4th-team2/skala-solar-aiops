@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "scope": "isolated synthetic AIOps functionality, not forecast performance",
+  "plants_checked": 31,
+  "before_version": "1",
+  "after_version": "2",
+  "rollback_version": "1",
+  "prediction_persisted": true,
+  "invalid_422": true,
+  "worker_log": true,
+  "execution_unit": "local"
+}

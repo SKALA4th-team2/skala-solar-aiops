@@ -1,0 +1,53 @@
+[
+  {
+    "seed": 42,
+    "learning_rate": 0.001,
+    "best_epoch": 84,
+    "epochs_run": 84,
+    "seconds": 42.9460315000033,
+    "scaler_min": [
+      5.886,
+      0.9504
+    ],
+    "scaler_range": [
+      328.608,
+      27.410400000000003
+    ],
+    "scaler_last_generation_date": "2025-02-27",
+    "scaler_last_forecast_row": "2025-02-26"
+  },
+  {
+    "seed": 43,
+    "learning_rate": 0.001,
+    "best_epoch": 84,
+    "epochs_run": 84,
+    "seconds": 44.93353790004039,
+    "scaler_min": [
+      5.886,
+      0.9504
+    ],
+    "scaler_range": [
+      328.608,
+      27.410400000000003
+    ],
+    "scaler_last_generation_date": "2025-02-27",
+    "scaler_last_forecast_row": "2025-02-26"
+  },
+  {
+    "seed": 44,
+    "learning_rate": 0.001,
+    "best_epoch": 84,
+    "epochs_run": 84,
+    "seconds": 44.678887100017164,
+    "scaler_min": [
+      5.886,
+      0.9504
+    ],
+    "scaler_range": [
+      328.608,
+      27.410400000000003
+    ],
+    "scaler_last_generation_date": "2025-02-27",
+    "scaler_last_forecast_row": "2025-02-26"
+  }
+]

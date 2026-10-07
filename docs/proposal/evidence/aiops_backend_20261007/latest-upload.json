@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "response": {
+    "plant_id": "hadong-sewage",
+    "predicted_close": 158.65,
+    "target_date": "2026-04-11",
+    "model_version": "1"
+  }
+}

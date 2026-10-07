@@ -1,0 +1,447 @@
+{
+  "origin/main": {
+    "commit": "9ad93b1571c8300f3e26d00837cba338a94987c4",
+    "files": [
+      {
+        "path": "AGENTS.md",
+        "sha256": "6af9b4f26fdcfdea00a1d4e9dbf0ba394801475f2fb7ef699a6df020ade25c0c",
+        "bytes": 7100
+      },
+      {
+        "path": "README.md",
+        "sha256": "ef65042f99e694bc9f5ff457e507038d425e6ff89c572e739eb0a93ee12c274b",
+        "bytes": 4821
+      },
+      {
+        "path": "datasets/README.md",
+        "sha256": "1ff5eda08bd4a29c5f6f99b042f81513c7ceb31c6c84fc7fd093b87b20cf0e07",
+        "bytes": 9224
+      },
+      {
+        "path": "docs/decisions/0001-customer-and-scope.md",
+        "sha256": "91a6431576b7214131d556f684ef8ce8947011d305deb90e215029ca5ab95394",
+        "bytes": 5654
+      },
+      {
+        "path": "docs/decisions/0002-inputs-and-prediction-time.md",
+        "sha256": "bb399838380193b374c698c85883e87a862bf7b676e03735ffcbaab3cf135a0f",
+        "bytes": 11371
+      },
+      {
+        "path": "docs/decisions/0003-capacity-and-error-metrics.md",
+        "sha256": "877231366ba5d3adc9cad64e33e50cb4a3d46bf0228735ab973ce57f47b98c75",
+        "bytes": 6970
+      },
+      {
+        "path": "docs/decisions/0004-service-level-objectives.md",
+        "sha256": "fd56078228eaa031a17e4d3089848409b72a12a06ce2e948f71028be0785f9d2",
+        "bytes": 8863
+      },
+      {
+        "path": "docs/decisions/0005-deployment-gate.md",
+        "sha256": "9782d6351e4e62b56a3260711b4dbff8a80b3116e836af69df6b5385d7b0a487",
+        "bytes": 11382
+      },
+      {
+        "path": "docs/decisions/0006-monitoring-metric-and-thresholds.md",
+        "sha256": "fa07e0b57e74d00859fac0c661f9f2ffe4449c85d5fc07c75f3396d5898199c1",
+        "bytes": 12763
+      },
+      {
+        "path": "docs/decisions/0007-facility-vs-model-branch-and-alerts.md",
+        "sha256": "a2eb94d1b7923c2b5d8441b8ff6e5bc2a594589b3299b7342b9d5a67fa481227",
+        "bytes": 13157
+      },
+      {
+        "path": "docs/decisions/0008-retraining-and-version-switch.md",
+        "sha256": "9e9b17117aa21e766743fd0bbda00bfee9a7d3c6b48389211b611dce37d451f3",
+        "bytes": 13191
+      },
+      {
+        "path": "docs/decisions/0009-demo-plan.md",
+        "sha256": "e2993b2514adc8a76d3db189890f32d62e48e3e0aaedc0ec5253f4c57808f550",
+        "bytes": 11817
+      },
+      {
+        "path": "docs/decisions/README.md",
+        "sha256": "bc8122d829c84b47f614c894a932249b6d2c46bc72754b01d3fd65c38437649d",
+        "bytes": 5429
+      },
+      {
+        "path": "docs/decisions/template.md",
+        "sha256": "9c9d50e8c778deee94f0e08c34659539cebca6455b5f7155b0a65c7a861ba967",
+        "bytes": 838
+      },
+      {
+        "path": "docs/fastapi-handoff.md",
+        "sha256": "1e3b3af761c83ff1b792c74838be1083a97345353c70f6318b684f5734d31376",
+        "bytes": 8227
+      },
+      {
+        "path": "docs/proposal/5-api-spec.md",
+        "sha256": "6d430b8391aae9eb47920880fb736459daf1df4b04bb7196e22df148085964b1",
+        "bytes": 40702
+      },
+      {
+        "path": "docs/proposal/domain-mapping.md",
+        "sha256": "56423214c96466707170d86cf4e087c29638d89ac3ad4e14450718de15a2a289",
+        "bytes": 6145
+      },
+      {
+        "path": "project/README.md",
+        "sha256": "2d9b8b5ee0552b82170d0c5c2ba499aec2a72e8464fe2965aedb636cee2ced8d",
+        "bytes": 11301
+      },
+      {
+        "path": "project/data/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      {
+        "path": "project/data/features.py",
+        "sha256": "8d6c7a50fd91116427c72ba58d0356e4eb3a5d796bc0b5006361e2220df9c3b2",
+        "bytes": 4511
+      },
+      {
+        "path": "project/data/storage.py",
+        "sha256": "2f8b0aa36e850da25ed22e5d2230a75d67e390211303b1f7da1fc7d241369e3b",
+        "bytes": 1120
+      },
+      {
+        "path": "project/requirements.txt",
+        "sha256": "af593359a1d3ea18b41878d32a6edb4ca09c3b4dc6e4e89eb75bde9f1c77e00c",
+        "bytes": 149
+      },
+      {
+        "path": "project/scripts/simulate_drift.py",
+        "sha256": "89f47c7139bd3ee51c058d1a5cee04722627524d0fe684c564c91b65ed8c27bb",
+        "bytes": 5266
+      },
+      {
+        "path": "project/scripts/train_baseline_v1.py",
+        "sha256": "142980311f3452e2babc0a97679a46a43e2d7d70ada1f7043bee0f830f8aaddb",
+        "bytes": 6412
+      },
+      {
+        "path": "project/serving_app/Dockerfile",
+        "sha256": "79ad21b22c6c042b419fbf6cfc0b1216e437b8520570b5e394b049948afa0696",
+        "bytes": 1957
+      },
+      {
+        "path": "project/serving_app/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      {
+        "path": "project/serving_app/aiops_adapter.py",
+        "sha256": "6f4b295e525f6bced9b615b9a2b7c74516c5f342dd6b6b4a97ed4b580cdfb890",
+        "bytes": 1117
+      },
+      {
+        "path": "project/serving_app/docker-compose.yml",
+        "sha256": "4505d76843c08688dae4a863cfbb4d7bfba37b1bae0d6781e544475be7133fa0",
+        "bytes": 1194
+      },
+      {
+        "path": "project/serving_app/lstm_model.py",
+        "sha256": "a0ddb9fe80b731f5a46469d18acbb1090fc35f00683957a9940448350c8de0d7",
+        "bytes": 1261
+      },
+      {
+        "path": "project/serving_app/main.py",
+        "sha256": "ea14fe750302824b6f8f8ae007c53e40fa04dec7236591bef5363b534df977ba",
+        "bytes": 3142
+      },
+      {
+        "path": "project/serving_app/model_loader.py",
+        "sha256": "31b395cf880e24835d68effe726c733f1f429cc02337cc600a0a342beb875a8a",
+        "bytes": 10111
+      },
+      {
+        "path": "project/serving_app/models/.gitkeep",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      {
+        "path": "project/serving_app/monitoring/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      {
+        "path": "project/serving_app/monitoring/drift_detector.py",
+        "sha256": "3bf1b7c0149236c902d9d681d7c12832f61bb7cb6c37d3480ab4322df3bce2ec",
+        "bytes": 4531
+      },
+      {
+        "path": "project/serving_app/monitoring/retrain_trigger.py",
+        "sha256": "79c01e470ace05087a4f9ac8b6401dd5e989b63f4bf81066904079253fcd37c3",
+        "bytes": 5482
+      },
+      {
+        "path": "project/serving_app/routers/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      {
+        "path": "project/serving_app/routers/data.py",
+        "sha256": "65e33cfb9157be9050a14ce75d29f27d184d8bd64a34229dab26a96d6bede81a",
+        "bytes": 5105
+      },
+      {
+        "path": "project/serving_app/routers/health.py",
+        "sha256": "c9c761c135d7630eba88071aba722f79cca152c193b4dc0bbd97ef5afebb4b9d",
+        "bytes": 682
+      },
+      {
+        "path": "project/serving_app/routers/logs.py",
+        "sha256": "b3dd60dc7423225890056462e728f542917cc38baa00b83492d06f34621ab0cf",
+        "bytes": 1597
+      },
+      {
+        "path": "project/serving_app/routers/predict.py",
+        "sha256": "478c764a092560d9fd85bb8a9591606ab1d5b46e386b9efd240309ad93dc7692",
+        "bytes": 3204
+      },
+      {
+        "path": "project/serving_app/schemas.py",
+        "sha256": "2745c7b1e4dc215da6363f345c4d984629e429808ed63c95575b13da7995cc2e",
+        "bytes": 5188
+      },
+      {
+        "path": "project/serving_app/train_and_register.py",
+        "sha256": "4e946aeb4fd52d555eade8ff439ebc14b9a94aceb9400db6d2a0dbb534d5361d",
+        "bytes": 5607
+      },
+      {
+        "path": "project/serving_app/static/index.html",
+        "sha256": "6c1a9c601b525553a4871f76a234b92cb168906f1f561610ab488004d668341e",
+        "bytes": 18897
+      }
+    ]
+  },
+  "origin/feat/solar-ops-frontend": {
+    "commit": "91db9adf3b474ab008f2c0a338b791358376e450",
+    "files": [
+      {
+        "path": "AGENTS.md",
+        "sha256": "6af9b4f26fdcfdea00a1d4e9dbf0ba394801475f2fb7ef699a6df020ade25c0c",
+        "bytes": 7100
+      },
+      {
+        "path": "README.md",
+        "sha256": "b76d15d70e146cf4979e4dfa0a267832b0cd7bf79e41b623c4d6d923f19852a6",
+        "bytes": 4086
+      },
+      {
+        "path": "datasets/README.md",
+        "sha256": "4fc6fe36afb74457aed74c2724a66e3a3c78054567bfb0dc241d45338b9b58f3",
+        "bytes": 9057
+      },
+      {
+        "path": "docs/decisions/0001-customer-and-scope.md",
+        "sha256": "91a6431576b7214131d556f684ef8ce8947011d305deb90e215029ca5ab95394",
+        "bytes": 5654
+      },
+      {
+        "path": "docs/decisions/0002-inputs-and-prediction-time.md",
+        "sha256": "4f208ac5ba5c0f0ec8a66d9228443f46437690588a786270ae7e0f6c98477ba2",
+        "bytes": 10989
+      },
+      {
+        "path": "docs/decisions/0003-capacity-and-error-metrics.md",
+        "sha256": "877231366ba5d3adc9cad64e33e50cb4a3d46bf0228735ab973ce57f47b98c75",
+        "bytes": 6970
+      },
+      {
+        "path": "docs/decisions/0004-service-level-objectives.md",
+        "sha256": "fd56078228eaa031a17e4d3089848409b72a12a06ce2e948f71028be0785f9d2",
+        "bytes": 8863
+      },
+      {
+        "path": "docs/decisions/0005-deployment-gate.md",
+        "sha256": "9782d6351e4e62b56a3260711b4dbff8a80b3116e836af69df6b5385d7b0a487",
+        "bytes": 11382
+      },
+      {
+        "path": "docs/decisions/0006-monitoring-metric-and-thresholds.md",
+        "sha256": "fa07e0b57e74d00859fac0c661f9f2ffe4449c85d5fc07c75f3396d5898199c1",
+        "bytes": 12763
+      },
+      {
+        "path": "docs/decisions/0007-facility-vs-model-branch-and-alerts.md",
+        "sha256": "a2eb94d1b7923c2b5d8441b8ff6e5bc2a594589b3299b7342b9d5a67fa481227",
+        "bytes": 13157
+      },
+      {
+        "path": "docs/decisions/0008-retraining-and-version-switch.md",
+        "sha256": "9e9b17117aa21e766743fd0bbda00bfee9a7d3c6b48389211b611dce37d451f3",
+        "bytes": 13191
+      },
+      {
+        "path": "docs/decisions/0009-demo-plan.md",
+        "sha256": "e2993b2514adc8a76d3db189890f32d62e48e3e0aaedc0ec5253f4c57808f550",
+        "bytes": 11817
+      },
+      {
+        "path": "docs/decisions/README.md",
+        "sha256": "ad7a7519e9ef3bdcaadc5001bec1d041e6fd57fc1feae8a148fe06669c3ad499",
+        "bytes": 5378
+      },
+      {
+        "path": "docs/decisions/template.md",
+        "sha256": "9c9d50e8c778deee94f0e08c34659539cebca6455b5f7155b0a65c7a861ba967",
+        "bytes": 838
+      },
+      {
+        "path": "docs/design/solar-ops-v01/DESIGN.md",
+        "sha256": "43ed1c1dc67fb64a159e5e05b07ebce33a87554a0371c8a2298bd39844f6e008",
+        "bytes": 6025
+      },
+      {
+        "path": "docs/design/solar-ops-v01/INTEGRATION.md",
+        "sha256": "d61ee5d90dcffea6083dfbb0c6f6bbd1b4218cca79be19710647e241bd9b4e6f",
+        "bytes": 5555
+      },
+      {
+        "path": "docs/design/solar-ops-v01/README.md",
+        "sha256": "325ba59a99e0fe0e6ac5ce62a5fa37dc9e24d06a142b6af10acc8e8c51699b8d",
+        "bytes": 12920
+      },
+      {
+        "path": "docs/design/solar-ops-v01/verification.md",
+        "sha256": "2c497437e96e2fecfc00b2b5b5d881734d4a0fbbc8c6fdb7fb2e74d01ac1ecf3",
+        "bytes": 14793
+      },
+      {
+        "path": "docs/proposal/5-api-spec.md",
+        "sha256": "16c4feb7cd944b9a0ecf7a71a969e5ee62e1112a2321895aa4d7b7d0dadffb2e",
+        "bytes": 33166
+      },
+      {
+        "path": "docs/proposal/domain-mapping.md",
+        "sha256": "4ca51b9ce1813f77dd7bc98d60ad72784b8bf51499b1fe9299ef6ef3805e1d06",
+        "bytes": 5223
+      },
+      {
+        "path": "project/README.md",
+        "sha256": "2d9b8b5ee0552b82170d0c5c2ba499aec2a72e8464fe2965aedb636cee2ced8d",
+        "bytes": 11301
+      },
+      {
+        "path": "project/data/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      {
+        "path": "project/data/features.py",
+        "sha256": "a6c4805742f79c58de24c037a1e889e0900e9949d95ee4d6d93624161a9fdc5a",
+        "bytes": 4486
+      },
+      {
+        "path": "project/data/storage.py",
+        "sha256": "2f8b0aa36e850da25ed22e5d2230a75d67e390211303b1f7da1fc7d241369e3b",
+        "bytes": 1120
+      },
+      {
+        "path": "project/requirements.txt",
+        "sha256": "af593359a1d3ea18b41878d32a6edb4ca09c3b4dc6e4e89eb75bde9f1c77e00c",
+        "bytes": 149
+      },
+      {
+        "path": "project/scripts/simulate_drift.py",
+        "sha256": "f52b21f6d9ea24c39ecd4e0a9ca97cde501f99ef125858318e45ed58e30278b3",
+        "bytes": 6616
+      },
+      {
+        "path": "project/scripts/train_baseline_v1.py",
+        "sha256": "101d3d48802b26c325bee1ec65673ad327da2212cf0c2378a4b2cafc74d3e2d3",
+        "bytes": 6397
+      },
+      {
+        "path": "project/serving_app/Dockerfile",
+        "sha256": "79ad21b22c6c042b419fbf6cfc0b1216e437b8520570b5e394b049948afa0696",
+        "bytes": 1957
+      },
+      {
+        "path": "project/serving_app/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      {
+        "path": "project/serving_app/docker-compose.yml",
+        "sha256": "4505d76843c08688dae4a863cfbb4d7bfba37b1bae0d6781e544475be7133fa0",
+        "bytes": 1194
+      },
+      {
+        "path": "project/serving_app/lstm_model.py",
+        "sha256": "b8a3ea7e6ce4f5781e7687d6a2bea62e478a4d76a049c007d8d42310e413a19f",
+        "bytes": 1186
+      },
+      {
+        "path": "project/serving_app/main.py",
+        "sha256": "cf802486c5925b2f8636454039476ff0796923b021bc1bbc1d4f21ebe6ce5ec6",
+        "bytes": 2442
+      },
+      {
+        "path": "project/serving_app/model_loader.py",
+        "sha256": "68b142e93fa29cd3da83b301c42f63004e58eb46dee799f59232959032dc477a",
+        "bytes": 9723
+      },
+      {
+        "path": "project/serving_app/models/.gitkeep",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      {
+        "path": "project/serving_app/monitoring/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      {
+        "path": "project/serving_app/monitoring/drift_detector.py",
+        "sha256": "c90de78a7c5918ec3c9ad76ae3f026cb4f1ce46edd84eeb9a2e61c7d24f533b0",
+        "bytes": 4444
+      },
+      {
+        "path": "project/serving_app/monitoring/retrain_trigger.py",
+        "sha256": "64029ead9aadda6504946d0c21db012e50bca12babe2b3a2f0f696ce88dfeb7c",
+        "bytes": 5446
+      },
+      {
+        "path": "project/serving_app/routers/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      {
+        "path": "project/serving_app/routers/data.py",
+        "sha256": "6536ee95bc5f8348cea401b330839400c84bc063ffa128f91153aab908e25543",
+        "bytes": 2346
+      },
+      {
+        "path": "project/serving_app/routers/health.py",
+        "sha256": "0d9767ab5dc4a7050a1884e3c45c577de4425821a3988de9a46941fbcc6e20ba",
+        "bytes": 456
+      },
+      {
+        "path": "project/serving_app/routers/logs.py",
+        "sha256": "b3dd60dc7423225890056462e728f542917cc38baa00b83492d06f34621ab0cf",
+        "bytes": 1597
+      },
+      {
+        "path": "project/serving_app/routers/predict.py",
+        "sha256": "61bb1febf8c5a9109a2fa75b1a6ca0c86ba5878c0584a79fc9a8017f4f6c2d83",
+        "bytes": 5450
+      },
+      {
+        "path": "project/serving_app/schemas.py",
+        "sha256": "652cf985bc17d84ab279fb488b0e553a89a7ac9555687c767e54af712e2a8b74",
+        "bytes": 1644
+      },
+      {
+        "path": "project/serving_app/train_and_register.py",
+        "sha256": "4e946aeb4fd52d555eade8ff439ebc14b9a94aceb9400db6d2a0dbb534d5361d",
+        "bytes": 5607
+      }
+    ]
+  }
+}

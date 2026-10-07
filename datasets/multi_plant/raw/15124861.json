@@ -1,0 +1,18 @@
+{
+  "source_id": "15124861",
+  "name": "신인천본관주차장",
+  "landing_url": "https://www.data.go.kr/data/15124861/fileData.do",
+  "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000007649582&fileDetailSn=1&insertDataPrcus=N",
+  "retrieved_at_utc": "2026-10-07T08:48:24.716346+00:00",
+  "sha256": "8aa8ced0740f1ab182b07ae3f9c912a2847d9d6b7af808b0e64fe995044f7794",
+  "bytes": 243803,
+  "metadata": {
+    "name": "한국남부발전(주)_신인천본관주차장 태양광발전실적",
+    "description": "이 데이터는 한국남부발전 신인천본관 주차장에 설치된 태양광 발전소의 일자별 발전 실적을 정리한 자료입니다. 각 항목에는 설비용량(kW), 하루 총 발전량(kWh), 평균·최대·최소 발전량, 시간대별(0~24시) 발전량 정보가 포함되어 있으며, 일조 조건과 날씨 변화에 따른 발전 패턴을 확인할 수 있습니다. 이를 통해 특정 시점의 발전 효율을 비교하거나 계절별 발전량 특성을 분석할 수 있으며, 전력 수급 계획 및 에너지 관리 전략 수립에 활용할 수 있습니다. 또한 주차장 유휴공간을 활용한 친환경 에너지 생산 사례로서 의미가 있으며, 재생에너지 확대와 탄소중립 정책 추진을 위한 기초자료로 유용하게 쓰일 수 있습니다.",
+    "dateModified": "2026-09-12",
+    "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+    "temporalCoverage": null,
+    "spatialCoverage": null
+  },
+  "usage_label": "이용허락범위 제한 없음"
+}

@@ -1,0 +1,62 @@
+{
+  "url": "https://geocoding-api.open-meteo.com/v1/search?name=Yeongwol&count=10&language=en&countryCode=KR",
+  "response": {
+    "results": [
+      {
+        "id": 11864365,
+        "name": "Yeongwolchon",
+        "latitude": 35.13846,
+        "longitude": 126.41741,
+        "elevation": 7.0,
+        "feature_code": "PPL",
+        "country_code": "KR",
+        "admin1_id": 1845788,
+        "admin2_id": 1844537,
+        "admin3_id": 8690547,
+        "timezone": "Asia/Seoul",
+        "country_id": 1835841,
+        "country": "South Korea",
+        "admin1": "Jeollanam-do",
+        "admin2": "Hampyeong-gun",
+        "admin3": "Sonbul-myeon"
+      },
+      {
+        "id": 1925783,
+        "name": "Yeongwollyeong",
+        "latitude": 35.36,
+        "longitude": 127.61194,
+        "elevation": 1105.0,
+        "feature_code": "PASS",
+        "country_code": "KR",
+        "admin1_id": 1902028,
+        "admin2_id": 1844532,
+        "admin3_id": 8690265,
+        "timezone": "Asia/Seoul",
+        "country_id": 1835841,
+        "country": "South Korea",
+        "admin1": "Gyeongsangnam-do",
+        "admin2": "Hamyang-gun",
+        "admin3": "Macheon-myeon"
+      },
+      {
+        "id": 12025954,
+        "name": "Yeongwoligogae",
+        "latitude": 36.2159,
+        "longitude": 126.65705,
+        "elevation": 152.0,
+        "feature_code": "PASS",
+        "country_code": "KR",
+        "admin1_id": 1845105,
+        "admin2_id": 1838749,
+        "admin3_id": 6883850,
+        "timezone": "Asia/Seoul",
+        "country_id": 1835841,
+        "country": "South Korea",
+        "admin1": "Chungcheongnam-do",
+        "admin2": "Boryeong-si",
+        "admin3": "Misan-myeon"
+      }
+    ],
+    "generationtime_ms": 1.2978315
+  }
+}

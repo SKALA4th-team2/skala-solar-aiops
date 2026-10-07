@@ -18,7 +18,13 @@ def configure_evaluator(evaluator: Callable | None) -> None:
     _evaluator = evaluator
 
 
-def evaluate_batch(*, rows: list[dict], predictions: list[dict], model_version: str) -> DriftCheck:
+def evaluate_batch(*, rows: list[dict], predictions: list[dict], model_version: str, plant_id: str = 'hadong-sewage') -> DriftCheck:
     if _evaluator is None:
         return DriftCheck(status='skipped', reason='aiops_not_configured', model_version=model_version)
-    return DriftCheck.model_validate(_evaluator(rows=rows, predictions=predictions, model_version=model_version))
+    import inspect
+    arguments=dict(rows=rows,predictions=predictions,model_version=model_version)
+    if 'plant_id' in inspect.signature(_evaluator).parameters:
+        arguments['plant_id']=plant_id
+    elif plant_id!='hadong-sewage':
+        raise ValueError('Evaluator must accept plant_id for multiple plants')
+    return DriftCheck.model_validate(_evaluator(**arguments))

@@ -1,3 +1,5 @@
+> 현재 시간별 도구: hourly/prepare.py → train.py → finalize.py. 검증 hourly/verify.py. 기준 등록부 hourly/candidates.json. 실행은 project/에서 한다. 상세는 [운영 안내](../docs/backend-runbook.md). 아래 일별 도구는 이전 계약이다.
+
 # 도구
 
 서빙 앱 밖에서 쓰는 도구를 둔다. `project/` 안에는 두지 않는다.
@@ -54,8 +56,26 @@
 - [`proposal/`](proposal/): 기획서 ①~⑥ 의 검증과 그림을 만드는 도구. 문서를 고친 뒤 `python tools/proposal/check_docs.py`, `python tools/proposal/check_mermaid.py` 로 점검한다. 설명은 [`proposal/README.md`](proposal/README.md)에 있다.
 - [`verify/`](verify/): 조사 판정의 재현과 FastAPI 계약의 테스트. 설명은 [`verify/README.md`](verify/README.md)에 있다.
 
-## 앞으로 둘 것
+## 여러 발전소 데이터 확장
+
+[`build_multi_plant/`](build_multi_plant/README.md)는 현재 저장소에서 재실행할 수 있는 수집·ASOS 대조·호기별 결합·검증 도구다. 위 조사용 스크립트와 달리 개인 절대 경로가 없으며 ASOS 원본 위치만 명령행으로 받는다. 결과는 `datasets/multi_plant/`에 저장한다.
+
+## 입력 변수 비교 실험
+
+[`feature_ablation/`](feature_ablation/README.md)은 하동 LSTM 3시드와 추가 32개 호기의 XGBoost로 과거 날씨·계절·사전 예보 입력을 비교한다. 결과·날짜별 예측·누수 검증은 `docs/proposal/evidence/feature_ablation_20261007/`에 저장한다. 서버 모델을 변경하지 않는다.
+
+## 앞으로 추가할 항목
+
+지역별 과거 예보 수집과 원본 재집계 검증은 [`build_plant_forecasts/`](build_plant_forecasts/README.md)에서 실행한다. Open-Meteo JMA MSM의 24/48시간 선행 예보를 캐시하고 발전소별 대상 날짜 테이블로 연결한다. 실제 발표 시각을 제공하는 자료는 아니다.
+
+모델 학습·검증 도구는 [`model_benchmark/`](model_benchmark/README.txt)(기존 하동 예보 입력 비교)와 [`multi_plant_models/`](multi_plant_models/README.md)(추가 호기별 관측 입력 비교·모델 저장·MLflow 후보 등록)에 있다. 두 실험은 날씨 입력의 의미가 다르므로 점수를 직접 비교하지 않는다. 명령은 `project/`에서 실행한다.
+
+새 지역별 JMA MSM 예보로 다시 학습하는 도구는 [`forecast_models/`](forecast_models/README.md)에 있다. 최신 GitHub API의 20일×2입력 계약에 맞춘 LSTM·XGBoost·Prophet, 앙상블과 개소별 모델/스케일러 묶음을 만든다. 연결 방법은 [모델 인수인계](../docs/forecast-model-handoff.md)에 있다.
 
 - `/predict` 와 `/predict/batch-test` 에 보낼 요청 본문 예시
 - 응답 시간을 재는 스크립트
 - 실제 발전 실적에서 시연용 41일 배치를 잘라 내는 스크립트
+
+## 2026-10-07 백엔드 통합
+
+tools/aiops/에 초기 MLflow 등록, 포트폴리오 품질 평가, 모델 seed 내보내기, 실제 자료 재생, API·정책·재학습 검증을 추가했다. 사용법은 aiops/README.md와 ../docs/backend-runbook.md를 따른다.

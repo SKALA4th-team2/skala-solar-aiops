@@ -1,0 +1,589 @@
+{
+  "created_utc": "2026-10-07T11:23:05.504175+00:00",
+  "admitted": [
+    {
+      "plant_id": "15043409_u1",
+      "name": "하동하수처리장",
+      "region": "hadong",
+      "generation_file": "hadong_daily_full.csv",
+      "generation_status": "existing_baseline",
+      "source_sha256": "170628e248d937b7c997ed5bf3a55912ffa89af6a7464d5457eceb32e1536406",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 55.0,
+      "source": "datasets\\plant_forecasts\\training\\15043409_u1.csv"
+    },
+    {
+      "plant_id": "15043384_u1",
+      "name": "남제주소내",
+      "region": "jeju_west",
+      "generation_file": "multi_plant/daily/15043384_u1.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "6e1c4850568c4d9f25427511d19f3988dce2306e02e4f3cffed99081b92a108b",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 196.0,
+      "source": "datasets\\plant_forecasts\\training\\15043384_u1.csv"
+    },
+    {
+      "plant_id": "15043385_u1",
+      "name": "부산복합자재창고",
+      "region": "busan",
+      "generation_file": "multi_plant/daily/15043385_u1.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "2d0e4ea19e2ac02e2942a297d5a8e91e40955b42616f4e837a22065271afa05d",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 187.0,
+      "source": "datasets\\plant_forecasts\\training\\15043385_u1.csv"
+    },
+    {
+      "plant_id": "15043387_u1",
+      "name": "부산수처리장",
+      "region": "busan",
+      "generation_file": "multi_plant/daily/15043387_u1.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "8f399f8397b86193f4fb82a7cd1d8d4bdfc7b3cc69c56d7af15395d328f54415",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 110.5,
+      "source": "datasets\\plant_forecasts\\training\\15043387_u1.csv"
+    },
+    {
+      "plant_id": "15043391_u1",
+      "name": "삼척소내",
+      "region": "samcheok",
+      "generation_file": "multi_plant/daily/15043391_u1.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "8b0bc8eb3a3ffc6276ab1430059e08280f22dfeab70b7f4e98f8b537cbfa4a1f",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 999.0,
+      "source": "datasets\\plant_forecasts\\training\\15043391_u1.csv"
+    },
+    {
+      "plant_id": "15043391_u2",
+      "name": "삼척소내",
+      "region": "samcheok",
+      "generation_file": "multi_plant/daily/15043391_u2.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "085baa06d605f51b285f854588208809997fdefba8daf247885d54341f7c2955",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 990.45,
+      "source": "datasets\\plant_forecasts\\training\\15043391_u2.csv"
+    },
+    {
+      "plant_id": "15043391_u3",
+      "name": "삼척소내",
+      "region": "samcheok",
+      "generation_file": "multi_plant/daily/15043391_u3.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "671b130d538d9629c14cf88e066724c4c8e8f4965ef910fa4fdb8576cfe1f63f",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 2002.32,
+      "source": "datasets\\plant_forecasts\\training\\15043391_u3.csv"
+    },
+    {
+      "plant_id": "15043394_u1",
+      "name": "신인천소내",
+      "region": "incheon",
+      "generation_file": "multi_plant/daily/15043394_u1.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "c6781921ede12b1eb6f23266efeb757b7bb6a385781ca42b3855aa79c059d011",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 200.0,
+      "source": "datasets\\plant_forecasts\\training\\15043394_u1.csv"
+    },
+    {
+      "plant_id": "15043395_u1",
+      "name": "신인천전망대",
+      "region": "incheon",
+      "generation_file": "multi_plant/daily/15043395_u1.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "98ab6aba33745a308c96e95492b69e4eaace8d97ec5e7fb55a27f8ba8fdb3640",
+      "counts": {
+        "train": 607,
+        "validation": 172,
+        "test": 350,
+        "all": 1188
+      },
+      "capacity_kw": 1742.0,
+      "source": "datasets\\plant_forecasts\\training\\15043395_u1.csv"
+    },
+    {
+      "plant_id": "15043399_u1",
+      "name": "영월본부",
+      "region": "yeongwol",
+      "generation_file": "multi_plant/daily/15043399_u1.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "be39a24ce7ce8941c209f5eecc71e2920a6d0c15a1f63f5efa5dec19beadee5b",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 76.0,
+      "source": "datasets\\plant_forecasts\\training\\15043399_u1.csv"
+    },
+    {
+      "plant_id": "15043400_u1",
+      "name": "영월철도부지",
+      "region": "yeongwol",
+      "generation_file": "multi_plant/daily/15043400_u1.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "0ec08984fb8bdd7e93132197397ed8c59174468ccede92914b26e0e1220ae92c",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 1190.7,
+      "source": "datasets\\plant_forecasts\\training\\15043400_u1.csv"
+    },
+    {
+      "plant_id": "15043402_u1",
+      "name": "인천수산정수장",
+      "region": "incheon",
+      "generation_file": "multi_plant/daily/15043402_u1.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "e75cdea59ddaa383a61d8fbd90009968e9373643a01e8cf505567f137d0b8ccb",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 998.0,
+      "source": "datasets\\plant_forecasts\\training\\15043402_u1.csv"
+    },
+    {
+      "plant_id": "15043404_u1",
+      "name": "하동공설운동장",
+      "region": "hadong",
+      "generation_file": "multi_plant/daily/15043404_u1.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "2acd3c08eeebeee28d6f31f937533dee8440e9b84cb19730d3f343dde980f5e8",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 369.85,
+      "source": "datasets\\plant_forecasts\\training\\15043404_u1.csv"
+    },
+    {
+      "plant_id": "15043405_u1",
+      "name": "하동변전소",
+      "region": "hadong",
+      "generation_file": "multi_plant/daily/15043405_u1.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "3757b4a4b3e45c331ea2d6f5406541800266f2921de32dbe9a0bc1cc21db4482",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 48.3,
+      "source": "datasets\\plant_forecasts\\training\\15043405_u1.csv"
+    },
+    {
+      "plant_id": "15043406_u1",
+      "name": "하동보건소",
+      "region": "hadong",
+      "generation_file": "multi_plant/daily/15043406_u1.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "131dfedadd6b5f14f54826b259ac01694dc0337afa197637dbf7810bc0a0694b",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 40.0,
+      "source": "datasets\\plant_forecasts\\training\\15043406_u1.csv"
+    },
+    {
+      "plant_id": "15043407_u1",
+      "name": "하동본부",
+      "region": "hadong",
+      "generation_file": "multi_plant/daily/15043407_u1.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "53217571d9a364bd8f9500f84a827b7b37428731bd224fe25de90d2d1d05eb22",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 998.4,
+      "source": "datasets\\plant_forecasts\\training\\15043407_u1.csv"
+    },
+    {
+      "plant_id": "15043407_u2",
+      "name": "하동본부",
+      "region": "hadong",
+      "generation_file": "multi_plant/daily/15043407_u2.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "bf1b1669423a1ad3ce14c9e413516159accff841a03404452992b1f6cf4a3b68",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 1900.8,
+      "source": "datasets\\plant_forecasts\\training\\15043407_u2.csv"
+    },
+    {
+      "plant_id": "15043407_u3",
+      "name": "하동본부",
+      "region": "hadong",
+      "generation_file": "multi_plant/daily/15043407_u3.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "a571b6573f7801af552af72a4374dcccc48f8726ebd3e1d7fc4194c368665cc6",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 600.6,
+      "source": "datasets\\plant_forecasts\\training\\15043407_u3.csv"
+    },
+    {
+      "plant_id": "15043407_u4",
+      "name": "하동본부",
+      "region": "hadong",
+      "generation_file": "multi_plant/daily/15043407_u4.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "70ea40b987cd3c85a0f26155425e3cff209b6dd34cdc5f5f222578e5d2d84efc",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 997.56,
+      "source": "datasets\\plant_forecasts\\training\\15043407_u4.csv"
+    },
+    {
+      "plant_id": "15043407_u6",
+      "name": "하동본부",
+      "region": "hadong",
+      "generation_file": "multi_plant/daily/15043407_u6.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "3607e885d430fdbca3869b491c69a83fc6d3ae2fee4f3d8ea70a2d3e050cb944",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 998.325,
+      "source": "datasets\\plant_forecasts\\training\\15043407_u6.csv"
+    },
+    {
+      "plant_id": "15095374_u1",
+      "name": "무릉리",
+      "region": "jeju_west",
+      "generation_file": "multi_plant/daily/15095374_u1.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "5bda500b3e0c57e65249f5d2db0a367cf2884331324c394f47873001d725d90a",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 809.2,
+      "source": "datasets\\plant_forecasts\\training\\15095374_u1.csv"
+    },
+    {
+      "plant_id": "15095380_u1",
+      "name": "부산역선상주차장",
+      "region": "busan",
+      "generation_file": "multi_plant/daily/15095380_u1.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "62b8fad00127faac217deeb6f9e7597934c6399582ad89ede80f01d0366e0f31",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 834.0,
+      "source": "datasets\\plant_forecasts\\training\\15095380_u1.csv"
+    },
+    {
+      "plant_id": "15095404_u1",
+      "name": "용수리",
+      "region": "jeju_west",
+      "generation_file": "multi_plant/daily/15095404_u1.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "b35f68ddefd3c5a5dcae882ce4356f6f407b2e4e6ab56fef60aee5eae74154fa",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 888.93,
+      "source": "datasets\\plant_forecasts\\training\\15095404_u1.csv"
+    },
+    {
+      "plant_id": "15096126_u1",
+      "name": "송당리",
+      "region": "jeju_east",
+      "generation_file": "multi_plant/daily/15096126_u1.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "43e6af3bd0ec541f9cd61275392a76aa92eaf01f8b8bd00162d17ffb68b4423b",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 996.93,
+      "source": "datasets\\plant_forecasts\\training\\15096126_u1.csv"
+    },
+    {
+      "plant_id": "15096131_u1",
+      "name": "신인천북측부지",
+      "region": "incheon",
+      "generation_file": "multi_plant/daily/15096131_u1.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "d5b516742d55c3c0de3b9d7a99b31303ae73f2ba1eaa7864644531891df25f3d",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 302.4,
+      "source": "datasets\\plant_forecasts\\training\\15096131_u1.csv"
+    },
+    {
+      "plant_id": "15096132_u1",
+      "name": "신인천주차장",
+      "region": "incheon",
+      "generation_file": "multi_plant/daily/15096132_u1.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "cadbd24bec54a76f03927984dad683ae31e06d4f3112993ff7850511a21092d1",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 605.55,
+      "source": "datasets\\plant_forecasts\\training\\15096132_u1.csv"
+    },
+    {
+      "plant_id": "15096134_u1",
+      "name": "이천D백사면B",
+      "region": "icheon",
+      "generation_file": "multi_plant/daily/15096134_u1.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "3652b85c61aabc96c817a41a1db418b5651aaeccc309845ab4b09c51e3cabc24",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 995.0,
+      "source": "datasets\\plant_forecasts\\training\\15096134_u1.csv"
+    },
+    {
+      "plant_id": "15096136_u1",
+      "name": "화촌주민참여형",
+      "region": "hadong",
+      "generation_file": "multi_plant/daily/15096136_u1.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "d4a0662b382a97579e0370f73942505892c58e9bdda2f6c69dde9c69271446df",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 999.6,
+      "source": "datasets\\plant_forecasts\\training\\15096136_u1.csv"
+    },
+    {
+      "plant_id": "15109994_u1",
+      "name": "감우리",
+      "region": "eumseong",
+      "generation_file": "multi_plant/daily/15109994_u1.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "0d14ed1decc42861af08b8da5160f7827cb5babdc8974e1a594c6f2da1170f04",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 554.4,
+      "source": "datasets\\plant_forecasts\\training\\15109994_u1.csv"
+    },
+    {
+      "plant_id": "15109999_u1",
+      "name": "이천시백사면A",
+      "region": "icheon",
+      "generation_file": "multi_plant/daily/15109999_u1.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "842999b1783f395c7fbed3705736001494254e180a8efd7d071e941327b2febd",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 1834.38,
+      "source": "datasets\\plant_forecasts\\training\\15109999_u1.csv"
+    },
+    {
+      "plant_id": "15124860_u1",
+      "name": "세화리",
+      "region": "jeju_east",
+      "generation_file": "multi_plant/daily/15124860_u1.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "9eb35c92f3a7a6aaeff3bd6bde08947a6244dcb82a38ae472611c9aac8c5f781",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 999.6,
+      "source": "datasets\\plant_forecasts\\training\\15124860_u1.csv"
+    },
+    {
+      "plant_id": "15124861_u1",
+      "name": "신인천본관주차장",
+      "region": "incheon",
+      "generation_file": "multi_plant/daily/15124861_u1.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "cc7e1c3e1cd0a5d2b1ea26dc65a29827afb8abc4e28b2e3d29feef127a70f105",
+      "counts": {
+        "train": 668,
+        "validation": 184,
+        "test": 365,
+        "all": 1276
+      },
+      "capacity_kw": 208.2,
+      "source": "datasets\\plant_forecasts\\training\\15124861_u1.csv"
+    },
+    {
+      "plant_id": "15140067_u1",
+      "name": "와산리",
+      "region": "jeju_north",
+      "generation_file": "multi_plant/daily/15140067_u1.csv",
+      "generation_status": "upload_ready",
+      "source_sha256": "e913e8ef2ac78d8b6be1a74aff2cc21eaa3ed80ae7ca2e1d154e36c009d92345",
+      "counts": {
+        "train": 593,
+        "validation": 184,
+        "test": 365,
+        "all": 1201
+      },
+      "capacity_kw": 816.0,
+      "source": "datasets\\plant_forecasts\\training\\15140067_u1.csv"
+    }
+  ],
+  "excluded": [
+    {
+      "plant_id": "15043411_u1",
+      "name": "행원소수력",
+      "region": "jeju_east",
+      "generation_file": "multi_plant/daily/15043411_u1.csv",
+      "generation_status": "review_only",
+      "reason": "upstream_quality_or_non_daily_generation"
+    },
+    {
+      "plant_id": "15096129_u1",
+      "name": "신인천1_2단계주차장",
+      "region": "incheon",
+      "generation_file": "multi_plant/daily/15096129_u1.csv",
+      "generation_status": "upload_ready",
+      "reason": "insufficient_valid_calendar_windows_or_excess_zeros",
+      "counts": {
+        "train": 324,
+        "validation": 184,
+        "test": 365,
+        "all": 932
+      }
+    },
+    {
+      "plant_id": "15140095_u1",
+      "name": "익산다송리",
+      "region": "iksan",
+      "generation_file": "multi_plant/daily/15140095_u1.csv",
+      "generation_status": "review_only",
+      "reason": "upstream_quality_or_non_daily_generation"
+    },
+    {
+      "plant_id": "15043390",
+      "name": "삼척사택",
+      "region": "samcheok",
+      "generation_file": null,
+      "generation_status": "raw_only_not_daily_training",
+      "reason": "upstream_quality_or_non_daily_generation"
+    },
+    {
+      "plant_id": "15043397",
+      "name": "안동소내",
+      "region": "andong",
+      "generation_file": null,
+      "generation_status": "raw_only_not_daily_training",
+      "reason": "upstream_quality_or_non_daily_generation"
+    },
+    {
+      "plant_id": "15156688",
+      "name": "부산철도2호기",
+      "region": "busan",
+      "generation_file": null,
+      "generation_status": "raw_only_not_daily_training",
+      "reason": "upstream_quality_or_non_daily_generation"
+    }
+  ]
+}

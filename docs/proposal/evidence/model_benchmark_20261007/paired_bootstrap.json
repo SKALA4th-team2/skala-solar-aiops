@@ -1,0 +1,29 @@
+[
+  {
+    "a": "Weighted_LSTM_XGB",
+    "b": "RuleC",
+    "difference_rmse_a_minus_b": -5.5164240792365575,
+    "ci95_low": -10.311487289739182,
+    "ci95_high": -1.8984872999856799,
+    "replicates": 2000,
+    "block_days": 14
+  },
+  {
+    "a": "Weighted_LSTM_XGB",
+    "b": "LSTM",
+    "difference_rmse_a_minus_b": -0.4357096988145628,
+    "ci95_low": -1.3819774549263184,
+    "ci95_high": 0.5606203813165589,
+    "replicates": 2000,
+    "block_days": 14
+  },
+  {
+    "a": "LSTM",
+    "b": "XGBoost",
+    "difference_rmse_a_minus_b": -1.4246514516948423,
+    "ci95_low": -3.9853934398222175,
+    "ci95_high": 0.9676810460721265,
+    "replicates": 2000,
+    "block_days": 14
+  }
+]
