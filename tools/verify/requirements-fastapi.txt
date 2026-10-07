@@ -1,0 +1,2 @@
+# project/.venv에서 설치. 앱 의존성은 project/requirements.txt를 먼저 설치한다.
+httpx==0.28.1

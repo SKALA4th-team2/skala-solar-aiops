@@ -41,3 +41,10 @@ class BatchTestRequest(BaseModel):
 class BatchTestResponse(BaseModel):
     predictions: list[float]
     drift_check: dict
+
+
+class HealthResponse(BaseModel):
+    status: str
+    model_loaded: bool
+    model_version: str | None = Field(description="현재 메모리에 올라온 모델의 버전. 미로딩이면 null")
+    loading_mode: str
