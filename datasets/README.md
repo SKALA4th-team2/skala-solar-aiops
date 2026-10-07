@@ -45,7 +45,17 @@
 | --- | --- |
 | [`hadong_daily_full.csv`](hadong_daily_full.csv) | 4,807행, 2013-01-01 ~ 2026-02-28. 날짜별 한 줄로 발전 실적, 광양시 관측 날씨, 정지 표시, 성능 지표(실제 발전량 ÷ 그날 날씨로 계산한 기대 발전량)를 합친 것. 28열. 업로드 형식이 아니라서 올리면 400 으로 거절된다. 2026-01 ~ 02 는 날씨와 성능 지표가 비어 있다 |
 
-열의 뜻은 [ASOS 보고서](../docs/research/asos-report.md) 4절에 있다.
+| [`jeokryang_daily.csv`](jeokryang_daily.csv) | 4,838행, 2013-01-01 ~ 2026-03-31. 하동군 적량면 관측 자료를 하루 값으로 바꾼 것. 열은 `gsr_mj`(하루 일사량, MJ/m2), `n_hours`(일사량 값이 있는 시간 수), `predawn_mj`(해 뜨기 전 누적값), `after_sunset_mj`(19시 뒤에 더 쌓인 양), `tmax_c`(시간별 기온의 최댓값), `rain_mm`(하루 강수량) |
+
+`hadong_daily_full.csv` 의 열의 뜻은 [ASOS 보고서](../docs/research/asos-report.md) 4절에 있다.
+
+### `jeokryang_daily.csv` 를 쓸 때 주의할 점
+
+- **기준 자료로 쓰지 않는다.** 센서의 수준이 여러 번 계단처럼 바뀌었다. 광양 관측 대비 비율이 2022 ~ 2023년 0.53, 2024년 2월 이후 0.66 안팎이다. 여러 해에 걸친 학습이나 드리프트 감시의 기준으로 쓰면 가짜 변화가 생긴다.
+- 하루 일사량이 유효한 날은 4,838일 가운데 3,436일이다. 2018-04-11 ~ 2021-10-20 이 통째로 비어 있다.
+- 값의 수준이 광양의 3분의 2 정도다. 두 자료를 섞어 쓰려면 구간별로 환산해야 한다.
+- 원본의 일사량 열은 그날 0시부터 쌓인 누적값이고, 하루 값은 그날의 최댓값이다. 밤에 조금씩 쌓이는 영점 오차는 빼지 않았다.
+- 근거와 수치는 [적량면 관측 자료 검토](../docs/research/jeokryang-sensor.md)에 있다.
 
 ## 원본
 
@@ -54,6 +64,8 @@
 | [`raw/data_15043409.csv`](raw/data_15043409.csv) | 공공데이터포털 [「한국남부발전(주)\_하동하수처리장 태양광발전실적\_20260228」](https://www.data.go.kr/data/15043409/fileData.do). CP949, 4,807행. 하루 합계와 시간대별 24칸 | 무료, 이용허락범위 제한 없음. 출처 표기 조건은 붙어 있지 않다 |
 | [`raw/wx_prevruns_daily.csv`](raw/wx_prevruns_daily.csv) | Open-Meteo Previous Runs API. 하루 전·이틀 전 일사량 예보의 하루 합계 등. 1,369행, 2022-06-01 ~ 2026-02-28 | CC BY 4.0. 무료 API 는 비상업 용도에 한한다. 자료를 보여 주는 곳 옆에 `Weather data by Open-Meteo.com` 링크를 둔다 |
 | [`raw/wx_archive_daily.csv`](raw/wx_archive_daily.csv) | Open-Meteo 과거 날씨 API(재분석). 4,807행, 2013-01-01 ~ 2026-02-28 | 위와 같음 |
+
+적량면 시간 자료(`하동_적량면_667831A001_시간자료_20130101_20260331.csv`, 11.6MB)는 넣지 않았다. 출처 기관과 이용 조건을 아직 확인하지 못했다([`../docs/followups.md`](../docs/followups.md) 6번). 하루 값을 다시 만들려면 이 파일을 받아 `tools/jeokryang/01_build_daily.py` 에 경로를 준다.
 
 광양시 관측값(업로드 파일의 일사량과 일조 시간, `hadong_daily_full.csv` 의 날씨 열)은 기상청 종관기상관측(ASOS) 일자료에서 왔다. 연도별 원본은 크기가 커서 넣지 않았다. 이 자료의 이용 조건은 아직 확인해 적지 않았다([`../docs/followups.md`](../docs/followups.md) 5번).
 
