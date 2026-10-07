@@ -1,0 +1,4 @@
+{"kind": "proxy", "variant": "none", "rows": 4746, "n_train_all": 3780, "n_train_used": 3780, "n_excluded": 0, "n_test": 946, "test_first": "2023-05-30", "test_last": "2025-12-30", "flag_days": 0, "test_event_days": 16, "test_touched": 134}
+{"seed": 42, "rmse_all": 23.734289535510626, "rmse_excl_event_targets": 21.600837049156333, "rmse_excl_touched": 21.4652280170869, "bias_pred_minus_actual": 2.0787564985492564, "event_day_mean_err": 38.23104342310131, "fit_seconds": 126.6}
+{"seed": 43, "rmse_all": 22.85182515793497, "rmse_excl_event_targets": 20.604957193640665, "rmse_excl_touched": 20.346185114810968, "bias_pred_minus_actual": 4.571819129799708, "event_day_mean_err": 59.74776955097168, "fit_seconds": 166.5}
+{"seed": 44, "rmse_all": 22.6044350140981, "rmse_excl_event_targets": 20.50754053459385, "rmse_excl_touched": 20.132694874569832, "bias_pred_minus_actual": -2.1728831478506283, "event_day_mean_err": 34.91914981932566, "fit_seconds": 111.2}
