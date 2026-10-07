@@ -93,6 +93,25 @@ docker compose -f serving_app/docker-compose.yml up --build
 python scripts/simulate_drift.py
 ```
 
+### Windows 에서
+
+위 명령은 macOS 와 리눅스의 셸 기준이다. Windows(PowerShell)에서는 가상환경을 켜지 않고 그 안의 파이썬을 바로 부르는 쪽이 간단하다. 환경 변수는 명령 앞에 붙이지 않고 따로 준다.
+
+```powershell
+cd project
+py -3.11 -m venv .venv
+.venv\Scripts\python -m pip install -r requirements.txt
+
+.venv\Scripts\python -m uvicorn serving_app.main:app --host 0.0.0.0 --port 8077
+.venv\Scripts\python scripts\train_baseline_v1.py
+.venv\Scripts\python serving_app\train_and_register.py
+$env:MODEL_SOURCE = "mlflow"; .venv\Scripts\python -m uvicorn serving_app.main:app --host 0.0.0.0 --port 8077
+```
+
+- **Windows 에서 직접 돌려 확인한 것이 아니다.** 이 저장소의 검증은 macOS 에서 했다. `requirements.txt` 의 패키지(특히 tensorflow)가 Windows 에 그대로 설치되는지도 확인하지 못했다. 설치가 되지 않으면 WSL2 나 컨테이너(`docker compose`)에서 돌린다. 컨테이너 안은 리눅스라 위의 셸 명령이 그대로 통한다.
+- 줄 끝은 `.gitattributes` 로 LF 에 고정했다. Windows 에서 받아도 파일의 해시와 컨테이너로 복사되는 파일이 다른 PC 와 같다.
+- `tools/multi_plant/` 의 도구는 `python` 대신 `project\.venv\Scripts\python` 으로 부르면 된다. 출력은 UTF-8 로 고정했다. 한 PC 측정 도구(`single_pc_probe.py`)는 Windows 에서 메모리를 읽는 방법이 달라 값을 macOS 의 것과 그대로 견주지 않는다.
+
 여러 발전소 자료의 검증과 평가는 저장소 루트에서 돌린다. 표준 라이브러리만 쓴다. 쓰는 법은 [`tools/multi_plant/README.md`](tools/multi_plant/README.md)에 있다.
 
 ```bash
