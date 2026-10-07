@@ -16,6 +16,19 @@
 | | `20_build_upload.py` | 발전 실적과 하루 전 일사량 예보를 합쳐 `hadong_upload_forecast_jma.csv` 를 만든다 |
 | | `r01_file_check.py` | 검토자가 따로 써서 위 파일을 원본과 전 행 대조한 스크립트 |
 
+## 적량면 관측 자료 검토
+
+[`jeokryang/`](jeokryang/)에 있다. 경로가 저장소 기준이라 저장소 루트에서 그대로 실행된다. 결과와 해석은 [`../docs/research/jeokryang-sensor.md`](../docs/research/jeokryang-sensor.md)에 있다.
+
+| 파일 | 하는 일 | 필요한 것 |
+| --- | --- | --- |
+| `01_build_daily.py` | 적량면 시간 자료(누적 일사량)를 하루 값으로 바꿔 `datasets/jeokryang_daily.csv` 를 만든다 | 원본 시간 자료(저장소에 없음). 경로를 인자로 준다 |
+| `02_compare_with_gwangyang.py` | 광양 관측, 재분석 자료와 견줘 유효 일수, 빈 구간, 센서 수준이 바뀐 날짜를 찾는다 | pandas |
+| `03_validity_for_generation.py` | 적량 일사량이 하동 발전량을 얼마나 설명하는지 광양과 같은 날들에서 견준다 | pandas |
+| `04_lstm_sensor_step.py` | 2024년 2월의 센서 계단을 실습 LSTM 과 같은 구조로 재현하고, 실습 방식의 재학습 전후를 견준다 | tensorflow. 몇 분 걸린다 |
+| `common.py` | 위 스크립트가 함께 쓰는 자료 읽기와 지표 함수 | |
+| `out/` | 2026-10-07 에 돌린 출력, 씨앗별 결과, 인위 계단 확인 결과 | |
+
 ## 앞으로 둘 것
 
 - `/predict` 와 `/predict/batch-test` 에 보낼 요청 본문 예시

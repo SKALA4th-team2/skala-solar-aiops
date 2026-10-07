@@ -12,6 +12,7 @@
 | [`merged/overview.md`](merged/overview.md) | 주제 7개의 결론과 결정별 추천만 모은 짧은 문서 | 반박 검증 전 |
 | [`merged/summary.md`](merged/summary.md) | 주제 7개에서 나온 "팀이 정할 것", "두 조사가 달랐던 곳", "확인하지 못한 것"을 모은 표 | 반박 검증 전 |
 | [`merged/`](merged/) | 사전 조사와 ASOS 분석을 주제 7개로 나눠 대조한 결과. 주제마다 "쓸 값" 표가 있다 | 반박 검증 전 |
+| [`jeokryang-sensor.md`](jeokryang-sensor.md) | 발전소와 같은 군에 있는 적량면 관측 자료를 광양 대신 쓸 수 있는지, 센서 수준이 바뀐 사건을 드리프트 사례로 쓸 수 있는지 본 검토 | 재확인 받지 않음 |
 | [`asos-report.md`](asos-report.md) | 기상청 ASOS 관측 자료와 발전 실적을 결합한 분석 4건의 종합. 두 번째 입력, 게이트, 드리프트 판정 방법을 실습 LSTM 으로 직접 비교 | 검토를 마침 |
 | [`prestudy/`](prestudy/) `research_*.md` | 웹 조사 9건: 발전소 정보, 데이터 정의, 날씨 자료, 제도의 현재 상태, 선행 연구, 이해관계자와 손익 | 출처 검증을 마침 |
 | [`prestudy/`](prestudy/) `data_*.md` | 데이터 분석 3건: 열의 뜻과 시간 구간, 두 번째 입력과 지표, 드리프트 구간 | 재현 검토를 마침 |
