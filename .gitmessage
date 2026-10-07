@@ -1,0 +1,11 @@
+# <type>(<scope>): <요약>
+#
+# Why:
+#
+# What:
+#
+# type: feat, fix, docs, chore, refactor, test
+# scope: serving, mlops, aiops, data, proposal, docs
+#
+# 예:
+# feat(aiops): 드리프트 판정 기준을 하루 kWh 단위로 바꾼다
