@@ -1,0 +1,151 @@
+{
+  "sources": {
+    "15030079": {
+      "landing_url": "https://www.data.go.kr/data/15030079/fileData.do",
+      "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003225016&fileDetailSn=1&insertDataPrcus=N",
+      "sha256": "50d0cd21272f6d883eb3cfd31f26edf3c24cf957c6f5e07035b13aa03e9040c9",
+      "dateModified": "2026-09-22",
+      "bytes": 6768
+    },
+    "15003687": {
+      "landing_url": "https://www.data.go.kr/data/15003687/fileData.do",
+      "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623832&fileDetailSn=1&insertDataPrcus=N",
+      "sha256": "5b2eb5c1bf211a4041b0a287038017fd51ce5e4c651e0f4bc8cf4bb57adcafa2",
+      "dateModified": "2026-04-10",
+      "bytes": 4251
+    },
+    "15147894": {
+      "landing_url": "https://www.data.go.kr/data/15147894/fileData.do",
+      "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000007658546&fileDetailSn=1&insertDataPrcus=N",
+      "sha256": "dee152ef2439a025f2300f4b6770d260a053ee5b6eefee2015fa530f23f9d987",
+      "dateModified": "2026-09-08",
+      "bytes": 817
+    },
+    "15095366": {
+      "landing_url": "https://www.data.go.kr/data/15095366/fileData.do",
+      "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000007668032&fileDetailSn=1&insertDataPrcus=N",
+      "sha256": "1a9e68b7c0ad31ff77fdccabde93bc5c7946c3d8559726bbc03fc3ab7f81d470",
+      "dateModified": "2026-09-17",
+      "bytes": 608206
+    },
+    "15043404": {
+      "landing_url": "https://www.data.go.kr/data/15043404/fileData.do",
+      "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623761&fileDetailSn=1&insertDataPrcus=N",
+      "sha256": "b60d30b42c6a65918b614fccaa80672eed1ff8c46679ef364e67ac43054061f9",
+      "dateModified": "2026-04-09",
+      "bytes": 754738
+    },
+    "15043405": {
+      "landing_url": "https://www.data.go.kr/data/15043405/fileData.do",
+      "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623759&fileDetailSn=1&insertDataPrcus=N",
+      "sha256": "4e66e1e9f9e2aa3e9444fd052b744009aabe2983b4c70143a74fb24dcde3411b",
+      "dateModified": "2026-04-09",
+      "bytes": 697283
+    },
+    "15043406": {
+      "landing_url": "https://www.data.go.kr/data/15043406/fileData.do",
+      "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623760&fileDetailSn=1&insertDataPrcus=N",
+      "sha256": "b736758a860458e23723935b44829858eb76a19aed3dbe0ebaedabb6f19c5126",
+      "dateModified": "2026-04-09",
+      "bytes": 696108
+    },
+    "15043408": {
+      "landing_url": "https://www.data.go.kr/data/15043408/fileData.do",
+      "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623757&fileDetailSn=1&insertDataPrcus=N",
+      "sha256": "18b1e7d459fd0b8cf27927030607690d8665ae297af294d067c2e5178375bb54",
+      "dateModified": "2026-04-09",
+      "bytes": 706133
+    }
+  },
+  "specs": [
+    {
+      "발전소명": "하동하수처리장태양광",
+      "발전소 주소지": "하동군 하동읍 신기리 2-2",
+      "설치용량": "55kW 모듈 :250W x 160 인버터 : 55kW x 1EA",
+      "설치각": "설치각 : 30˚"
+    }
+  ],
+  "equipment": [
+    {
+      "에너지원": "태양광",
+      "구분": "자체",
+      "발전소명": "하동하수처리장태양광",
+      "용량(MW)": 0.055,
+      "준공년도": 2011,
+      "비 고": "RPS"
+    }
+  ],
+  "location": [
+    {
+      "발전소명": "하동 하수처리장 태양광",
+      "호기": 1,
+      "위도": 35.05885,
+      "경도": 127.7799
+    }
+  ],
+  "contract": [
+    {
+      "구분": "구매입찰정보",
+      "일련번호": 1964,
+      "사업소": "조달협력처",
+      "계약명": "소외 태양광 인버터 설치조건부 구매",
+      "계약일자": "2024-01-03",
+      "계약금액  ": "170750460"
+    }
+  ],
+  "distance_km": 15.158471480976464,
+  "neighbors": {
+    "15043404": {
+      "n": 4807,
+      "start": "2013-01-01",
+      "end": "2026-02-28",
+      "sum_diff": 6.821210263296962e-13,
+      "zero_days": 47,
+      "joint_zero_with_hadong": 0,
+      "hourly_max": 300.312,
+      "dec2016_24": 1048.896
+    },
+    "15043405": {
+      "n": 4807,
+      "start": "2013-01-01",
+      "end": "2026-02-28",
+      "sum_diff": 1.1368683772161603e-13,
+      "zero_days": 41,
+      "joint_zero_with_hadong": 0,
+      "hourly_max": 45.416,
+      "dec2016_24": 179.336
+    },
+    "15043406": {
+      "n": 4807,
+      "start": "2013-01-01",
+      "end": "2026-02-28",
+      "sum_diff": 8.526512829121202e-14,
+      "zero_days": 7,
+      "joint_zero_with_hadong": 0,
+      "hourly_max": 38.748,
+      "dec2016_24": 129.372
+    },
+    "15043408": {
+      "n": 4807,
+      "start": "2013-01-01",
+      "end": "2026-02-28",
+      "sum_diff": 2.2737367544323206e-13,
+      "zero_days": 29,
+      "joint_zero_with_hadong": 0,
+      "hourly_max": 77.8,
+      "dec2016_24": 175.8
+    }
+  },
+  "health_clear_drop": {
+    "before": [
+      1.3755017025446445,
+      23
+    ],
+    "after": [
+      1.1982667696428497,
+      17
+    ],
+    "change_percent": -12.885111852200149
+  },
+  "inverter_hwp_sha256": "a57315708ad4fd61fba07ba3ccf1a89713788ff6244aac7cb00c2ab385b955b9"
+}
