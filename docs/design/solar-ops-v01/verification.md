@@ -136,3 +136,12 @@ node ../tools/design/build-preview.mjs
 - 분리 Chrome에서 3화면×5폭(320/390/768/1024/1440) 가로 넘침 없음, JS 오류 없음. 예시 항목 35개를 추가해 모델/알림 각 패널의 독립 세로 스크롤 확인. 미연결 안내, 정상/드리프트 모의 응답, 편집 JSON 오류, 단건 예측, 요청 가중 평균(18ms)/성공률(80%), 서버 이력 교체와 HTML 문자열의 안전한 텍스트 표시를 검증했다.
 - 미검증: 실제 내부 서버 API 가용성, 실데이터 업로드 저장, 모델 추론·재학습·승격. 서버 코드의 빈칸이나 미제공 경로를 UI에서 구현 완료로 주장하지 않는다. 저장본의 주식 데이터 계약은 태양광 API 계약으로 자동 변경하지 않았다.
 - 변경 파일: index.html/styles.css/app.js, operations.js/server-dashboard.js, serve-preview.mjs/operation-routes.mjs/dashboard-routes.mjs/build-preview.mjs/dashboard.test.mjs 및 생성 HTML/캡처/문서.
+
+
+## PR 자체 리뷰 (2026-10-07)
+
+- P2 수정: history/alerts가 null 항목을 반환하면 DOM 렌더링이 멈추고 새로고침 버튼이 잠기는 문제. 항목 검증과 finally 복구, 실패 상태 표시 추가. 브라우저에서 [null] → 정상 응답 재시도 성공.
+- P2 수정: null 예측/배치 본문이 502로 분류되던 문제. 입력 검증 단계에서 400으로 반환. 단건 예측 회귀 assertion 추가.
+- P2 수정: error_rate 범위를 검증하지 않아 잘못된 성공률이 나오는 문제. 0~1 범위 및 요청 수/응답시간 검증. 브라우저에서 error_rate=2 응답 거부 확인.
+- Node 테스트 15개 통과, 브라우저 예외 없음. 모바일 캡처를 최신 버튼 배치로 갱신.
+- 남은 범위: 실제 API 통합, 태양광 입력/배치 계약, 장기 재학습 실행 상태 API, 발전량 조회 API. CSS의 누적 규칙 정리는 후속 리팩터링 권장. 이번 PR은 프론트 시제품/개발 어댑터이며 운영 출시 승인이 아니다.

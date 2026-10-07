@@ -128,6 +128,8 @@ test('saved dashboard routes forward only supported reads and validated single p
   assert.equal((await fetch(prefix + 'arbitrary')).status, 404);
   const predict = sequence => fetch(prefix + 'predict', { method: 'POST', headers: { Origin: origin, 'Content-Type': 'application/json' }, body: JSON.stringify({ sequence }) });
   assert.equal((await predict([])).status, 400);
+  assert.equal((await predict(Array(20).fill(null))).status, 400);
+  assert.equal((await fetch(prefix + 'predict', { method: 'POST', headers: { Origin: origin, 'Content-Type': 'application/json' }, body: 'null' })).status, 400);
   assert.equal((await predict(Array(20).fill({ close: 1, volume: -1 }))).status, 400);
   assert.deepEqual(await (await predict(Array(20).fill({ close: 165, volume: 1200000 }))).json(), { predicted_close: 160, model_version: 'test' });
   assert.deepEqual(calls, ['/system/info','/system/dataset','/metrics/summary','/models/current','/models/history?limit=100','/system/alerts?limit=100','/system/timeseries?window_sec=3600&buckets=12','/predict']);
