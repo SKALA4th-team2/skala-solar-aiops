@@ -62,7 +62,7 @@ def check_and_trigger(recent_predictions: list[dict]) -> dict:
     #       (predict.py [빈칸 6]의 그림: 가격 41개 → 예측 21번)
     #     · 딱 21행만 자르면 build_sequences 가 만들 수 있는 문제는 몇 개일까요?
     #   형태 : 리스트[-(N):] 은 "뒤에서 N개"입니다. ___ 에 N 을 계산식으로 쓰세요. (숫자 41 대신 21 과 상수 이름으로)
-    rows = load_rows(latest_upload())[-(___):]
+    rows = load_rows(latest_upload())[-(21 + SEQ_LEN):]
 
     # ════════════════════════════ [빈칸 10] ════════════════════════════
     # 41행으로 재학습을 실행하세요.  (위 import 설명의 두 함수 중 하나)
@@ -72,7 +72,7 @@ def check_and_trigger(recent_predictions: list[dict]) -> dict:
     #       처음부터 학습하면 어떤 모델이 나올까요?
     #     · 3년치로 이미 잘 학습된 Production 모델을 활용하는 방법은 없을까요?
     #   결과 : {"run_id": "...", "rmse": 1.47, "promoted": True, "version": "2"}  (떨어지면 "version" 없음)
-    result = ___
+    result = fine_tune(rows)
 
     # ════════════════════════════ [빈칸 11] ════════════════════════════
     # 새 모델이 "실제로 Production 이 되었을 때만" 성공 로그를 남기도록 조건을 채우세요.
@@ -81,7 +81,7 @@ def check_and_trigger(recent_predictions: list[dict]) -> dict:
     #     · 재학습이 "실행됐다"와 "새 모델이 배포됐다"는 같은 뜻일까요?
     #     · 시험(RMSE ≤ $4)에 떨어진 새 모델은 어떻게 되고, 서비스는 어떤 모델이 계속 맡나요?
     #       (train_and_register.py 의 _register_if_gate_passed 참고)
-    if ___:
+    if result["promoted"]:
         logger.info(
             f"[OK] new_rmse={result['rmse']:.2f} - production promoted: HAIC_Predictor v{result['version']}"
         )
