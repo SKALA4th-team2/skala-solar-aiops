@@ -1,0 +1,90 @@
+{
+  "13_17": {
+    "0.9": {
+      "first": "2021-05-26",
+      "middle_episodes": 9,
+      "middle_days": 175,
+      "lookahead_middle_days": 0
+    },
+    "0.88": {
+      "first": "2021-05-26",
+      "middle_episodes": 13,
+      "middle_days": 65,
+      "lookahead_middle_days": 0
+    }
+  },
+  "peak_changepoint": {
+    "n": 66,
+    "min": "2021-05-13",
+    "descriptive_range": [
+      "2021-05-13",
+      "2021-05-22"
+    ],
+    "ratio18": 1.017505346336497
+  },
+  "16_20": {
+    "0.9": {
+      "first": "2021-05-26",
+      "middle_episodes": 7,
+      "middle_days": 41,
+      "lookahead_middle_days": 883
+    },
+    "0.88": {
+      "first": "2021-06-08",
+      "middle_episodes": 2,
+      "middle_days": 6,
+      "lookahead_middle_days": 883
+    }
+  },
+  "18_20": {
+    "0.9": {
+      "first": null,
+      "middle_episodes": 0,
+      "middle_days": 0,
+      "lookahead_middle_days": 883
+    },
+    "0.88": {
+      "first": null,
+      "middle_episodes": 0,
+      "middle_days": 0,
+      "lookahead_middle_days": 883
+    }
+  },
+  "daily_injection": {
+    "1": {
+      "n": 39,
+      "moving_pct": 10.256410256410255,
+      "per_start_frozen_pct": 2.564102564102564,
+      "moving_delay_median": 16.5,
+      "ceiling_pct": 0.0
+    },
+    "0.915": {
+      "n": 39,
+      "moving_pct": 71.7948717948718,
+      "per_start_frozen_pct": 71.7948717948718,
+      "moving_delay_median": 18.0,
+      "ceiling_pct": 33.33333333333333
+    },
+    "0.86": {
+      "n": 39,
+      "moving_pct": 84.61538461538461,
+      "per_start_frozen_pct": 84.61538461538461,
+      "moving_delay_median": 13.0,
+      "ceiling_pct": 87.17948717948718
+    },
+    "0.8": {
+      "n": 39,
+      "moving_pct": 100.0,
+      "per_start_frozen_pct": 100.0,
+      "moving_delay_median": 12.0,
+      "ceiling_pct": 100.0
+    },
+    "0.7": {
+      "n": 39,
+      "moving_pct": 46.15384615384615,
+      "per_start_frozen_pct": 46.15384615384615,
+      "moving_delay_median": 11.0,
+      "ceiling_pct": 100.0
+    }
+  }
+}
