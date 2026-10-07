@@ -1,0 +1,427 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "HAIC Serving & AIOps",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/predict": {
+      "post": {
+        "summary": "Predict",
+        "description": "[Day1] 다음날 종가 예측  (완성)\n받는 것  : {\"sequence\": [{\"close\": 160.0, \"volume\": 1200000}, ... 20개]}\n           20개가 아니면 schemas.py 가 알아서 422 에러를 돌려줍니다.\n돌려줄 것: {\"predicted_close\": 161.37, \"model_version\": \"v1-local\"}\n\n흐름: 모델 가져오기(get_model) → dict 목록으로 변환 → predict_one → 응답 포장\n핵심 계산은 모두 model_loader.predict_one() 안에 있습니다. ([빈칸 2], [빈칸 3])",
+        "operationId": "predict_predict_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PredictRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredictResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "모델 또는 스케일러 미준비"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/predict/batch-test": {
+      "post": {
+        "summary": "Batch Test",
+        "description": "[Day3] 드리프트 시뮬레이션\n받는 것  : {\"prices\": [165.0, 166.2, ... 41개]}   (scripts/simulate_drift.py 가 보냄)\n돌려줄 것: {\"predictions\": [예측값 21개], \"drift_check\": {\"status\": \"ok\"} 또는 재학습 결과}\n\n■ 핵심 아이디어: 슬라이딩 윈도우 (20칸짜리 창문을 한 칸씩 밀기)\n  가격 41개가 들어오면, 20개씩 잘라 \"그다음 날\"을 예측하고 실제 값과 비교합니다.\n\n    i=0 : [p0  ~ p19] → 예측   vs  실제 p20\n    i=1 : [p1  ~ p20] → 예측   vs  실제 p21\n    ...\n    i=20: [p20 ~ p39] → 예측   vs  실제 p40\n    → 총 41 - 20 = 21번 예측 = 드리프트 판단에 필요한 21건이 딱 채워집니다.\n\n확인 방법\n  python scripts/simulate_drift.py\n    [normal]          drift_check = {'status': 'ok'}\n    [drift_injection] drift_check = {'status': 'retrain_triggered', 'promoted': True, ...}\n  /docs 에서 직접 호출할 때는 predictions 가 (가격 개수 - 20)개인지 확인하세요.",
+        "operationId": "batch_test_predict_batch_test_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatchTestRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchTestResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "모델 또는 스케일러 미준비"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/upload": {
+      "post": {
+        "summary": "Upload",
+        "operationId": "upload_data_upload_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_upload_data_upload_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "CSV 인코딩·열·행 수·값·날짜 검증 실패"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/status": {
+      "get": {
+        "summary": "Status",
+        "operationId": "status_data_status_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "409": {
+            "description": "기존 업로드 파일 검증 실패, 재업로드 필요"
+          }
+        }
+      }
+    },
+    "/logs": {
+      "get": {
+        "summary": "List Logs",
+        "operationId": "list_logs_logs_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/logs/{filename}": {
+      "get": {
+        "summary": "Read Log",
+        "operationId": "read_log_logs__filename__get",
+        "parameters": [
+          {
+            "name": "filename",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Filename"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BatchTestRequest": {
+        "properties": {
+          "prices": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "minItems": 21,
+            "title": "Prices"
+          }
+        },
+        "type": "object",
+        "required": [
+          "prices"
+        ],
+        "title": "BatchTestRequest"
+      },
+      "BatchTestResponse": {
+        "properties": {
+          "predictions": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "Predictions"
+          },
+          "drift_check": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Drift Check"
+          }
+        },
+        "type": "object",
+        "required": [
+          "predictions",
+          "drift_check"
+        ],
+        "title": "BatchTestResponse"
+      },
+      "Body_upload_data_upload_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_upload_data_upload_post"
+      },
+      "DailyPoint": {
+        "properties": {
+          "close": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Close",
+            "description": "해당 거래일 종가"
+          },
+          "volume": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Volume",
+            "description": "해당 거래일 거래량"
+          }
+        },
+        "type": "object",
+        "required": [
+          "close",
+          "volume"
+        ],
+        "title": "DailyPoint"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "HealthResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "model_loaded": {
+            "type": "boolean",
+            "title": "Model Loaded"
+          },
+          "model_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model Version",
+            "description": "현재 메모리에 올라온 모델의 버전. 미로딩이면 null"
+          },
+          "loading_mode": {
+            "type": "string",
+            "title": "Loading Mode"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "model_loaded",
+          "model_version",
+          "loading_mode"
+        ],
+        "title": "HealthResponse"
+      },
+      "PredictRequest": {
+        "properties": {
+          "sequence": {
+            "items": {
+              "$ref": "#/components/schemas/DailyPoint"
+            },
+            "type": "array",
+            "maxItems": 20,
+            "minItems": 20,
+            "title": "Sequence",
+            "description": "가장 오래된 날 -> 가장 최근 날 순서의 최근 20거래일 시퀀스"
+          }
+        },
+        "type": "object",
+        "required": [
+          "sequence"
+        ],
+        "title": "PredictRequest"
+      },
+      "PredictResponse": {
+        "properties": {
+          "predicted_close": {
+            "type": "number",
+            "title": "Predicted Close"
+          },
+          "model_version": {
+            "type": "string",
+            "title": "Model Version"
+          }
+        },
+        "type": "object",
+        "required": [
+          "predicted_close",
+          "model_version"
+        ],
+        "title": "PredictResponse"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

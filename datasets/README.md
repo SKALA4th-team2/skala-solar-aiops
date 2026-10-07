@@ -2,7 +2,7 @@
 
 대시보드에 올릴 업로드용 CSV 와 그 바탕이 되는 자료를 둔다. `project/data/` 는 서빙 앱의 코드 폴더이므로 데이터는 여기에 따로 둔다.
 
-어느 파일을 쓸지는 아직 확정하지 않았다. 2026-10-07 현재 예측에는 `hadong_upload_forecast_jma.csv` 를, 지난 뒤의 감시에는 `hadong_daily_full.csv` 를 쓰자는 제안이 결정 기록 [0002](../docs/decisions/0002-inputs-and-prediction-time.md)와 [0009](../docs/decisions/0009-demo-plan.md)에 있다. 확정되면 이 문단을 바꾼다.
+FastAPI 입력 계약은 사용자 승인으로 `hadong_upload_forecast_jma.csv`의 뜻을 따른다. 감시 자료와 시연 구간은 별도 담당 작업이다. 2026-10-07 현재 예측에는 `hadong_upload_forecast_jma.csv` 를, 지난 뒤의 감시에는 `hadong_daily_full.csv` 를 쓰자는 제안이 결정 기록 [0002](../docs/decisions/0002-inputs-and-prediction-time.md)와 [0009](../docs/decisions/0009-demo-plan.md)에 있다. 확정되면 이 문단을 바꾼다.
 
 ## 업로드 파일
 
@@ -25,7 +25,7 @@
 - **`hadong_upload_forecast_jma.csv` 는 2022-07 이후만 있다.** 그 전의 사건(예: 2021년 5월의 출력 하락)은 이 파일로 시연할 수 없다. `Stop` 은 전 행 0 이다.
 - **정지일은 지우지 않고 `Stop` 열로 표시만 했다.** 실습 코드가 행이 이어져 있다고 보고 창을 만들기 때문이다. `hadong_upload.csv` 에는 `Stop = 1` 인 날이 43일 있다. 이 가운데 4일(2015-05-04, 2016-12-27, 2018-07-11, 2020-09-08)은 그날의 날씨 관측을 봐야 붙는 사후 표시다. 학습 표본을 빼는 데만 쓰고 모델 입력이나 서빙 시점 판정에는 쓰지 않는다.
 - **파일 종류를 바꾸면 스케일러와 모델을 다시 만든다.** `hadong_upload.csv` 와 `hadong_upload_forecast_proxy.csv` 는 값의 범위가 같아 스케일러 하나로 둘 다 쓸 수 있다. 나머지는 범위가 다르다.
-- **원본 스키마로는 올라가도 `/predict` 가 통과하지 않는다.** `serving_app/schemas.py` 가 `close` 는 0 보다 커야 하고 `volume` 은 정수여야 한다고 검사한다. 발전량은 0 인 날이 있고 날씨 값은 소수다.
+- **현재 FastAPI는 0 발전량과 소수 예보를 받는다.** `/predict`는 날짜가 연속인 20일의 `date`, `close`(0~1,320kWh), `volume`(0~45MJ/m²)을 받는다. CSV도 같은 범위와 연속 날짜를 검사한다. 원본 HAIC 요청 및 날짜가 빠진 관측 파일은 현재 규격과 다르다.
 
 ### 조사 단계에서 잰 수치
 

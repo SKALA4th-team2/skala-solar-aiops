@@ -48,10 +48,11 @@ class LoadedModel:
     local 모델이든 MLflow 모델이든 이 상자에 담으면 똑같은 방법(predict_one)으로 쓸 수 있습니다.
     """
 
-    def __init__(self, keras_model, scaler: HAICScaler, version: str):
+    def __init__(self, keras_model, scaler: HAICScaler, version: str, source: str = "local"):
         self._keras_model = keras_model
         self.scaler = scaler
         self.version = version
+        self.source = source
 
     def predict_one(self, sequence: list[dict]) -> float:
         """
@@ -92,6 +93,10 @@ class LoadedModel:
 
 def _load_from_local() -> LoadedModel:
     """Day1: 로컬 파일에서 모델과 스케일러를 불러와 상자에 담습니다. ([빈칸 5]의 참고 예시)"""
+    # Keras 버전에 따라 없는 파일을 ValueError로 보고하므로 파일 미준비를 먼저 구분한다.
+    for path in (LOCAL_MODEL_PATH, SCALER_PATH):
+        if not os.path.isfile(path):
+            raise FileNotFoundError(path)
     from tensorflow import keras
 
     keras_model = keras.models.load_model(LOCAL_MODEL_PATH)
@@ -123,7 +128,7 @@ def _load_from_mlflow() -> LoadedModel:
     #     · Day2 모델은 어떤 스케일러로 0~1 변환한 데이터로 학습했나요? (train_and_register.py 의 SCALER_PATH 참고)
     #     · 스케일러를 여기서 새로 fit 하면 어떤 일이 생길까요?
     scaler = HAICScaler.load(SCALER_PATH)
-    return LoadedModel(keras_model=keras_model, scaler=scaler, version="production")
+    return LoadedModel(keras_model=keras_model, scaler=scaler, version="production", source="mlflow")
 
 
 def _load_model() -> LoadedModel:

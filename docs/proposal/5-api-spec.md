@@ -1,8 +1,69 @@
 # ⑤ API 명세
 
 - 평가 항목: 2-2 (구현·발표)
-- 담당:
-- 상태: 초안 (2026-10-07). 1 ~ 8절은 커밋 `58d6ff8` 의 서버를 띄워 실제로 호출한 결과다. 9절은 제안이고 아직 호출되지 않는다
+- 담당: 본인 (`fastapi` 브랜치, 백엔드 API)
+- 상태: FastAPI 계약 구현 완료(2026-10-07, 이슈 #5~#7). 아래 현재 계약이 우선한다. 이후 초기 실행 기록은 `58d6ff8` 당시의 증빙이며 현재 동작과 구분한다.
+
+## 현재 태양광 API 계약 — #5~#7
+
+사용자가 9절의 입력 계약 적용을 승인했다. 모델 학습·레지스트리 버전·AIOps 판정 정책은 팀원이 이어받는다.
+
+| Method / URL | 현재 계약 | 오류 |
+| --- | --- | --- |
+| `POST /predict` | 연속 20일의 `sequence`: 각 행의 `date`(YYYY-MM-DD), `close`(0~1,320kWh), `volume`(소수 0~45MJ/m²). `volume`은 **다음 날** 일사량 예보다. 반환은 `predicted_close`, `target_date`, `model_version` | 422 검증 실패, 503 모델·스케일러 미준비 또는 비유한 출력 |
+| `POST /predict/batch-test` | `dates`, `prices`, `volumes`, `expected` 네 배열 필수. 같은 길이, 최소 21개. 날짜는 연속이며 발전량·예보 범위는 단건과 같다. `expected`는 해당 날짜의 사후 기대 발전량(kWh), 유한한 0 이상 숫자 또는 null. 반환은 `predictions`(N−20개), `drift_check` | 422 검증 실패, 503 모델 미준비·비유한 출력 |
+| `GET /health` | `status`, `model_loaded`, `model_version`, `model_source`, `loading_mode`. 버전·출처는 현재 메모리에 로드된 객체에서 읽고 미로딩이면 null | 200, 모델을 새로 로드하지 않는다 |
+| `POST /data/upload` | UTF-8 CSV(BOM 허용), `Date,Close,Volume` 필수, 최소 41행. 연속 날짜와 단건의 값 범위 적용. 추가 열 허용. 반환 `filename`, `rows` | 400 인코딩·컬럼·행 수·값·날짜 오류, 422 파일 없음 |
+| `GET /data/status` | 미업로드는 `exists:false`. 있으면 파일명·행 수·기간·발전량 최솟값/최댓값 | 409 저장된 파일이 현재 규격에 맞지 않음 |
+| `GET /logs`, `/logs/{filename}` | 파일 목록, 또는 `name`·`content` | 404 없는 로그, 400 잘못된 파일명 |
+| `GET /`, `/docs`, `/openapi.json` | 대시보드, Swagger UI, OpenAPI | 200 |
+
+### 예측 데이터의 의미
+
+- JSON의 숫자 필드는 숫자 타입만 받는다. 숫자 문자열·불리언·비유한 값은 거절한다. CSV 숫자는 파싱 후 같은 값 범위를 검사한다.
+- 날짜는 중복·역순·빠진 날 없이 하루씩 이어져야 한다. 단건 응답의 대상일은 마지막 날짜의 다음 날이다.
+- 날짜와 `expected`는 모델 피처에 들어가지 않는다. 두 피처는 해당일 발전량과 **다음 날** 예보다. 대상일 실적을 입력 창에 넣지 않는다.
+- 음수 예측은 0으로 자른다. 단건은 소수 둘째 자리로 반올림하고, 배치는 계산 정밀도를 유지한다.
+- 단건·배치에서 알 수 없는 요청 필드는 422로 거절한다. 옛 `prices`만 있는 배치 요청도 422다.
+- 저장 파일은 `haic_<uuid>.csv`. 임시 파일에 모두 쓴 뒤 공개해 부분 파일·같은 초 덮어쓰기를 방지한다.
+
+### AIOps 응답과 구현 경계
+
+`drift_check.status`, `model_version`은 필수다. `status`는 `ok`, `drift_alerted`, `retrain_triggered`, `facility_check`, `skipped`, `input_anomaly`다. 9절의 지표 필드는 계산한 경우에만 싣는다. `pi` 등 명시적으로 반환한 null은 유지한다. `reason`은 미판정 사유를 담는 선택 필드다.
+
+현재 판정기를 연결하지 않은 기본 응답은 다음과 같다. 이는 **정상 판정이나 재학습 성공이 아니다.**
+
+```json
+{"status":"skipped","model_version":"모델 제공자가 반환한 버전","reason":"aiops_not_configured"}
+```
+
+`aiops_adapter.configure_evaluator()`로 태양광 판정기를 연결한다. AIOps에는 전체 N행과 대상일별 예측·실제·기대값 N−20행을 넘긴다. 감시·재학습 정책은 팀원이 구현한다. 실습 `production` 문자열을 실제 레지스트리 버전으로 바꾸고 승격 뒤 캐시를 교체하는 일도 MLOps 담당이다. 상세 계약은 [인수인계](../fastapi-handoff.md)에 있다.
+
+### 호출과 검증
+
+요청 생성 및 대시보드 사용법은 [시연 문서](6-demo.md#fastapi-호출부-구현-2026-10-07)에 있다. 대시보드는 CLI가 실제 CSV로 만든 normal/drift JSON을 읽는다. 하락 배치는 발전량에만 0.86을 곱하며 클라이언트에서 감시 기준을 판단하지 않는다.
+
+[27개 테스트](evidence/fastapi-batch/api-tests.txt), [응답 증빙](evidence/fastapi-batch/http-results.json), [OpenAPI](evidence/fastapi-batch/openapi.json). 예측 200은 고정 대체 모델을 통한 TestClient 검사다. 실제 학습 품질·운영 서버·재학습 증빙과 구분한다. #5의 [공통 검사](evidence/fastapi/), #6의 [단건 검사](evidence/fastapi-solar/)도 이력으로 보존했다.
+
+
+## 공통 오류 처리 변경 이력 — #5 (2026-10-07)
+
+아래 표는 #5 시점의 기록이다. 현재 계약은 위 표가 우선한다.
+
+정답 빈칸 11개는 `347af06`에서 채웠다. 아래 응답은 모델·AIOps를 격리한 FastAPI TestClient 검사로 확인했다. **실제 학습 모델의 예측 성공이나 품질 검증을 뜻하지 않는다.** 기존 `58d6ff8` 증빙은 덮어쓰지 않았다.
+
+| API | 현재 계약 / 바뀐 점 |
+| --- | --- |
+| `POST /predict`, `POST /predict/batch-test` | HAIC 입력·정상 응답 모양은 유지. 로컬 모델 또는 스케일러 파일이 없으면 503 `{"detail":"예측 모델 또는 스케일러가 준비되지 않았습니다. 모델 준비 후 다시 요청하세요."}`. 틀린 길이는 여전히 422 |
+| `GET /health` | `model_version` 추가. 미로딩이면 `{"status":"ok","model_loaded":false,"model_version":null,"loading_mode":"lazy"}`. 모델이 올라오면 로더의 `version`을 그대로 표시한다. 레지스트리의 실제 버전 번호 처리는 MLOps 후속 작업 |
+| `POST /data/upload` | UTF-8 및 BOM 허용. 필수 열 `Date, Close, Volume`, 중복 헤더·잘못된 열 수 검사. 최소 41행. `Date`는 `YYYY-MM-DD`, 중복 없는 오름차순. `Close`, `Volume`은 빈 값이 아닌 유한한 0 이상 숫자. 위반 시 400 `{"detail":"원인"}` |
+| 업로드 저장 | 응답 키 `filename`, `rows`는 유지. 파일명은 충돌하지 않는 `haic_<uuid>.csv`. 임시 파일에 모두 쓴 뒤 CSV로 공개하므로 학습 측은 완성된 파일만 읽는다 |
+| `GET /data/status` | 파일이 없으면 기존처럼 `{"exists":false}`. 기존 업로드가 새 검증에 실패하면 409 `{"detail":"최근 업로드 파일이 유효하지 않습니다. 올바른 CSV를 다시 업로드하세요: 원인"}` |
+| 로그·대시보드·시뮬레이션 호출 | 기존 URL·요청은 유지. 대시보드는 응답 객체를 표시하므로 추가 `model_version`과 JSON 오류에 호환된다. 시뮬레이션의 `prices` 요청·배치 응답은 이번 변경에서 바뀌지 않았다 |
+
+현재 업로드는 HAIC 거래일의 간격을 허용한다. 태양광의 하루 간격·발전량 1,320kWh 상한·예보 45MJ/m² 상한과 날짜 필수 예측 요청은 [0002](../decisions/0002-inputs-and-prediction-time.md) API 규격을 다음 이슈에서 적용한다. 학습·배포 게이트·드리프트 판정·재학습 변경은 팀원 담당이다.
+
+검증: [15개 API 검사](evidence/fastapi/api-tests.txt), [응답 증빙](evidence/fastapi/http-results.json), [최신 OpenAPI](evidence/fastapi/openapi.json), [체크리스트와 인수인계](../fastapi-handoff.md). 8077 포트가 사용 중이어서 별도 서버의 네트워크 검증은 미실행했다. 응답 증빙은 앱 내부 ASGI 호출 결과다.
 
 ## 통합가이드가 요구하는 것
 
@@ -10,7 +71,7 @@
 
 표기(**[사실]**, **[조사]**, **[제안]**, **[현재]**, **[실행]**, **[미확인]**, **[과제]**)의 뜻은 [① 의 표](1-pain-point.md#이-문서의-표기)에 있다.
 
-## 본문
+## 초기 실행 기록과 설계안 (커밋 58d6ff8 기준)
 
 ### 1. 엔드포인트 목록
 

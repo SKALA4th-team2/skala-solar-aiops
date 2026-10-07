@@ -2,13 +2,13 @@
 
 HAIC 스켈레톤의 개념을 태양광 발전량 예측으로 바꾼 표다. 통합가이드 본문 7번의 양식을 따른다.
 
-"우리 팀" 열은 [결정 기록](../decisions/)의 **제안**을 옮긴 것이다(2026-10-07). 팀이 아직 확정하지 않았다. 확정하면 "상태" 칸을 "확정"으로 바꾸고, 값이 달라지면 이 표와 기획서의 해당 칸을 함께 고친다.
+"우리 팀" 열은 [결정 기록](../decisions/)의 **제안**을 옮긴 것이다(2026-10-07). 0002의 API 입력 계약은 사용자 승인으로 확정했다. 나머지 제안은 팀 확정 전이다. 확정하면 "상태" 칸을 "확정"으로 바꾸고, 값이 달라지면 이 표와 기획서의 해당 칸을 함께 고친다.
 
 | 템플릿 개념 (HAIC) | 우리 팀: 태양광 발전량 예측 | 상태 |
 | --- | --- | --- |
-| 예측 대상: 다음날 종가 | 발전소 한 곳의 다음 날 하루 발전량 한 값 (kWh) | 제안 [0002](../decisions/0002-inputs-and-prediction-time.md) |
-| 입력 시퀀스: 최근 20거래일 (close, volume) | 이어진 최근 20일의 (그날의 하루 발전량 kWh, **다음 날**에 대한 하루 전 일사량 예보 MJ/m²). 대상일 전날 20시 이후에 예측한다 | 제안 [0002](../decisions/0002-inputs-and-prediction-time.md) |
-| 데이터 공급: 대시보드 CSV 업로드 | 대시보드 CSV 업로드. 파일은 `datasets/hadong_upload_forecast_jma.csv`. 열 이름(`Date, Close, Volume`)과 필드 이름은 그대로 두고 뜻과 단위를 바꿔 읽는다 | 제안 [0002](../decisions/0002-inputs-and-prediction-time.md) |
+| 예측 대상: 다음날 종가 | 발전소 한 곳의 다음 날 하루 발전량 한 값 (kWh) | API 입력 계약 확정 [0002](../decisions/0002-inputs-and-prediction-time.md) |
+| 입력 시퀀스: 최근 20거래일 (close, volume) | 이어진 최근 20일의 (그날의 하루 발전량 kWh, **다음 날**에 대한 하루 전 일사량 예보 MJ/m²). 대상일 전날 20시 이후에 예측한다 | API 입력 계약 확정 [0002](../decisions/0002-inputs-and-prediction-time.md) |
+| 데이터 공급: 대시보드 CSV 업로드 | 대시보드 CSV 업로드. 파일은 `datasets/hadong_upload_forecast_jma.csv`. 열 이름(`Date, Close, Volume`)과 필드 이름은 그대로 두고 뜻과 단위를 바꿔 읽는다 | API 입력 계약 확정 [0002](../decisions/0002-inputs-and-prediction-time.md) |
 | 배포 게이트: RMSE ≤ $4.00 | 같은 시험 날짜의 7일 평균 RMSE 의 80% 이하이면서 규칙C RMSE 의 105% 이하, 치우침 ±10% 이내. 지금의 자료면 47.5kWh 이하 | 제안 [0005](../decisions/0005-deployment-gate.md) |
 | 드리프트 신호: 변동성 3배 급변 | 발전소의 출력 수준 저하. 날마다 최근 41일을 보고, 뒤 21일의 성능 지표(실제 ÷ 관측 날씨로 계산한 기대 발전량)가 고정 기준선보다 7.5% 넘게 낮을 때 알린다. 시연에서는 발전량에 0.86 을 곱해 만든다 | 제안 [0006](../decisions/0006-monitoring-metric-and-thresholds.md), [0009](../decisions/0009-demo-plan.md) |
 | 재학습: 최근 21거래일 fine-tuning | 최근 41행(입력 20일 + 판정 21일)으로 이어서 학습. 앞 20일도 내려간 수준일 때만 건다. 정지나 보류인 날이 섞여 있으면 미룬다 | 제안 [0008](../decisions/0008-retraining-and-version-switch.md), [0007](../decisions/0007-facility-vs-model-branch-and-alerts.md) |
@@ -39,3 +39,9 @@ HAIC 스켈레톤의 개념을 태양광 발전량 예측으로 바꾼 표다. �
 | 알림 | 로그의 문장 | `serving_app/monitoring/retrain_trigger.py`, `serving_app/static/index.html` |
 
 고칠 곳의 상세는 [④ 의 6절](4-architecture.md#6-haic-스켈레톤에서-바꿀-곳과-그대로-둘-곳)에, 함께 맞출 곳의 전체 목록은 [`../../AGENTS.md`](../../AGENTS.md)의 표에 있다.
+
+## FastAPI 구현 진행 (2026-10-07)
+
+이슈 #6에서 날짜가 연속인 20일, 발전량 0~1,320kWh, 다음 날 예보 0~45MJ/m², 대상일 응답과 업로드 검증을 적용했다. (20, 2) 모델 구조는 유지했다. 배치·AIOps와 학습·배포 정책은 각 후속 담당 작업이다. 위 초기 코드 대조는 `58d6ff8` 당시의 기록이다.
+
+이슈 #7에서 배치 API도 같은 입력 의미로 바꿨다. `SIMULATED_VOLUME`과 대시보드 `DEFAULT_BASE_PRICE`를 제거하고 실제 CSV의 예보를 사용한다. 날짜·기대 발전량은 AIOps 어댑터에만 전달한다. 대시보드의 RMSE 임계값 판정은 제거했고 서버의 판정 결과만 표시한다. 기존 HAIC 감시 함수와 임계값은 보존하되 태양광 API에서 호출하지 않는다.

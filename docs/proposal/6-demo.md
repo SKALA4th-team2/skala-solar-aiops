@@ -319,3 +319,17 @@
 6. 이 문서의 "실제 결과"와 [검증 기록](evidence/validation.md)을 새 결과로 고친다. 조사의 수치를 결과 자리에 넣지 않는다.
 
 도구의 설명은 [`tools/proposal/README.md`](../../tools/proposal/README.md)에 있다.
+
+## FastAPI 호출부 구현 (2026-10-07)
+
+이슈 #7에서 배치 요청을 실제 CSV 기반으로 전환했다. 위 초기 장면은 `58d6ff8` 당시 기록이다. 현재 요청은 날짜·발전량·다음 날 예보·사후 기대 발전량을 함께 보낸다. `expected`는 감시용이며 모델 피처에 들어가지 않는다.
+
+`project/`에서 다음 명령으로 JSON을 만들고 대시보드의 시연 배치 JSON 칸에서 선택한다.
+
+```bash
+.venv/bin/python scripts/simulate_drift.py --csv ../datasets/hadong_upload_forecast_jma.csv --end-date 2025-07-31 --export-json /tmp/solar-batches.json
+```
+
+예시는 2025-06-21~07-31의 41행을 만든다. 정상 배치는 원자료, 하락 배치는 발전량에만 0.86을 곱한다. 예보와 `hadong_daily_full.csv`의 `pi_expected_kwh`는 날짜로 맞춰 그대로 쓴다. 관측 기대값이 없는 날짜는 null이다. 실제 서버에 보내려면 `--export-json` 대신 `--target local|container|both`를 쓴다. 기본 포트는 8077/8099다.
+
+감시 판정기가 연결되기 전에는 `skipped`와 `aiops_not_configured`를 표시한다. RMSE는 참고 kWh 값이며 화면에서 임계값으로 판정하지 않는다. 실제 감시·재학습·승격 성공은 AIOps/MLOps 담당이 연결한 뒤 증빙해야 한다. API 검증 증빙은 [fastapi-batch](evidence/fastapi-batch/)에 있고 예측값은 대체 모델로 생성했다.

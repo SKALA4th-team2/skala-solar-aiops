@@ -34,7 +34,8 @@ skala-solar-aiops/
 - [ ] 조사 보고서를 `docs/research/` 에 넣고, 팀이 정할 것을 `docs/decisions/` 에 기록
 - [ ] 업로드용 데이터를 `datasets/` 에 넣기
 - [ ] 도메인 매핑표 확정 ([`docs/proposal/domain-mapping.md`](docs/proposal/domain-mapping.md))
-- [ ] `project/` 를 태양광용으로 수정 (스키마, 게이트, 드리프트 판정, 시뮬레이션, 대시보드 문구)
+- [x] FastAPI 태양광 입력·업로드·배치 계약과 대시보드·시뮬레이션 호출부
+- [ ] MLOps·AIOps 태양광 모델·게이트·판정·재학습 연결 (팀원 담당)
 - [ ] 기획서 ①~③ (설계 40점)
 - [ ] 기획서 ④~⑥ 과 시연 (구현·발표 60점)
 - [ ] 발표 자료
@@ -46,10 +47,11 @@ skala-solar-aiops/
 | 이름 | 맡은 것 | 주로 고치는 곳 |
 | --- | --- | --- |
 | | 기획 | `docs/proposal/` 1~3 |
-| | 서빙 API | `project/serving_app/` 의 스키마와 라우터 |
-| | 배포 | MLflow 게이트, 컨테이너 |
-| | 모니터링 | `project/serving_app/monitoring/`, 시뮬레이션 |
-| Codex (`fastapi` 브랜치) | HAIC 실습 빈칸 1~11 구현 | `project/scripts/train_baseline_v1.py`, `project/serving_app/model_loader.py`, `project/serving_app/routers/predict.py`, `project/serving_app/monitoring/` |
+| 본인 (`fastapi` 브랜치) | 백엔드 FastAPI, API 명세·검증 | `project/serving_app/` 의 스키마·라우터·앱 진입점 |
+| 팀원 (이름 미기입) | MLOps: 학습·모델 등록·배포 | 학습 스크립트, MLflow 게이트, 모델 로더·컨테이너 |
+| 팀원 (이름 미기입) | AIOps: 감시·재학습·시연 | `project/serving_app/monitoring/`, 시뮬레이션 |
+
+HAIC 빈칸 1~11은 공통 준비 작업으로 완료했다(`347af06`). 이후 담당 경계와 체크리스트는 [FastAPI 인수인계](docs/fastapi-handoff.md)에 둔다.
 
 ## 실행
 
@@ -75,4 +77,4 @@ docker compose -f serving_app/docker-compose.yml up --build
 python scripts/simulate_drift.py
 ```
 
-지금은 원본 스켈레톤 그대로라 예시 데이터가 HAIC 주가(`data/sample_haic_prices.csv`)다. 태양광 데이터로 바꾸는 작업은 진행 현황의 순서대로 한다.
+FastAPI는 태양광 예보 입력 계약을 사용한다. `datasets/hadong_upload_forecast_jma.csv`를 올리고 같은 의미로 학습한 모델·스케일러를 준비해야 한다. 기존 HAIC 모델은 호환되는 태양광 모델이 아니다. AIOps 판정기는 아직 미연결이며 배치 응답에 `skipped`를 표시한다. [인수인계](docs/fastapi-handoff.md)의 남은 MLOps·AIOps 작업을 이어서 진행한다.
