@@ -30,7 +30,7 @@
 
 ## 새 발전소의 자료를 넣을 때
 
-단계와 통과 조건은 [자료 계약의 6절](../../docs/proposal/multi-plant-data-contract.md#6-새-자료를-넣는-절차)에 있다. 명령만 모으면 다음과 같다. `<자료 폴더>` 는 저장소 안에서는 `datasets/plants` 다.
+단계와 통과 조건은 [자료 계약의 6절](../../docs/proposal/multi-plant-data-contract.md)에 있다. 명령만 모으면 다음과 같다. `<자료 폴더>` 는 저장소 안에서는 `datasets/plants` 다.
 
 ```bash
 # 1. 등록부(plants.csv)에 한 줄을 더한다. 용량의 단위와 근거를 적고, 모르는 칸은 비운다.

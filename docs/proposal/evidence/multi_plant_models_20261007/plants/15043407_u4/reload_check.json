@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "days": 365,
+  "max_abs_error_kwh": {
+    "LSTM": 0.0,
+    "XGBoost": 0.0,
+    "Prophet": 0.0,
+    "Ensemble": 0.0,
+    "LSTM_Main_Ensemble": 0.0
+  }
+}

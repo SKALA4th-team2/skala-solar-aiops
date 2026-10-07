@@ -1,0 +1,160 @@
+{
+  "synthetic_control_flow_only": true,
+  "runtime": "C:\\Users\\dove8\\OneDrive\\바탕 화면\\SKALA 과제\\AIOps 미니 플젝\\skala-solar-aiops\\docs\\proposal\\evidence\\aiops_backend_20261007\\runtime-lifecycle-9659f5fc",
+  "steps": [
+    {
+      "name": "normal",
+      "result": {
+        "status": "ok",
+        "model_version": "1",
+        "reason": null,
+        "pi": 1.0250080637694248,
+        "baseline": 1.025008063769425,
+        "deviation_pct": -2.220446049250313e-14,
+        "head_deviation_pct": 0.0,
+        "valid_days": 21,
+        "outage_days": 0,
+        "hold_days": 0,
+        "rmse21": 18.645454457283027
+      }
+    },
+    {
+      "name": "drift_and_duplicate",
+      "result": {
+        "status": "retrain_triggered",
+        "model_version": "1",
+        "reason": "queued",
+        "pi": 0.8815069348417057,
+        "baseline": 1.025008063769425,
+        "deviation_pct": -13.999999999999979,
+        "head_deviation_pct": -13.999999999999979,
+        "valid_days": 21,
+        "outage_days": 0,
+        "hold_days": 0,
+        "rmse21": 30.18091234207155,
+        "job_id": "3832dae463694d6197e26e2a3fe0523b"
+      }
+    },
+    {
+      "name": "real_warm_start_job",
+      "result": {
+        "id": "3832dae463694d6197e26e2a3fe0523b",
+        "plant_id": "hadong-sewage",
+        "kind": "fine_tune",
+        "end_date": "2025-08-10",
+        "status": "succeeded",
+        "result": {
+          "promoted": true,
+          "version": "2",
+          "gate": {
+            "n": 5,
+            "rmse_kwh": 7.1541748046875,
+            "mae_kwh": 7.1541748046875,
+            "bias_pct": -5.942005576428314,
+            "limit_kwh": 49.414600817653664,
+            "incumbent_rmse_kwh": 30.180940196037284,
+            "passed": true,
+            "policy": "demo-5-day-plus-incumbent-v1",
+            "quality_guarantee": false
+          },
+          "run_id": "5605147cf11443ca80b4d9a4f0edfdd4",
+          "rmse": 7.1541748046875,
+          "base_version": "1"
+        },
+        "attempts": 1,
+        "created_at": "2026-10-07T13:23:48.753212+00:00",
+        "updated_at": "2026-10-07T13:24:05.680362+00:00"
+      }
+    },
+    {
+      "name": "cache_switched",
+      "result": {
+        "plant_id": "hadong-sewage",
+        "predicted_close": 113.25,
+        "target_date": "2025-08-11",
+        "model_version": "2"
+      }
+    },
+    {
+      "name": "paired_scaler_unchanged",
+      "result": true
+    },
+    {
+      "name": "gate_rejected",
+      "result": {
+        "id": "f3eea1e84cef4bd0879070387a6d8451",
+        "plant_id": "hadong-sewage",
+        "kind": "fine_tune",
+        "end_date": "2025-11-10",
+        "status": "succeeded",
+        "result": {
+          "promoted": false,
+          "gate": {
+            "n": 5,
+            "rmse_kwh": 773.1693226556988,
+            "mae_kwh": 771.058934020996,
+            "bias_pct": -77.10589340209961,
+            "limit_kwh": 49.414600817653664,
+            "incumbent_rmse_kwh": 777.4497033784438,
+            "passed": false,
+            "policy": "demo-5-day-plus-incumbent-v1",
+            "quality_guarantee": false
+          },
+          "run_id": "36448ba003b54fd8a22b50865471e947",
+          "reason": "gate_failed",
+          "rmse": 773.1693226556988,
+          "base_version": "2"
+        },
+        "attempts": 1,
+        "created_at": "2026-10-07T13:24:09.554625+00:00",
+        "updated_at": "2026-10-07T13:24:19.353811+00:00"
+      }
+    },
+    {
+      "name": "rollback",
+      "result": {
+        "plant_id": "hadong-sewage",
+        "predicted_close": 150.58,
+        "target_date": "2025-08-11",
+        "model_version": "1"
+      }
+    },
+    {
+      "name": "facility_hold",
+      "result": {
+        "status": "facility_check",
+        "model_version": "1",
+        "reason": "outage_or_hold_in_training_window",
+        "pi": 1.025008063769425,
+        "baseline": 1.025008063769425,
+        "deviation_pct": 0.0,
+        "head_deviation_pct": 0.0,
+        "valid_days": 18,
+        "outage_days": 3,
+        "hold_days": 1,
+        "rmse21": 54.595054921833125
+      }
+    },
+    {
+      "name": "corrupt_bundle_rejected",
+      "result": true
+    },
+    {
+      "name": "upload_automatically_monitored",
+      "result": {
+        "status": "ok",
+        "model_version": "1",
+        "pi": 1.0250080637694248,
+        "baseline": 1.025008063769425,
+        "valid_days": 21,
+        "outage_days": 0,
+        "hold_days": 0,
+        "rmse21": 18.645488034253397,
+        "deviation_pct": -2.220446049250313e-14,
+        "head_deviation_pct": 0.0,
+        "reason": null
+      }
+    }
+  ],
+  "passed": true
+}

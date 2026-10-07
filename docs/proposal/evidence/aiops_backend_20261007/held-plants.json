@@ -1,0 +1,110 @@
+[
+  {
+    "plant_id": "15043386-u1",
+    "name": "부산본부",
+    "reason": "capacity_unknown",
+    "gate": null
+  },
+  {
+    "plant_id": "15043386-u2",
+    "name": "부산본부",
+    "reason": "capacity_unknown",
+    "gate": null
+  },
+  {
+    "plant_id": "15043388-u1",
+    "name": "부산신항",
+    "reason": "gate_failed",
+    "gate": {
+      "passed": false,
+      "limit_kwh": 82.98078837726615,
+      "rmse_kwh": 86.63047386869157,
+      "bias_pct": 8.734835335778973,
+      "n": 365,
+      "bias_warning": true,
+      "policy": "relative-80-105-bias10-v1"
+    }
+  },
+  {
+    "plant_id": "15043389-u1",
+    "name": "부산운동장",
+    "reason": "capacity_unknown",
+    "gate": null
+  },
+  {
+    "plant_id": "15043391-u4",
+    "name": "삼척소내",
+    "reason": "gate_failed",
+    "gate": {
+      "passed": false,
+      "limit_kwh": 2178.122899603625,
+      "rmse_kwh": 2237.9851415173316,
+      "bias_pct": -5.4331181350403925,
+      "n": 365,
+      "bias_warning": true,
+      "policy": "relative-80-105-bias10-v1"
+    }
+  },
+  {
+    "plant_id": "15043396-u1",
+    "name": "신인천해수구취수구",
+    "reason": "gate_failed",
+    "gate": {
+      "passed": false,
+      "limit_kwh": 710.0993847267445,
+      "rmse_kwh": 710.5960612488005,
+      "bias_pct": 11.781777841570833,
+      "n": 365,
+      "bias_warning": true,
+      "policy": "relative-80-105-bias10-v1"
+    }
+  },
+  {
+    "plant_id": "15043401-u1",
+    "name": "위미2리",
+    "reason": "gate_failed",
+    "gate": {
+      "passed": false,
+      "limit_kwh": 1325.7785742837198,
+      "rmse_kwh": 1349.561667991452,
+      "bias_pct": 5.067685517963254,
+      "n": 365,
+      "bias_warning": true,
+      "policy": "relative-80-105-bias10-v1"
+    }
+  },
+  {
+    "plant_id": "15043407-u5",
+    "name": "하동본부",
+    "reason": "capacity_unknown",
+    "gate": null
+  },
+  {
+    "plant_id": "15043408-u1",
+    "name": "하동정수장",
+    "reason": "gate_failed",
+    "gate": {
+      "passed": false,
+      "limit_kwh": 68.45039690097954,
+      "rmse_kwh": 91.80505150560711,
+      "bias_pct": 21.306118817974014,
+      "n": 365,
+      "bias_warning": true,
+      "policy": "relative-80-105-bias10-v1"
+    }
+  },
+  {
+    "plant_id": "15109998-u1",
+    "name": "신풍리",
+    "reason": "gate_failed",
+    "gate": {
+      "passed": false,
+      "limit_kwh": 1075.1810430671721,
+      "rmse_kwh": 1114.8957089600538,
+      "bias_pct": -0.4141339119464166,
+      "n": 365,
+      "bias_warning": false,
+      "policy": "relative-80-105-bias10-v1"
+    }
+  }
+]

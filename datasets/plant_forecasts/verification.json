@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "daily_values_recomputed": 465036,
+  "hourly_bounds_checked": true,
+  "target_date_join_checked": true,
+  "generation_preserved": true,
+  "publication_cutoff_verified": false
+}

@@ -1,0 +1,6 @@
+plants/*/evaluation/
+plants/*/release/
+mlflow/
+*.log
+**/*.log
+local_install_backup/

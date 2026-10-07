@@ -1,0 +1,275 @@
+[
+  {
+    "plant_id": "15043384_u1",
+    "name": "남제주소내",
+    "region": "jeju_west",
+    "generation_file": "multi_plant/daily/15043384_u1.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15043385_u1",
+    "name": "부산복합자재창고",
+    "region": "busan",
+    "generation_file": "multi_plant/daily/15043385_u1.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15043387_u1",
+    "name": "부산수처리장",
+    "region": "busan",
+    "generation_file": "multi_plant/daily/15043387_u1.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15043391_u1",
+    "name": "삼척소내",
+    "region": "samcheok",
+    "generation_file": "multi_plant/daily/15043391_u1.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15043391_u2",
+    "name": "삼척소내",
+    "region": "samcheok",
+    "generation_file": "multi_plant/daily/15043391_u2.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15043391_u3",
+    "name": "삼척소내",
+    "region": "samcheok",
+    "generation_file": "multi_plant/daily/15043391_u3.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15043394_u1",
+    "name": "신인천소내",
+    "region": "incheon",
+    "generation_file": "multi_plant/daily/15043394_u1.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15043395_u1",
+    "name": "신인천전망대",
+    "region": "incheon",
+    "generation_file": "multi_plant/daily/15043395_u1.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15043399_u1",
+    "name": "영월본부",
+    "region": "yeongwol",
+    "generation_file": "multi_plant/daily/15043399_u1.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15043400_u1",
+    "name": "영월철도부지",
+    "region": "yeongwol",
+    "generation_file": "multi_plant/daily/15043400_u1.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15043402_u1",
+    "name": "인천수산정수장",
+    "region": "incheon",
+    "generation_file": "multi_plant/daily/15043402_u1.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15043404_u1",
+    "name": "하동공설운동장",
+    "region": "hadong",
+    "generation_file": "multi_plant/daily/15043404_u1.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15043405_u1",
+    "name": "하동변전소",
+    "region": "hadong",
+    "generation_file": "multi_plant/daily/15043405_u1.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15043406_u1",
+    "name": "하동보건소",
+    "region": "hadong",
+    "generation_file": "multi_plant/daily/15043406_u1.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15043407_u1",
+    "name": "하동본부",
+    "region": "hadong",
+    "generation_file": "multi_plant/daily/15043407_u1.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15043407_u2",
+    "name": "하동본부",
+    "region": "hadong",
+    "generation_file": "multi_plant/daily/15043407_u2.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15043407_u3",
+    "name": "하동본부",
+    "region": "hadong",
+    "generation_file": "multi_plant/daily/15043407_u3.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15043407_u4",
+    "name": "하동본부",
+    "region": "hadong",
+    "generation_file": "multi_plant/daily/15043407_u4.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15043407_u6",
+    "name": "하동본부",
+    "region": "hadong",
+    "generation_file": "multi_plant/daily/15043407_u6.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15043411_u1",
+    "name": "행원소수력",
+    "region": "jeju_east",
+    "generation_file": "multi_plant/daily/15043411_u1.csv",
+    "generation_status": "review_only"
+  },
+  {
+    "plant_id": "15095374_u1",
+    "name": "무릉리",
+    "region": "jeju_west",
+    "generation_file": "multi_plant/daily/15095374_u1.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15095380_u1",
+    "name": "부산역선상주차장",
+    "region": "busan",
+    "generation_file": "multi_plant/daily/15095380_u1.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15095404_u1",
+    "name": "용수리",
+    "region": "jeju_west",
+    "generation_file": "multi_plant/daily/15095404_u1.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15096126_u1",
+    "name": "송당리",
+    "region": "jeju_east",
+    "generation_file": "multi_plant/daily/15096126_u1.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15096129_u1",
+    "name": "신인천1_2단계주차장",
+    "region": "incheon",
+    "generation_file": "multi_plant/daily/15096129_u1.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15096131_u1",
+    "name": "신인천북측부지",
+    "region": "incheon",
+    "generation_file": "multi_plant/daily/15096131_u1.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15096132_u1",
+    "name": "신인천주차장",
+    "region": "incheon",
+    "generation_file": "multi_plant/daily/15096132_u1.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15096134_u1",
+    "name": "이천D백사면B",
+    "region": "icheon",
+    "generation_file": "multi_plant/daily/15096134_u1.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15096136_u1",
+    "name": "화촌주민참여형",
+    "region": "hadong",
+    "generation_file": "multi_plant/daily/15096136_u1.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15109994_u1",
+    "name": "감우리",
+    "region": "eumseong",
+    "generation_file": "multi_plant/daily/15109994_u1.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15109999_u1",
+    "name": "이천시백사면A",
+    "region": "icheon",
+    "generation_file": "multi_plant/daily/15109999_u1.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15124860_u1",
+    "name": "세화리",
+    "region": "jeju_east",
+    "generation_file": "multi_plant/daily/15124860_u1.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15124861_u1",
+    "name": "신인천본관주차장",
+    "region": "incheon",
+    "generation_file": "multi_plant/daily/15124861_u1.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15140067_u1",
+    "name": "와산리",
+    "region": "jeju_north",
+    "generation_file": "multi_plant/daily/15140067_u1.csv",
+    "generation_status": "upload_ready"
+  },
+  {
+    "plant_id": "15140095_u1",
+    "name": "익산다송리",
+    "region": "iksan",
+    "generation_file": "multi_plant/daily/15140095_u1.csv",
+    "generation_status": "review_only"
+  },
+  {
+    "plant_id": "15043409_u1",
+    "name": "하동하수처리장",
+    "region": "hadong",
+    "generation_file": "hadong_daily_full.csv",
+    "generation_status": "existing_baseline"
+  },
+  {
+    "plant_id": "15043390",
+    "name": "삼척사택",
+    "region": "samcheok",
+    "generation_file": null,
+    "generation_status": "raw_only_not_daily_training"
+  },
+  {
+    "plant_id": "15043397",
+    "name": "안동소내",
+    "region": "andong",
+    "generation_file": null,
+    "generation_status": "raw_only_not_daily_training"
+  },
+  {
+    "plant_id": "15156688",
+    "name": "부산철도2호기",
+    "region": "busan",
+    "generation_file": null,
+    "generation_status": "raw_only_not_daily_training"
+  }
+]

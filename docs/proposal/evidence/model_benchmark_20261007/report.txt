@@ -1,0 +1,61 @@
+하동 태양광 모델 비교 — 실제 실행 결과
+
+최종 시험: 2025-02-28 ~ 2026-02-27, 365일. 하루 발전량(kWh).
+검증 구간에서 사전 선택한 모델: Weighted_LSTM_XGB
+시험 구간에서 관측된 최저 RMSE: Weighted_All
+
+model | RMSE(kWh) | MAE(kWh) | WAPE(%) | Bias(%)
+Weighted_All | 40.260 | 30.990 | 15.485 | -0.812
+LSTM_Main_Ensemble | 40.260 | 30.990 | 15.485 | -0.812
+Weighted_LSTM_XGB | 40.300 | 31.097 | 15.538 | -0.891
+Mean_LSTM_XGB | 40.362 | 31.216 | 15.598 | -0.969
+LSTM | 40.735 | 30.732 | 15.356 | -0.185
+XGBoost | 42.160 | 33.406 | 16.692 | -1.752
+Prophet | 42.400 | 32.782 | 16.380 | 0.577
+RuleC | 45.816 | 34.227 | 17.102 | 0.074
+Mean7 | 82.474 | 64.178 | 32.068 | 0.691
+Mean20 | 82.858 | 66.975 | 33.465 | 0.987
+Persistence | 96.774 | 70.807 | 35.380 | 0.163
+
+앙상블 비중 순서: LSTM, XGBoost, Prophet
+{
+  "Mean_LSTM_XGB": [
+    0.5,
+    0.5,
+    0.0
+  ],
+  "Weighted_LSTM_XGB": [
+    0.55,
+    0.44999999999999996,
+    0.0
+  ],
+  "Weighted_All": [
+    0.6,
+    0.4,
+    0.0
+  ],
+  "LSTM_Main_Ensemble": [
+    0.6,
+    0.4,
+    0.0
+  ]
+}
+
+LSTM은 시드 42·43·44 세 모델의 평균이다. 단일 시드 결과는 lstm_seed_metrics.csv에 있다.
+시드별 검증 최적 epoch의 중앙값으로 재학습했다. 최종 시험으로 epoch/가중치를 조절하지 않았다.
+매일 전날까지의 실제 발전량과 보관된 하루 전 예보를 이용하는 1일 선행 평가다. 365일 일괄 장기예보가 아니다.
+학습 때만 스케일러를 맞췄다. 최종 모델은 학습+검증 구간으로 다시 학습했고 시험 기간에는 재학습하지 않았다.
+XGBoost는 20일 원시창+파생 특성+달력, Prophet은 달력+선택된 회귀변수, LSTM은 수업 (20,2) 입력을 사용한다.
+원시 정보의 가용 시점은 같지만 특성 표현은 다르다. 순수 구조만의 우열을 증명하는 실험은 아니다.
+기존 보고서의 264일/전체 자료 스케일링 평가와 시험 기간·전처리가 달라 수치를 직접 비교하면 안 된다.
+하동 1곳의 시간순 분할 1개 결과다. 다른 발전소·향후 기간 성능은 검증하지 않았다.
+과거 Best Match 예보가 실제 당시 같은 시각에 제공됐는지는 저장소에 남은 가정이다.
+일 단위 예측이며 시장 시간대별 정산 성능/실시간 서빙/자동 재학습 결과가 아니다.
+이 자료는 기존 연구에서 이미 분석된 자료이므로 새로 수집된 완전 블라인드 시험은 아니다.
+기존 project/ 코드와 원본 데이터 해시 검사를 통과했다.
+
+공식 API 참고:
+https://facebook.github.io/prophet/docs/quick_start.html
+https://facebook.github.io/prophet/docs/seasonality,_holiday_effects,_and_regressors.html
+https://xgboost.readthedocs.io/en/stable/python/sklearn_estimator.html
+https://keras.io/api/callbacks/early_stopping/

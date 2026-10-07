@@ -1,0 +1,18 @@
+{
+  "source_id": "15147894",
+  "name": "발전소위치",
+  "landing_url": "https://www.data.go.kr/data/15147894/fileData.do",
+  "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000007658546&fileDetailSn=1&insertDataPrcus=N",
+  "retrieved_at_utc": "2026-10-07T08:48:25.457020+00:00",
+  "sha256": "dee152ef2439a025f2300f4b6770d260a053ee5b6eefee2015fa530f23f9d987",
+  "bytes": 817,
+  "metadata": {
+    "name": "한국남부발전(주)_태양광발전소 위치 정보",
+    "description": "이 데이터는 국내에 설치된 한국남부발전 태양광발전소의 위치 정보를 정리한 자료입니다. 발전소명, 호기, 위도, 경도 값이 포함되어 있으며, 이를 통해 각 발전소의 정확한 지리적 위치를 확인할 수 있습니다. 예를 들어 감우리 태양광, 무릉리 태양광, 백사면 태양광, 부산 신항 태양광 등 다양한 지역의 발전소 좌표가 수록되어 있어 지도를 통해 시각화하거나 지역별 분포를 비교할 수 있습니다. 이 자료는 태양광발전의 보급 현황을 이해하고, 재생에너지 입지 분석, 지역별 전력망 연계 연구, 에너지 정책 수립, 학술 연구 등 다양한 분야에서 활용할 수 있는 기초 자료입니다. 특히 남녀노소 누구나 지도를 통해 쉽게 접근할 수 있는 데이터로서 공공성과 활용도가 높습니다.",
+    "dateModified": "2026-09-08",
+    "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+    "temporalCoverage": null,
+    "spatialCoverage": null
+  },
+  "usage_label": "이용허락범위 제한 없음"
+}

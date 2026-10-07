@@ -10,11 +10,15 @@ data/generate_haic_data.py로 자동 생성하던 방식 대신, 대시보드에
 import glob
 import os
 
-UPLOAD_DIR = "data/uploads"
+UPLOAD_DIR = os.getenv('SOLAR_UPLOAD_DIR','data/uploads')
 
 
-def latest_upload(upload_dir: str = UPLOAD_DIR) -> str:
+def latest_upload(upload_dir: str = UPLOAD_DIR, plant_id: str | None = None) -> str:
     """data/uploads/ 에 쌓인 CSV 중 가장 최근에 업로드된 파일의 경로를 반환한다."""
+    if plant_id is not None:
+        from serving_app.runtime import plant
+        plant(plant_id)
+        upload_dir=os.path.join(upload_dir,plant_id)
     files = sorted(glob.glob(os.path.join(upload_dir, "*.csv")), key=os.path.getmtime)
     if not files:
         raise FileNotFoundError(

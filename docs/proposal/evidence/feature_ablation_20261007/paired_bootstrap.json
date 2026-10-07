@@ -1,0 +1,38 @@
+[
+  {
+    "baseline": "base",
+    "variant": "expanded",
+    "rmse_difference_kwh": 3.65560366336409,
+    "paired_95pct_block_interval_kwh": [
+      0.8354408598436032,
+      6.754325345974621
+    ]
+  },
+  {
+    "baseline": "base",
+    "variant": "forecast",
+    "rmse_difference_kwh": -35.62357391073257,
+    "paired_95pct_block_interval_kwh": [
+      -42.77789247920011,
+      -28.59786591977278
+    ]
+  },
+  {
+    "baseline": "base",
+    "variant": "forecast_expanded",
+    "rmse_difference_kwh": -37.32742441158294,
+    "paired_95pct_block_interval_kwh": [
+      -44.951929484242314,
+      -29.797581980692367
+    ]
+  },
+  {
+    "baseline": "forecast",
+    "variant": "forecast_expanded",
+    "rmse_difference_kwh": -1.703850500850372,
+    "paired_95pct_block_interval_kwh": [
+      -3.1821501013345443,
+      -0.14062511504108566
+    ]
+  }
+]

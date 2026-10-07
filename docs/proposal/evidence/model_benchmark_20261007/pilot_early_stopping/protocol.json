@@ -1,0 +1,94 @@
+{
+  "created_kst": "2026-10-07T18:02:03.295017+09:00",
+  "source": "datasets\\hadong_upload_forecast_jma.csv",
+  "source_sha256": "2583590f24a9e852837de1d44e899cf400a0f68d860fbbbbb46d76e94bfab151",
+  "splits": {
+    "train": {
+      "n": 772,
+      "first_target": "2022-07-22",
+      "last_target": "2024-08-31"
+    },
+    "validation": {
+      "n": 180,
+      "first_target": "2024-09-01",
+      "last_target": "2025-02-27"
+    },
+    "test": {
+      "n": 365,
+      "first_target": "2025-02-28",
+      "last_target": "2026-02-27"
+    }
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "sequence_days": 20,
+  "selection_metric": "validation RMSE kWh, no final-test tuning",
+  "evaluation": "Rolling one-day-ahead, actual observations through T-1; fixed model weights throughout each validation/test block",
+  "weather_alignment": "Volume[d] is forecast for d+1; target T uses Volume[T-1]. Checked all 1337 rows against saved raw forecast.",
+  "refit": "Select on validation, freeze settings/weights, refit on train+validation; scale only refit data; then evaluate 365-day test once",
+  "lstm": "Existing teaching architecture LSTM32 -> LSTM32 -> LSTM16 -> Dense16 -> Dense1; 3 seeds averaged, never choose best seed",
+  "lstm_search": {
+    "learning_rates": [
+      0.001,
+      0.0003,
+      0.003
+    ],
+    "max_epochs": 120,
+    "patience": 15,
+    "batch_size": 32
+  },
+  "xgb_search": {
+    "depth": [
+      2,
+      3,
+      5
+    ],
+    "learning_rate": [
+      0.03,
+      0.08
+    ],
+    "min_child_weight": [
+      1,
+      5
+    ],
+    "max_trees": 1200,
+    "early_stopping_rounds": 50
+  },
+  "prophet_search": {
+    "changepoint_prior_scale": [
+      0.01,
+      0.05,
+      0.2
+    ],
+    "regressors": [
+      [
+        "irradiance"
+      ],
+      [
+        "irradiance",
+        "lag1",
+        "mean7",
+        "efficiency7",
+        "rule_c"
+      ]
+    ],
+    "trend": "linear",
+    "yearly_fourier_order": 5,
+    "weekly": false
+  },
+  "ensembles": "equal LX; LX convex weights step .05; three-model convex weights step .1; three-model weights with LSTM >= .5; learned on validation only",
+  "postprocess": "All forecasts floored at zero, including validation and baselines.",
+  "fairness": "Same target days and information available at T-1, architecture-specific feature engineering. XGB/Prophet see known calendar; teaching LSTM stays (20,2). Not a pure architecture-only ablation.",
+  "limitations": [
+    "Single plant only; added multi_plant files excluded by user choice",
+    "One temporal holdout, not evidence of all-site generalization",
+    "Archived Best Match forecast availability at historical issue hour remains an assumption",
+    "Research has already examined this dataset; this is a held-out development evaluation, not a newly collected blind dataset",
+    "Daily totals, not hourly market settlement predictions",
+    "No live serving, drift injection or automatic retraining is tested",
+    "No test targets used for hyperparameters, scaler fit, epochs, ensemble weights or refit; prior test-day actuals are valid T-1 inputs"
+  ]
+}

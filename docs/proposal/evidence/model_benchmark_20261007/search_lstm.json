@@ -1,0 +1,233 @@
+[
+  {
+    "learning_rate": 0.001,
+    "seeds": [
+      {
+        "seed": 42,
+        "learning_rate": 0.001,
+        "best_epoch": 100,
+        "epochs_run": 120,
+        "seconds": 61.7086866000318,
+        "scaler_min": [
+          5.886,
+          1.2384
+        ],
+        "scaler_range": [
+          328.608,
+          27.122400000000003
+        ],
+        "scaler_last_generation_date": "2024-08-31",
+        "scaler_last_forecast_row": "2024-08-30",
+        "rmse_kwh": 36.98831863127789,
+        "mae_kwh": 29.037489133580525,
+        "wape_pct": 15.469266540421936,
+        "bias_pct": -1.3278654892202761,
+        "n": 180
+      },
+      {
+        "seed": 43,
+        "learning_rate": 0.001,
+        "best_epoch": 84,
+        "epochs_run": 120,
+        "seconds": 60.67458980000811,
+        "scaler_min": [
+          5.886,
+          1.2384
+        ],
+        "scaler_range": [
+          328.608,
+          27.122400000000003
+        ],
+        "scaler_last_generation_date": "2024-08-31",
+        "scaler_last_forecast_row": "2024-08-30",
+        "rmse_kwh": 37.51979221516561,
+        "mae_kwh": 29.152216341654462,
+        "wape_pct": 15.530385659673945,
+        "bias_pct": -0.5267167843608598,
+        "n": 180
+      },
+      {
+        "seed": 44,
+        "learning_rate": 0.001,
+        "best_epoch": 74,
+        "epochs_run": 120,
+        "seconds": 57.70122029999038,
+        "scaler_min": [
+          5.886,
+          1.2384
+        ],
+        "scaler_range": [
+          328.608,
+          27.122400000000003
+        ],
+        "scaler_last_generation_date": "2024-08-31",
+        "scaler_last_forecast_row": "2024-08-30",
+        "rmse_kwh": 37.388455689099175,
+        "mae_kwh": 29.468768002573647,
+        "wape_pct": 15.699023588182342,
+        "bias_pct": 0.05686634689175937,
+        "n": 180
+      }
+    ],
+    "refit_epochs": 84,
+    "rmse_kwh": 37.11891922872604,
+    "mae_kwh": 29.099435991541547,
+    "wape_pct": 15.502267756633586,
+    "bias_pct": -0.5992381021861204,
+    "n": 180
+  },
+  {
+    "learning_rate": 0.0003,
+    "seeds": [
+      {
+        "seed": 42,
+        "learning_rate": 0.0003,
+        "best_epoch": 120,
+        "epochs_run": 120,
+        "seconds": 60.90614550001919,
+        "scaler_min": [
+          5.886,
+          1.2384
+        ],
+        "scaler_range": [
+          328.608,
+          27.122400000000003
+        ],
+        "scaler_last_generation_date": "2024-08-31",
+        "scaler_last_forecast_row": "2024-08-30",
+        "rmse_kwh": 40.8778736291615,
+        "mae_kwh": 32.98655907474094,
+        "wape_pct": 17.573071563836717,
+        "bias_pct": -0.29858894723710117,
+        "n": 180
+      },
+      {
+        "seed": 43,
+        "learning_rate": 0.0003,
+        "best_epoch": 120,
+        "epochs_run": 120,
+        "seconds": 62.42722170002526,
+        "scaler_min": [
+          5.886,
+          1.2384
+        ],
+        "scaler_range": [
+          328.608,
+          27.122400000000003
+        ],
+        "scaler_last_generation_date": "2024-08-31",
+        "scaler_last_forecast_row": "2024-08-30",
+        "rmse_kwh": 41.21700399428574,
+        "mae_kwh": 33.2511077791002,
+        "wape_pct": 17.714005733517528,
+        "bias_pct": -0.6941161272461608,
+        "n": 180
+      },
+      {
+        "seed": 44,
+        "learning_rate": 0.0003,
+        "best_epoch": 120,
+        "epochs_run": 120,
+        "seconds": 63.70287550002104,
+        "scaler_min": [
+          5.886,
+          1.2384
+        ],
+        "scaler_range": [
+          328.608,
+          27.122400000000003
+        ],
+        "scaler_last_generation_date": "2024-08-31",
+        "scaler_last_forecast_row": "2024-08-30",
+        "rmse_kwh": 39.46117967148678,
+        "mae_kwh": 31.39406972690158,
+        "wape_pct": 16.724697860752972,
+        "bias_pct": 0.8372204076658497,
+        "n": 180
+      }
+    ],
+    "refit_epochs": 120,
+    "rmse_kwh": 40.443894975464055,
+    "mae_kwh": 32.511846458265516,
+    "wape_pct": 17.320175868875715,
+    "bias_pct": -0.05182801152372067,
+    "n": 180
+  },
+  {
+    "learning_rate": 0.003,
+    "seeds": [
+      {
+        "seed": 42,
+        "learning_rate": 0.003,
+        "best_epoch": 30,
+        "epochs_run": 120,
+        "seconds": 60.57411619997583,
+        "scaler_min": [
+          5.886,
+          1.2384
+        ],
+        "scaler_range": [
+          328.608,
+          27.122400000000003
+        ],
+        "scaler_last_generation_date": "2024-08-31",
+        "scaler_last_forecast_row": "2024-08-30",
+        "rmse_kwh": 37.97883471742298,
+        "mae_kwh": 29.90645839394464,
+        "wape_pct": 15.932196273849211,
+        "bias_pct": 0.4547328944769038,
+        "n": 180
+      },
+      {
+        "seed": 43,
+        "learning_rate": 0.003,
+        "best_epoch": 40,
+        "epochs_run": 120,
+        "seconds": 60.510434600000735,
+        "scaler_min": [
+          5.886,
+          1.2384
+        ],
+        "scaler_range": [
+          328.608,
+          27.122400000000003
+        ],
+        "scaler_last_generation_date": "2024-08-31",
+        "scaler_last_forecast_row": "2024-08-30",
+        "rmse_kwh": 37.7114049550113,
+        "mae_kwh": 29.922721568467882,
+        "wape_pct": 15.940860224796763,
+        "bias_pct": -2.2160579119052954,
+        "n": 180
+      },
+      {
+        "seed": 44,
+        "learning_rate": 0.003,
+        "best_epoch": 32,
+        "epochs_run": 120,
+        "seconds": 58.199843999987934,
+        "scaler_min": [
+          5.886,
+          1.2384
+        ],
+        "scaler_range": [
+          328.608,
+          27.122400000000003
+        ],
+        "scaler_last_generation_date": "2024-08-31",
+        "scaler_last_forecast_row": "2024-08-30",
+        "rmse_kwh": 37.39768609804705,
+        "mae_kwh": 29.29642930136787,
+        "wape_pct": 15.607212850280103,
+        "bias_pct": 1.0227263968814684,
+        "n": 180
+      }
+    ],
+    "refit_epochs": 32,
+    "rmse_kwh": 37.42785359176777,
+    "mae_kwh": 29.485556303914393,
+    "wape_pct": 15.707967292199113,
+    "bias_pct": -0.2461994310445622,
+    "n": 180
+  }
+]

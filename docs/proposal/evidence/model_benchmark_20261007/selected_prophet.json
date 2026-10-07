@@ -1,0 +1,18 @@
+{
+  "config": {
+    "changepoint_prior_scale": 0.05,
+    "regressors": [
+      "irradiance",
+      "lag1",
+      "mean7",
+      "efficiency7",
+      "rule_c"
+    ]
+  },
+  "rmse_kwh": 40.3470584262709,
+  "mae_kwh": 32.39308287727165,
+  "wape_pct": 17.256906435308732,
+  "bias_pct": -1.4321631604301646,
+  "n": 180,
+  "seconds": 0.23945640004239976
+}

@@ -58,6 +58,14 @@ def make_manifest(plant_id, model_name, model_version, scaler_path, dataset_path
 
 
 def check_bundle(manifest, scaler_path, plant_id, feature_schema=FEATURE_SCHEMA, model_name=None, model_version=None):
+    # Runtime manifest v1 stores the same identity and paired hash with immutable version directories.
+    if 'contract' in manifest:
+        manifest={
+            'plant_id':manifest.get('plant_id'),
+            'scaler':{'sha256':manifest.get('hashes',{}).get('scaler.pkl')},
+            'feature_schema':FEATURE_SCHEMA if manifest.get('contract')=='solar_next_day_jma_msm_day1_v1' else {},
+            'model':{'name':manifest.get('model_name'),'version':manifest.get('version')},
+        }
     issues = []
     if manifest.get("plant_id") != plant_id:
         issues.append(C.issue("error", "BUNDLE-PLANT", "manifest", f"기록의 발전소는 '{manifest.get('plant_id')}' 인데 요청은 '{plant_id}' 다"))

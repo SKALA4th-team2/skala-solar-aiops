@@ -1,3 +1,5 @@
+> **현행: 시간별31개소 UI.** 실행코드는 hourly-ui.js이며 [현재 연결](INTEGRATION.md), [새 검증 증빙](../../proposal/evidence/hourly_20261007/README.md)을 따른다. 아래는 이전 일별 디자인/시험 이력이다.
+
 # SOLAR OPS — 태양광 운영 대시보드 초안
 
 갱신일: 2026-10-07. 작업 모드: 일반 개발 모드(독립 HTML/CSS/JavaScript 시제품).

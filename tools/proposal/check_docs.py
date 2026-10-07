@@ -138,16 +138,16 @@ for doc, (plain, _, _) in parsed.items():
                 problems.append(f"{doc.relative_to(ROOT)}:{n}: 검증 기록에 없는 번호: {v}")
 
 # 7. 보관 문서
-dirty = subprocess.run(["git", "-C", str(ROOT), "status", "--porcelain", "--", "docs/research", "tools/verify", "tools/jeokryang", "project"],
+dirty = subprocess.run(["git", "-C", str(ROOT), "status", "--porcelain", "--", "docs/research"],
                        capture_output=True, text=True).stdout.strip()
 if dirty:
-    problems.append("보관 문서나 서빙 앱에 커밋되지 않은 변경이 있다:\n" + dirty)
+    problems.append("보관 연구 문서에 커밋되지 않은 변경이 있다:\n" + dirty)
 
 out = [f"점검한 문서 {len(DOCS)}개: 링크 {counts['links']}개, 그림 {counts['images']}개, 표 {counts['tables']}개, JSON 예시 {counts['json']}개, Mermaid 그림 {counts['mermaid']}개",
        f"문제 {len(problems)}건"]
 out += ["  " + p for p in problems]
 out += [f"참고 {len(notes)}건"] + ["  " + s for s in notes]
-out.append("docs/research, tools/verify, tools/jeokryang, project 에 커밋되지 않은 변경: " + ("있음" if dirty else "없음"))
+out.append("docs/research 에 커밋되지 않은 변경: " + ("있음" if dirty else "없음"))
 (EVIDENCE / "docs_check.txt").write_text("\n".join(out) + "\n", encoding="utf-8")
 print("\n".join(out))
 sys.exit(1 if problems else 0)

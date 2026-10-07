@@ -1,0 +1,79 @@
+[
+  {
+    "learning_rate": 0.001,
+    "seeds": [
+      {
+        "seed": 42,
+        "learning_rate": 0.001,
+        "best_epoch": 100,
+        "epochs_run": 115,
+        "seconds": 60.75956650002627,
+        "scaler_min": [
+          5.886,
+          1.2384
+        ],
+        "scaler_range": [
+          328.608,
+          27.122400000000003
+        ],
+        "scaler_last_generation_date": "2024-08-31",
+        "scaler_last_forecast_row": "2024-08-30",
+        "rmse_kwh": 36.98831863127789,
+        "mae_kwh": 29.037489133580525,
+        "wape_pct": 15.469266540421936,
+        "bias_pct": -1.3278654892202761,
+        "n": 180
+      },
+      {
+        "seed": 43,
+        "learning_rate": 0.001,
+        "best_epoch": 3,
+        "epochs_run": 18,
+        "seconds": 13.733900799998082,
+        "scaler_min": [
+          5.886,
+          1.2384
+        ],
+        "scaler_range": [
+          328.608,
+          27.122400000000003
+        ],
+        "scaler_last_generation_date": "2024-08-31",
+        "scaler_last_forecast_row": "2024-08-30",
+        "rmse_kwh": 70.5811225202573,
+        "mae_kwh": 56.69618594089083,
+        "wape_pct": 30.2040031116429,
+        "bias_pct": -0.3078445920248338,
+        "n": 180
+      },
+      {
+        "seed": 44,
+        "learning_rate": 0.001,
+        "best_epoch": 74,
+        "epochs_run": 89,
+        "seconds": 44.027973200019915,
+        "scaler_min": [
+          5.886,
+          1.2384
+        ],
+        "scaler_range": [
+          328.608,
+          27.122400000000003
+        ],
+        "scaler_last_generation_date": "2024-08-31",
+        "scaler_last_forecast_row": "2024-08-30",
+        "rmse_kwh": 37.388455689099175,
+        "mae_kwh": 29.468768002573647,
+        "wape_pct": 15.699023588182342,
+        "bias_pct": 0.05686634689175937,
+        "n": 180
+      }
+    ],
+    "refit_epochs": 74,
+    "rmse_kwh": 41.856861843222816,
+    "mae_kwh": 34.69170865003798,
+    "wape_pct": 18.481463234694132,
+    "bias_pct": -0.5262814263670782,
+    "n": 180
+  }
+]

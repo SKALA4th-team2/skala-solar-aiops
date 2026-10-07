@@ -10,7 +10,7 @@ import { handleOperationRoute } from './operation-routes.mjs';
 import { readFile } from 'node:fs/promises';
 import { pathToFileURL } from 'node:url';
 const root = new URL('../../docs/design/solar-ops-v01/', import.meta.url);
-const allowedFiles = new Set(['index.html', 'solar-ops-preview.html', 'styles.css', 'app.js', 'dashboard-core.js', 'operations.js', 'server-dashboard.js']);
+const allowedFiles = new Set(['index.html', 'solar-ops-preview.html', 'styles.css', 'app.js', 'dashboard-core.js', 'operations.js', 'server-dashboard.js','hourly-ui.js']);
 
 export async function readOperations(base, fetcher = fetch) {
   const checkedAt = new Date().toISOString();
@@ -40,6 +40,28 @@ export function createPreviewServer(apiBase) {
   return http.createServer(async (request, response) => {
     response.setHeader('Cache-Control', 'no-store');
     const path = new URL(request.url, 'http://localhost').pathname;
+    // The integrated frontend uses the same contracts as the live FastAPI app.
+    const direct = ['/plants','/ui/sample','/ui/energy','/data/status','/data/upload','/predict','/predict/batch-test','/jobs','/predictions','/logs','/preview-api/operations'].includes(path) || /^\/(jobs|logs|predictions)\/[a-zA-Z0-9_.-]+$/.test(path) || /^\/preview-api\/dashboard\/(info|dataset|metrics|current|history|alerts|timeseries|predict|predictions)$/.test(path);
+    if(direct){
+      if(!base){response.writeHead(503,{'Content-Type':'application/json'}).end(JSON.stringify({error:'not_configured'}));return;}
+      if(!['GET','POST'].includes(request.method)){response.writeHead(405).end();return;}
+      if(request.method==='POST'&&request.headers.origin!==`http://${request.headers.host}`){response.writeHead(403).end();return;}
+      try{
+        const chunks=[];let size=0;
+        for await(const chunk of request){size+=chunk.length;if(size>5*1024*1024+65536){response.writeHead(413).end();return;}chunks.push(chunk);}
+        if(path.endsWith('/timeseries')&&![300,3600,21600,86400].includes(Number(new URL(request.url,'http://localhost').searchParams.get('window_sec')||300))){response.writeHead(400).end();return;}
+        if(request.method==='POST' && ['/predict','/preview-api/dashboard/predict'].includes(path)){
+          let payload;try{payload=JSON.parse(Buffer.concat(chunks).toString());}catch{response.writeHead(400).end();return;}
+          const hourly=(rows)=>Array.isArray(rows)&&rows.length===24&&rows.every(r=>r&&typeof r.timestamp==='string');
+          if(!hourly(payload?.history)||!hourly(payload?.forecast)||!payload.history.every(r=>Number.isFinite(r.generation_kwh)&&r.generation_kwh>=0)||!payload.forecast.every(r=>['shortwave_radiation','temperature_2m','cloud_cover','wind_speed_10m'].every(k=>Number.isFinite(r[k]))&&r.shortwave_radiation>=0)){
+            response.writeHead(400).end();return;
+          }
+        }
+        const upstream=await fetch(new URL(request.url,base),{method:request.method,redirect:'error',signal:AbortSignal.timeout(120000),...(request.method==='POST'?{body:Buffer.concat(chunks),headers:{'Content-Type':request.headers['content-type']||'application/json'}}:{})});
+        response.writeHead(upstream.status,{'Content-Type':upstream.headers.get('content-type')||'application/json'}).end(await upstream.text());
+      }catch{response.writeHead(502,{'Content-Type':'application/json'}).end(JSON.stringify({error:'upstream_unavailable'}));}
+      return;
+    }
     if (await handleDashboardRoute(request, response, base, new URL(request.url, 'http://localhost'))) return;
     if (await handleOperationRoute(request, response, base, path)) return;
     if (path === '/preview-api/upload' && request.method === 'POST') {

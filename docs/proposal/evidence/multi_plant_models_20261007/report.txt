@@ -1,0 +1,69 @@
+발전소별 모델 학습·저장 결과
+
+검증 완료: 24개 호기 / 제외: 21개 호기 (추가 원본 3건은 상류 단계에서 제외)
+호기 수는 독립 사업장 수와 다릅니다.
+입력: 20일 발전량 + ASOS 전날 관측 일사량. 대상일 T에는 T-2 일사량까지 사용.
+추가 자료는 예보 입력이 아니므로 기존 하동 예보 기반 점수와 직접 비교하지 않습니다.
+시험: 각 개소 마지막 365일, 이전 180일 검증. LSTM 고정 시드42, 최대120 epoch에서 검증 최적 epoch 선택.
+LSTM 모델 구조는 수업 코드와 동일. 이번 다개소 비교는 시드 변동성까지 평가한 결과가 아닙니다.
+검증 선택 분포: {'Ensemble': 21, 'LSTM': 3}
+LSTM이 검증에서 선택한 단순 기준모델보다 시험 RMSE가 낮은 호기: 20/24
+MLflow 등록 및 재로딩 확인: 120개 후보 버전 (Production 승격 없음)
+
+발전소 / 호기 | 검증에서 선택한 모델 | 시험 RMSE(kWh) | LSTM RMSE(kWh)
+남제주소내 / 1 (15043384_u1) | Ensemble | 238.53 | 238.97
+신인천소내 / 1 (15043394_u1) | Ensemble | 284.40 | 298.27
+신인천해수구취수구 / 1 (15043396_u1) | Ensemble | 1082.53 | 1114.62
+영월본부 / 1 (15043399_u1) | Ensemble | 40.09 | 39.19
+영월철도부지 / 1 (15043400_u1) | Ensemble | 1806.61 | 1838.91
+인천수산정수장 / 1 (15043402_u1) | Ensemble | 1620.76 | 1652.76
+하동공설운동장 / 1 (15043404_u1) | Ensemble | 385.03 | 388.57
+하동변전소 / 1 (15043405_u1) | Ensemble | 65.49 | 65.89
+하동보건소 / 1 (15043406_u1) | LSTM | 59.69 | 59.69
+하동본부 / 1 (15043407_u1) | Ensemble | 1161.19 | 1202.16
+하동본부 / 2 (15043407_u2) | Ensemble | 1986.24 | 1981.37
+하동본부 / 3 (15043407_u3) | LSTM | 772.53 | 772.53
+하동본부 / 4 (15043407_u4) | Ensemble | 1473.02 | 1486.36
+하동본부 / 5 (15043407_u5) | LSTM | 1525.64 | 1525.64
+하동본부 / 6 (15043407_u6) | Ensemble | 1520.00 | 1523.66
+하동정수장 / 1 (15043408_u1) | Ensemble | 110.44 | 113.34
+무릉리 / 1 (15095374_u1) | Ensemble | 1114.08 | 1134.10
+용수리 / 1 (15095404_u1) | Ensemble | 1162.07 | 1167.44
+신인천북측부지 / 1 (15096131_u1) | Ensemble | 560.98 | 583.21
+신인천주차장 / 1 (15096132_u1) | Ensemble | 861.62 | 911.63
+이천D백사면B / 1 (15096134_u1) | Ensemble | 1504.61 | 1533.21
+화촌주민참여형 / 1 (15096136_u1) | Ensemble | 1436.19 | 1441.86
+이천시백사면A / 1 (15109999_u1) | Ensemble | 2817.61 | 2890.26
+신인천본관주차장 / 1 (15124861_u1) | Ensemble | 301.96 | 327.10
+
+저장 위치: plants/<plant_id>/models/
+lstm.keras, xgboost.ubj, prophet.json, scaler.json, metadata.json
+metadata.json에 두 앙상블의 비중·학습 기간·입력 정의·검증/시험 점수 포함.
+MLflow 모델별 URI/버전/실험 ID: registry_index.json. 로컬 DB와 아티팩트: mlflow/.
+저장 모델은 시험 이전까지 학습한 평가 후보이며 최신 전체 자료로 재학습한 운영 모델이 아닙니다.
+모든 시험 날짜에서 파일 재로딩 예측 재현 확인. MLflow URI 재로딩은 개소·모델별 3일 확인.
+FastAPI 다개소 라우팅, 고장 감지, 자동 재학습/교체는 이번 작업 범위에서 실행하지 않았습니다.
+모델 저장과 버전 관리가 준비됐으며 AIOps 전체 동작이 완료됐다는 뜻은 아닙니다.
+
+제외 호기 및 사유:
+부산복합자재창고 (15043385_u1): no_recent_contiguous_1115_day_segment
+부산본부 (15043386_u1): no_recent_contiguous_1115_day_segment
+부산본부 (15043386_u2): no_recent_contiguous_1115_day_segment
+부산수처리장 (15043387_u1): no_recent_contiguous_1115_day_segment
+부산신항 (15043388_u1): no_recent_contiguous_1115_day_segment
+부산운동장 (15043389_u1): no_recent_contiguous_1115_day_segment
+삼척소내 (15043391_u1): no_recent_contiguous_1115_day_segment
+삼척소내 (15043391_u2): no_recent_contiguous_1115_day_segment
+삼척소내 (15043391_u3): no_recent_contiguous_1115_day_segment
+삼척소내 (15043391_u4): no_recent_contiguous_1115_day_segment
+신인천전망대 (15043395_u1): no_recent_contiguous_1115_day_segment
+위미2리 (15043401_u1): no_recent_contiguous_1115_day_segment
+행원소수력 (15043411_u1): upstream_quality_review
+부산역선상주차장 (15095380_u1): no_recent_contiguous_1115_day_segment
+송당리 (15096126_u1): no_recent_contiguous_1115_day_segment
+신인천1_2단계주차장 (15096129_u1): no_recent_contiguous_1115_day_segment
+감우리 (15109994_u1): no_recent_contiguous_1115_day_segment
+신풍리 (15109998_u1): no_recent_contiguous_1115_day_segment
+세화리 (15124860_u1): no_recent_contiguous_1115_day_segment
+와산리 (15140067_u1): no_recent_contiguous_1115_day_segment
+익산다송리 (15140095_u1): upstream_quality_review

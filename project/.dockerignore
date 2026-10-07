@@ -1,0 +1,14 @@
+.venv*
+logs
+data/runtime
+data/runtime-hourly
+data/uploads
+**/__pycache__
+**/*.pyc
+serving_app/models/haic_v1.keras
+serving_app/models/scaler.pkl
+serving_app/models/forecast_manifest.json
+serving_app/models/runtime-seed
+.env
+submission/
+

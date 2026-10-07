@@ -1,0 +1,77 @@
+{
+  "url": "https://geocoding-api.open-meteo.com/v1/search?name=Iksan&count=10&language=en&countryCode=KR",
+  "response": {
+    "results": [
+      {
+        "id": 1843491,
+        "name": "Iksan",
+        "latitude": 35.94389,
+        "longitude": 126.95444,
+        "elevation": 16.0,
+        "feature_code": "PPL",
+        "country_code": "KR",
+        "admin1_id": 1845789,
+        "admin2_id": 1843663,
+        "timezone": "Asia/Seoul",
+        "population": 307000,
+        "country_id": 1835841,
+        "country": "South Korea",
+        "admin1": "Jeollabuk-do",
+        "admin2": "Iksan-si"
+      },
+      {
+        "id": 1843665,
+        "name": "Iksan",
+        "latitude": 35.98333,
+        "longitude": 127.05,
+        "elevation": 25.0,
+        "feature_code": "PPL",
+        "country_code": "KR",
+        "admin1_id": 1845789,
+        "admin2_id": 1843663,
+        "admin3_id": 6877758,
+        "timezone": "Asia/Seoul",
+        "country_id": 1835841,
+        "country": "South Korea",
+        "admin1": "Jeollabuk-do",
+        "admin2": "Iksan-si",
+        "admin3": "Geumma-myeon"
+      },
+      {
+        "id": 6879744,
+        "name": "Iksan-jae",
+        "latitude": 36.9006,
+        "longitude": 129.3877,
+        "elevation": 125.0,
+        "feature_code": "PASS",
+        "country_code": "KR",
+        "admin1_id": 1841597,
+        "admin2_id": 1833762,
+        "timezone": "Asia/Seoul",
+        "country_id": 1835841,
+        "country": "South Korea",
+        "admin1": "Gyeongsangbuk-do",
+        "admin2": "Uljin County"
+      },
+      {
+        "id": 11980488,
+        "name": "Iksanbong",
+        "latitude": 35.63278,
+        "longitude": 126.50237,
+        "elevation": 136.0,
+        "feature_code": "PK",
+        "country_code": "KR",
+        "admin1_id": 1845789,
+        "admin2_id": 1838721,
+        "admin3_id": 8690738,
+        "timezone": "Asia/Seoul",
+        "country_id": 1835841,
+        "country": "South Korea",
+        "admin1": "Jeollabuk-do",
+        "admin2": "Buan-gun",
+        "admin3": "Byeonsan-myeon"
+      }
+    ],
+    "generationtime_ms": 0.46408176
+  }
+}

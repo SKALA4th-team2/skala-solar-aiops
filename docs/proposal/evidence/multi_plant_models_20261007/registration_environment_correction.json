@@ -1,0 +1,5 @@
+{
+  "reason": "Code review found that explicit pyfunc pip requirements omitted scikit-learn required by XGBRegressor. Current-environment reloads had passed because it was already installed.",
+  "action": "Re-register affected model bundles with scikit-learn pinned; preserve prior versions and index history; candidate alias points to corrected version.",
+  "training_changed": false
+}

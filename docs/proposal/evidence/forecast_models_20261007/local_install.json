@@ -1,0 +1,14 @@
+{
+  "plant_id": "15043409_u1",
+  "role": "evaluation",
+  "source": "C:\\Users\\dove8\\OneDrive\\바탕 화면\\SKALA 과제\\AIOps 미니 플젝\\skala-solar-aiops\\docs\\proposal\\evidence\\forecast_models_20261007\\plants\\15043409_u1\\evaluation",
+  "destination": "C:\\Users\\dove8\\OneDrive\\바탕 화면\\SKALA 과제\\AIOps 미니 플젝\\skala-solar-aiops\\project\\serving_app\\models",
+  "files": {
+    "model.keras": "haic_v1.keras",
+    "scaler.pkl": "scaler.pkl",
+    "metadata.json": "forecast_manifest.json"
+  },
+  "installed_utc": "2026-10-07T11:31:22.929377+00:00",
+  "server_restarted": false,
+  "production_promoted": false
+}

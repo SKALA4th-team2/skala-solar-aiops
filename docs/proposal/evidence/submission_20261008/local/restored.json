@@ -1,0 +1,111 @@
+{
+  "plant_id": "hadong-sewage",
+  "model_version": "1",
+  "contract": "solar_hourly_24_jma_day2_v1",
+  "unit": "kWh per 1-hour interval",
+  "timezone": "Asia/Seoul",
+  "origin": "2027-08-08T00:00:00+09:00",
+  "predictions": [
+    {
+      "timestamp": "2027-08-08T00:00:00+09:00",
+      "predicted_kwh": 0.0
+    },
+    {
+      "timestamp": "2027-08-08T01:00:00+09:00",
+      "predicted_kwh": 0.0
+    },
+    {
+      "timestamp": "2027-08-08T02:00:00+09:00",
+      "predicted_kwh": 0.0
+    },
+    {
+      "timestamp": "2027-08-08T03:00:00+09:00",
+      "predicted_kwh": 0.0
+    },
+    {
+      "timestamp": "2027-08-08T04:00:00+09:00",
+      "predicted_kwh": 0.0
+    },
+    {
+      "timestamp": "2027-08-08T05:00:00+09:00",
+      "predicted_kwh": 0.0
+    },
+    {
+      "timestamp": "2027-08-08T06:00:00+09:00",
+      "predicted_kwh": 0.0
+    },
+    {
+      "timestamp": "2027-08-08T07:00:00+09:00",
+      "predicted_kwh": 1.9868730306625366
+    },
+    {
+      "timestamp": "2027-08-08T08:00:00+09:00",
+      "predicted_kwh": 4.826369762420654
+    },
+    {
+      "timestamp": "2027-08-08T09:00:00+09:00",
+      "predicted_kwh": 7.240353584289551
+    },
+    {
+      "timestamp": "2027-08-08T10:00:00+09:00",
+      "predicted_kwh": 9.102640151977539
+    },
+    {
+      "timestamp": "2027-08-08T11:00:00+09:00",
+      "predicted_kwh": 11.761041641235352
+    },
+    {
+      "timestamp": "2027-08-08T12:00:00+09:00",
+      "predicted_kwh": 14.881576538085938
+    },
+    {
+      "timestamp": "2027-08-08T13:00:00+09:00",
+      "predicted_kwh": 15.730002403259277
+    },
+    {
+      "timestamp": "2027-08-08T14:00:00+09:00",
+      "predicted_kwh": 16.157939910888672
+    },
+    {
+      "timestamp": "2027-08-08T15:00:00+09:00",
+      "predicted_kwh": 16.17009925842285
+    },
+    {
+      "timestamp": "2027-08-08T16:00:00+09:00",
+      "predicted_kwh": 12.195384979248047
+    },
+    {
+      "timestamp": "2027-08-08T17:00:00+09:00",
+      "predicted_kwh": 5.7981085777282715
+    },
+    {
+      "timestamp": "2027-08-08T18:00:00+09:00",
+      "predicted_kwh": 2.2555716037750244
+    },
+    {
+      "timestamp": "2027-08-08T19:00:00+09:00",
+      "predicted_kwh": 0.0
+    },
+    {
+      "timestamp": "2027-08-08T20:00:00+09:00",
+      "predicted_kwh": 0.0
+    },
+    {
+      "timestamp": "2027-08-08T21:00:00+09:00",
+      "predicted_kwh": 0.0
+    },
+    {
+      "timestamp": "2027-08-08T22:00:00+09:00",
+      "predicted_kwh": 0.0
+    },
+    {
+      "timestamp": "2027-08-08T23:00:00+09:00",
+      "predicted_kwh": 0.0
+    }
+  ],
+  "total_kwh": 118.10596144199371,
+  "forecast_lead_hours": 48,
+  "publication_cutoff_verified": false,
+  "prediction_id": "4017d7c0dba7481e9e4dbec6ad975b2f",
+  "recorded_at": "2026-10-07T15:09:36.869180+00:00"
+}
