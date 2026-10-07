@@ -22,6 +22,15 @@ python tools/verify/fetch_official_sources.py --output-dir /tmp/solar-official
 python tools/verify/verify_official_neighbors.py --repo . --sources /tmp/solar-official --output /tmp/official-result.json
 ```
 
-`t6t7_source_evidence.json`에는 새로 받은 전력시장 규칙·중개시장 규칙·2025년 시장통계의 URL, 해시, 페이지, 대조 범위를 보관했다. `t6t7_source_evidence.py`는 `--rule 규칙.pdf --broker 중개규칙.hwp --market 시장통계.pdf`를 받으며 pypdf와 olefile이 필요하다. PDF 표는 화면으로도 대조했다. 바이너리 원문은 이 폴더에 복제하지 않았다.
+`t6t7_source_evidence.json`은 2026-10-07에 수동으로 대조한 전력시장 규칙·중개시장 규칙·2025년 시장통계의 URL, SHA-256, 페이지와 검토 내용을 보관한 기록이다. PDF 표는 당시 화면으로도 대조했다. 바이너리 원문은 이 폴더에 복제하지 않았다.
+
+`t6t7_source_evidence.py`는 새 입력의 세 SHA-256이 이 기록과 모두 일치하는지만 확인한다. 하나라도 다르거나 파일을 읽지 못하면 실패하며 성공 JSON을 출력하지 않는다. 개정 문서의 내용이나 제도의 현재 상태를 새로 확인하는 도구가 아니다. 일치한 경우에만 `file_identity_check`에 이번 파일 대조 시각을, `recorded_manual_review`에 과거 검토 날짜·페이지·시각 확인 여부를 그대로 담는다. 두 결과를 구분해서 인용한다. 원문이 바뀌었으면 별도로 수동 검토해야 하며, 기존 기록의 해시만 바꿔 통과시키지 않는다.
+
+Python 표준 라이브러리만 필요하다. 기존 `--broker-text` 옵션은 호환 목적으로 받지만 무시하며, HWP 원본의 해시 검사를 대신할 수 없다. 출력은 임시 파일로 저장하고 수동 검토 기록 JSON을 덮어쓰지 않는다.
+
+```sh
+python tools/verify/t6t7_source_evidence.py --rule RULE.pdf --broker BROKER.hwp --market MARKET.pdf > /tmp/t6t7-source-match.json
+python -B -m unittest discover -s tools/verify -p 'test_t6t7_source_evidence.py' -v
+```
 
 `hadong_daily_full.csv`의 ASOS 열은 정제된 결합 자료다. 원 ASOS 연도별 관측·위성 전기간 응답·일부 예보 모델 예측·정비 준공기록이 없으므로 모든 원 연구를 재현했다는 뜻은 아니다. 저장된 예측의 재집계와 새 모델 학습도 구분한다. 현행 제도 공지의 재조회는 접근 차단으로 확인하지 못했다.

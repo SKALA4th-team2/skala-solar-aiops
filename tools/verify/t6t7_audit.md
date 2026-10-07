@@ -4,7 +4,7 @@
 
 저장소 루트에서 `python tools/verify/t6t7_independent.py .`를 실행한다. 의존성은 numpy, pandas다. 원본 CSV와 통합 일자료만 읽으며 프로젝트 모듈을 import하지 않는다. 결과는 표준출력으로 내므로 필요하면 별도 파일에 저장한다.
 
-공식 문서 대조는 `t6t7_source_evidence.json`에 출처 URL, 새 다운로드 SHA-256, 파일 크기, 확인 조항·조건을 남겼다. 파일 자체를 저장소에 넣지 않았다. 새로 받은 공식 PDF 두 개와 HWP를 준비하면 `t6t7_source_evidence.py --rule RULE.pdf --broker BROKER.hwp --market MARKET.pdf`로 확인할 수 있다(pypdf, olefile 필요). 시장 통계의 표는 PDF67쪽을 이미지로 렌더링하여 직접 읽었다.
+공식 문서의 2026-10-07 수동 대조 기록은 `t6t7_source_evidence.json`에 출처 URL, 다운로드 SHA-256, 파일 크기, 확인 조항·조건으로 남겼다. 파일 자체를 저장소에 넣지 않았다. `t6t7_source_evidence.py --rule RULE.pdf --broker BROKER.hwp --market MARKET.pdf`는 세 입력의 해시가 당시 검토한 원본과 모두 일치하는지만 검사한다(Python 표준 라이브러리 사용). 하나라도 다르면 실패한다. 결과의 `file_identity_check`는 이번 파일 대조이고 `recorded_manual_review`는 과거 수동 검토 기록이며, 실행만으로 조항·수치·현행성을 다시 검토한 것은 아니다. 시장 통계 PDF67쪽을 이미지로 렌더링해 직접 읽었다는 기록도 당시의 검토에만 해당한다. 출력으로 기존 기록 JSON을 덮어쓰지 않는다.
 
 ## 중요한 수정
 
