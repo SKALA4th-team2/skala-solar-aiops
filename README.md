@@ -46,10 +46,11 @@ skala-solar-aiops/
 | 이름 | 맡은 것 | 주로 고치는 곳 |
 | --- | --- | --- |
 | | 기획 | `docs/proposal/` 1~3 |
-| | 서빙 API | `project/serving_app/` 의 스키마와 라우터 |
-| | 배포 | MLflow 게이트, 컨테이너 |
-| | 모니터링 | `project/serving_app/monitoring/`, 시뮬레이션 |
-| Codex (`fastapi` 브랜치) | HAIC 실습 빈칸 1~11 구현 | `project/scripts/train_baseline_v1.py`, `project/serving_app/model_loader.py`, `project/serving_app/routers/predict.py`, `project/serving_app/monitoring/` |
+| 본인 (`fastapi` 브랜치) | 백엔드 FastAPI, API 명세·검증 | `project/serving_app/` 의 스키마·라우터·앱 진입점 |
+| 팀원 (이름 미기입) | MLOps: 학습·모델 등록·배포 | 학습 스크립트, MLflow 게이트, 모델 로더·컨테이너 |
+| 팀원 (이름 미기입) | AIOps: 감시·재학습·시연 | `project/serving_app/monitoring/`, 시뮬레이션 |
+
+HAIC 빈칸 1~11은 공통 준비 작업으로 완료했다(`347af06`). 이후 담당 경계와 체크리스트는 [FastAPI 인수인계](docs/fastapi-handoff.md)에 둔다.
 
 ## 실행
 

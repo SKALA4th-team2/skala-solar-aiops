@@ -1,8 +1,25 @@
 # ⑤ API 명세
 
 - 평가 항목: 2-2 (구현·발표)
-- 담당:
-- 상태: 초안 (2026-10-07). 1 ~ 8절은 커밋 `58d6ff8` 의 서버를 띄워 실제로 호출한 결과다. 9절은 제안이고 아직 호출되지 않는다
+- 담당: 본인 (`fastapi` 브랜치, 백엔드 API)
+- 상태: FastAPI 공통 검증·오류 처리 보완 (2026-10-07). 아래 최신 변경표가 현재 계약이다. 기존 본문 1~8절은 `58d6ff8` 당시의 실행 기록으로 보존하며 현재 응답과 구분한다. 9절의 태양광 규격은 아직 제안이다
+
+## 최신 FastAPI 변경 (2026-10-07)
+
+정답 빈칸 11개는 `347af06`에서 채웠다. 아래 응답은 모델·AIOps를 격리한 FastAPI TestClient 검사로 확인했다. **실제 학습 모델의 예측 성공이나 품질 검증을 뜻하지 않는다.** 기존 `58d6ff8` 증빙은 덮어쓰지 않았다.
+
+| API | 현재 계약 / 바뀐 점 |
+| --- | --- |
+| `POST /predict`, `POST /predict/batch-test` | HAIC 입력·정상 응답 모양은 유지. 로컬 모델 또는 스케일러 파일이 없으면 503 `{"detail":"예측 모델 또는 스케일러가 준비되지 않았습니다. 모델 준비 후 다시 요청하세요."}`. 틀린 길이는 여전히 422 |
+| `GET /health` | `model_version` 추가. 미로딩이면 `{"status":"ok","model_loaded":false,"model_version":null,"loading_mode":"lazy"}`. 모델이 올라오면 로더의 `version`을 그대로 표시한다. 레지스트리의 실제 버전 번호 처리는 MLOps 후속 작업 |
+| `POST /data/upload` | UTF-8 및 BOM 허용. 필수 열 `Date, Close, Volume`, 중복 헤더·잘못된 열 수 검사. 최소 41행. `Date`는 `YYYY-MM-DD`, 중복 없는 오름차순. `Close`, `Volume`은 빈 값이 아닌 유한한 0 이상 숫자. 위반 시 400 `{"detail":"원인"}` |
+| 업로드 저장 | 응답 키 `filename`, `rows`는 유지. 파일명은 충돌하지 않는 `haic_<uuid>.csv`. 임시 파일에 모두 쓴 뒤 CSV로 공개하므로 학습 측은 완성된 파일만 읽는다 |
+| `GET /data/status` | 파일이 없으면 기존처럼 `{"exists":false}`. 기존 업로드가 새 검증에 실패하면 409 `{"detail":"최근 업로드 파일이 유효하지 않습니다. 올바른 CSV를 다시 업로드하세요: 원인"}` |
+| 로그·대시보드·시뮬레이션 호출 | 기존 URL·요청은 유지. 대시보드는 응답 객체를 표시하므로 추가 `model_version`과 JSON 오류에 호환된다. 시뮬레이션의 `prices` 요청·배치 응답은 이번 변경에서 바뀌지 않았다 |
+
+현재 업로드는 HAIC 거래일의 간격을 허용한다. 태양광의 하루 간격·발전량 1,320kWh 상한·예보 45MJ/m² 상한과 날짜 필수 예측 요청은 [0002](../decisions/0002-inputs-and-prediction-time.md) API 규격을 다음 이슈에서 적용한다. 학습·배포 게이트·드리프트 판정·재학습 변경은 팀원 담당이다.
+
+검증: [15개 API 검사](evidence/fastapi/api-tests.txt), [응답 증빙](evidence/fastapi/http-results.json), [최신 OpenAPI](evidence/fastapi/openapi.json), [체크리스트와 인수인계](../fastapi-handoff.md). 8077 포트가 사용 중이어서 별도 서버의 네트워크 검증은 미실행했다. 응답 증빙은 앱 내부 ASGI 호출 결과다.
 
 ## 통합가이드가 요구하는 것
 

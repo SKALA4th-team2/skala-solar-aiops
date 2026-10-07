@@ -92,6 +92,10 @@ class LoadedModel:
 
 def _load_from_local() -> LoadedModel:
     """Day1: 로컬 파일에서 모델과 스케일러를 불러와 상자에 담습니다. ([빈칸 5]의 참고 예시)"""
+    # Keras 버전에 따라 없는 파일을 ValueError로 보고하므로 파일 미준비를 먼저 구분한다.
+    for path in (LOCAL_MODEL_PATH, SCALER_PATH):
+        if not os.path.isfile(path):
+            raise FileNotFoundError(path)
     from tensorflow import keras
 
     keras_model = keras.models.load_model(LOCAL_MODEL_PATH)

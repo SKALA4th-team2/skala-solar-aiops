@@ -13,7 +13,7 @@
 
 ■ 이 파일의 빈칸 : [빈칸 6]  (batch_test 의 슬라이딩 윈도우)
 """
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 
 from data.features import SEQ_LEN  # = 20
 from serving_app import model_loader
@@ -30,7 +30,18 @@ recent_predictions: list[dict] = []
 SIMULATED_VOLUME = 1_200_000
 
 
-@router.post("/predict", response_model=PredictResponse)
+def get_ready_model():
+    """모델 파일이 준비되지 않은 상태를 클라이언트가 구분할 수 있게 한다."""
+    try:
+        return model_loader.get_model()
+    except FileNotFoundError as exc:
+        raise HTTPException(
+            status_code=503,
+            detail="예측 모델 또는 스케일러가 준비되지 않았습니다. 모델 준비 후 다시 요청하세요.",
+        ) from exc
+
+
+@router.post("/predict", response_model=PredictResponse, responses={503: {"description": "모델 또는 스케일러 미준비"}})
 def predict(req: PredictRequest):
     """
     [Day1] 다음날 종가 예측  (완성)
@@ -41,13 +52,13 @@ def predict(req: PredictRequest):
     흐름: 모델 가져오기(get_model) → dict 목록으로 변환 → predict_one → 응답 포장
     핵심 계산은 모두 model_loader.predict_one() 안에 있습니다. ([빈칸 2], [빈칸 3])
     """
-    model = model_loader.get_model()
+    model = get_ready_model()
     sequence = [p.model_dump() for p in req.sequence]
     predicted_close = model.predict_one(sequence)
     return PredictResponse(predicted_close=round(predicted_close, 2), model_version=model.version)
 
 
-@router.post("/predict/batch-test", response_model=BatchTestResponse)
+@router.post("/predict/batch-test", response_model=BatchTestResponse, responses={503: {"description": "모델 또는 스케일러 미준비"}})
 def batch_test(req: BatchTestRequest):
     """
     [Day3] 드리프트 시뮬레이션
@@ -69,7 +80,7 @@ def batch_test(req: BatchTestRequest):
         [drift_injection] drift_check = {'status': 'retrain_triggered', 'promoted': True, ...}
       /docs 에서 직접 호출할 때는 predictions 가 (가격 개수 - 20)개인지 확인하세요.
     """
-    model = model_loader.get_model()
+    model = get_ready_model()
     predictions: list[float] = []
 
     prices = req.prices

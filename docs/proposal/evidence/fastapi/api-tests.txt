@@ -1,0 +1,37 @@
+/Users/choidohan/Desktop/skala-%E1%84%80%E1%85%A1%E1%86%BC%E1%84%8B%E1%85%B4%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD/AIOps/skala-solar-aiops/project/.venv/lib/python3.11/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+  from starlette.testclient import TestClient as TestClient  # noqa
+test_bad_dates_never_saved (__main__.FastAPIContractTests.test_bad_dates_never_saved) ... ok
+test_bad_values_never_saved (__main__.FastAPIContractTests.test_bad_values_never_saved) ... ok
+test_batch_windows_and_aiops_boundary (__main__.FastAPIContractTests.test_batch_windows_and_aiops_boundary) ... ok
+test_csv_shape_and_encoding (__main__.FastAPIContractTests.test_csv_shape_and_encoding) ... ok
+test_health_does_not_load_model (__main__.FastAPIContractTests.test_health_does_not_load_model) ... ok
+test_health_reports_loaded_version (__main__.FastAPIContractTests.test_health_reports_loaded_version) ... ok
+test_invalid_sequence_rejected_before_loading (__main__.FastAPIContractTests.test_invalid_sequence_rejected_before_loading) ... ok
+test_invalid_upload_preserves_latest_valid_file (__main__.FastAPIContractTests.test_invalid_upload_preserves_latest_valid_file) ... ok
+test_logs_and_missing_log (__main__.FastAPIContractTests.test_logs_and_missing_log) ... ok
+test_missing_model_returns_503 (__main__.FastAPIContractTests.test_missing_model_returns_503) ... ok
+test_no_upload_and_corrupt_existing_upload (__main__.FastAPIContractTests.test_no_upload_and_corrupt_existing_upload) ... ok
+test_openapi_and_dashboard (__main__.FastAPIContractTests.test_openapi_and_dashboard) ... ok
+test_predict_passes_sequence_and_version (__main__.FastAPIContractTests.test_predict_passes_sequence_and_version) ... ok
+test_real_local_loader_missing_files_returns_503 (__main__.FastAPIContractTests.test_real_local_loader_missing_files_returns_503) ... ok
+test_upload_roundtrip_and_unique_names (__main__.FastAPIContractTests.test_upload_roundtrip_and_unique_names) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.057s
+
+OK
+[lazy] 모델은 첫 /predict 요청이 들어올 때 로드됩니다.
+[lazy] 모델은 첫 /predict 요청이 들어올 때 로드됩니다.
+[lazy] 모델은 첫 /predict 요청이 들어올 때 로드됩니다.
+[lazy] 모델은 첫 /predict 요청이 들어올 때 로드됩니다.
+[lazy] 모델은 첫 /predict 요청이 들어올 때 로드됩니다.
+[lazy] 모델은 첫 /predict 요청이 들어올 때 로드됩니다.
+[lazy] 모델은 첫 /predict 요청이 들어올 때 로드됩니다.
+[lazy] 모델은 첫 /predict 요청이 들어올 때 로드됩니다.
+[lazy] 모델은 첫 /predict 요청이 들어올 때 로드됩니다.
+[lazy] 모델은 첫 /predict 요청이 들어올 때 로드됩니다.
+[lazy] 모델은 첫 /predict 요청이 들어올 때 로드됩니다.
+[lazy] 모델은 첫 /predict 요청이 들어올 때 로드됩니다.
+[lazy] 모델은 첫 /predict 요청이 들어올 때 로드됩니다.
+[lazy] 모델은 첫 /predict 요청이 들어올 때 로드됩니다.
+[lazy] 모델은 첫 /predict 요청이 들어올 때 로드됩니다.
