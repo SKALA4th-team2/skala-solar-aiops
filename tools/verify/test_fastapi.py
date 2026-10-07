@@ -45,7 +45,7 @@ class FastAPIContractTests(unittest.TestCase):
         return self.client.post('/data/upload', files={'file': ('input.csv', content, 'text/csv')})
 
     def sequence(self):
-        return [{'close': 100 + i, 'volume': 1000} for i in range(20)]
+        return [{'date': (date(2025, 1, 1) + timedelta(days=i)).isoformat(), 'close': 100 + i, 'volume': 10.25} for i in range(20)]
 
     def test_health_does_not_load_model(self):
         with patch.object(model_loader, '_load_model') as load:
@@ -56,12 +56,12 @@ class FastAPIContractTests(unittest.TestCase):
         load.assert_not_called()
 
     def test_health_reports_loaded_version(self):
-        with patch.object(model_loader, '_model_cache', Mock(version='fixture-v2')):
+        with patch.object(model_loader, '_model_cache', Mock(version='fixture-v2', source='local')):
             response = self.client.get('/health')
         self.assertEqual(response.json()['model_version'], 'fixture-v2')
 
     def test_predict_passes_sequence_and_version(self):
-        model = Mock(version='fixture-v2')
+        model = Mock(version='fixture-v2', source='local')
         model.predict_one.return_value = 123.456
         with patch.object(model_loader, 'get_model', return_value=model):
             response = self.client.post('/predict', json={'sequence': self.sequence()})
@@ -69,6 +69,8 @@ class FastAPIContractTests(unittest.TestCase):
         self.assertEqual(response.json()['predicted_close'], 123.46)
         self.assertEqual(response.json()['model_version'], 'fixture-v2')
         self.assertEqual(len(model.predict_one.call_args.args[0]), 20)
+        self.assertEqual(response.json()['target_date'], '2025-01-21')
+        self.assertEqual(set(model.predict_one.call_args.args[0][0]), {'close', 'volume'})
 
     def test_invalid_sequence_rejected_before_loading(self):
         with patch.object(model_loader, 'get_model') as load:
@@ -157,6 +159,74 @@ class FastAPIContractTests(unittest.TestCase):
         self.assertEqual(self.client.get('/logs/test.log').json()['content'], 'test fixture\n')
         self.assertEqual(self.client.get('/logs/missing.log').status_code, 404)
         self.assertEqual(self.client.get('/logs').json()[0]['name'], 'test.log')
+
+    def test_solar_numeric_boundaries(self):
+        model = Mock(version='fixture', source='local')
+        model.predict_one.return_value = -2.5
+        with patch.object(model_loader, 'get_model', return_value=model):
+            for close, volume in [(0, 0), (1320, 45), (120.5, 10.25)]:
+                sequence = self.sequence()
+                sequence[0].update(close=close, volume=volume)
+                response = self.client.post('/predict', json={'sequence': sequence})
+                self.assertEqual(response.status_code, 200)
+                self.assertEqual(response.json()['predicted_close'], 0)
+        with patch.object(model_loader, 'get_model') as load:
+            for field, value in [('close', -1), ('close', 1320.1), ('volume', -1), ('volume', 45.1), ('close', True), ('volume', '10.5')]:
+                sequence = self.sequence()
+                sequence[0][field] = value
+                self.assertEqual(self.client.post('/predict', json={'sequence': sequence}).status_code, 422)
+            load.assert_not_called()
+
+    def test_solar_dates_and_extra_fields(self):
+        with patch.object(model_loader, 'get_model') as load:
+            for value in ['2025-01-01', '2025-01-03', '2025-02-30', '20250102', 1735776000, '2025-01-02T00:00:00Z']:
+                sequence = self.sequence()
+                sequence[1]['date'] = value
+                self.assertEqual(self.client.post('/predict', json={'sequence': sequence}).status_code, 422)
+            sequence = self.sequence()
+            del sequence[0]['date']
+            self.assertEqual(self.client.post('/predict', json={'sequence': sequence}).status_code, 422)
+            sequence = self.sequence()
+            sequence[0]['expected'] = 150
+            self.assertEqual(self.client.post('/predict', json={'sequence': sequence}).status_code, 422)
+            load.assert_not_called()
+
+    def test_leap_day_target_and_max_date(self):
+        model = Mock(version='fixture', source='local')
+        model.predict_one.return_value = 1
+        for last, target in [(date(2024, 2, 28), '2024-02-29'), (date(2025, 12, 31), '2026-01-01')]:
+            sequence = self.sequence()
+            for i, point in enumerate(sequence):
+                point['date'] = (last - timedelta(days=19-i)).isoformat()
+            with patch.object(model_loader, 'get_model', return_value=model):
+                response = self.client.post('/predict', json={'sequence': sequence})
+            self.assertEqual(response.json()['target_date'], target)
+        sequence = self.sequence()
+        for i, point in enumerate(sequence):
+            point['date'] = (date.max - timedelta(days=19-i)).isoformat()
+        self.assertEqual(self.client.post('/predict', json={'sequence': sequence}).status_code, 422)
+
+    def test_nonfinite_model_output_returns_503(self):
+        for output in [float('nan'), float('inf'), float('-inf')]:
+            model = Mock(version='fixture', source='local')
+            model.predict_one.return_value = output
+            with patch.object(model_loader, 'get_model', return_value=model):
+                response = self.client.post('/predict', json={'sequence': self.sequence()})
+            self.assertEqual(response.status_code, 503)
+
+    def test_nonfinite_json_input_returns_422(self):
+        import json
+        body = json.dumps({'sequence': self.sequence()}).replace('100,', '1e309,', 1)
+        response = self.client.post('/predict', content=body, headers={'Content-Type': 'application/json'})
+        self.assertEqual(response.status_code, 422)
+
+    def test_solar_upload_range_and_continuity(self):
+        for text in [csv_text().replace('100,10.25', '1320.1,10.25', 1), csv_text().replace('100,10.25', '100,45.1', 1), csv_text().replace('2025-02-10', '2025-02-11')]:
+            self.assertEqual(self.upload(text).status_code, 400)
+        self.assertEqual(self.upload(csv_text().replace('100,10.25', '0,0', 1)).status_code, 200)
+        self.assertEqual(self.upload(csv_text().replace('100,10.25', '1320,45', 1)).status_code, 200)
+        dataset = Path(__file__).resolve().parents[2] / 'datasets/hadong_upload_forecast_jma.csv'
+        self.assertEqual(self.upload(dataset.read_bytes()).status_code, 200)
 
     def test_openapi_and_dashboard(self):
         response = self.client.get('/openapi.json')

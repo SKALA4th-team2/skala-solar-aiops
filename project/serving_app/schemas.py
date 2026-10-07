@@ -1,40 +1,69 @@
-"""
-Day1: FastAPI 요청/응답 Pydantic 스키마.
+"""태양광 예측 API 계약. 한 행은 당일 발전량과 다음 날 일사량 예보다."""
+from datetime import date as Date, timedelta
+from typing import Annotated
 
-LSTM은 한 시점의 값이 아니라 최근 SEQ_LEN(20)거래일의 흐름을 입력받아야 하므로,
-/predict는 단일 행이 아니라 "20거래일치 시퀀스"를 요청 본문으로 받습니다.
-이 검증 로직은 Day2 "데이터/모델 검증" 실습에서 다루는 것과 같은 종류입니다 -
-서빙 시점 입력 검증이 학습 시점 피처(data/features.py)와 어긋나지 않도록
-길이(SEQ_LEN)와 값 범위(gt=0, ge=0)를 스키마 단에서 강제합니다.
-"""
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, BeforeValidator, ConfigDict, Field, model_validator
 
 from data.features import SEQ_LEN
 
+MAX_GENERATION_KWH = 1320.0
+MAX_FORECAST_MJ = 45.0
+
+
+def parse_calendar_date(value):
+    if isinstance(value, Date) and type(value) is Date:
+        return value
+    if not isinstance(value, str):
+        raise ValueError('날짜는 YYYY-MM-DD 문자열이어야 합니다.')
+    try:
+        parsed = Date.fromisoformat(value)
+    except ValueError:
+        raise ValueError('날짜는 YYYY-MM-DD 형식의 유효한 날짜여야 합니다.') from None
+    if parsed.isoformat() != value:
+        raise ValueError('날짜는 YYYY-MM-DD 형식이어야 합니다.')
+    return parsed
+
+
+CalendarDate = Annotated[Date, BeforeValidator(parse_calendar_date)]
+Generation = Annotated[float, Field(ge=0, le=MAX_GENERATION_KWH, allow_inf_nan=False, strict=True)]
+Forecast = Annotated[float, Field(ge=0, le=MAX_FORECAST_MJ, allow_inf_nan=False, strict=True)]
+
+
+def validate_daily_dates(dates: list[Date]) -> None:
+    if any((current - previous).days != 1 for previous, current in zip(dates, dates[1:])):
+        raise ValueError('날짜는 중복이나 빠진 날 없이 하루씩 이어진 오름차순이어야 합니다.')
+
 
 class DailyPoint(BaseModel):
-    close: float = Field(..., gt=0, description="해당 거래일 종가")
-    volume: int = Field(..., ge=0, description="해당 거래일 거래량")
+    model_config = ConfigDict(extra='forbid')
+    date: CalendarDate = Field(description='해당 행의 날짜 (YYYY-MM-DD)')
+    close: Generation = Field(description='해당 날짜의 하루 발전량 (kWh)')
+    volume: Forecast = Field(description='다음 날에 대한 하루 전 일사량 예보의 하루 합계 (MJ/m²)')
 
 
 class PredictRequest(BaseModel):
+    model_config = ConfigDict(extra='forbid')
     sequence: list[DailyPoint] = Field(
-        ...,
-        min_length=SEQ_LEN,
-        max_length=SEQ_LEN,
-        description=f"가장 오래된 날 -> 가장 최근 날 순서의 최근 {SEQ_LEN}거래일 시퀀스",
+        min_length=SEQ_LEN, max_length=SEQ_LEN,
+        description=f'대상일 직전의 연속 {SEQ_LEN}일, 오래된 날짜부터. 마지막 행에 대상일의 예보를 담는다.',
     )
+
+    @model_validator(mode='after')
+    def check_dates(self):
+        validate_daily_dates([point.date for point in self.sequence])
+        if self.sequence[-1].date == Date.max:
+            raise ValueError('다음 날의 예측 대상일을 계산할 수 없는 날짜입니다.')
+        return self
 
 
 class PredictResponse(BaseModel):
-    predicted_close: float
+    predicted_close: float = Field(ge=0, allow_inf_nan=False, description='대상일의 하루 발전량 예측 (kWh)')
+    target_date: CalendarDate = Field(description='예측 대상일: 입력 마지막 날짜의 다음 날')
     model_version: str
 
 
 class BatchTestRequest(BaseModel):
-    # Day3 드리프트 시뮬레이션에서 사용 (scripts/simulate_drift.py 참고)
-    # SEQ_LEN + N 개의 연속된 종가를 보내면, 서버가 내부적으로 슬라이딩 윈도우로 잘라
-    # 여러 건을 연속 예측한다. (거래량은 시뮬레이션이므로 고정값을 사용)
+    # 태양광 배치 계약은 후속 이슈에서 호출부와 함께 전환한다.
     prices: list[float] = Field(..., min_length=SEQ_LEN + 1)
 
 
@@ -46,5 +75,6 @@ class BatchTestResponse(BaseModel):
 class HealthResponse(BaseModel):
     status: str
     model_loaded: bool
-    model_version: str | None = Field(description="현재 메모리에 올라온 모델의 버전. 미로딩이면 null")
+    model_version: str | None = Field(description='현재 메모리 모델의 버전. 미로딩이면 null')
+    model_source: str | None = Field(description='현재 메모리 모델의 출처(local 또는 mlflow). 미로딩이면 null')
     loading_mode: str

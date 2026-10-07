@@ -11,7 +11,7 @@ from tensorflow import keras
 
 from data.features import SEQ_LEN
 
-N_FEATURES = 2  # (close, volume)
+N_FEATURES = 2  # (당일 발전량 kWh, 다음 날 일사량 예보 MJ/m²). 모델 구조는 유지한다.
 
 
 def build_model() -> keras.Model:

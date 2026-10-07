@@ -15,6 +15,7 @@ def health():
         "status": "ok",
         "model_loaded": model_loaded,
         "model_version": model.version if model_loaded else None,
+        "model_source": model.source if model_loaded else None,
         "loading_mode": _current_loading_mode(),
     }
 

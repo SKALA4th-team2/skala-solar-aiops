@@ -13,6 +13,9 @@
 
 ■ 이 파일의 빈칸 : [빈칸 6]  (batch_test 의 슬라이딩 윈도우)
 """
+from datetime import timedelta
+import math
+
 from fastapi import APIRouter, HTTPException
 
 from data.features import SEQ_LEN  # = 20
@@ -43,19 +46,18 @@ def get_ready_model():
 
 @router.post("/predict", response_model=PredictResponse, responses={503: {"description": "모델 또는 스케일러 미준비"}})
 def predict(req: PredictRequest):
-    """
-    [Day1] 다음날 종가 예측  (완성)
-    받는 것  : {"sequence": [{"close": 160.0, "volume": 1200000}, ... 20개]}
-               20개가 아니면 schemas.py 가 알아서 422 에러를 돌려줍니다.
-    돌려줄 것: {"predicted_close": 161.37, "model_version": "v1-local"}
-
-    흐름: 모델 가져오기(get_model) → dict 목록으로 변환 → predict_one → 응답 포장
-    핵심 계산은 모두 model_loader.predict_one() 안에 있습니다. ([빈칸 2], [빈칸 3])
-    """
+    """연속 20일의 발전량과 다음 날 예보로 대상일의 발전량(kWh)을 예측한다."""
     model = get_ready_model()
-    sequence = [p.model_dump() for p in req.sequence]
+    # 날짜는 API 검증용이다. 모델에는 학습 시와 같은 두 피처만 전달한다.
+    sequence = [{"close": point.close, "volume": point.volume} for point in req.sequence]
     predicted_close = model.predict_one(sequence)
-    return PredictResponse(predicted_close=round(predicted_close, 2), model_version=model.version)
+    if not math.isfinite(predicted_close):
+        raise HTTPException(503, "모델이 유한한 예측값을 반환하지 않았습니다.")
+    return PredictResponse(
+        predicted_close=round(max(0.0, predicted_close), 2),
+        target_date=req.sequence[-1].date + timedelta(days=1),
+        model_version=model.version,
+    )
 
 
 @router.post("/predict/batch-test", response_model=BatchTestResponse, responses={503: {"description": "모델 또는 스케일러 미준비"}})

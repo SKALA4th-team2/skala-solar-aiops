@@ -11,10 +11,14 @@ StaticFiles를 "/"에 마지막으로 mount해야, /predict 같은 API 경로가
 먼저 매칭됩니다(Starlette는 등록 순서대로 라우트를 검사합니다).
 """
 import logging
+import math
 import os
 
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
+from fastapi.encoders import jsonable_encoder
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
 
 from serving_app import model_loader
 from serving_app.routers import data, health, logs, predict
@@ -32,7 +36,14 @@ if not _aiops_logger.handlers:
     _aiops_logger.addHandler(_handler)
     _aiops_logger.addHandler(logging.StreamHandler())  # 터미널에서도 동일하게 확인 가능
 
-app = FastAPI(title="HAIC Serving & AIOps")
+app = FastAPI(title="태양광 발전량 예측 API", description="최근 20일의 하루 발전량과 다음 날 일사량 예보로 하루 발전량(kWh)을 예측합니다.")
+
+@app.exception_handler(RequestValidationError)
+async def validation_error(request, exc):
+    # 1e309 등은 파서에서 inf가 될 수 있다. 오류 본문의 input도 JSON으로 안전하게 직렬화한다.
+    detail = jsonable_encoder(exc.errors(), custom_encoder={float: lambda value: value if math.isfinite(value) else str(value)})
+    return JSONResponse(status_code=422, content={"detail": detail})
+
 
 app.include_router(predict.router)
 app.include_router(health.router)
