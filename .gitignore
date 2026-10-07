@@ -1,0 +1,29 @@
+# 가상환경. 기계마다 다시 만든다.
+.venv/
+venv/
+
+# Python 캐시.
+__pycache__/
+*.pyc
+
+# 실행하면 만들어지는 산출물. 스크립트를 다시 실행하면 생기므로 커밋하지 않는다.
+project/serving_app/models/*.keras
+project/serving_app/models/scaler.pkl
+project/data/uploads/
+project/logs/
+mlruns/
+mlartifacts/
+mlflow.db
+
+# API 키가 들어가는 파일. 자리표시 값이어도 올리지 않는다.
+.env
+
+# 교재 PDF. 강사 저작물이라 저장소에 올리지 않는다. 발표 자료 PDF 는 막지 않는다.
+SKALA_AIOps_*.pdf
+AI캠퍼스_*.pdf
+
+# macOS Finder metadata must never enter commits.
+.DS_Store
+
+# 개인별 에이전트 권한과 로컬 절대 경로를 저장소에 올리지 않는다.
+**/.claude/
