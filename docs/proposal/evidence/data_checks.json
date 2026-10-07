@@ -1,0 +1,233 @@
+{
+  "computed_at": "2026-10-07T16:59:33+09:00",
+  "versions": {
+    "pandas": "2.3.3",
+    "numpy": "2.1.3"
+  },
+  "upload_files": {
+    "hadong_upload_forecast_jma.csv": {
+      "rows": 1337,
+      "start": "2022-07-02",
+      "end": "2026-02-27",
+      "date_gaps": 0,
+      "duplicates": 0,
+      "missing_cells": 0,
+      "close_min": 5.886,
+      "close_max": 338.832,
+      "volume_min": 0.9504,
+      "volume_max": 28.3608,
+      "close_zero_rows": 0,
+      "stop_rows": 0,
+      "close_vs_raw_max_abs_diff": 0.0,
+      "volume_fraction_non_integer": 0.9992520568436799,
+      "volume_vs_next_day_forecast_max_abs_diff": 0.0,
+      "corr_volume_d_with_close_d_plus_1": 0.7752044691118014,
+      "corr_volume_d_with_close_d": 0.32239816073884325
+    },
+    "hadong_upload.csv": {
+      "rows": 4746,
+      "start": "2013-01-02",
+      "end": "2025-12-30",
+      "date_gaps": 0,
+      "duplicates": 0,
+      "missing_cells": 0,
+      "close_min": 0.0,
+      "close_max": 379.752,
+      "volume_min": 0.17,
+      "volume_max": 31.4,
+      "close_zero_rows": 24,
+      "stop_rows": 43,
+      "close_vs_raw_max_abs_diff": 0.0,
+      "volume_fraction_non_integer": 0.9865149599662874
+    },
+    "hadong_upload_forecast_proxy.csv": {
+      "rows": 4746,
+      "start": "2013-01-02",
+      "end": "2025-12-30",
+      "date_gaps": 0,
+      "duplicates": 0,
+      "missing_cells": 0,
+      "close_min": 0.0,
+      "close_max": 379.752,
+      "volume_min": 0.17,
+      "volume_max": 31.4,
+      "close_zero_rows": 24,
+      "stop_rows": 43,
+      "close_vs_raw_max_abs_diff": 0.0,
+      "volume_fraction_non_integer": 0.9865149599662874
+    }
+  },
+  "practice_split": {
+    "rows": 1337,
+    "samples": 1317,
+    "train_samples": 1053,
+    "test_samples": 264,
+    "train_target_start": "2022-07-22",
+    "train_target_end": "2025-06-08",
+    "test_target_start": "2025-06-09",
+    "test_target_end": "2026-02-27",
+    "test_months_present": [
+      1,
+      2,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "window_close_rows": "T-20 ~ T-1",
+    "window_volume_forecast_target_days": "T-19 ~ T",
+    "scaler_minmax_same_when_fit_on_train_rows_only": true,
+    "window_checks": {
+      "samples_checked": 1317,
+      "target_is_the_day_after_window_end_for_all": true,
+      "window_is_20_consecutive_days_for_all": true,
+      "last_train_target_before_first_test_target": true
+    }
+  },
+  "baselines_test264": {
+    "어제 값": {
+      "rmse_kwh": 82.4437,
+      "total_error_pct": 31.41,
+      "bias_pct": 0.28
+    },
+    "7일 평균": {
+      "rmse_kwh": 71.6519,
+      "total_error_pct": 28.23,
+      "bias_pct": 0.79
+    },
+    "20일 평균": {
+      "rmse_kwh": 74.0323,
+      "total_error_pct": 30.3,
+      "bias_pct": 0.77
+    },
+    "규칙C": {
+      "rmse_kwh": 45.2626,
+      "total_error_pct": 16.87,
+      "bias_pct": -0.13
+    },
+    "actual_mean_kwh": 194.18
+  },
+  "relative_gate_test264": {
+    "0.80_x_7day_mean_rmse": 57.32,
+    "1.05_x_ruleC_rmse": 47.53,
+    "threshold_kwh": 47.53
+  },
+  "measured_lstm_test264_seed42_rmse_kwh": 41.5888,
+  "gate_counts": {
+    "days": 4807,
+    "expected_available_days": 4738,
+    "zero_generation_days": 24,
+    "outage_days": 49,
+    "hold_days": 68,
+    "valid_days": 4658,
+    "matches_file_columns": true
+  },
+  "pi_2021": {
+    "baseline_365d_to_2021-04-01": 0.9809,
+    "baseline_valid_days": 362,
+    "normal_batch_target_2021-04-22_05-12": {
+      "pi": 0.9735,
+      "valid_days": 20,
+      "deviation_pct": -0.8
+    },
+    "drift_batch_target_2021-06-07_06-27": {
+      "pi": 0.8382,
+      "valid_days": 21,
+      "deviation_pct": -14.6
+    },
+    "threshold_pi_at_-7.5pct": 0.9073
+  },
+  "level_changes": {
+    "2021-05-18_pre365_vs_post365_pct": -8.5,
+    "2021_pre": 0.9817,
+    "2021_post": 0.8985,
+    "2024-03-22_pre365_vs_post365_pct": 5.8,
+    "2024_pre": 0.9007,
+    "2024_post": 0.9532
+  },
+  "injection_2025": {
+    "fixed_baseline_365d_to_2025-02-28": 0.950992,
+    "fixed_baseline_valid_days": 352,
+    "start": "2025-06-21",
+    "target": "2025-07-11 ~ 2025-07-31",
+    "batch_rows": "2025-06-21 ~ 2025-07-31 (41행)",
+    "factors": {
+      "1.0": {
+        "pi": 0.9305,
+        "valid_days_of_21": 21,
+        "judgeable(valid>=15)": true,
+        "deviation_vs_fixed_baseline_pct": -2.2,
+        "deviation_vs_per_start_baseline_pct": -2.0,
+        "hold_days_in_target": 0
+      },
+      "0.86": {
+        "pi": 0.8024,
+        "valid_days_of_21": 21,
+        "judgeable(valid>=15)": true,
+        "deviation_vs_fixed_baseline_pct": -15.6,
+        "deviation_vs_per_start_baseline_pct": -15.5,
+        "hold_days_in_target": 0
+      },
+      "0.8": {
+        "pi": 0.7475,
+        "valid_days_of_21": 21,
+        "judgeable(valid>=15)": true,
+        "deviation_vs_fixed_baseline_pct": -21.4,
+        "deviation_vs_per_start_baseline_pct": -21.2,
+        "hold_days_in_target": 0
+      },
+      "0.7": {
+        "pi": NaN,
+        "valid_days_of_21": 0,
+        "judgeable(valid>=15)": false,
+        "deviation_vs_fixed_baseline_pct": NaN,
+        "deviation_vs_per_start_baseline_pct": NaN,
+        "hold_days_in_target": 21
+      }
+    },
+    "last_41_rows_of_file_cut_at_2025-07-31": {
+      "start": "2025-06-21",
+      "end": "2025-07-31",
+      "rows": 41
+    }
+  },
+  "equipment_day_2025-03-31": {
+    "actual_kwh": 141.516,
+    "expected_kwh": 296.2,
+    "ratio": 0.48,
+    "outage": false,
+    "low_day(<70%)": true,
+    "one_day_alert(<50%)": true,
+    "hold": false
+  },
+  "hourly_completion_pct": {
+    "9시까지": 6.75,
+    "10시까지": 15.81,
+    "14시까지": 70.54,
+    "16시까지": 92.22,
+    "17시까지": 97.59,
+    "18시까지": 99.58,
+    "19시까지": 99.99,
+    "20시까지": 100.0,
+    "21시까지": 100.0
+  },
+  "hourly_completion_days": 4768,
+  "value_ranges": {
+    "generation_kwh": {
+      "capacity_kw": 55,
+      "capacity_x_24h_kwh": 1320,
+      "observed_max_kwh": 379.752,
+      "observed_min_kwh": 0.0
+    },
+    "irradiance_mj_m2": {
+      "forecast_file_max": 28.3608,
+      "forecast_file_min": 0.9504,
+      "observed_max_gwangyang": 31.4,
+      "extraterrestrial_daily_max_at_35.06N": 41.5,
+      "extraterrestrial_daily_min_at_35.06N": 16.5
+    }
+  }
+}

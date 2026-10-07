@@ -1,0 +1,23 @@
+{
+  "case": "upload_hadong_forecast",
+  "note": "하루 전 일사량 예보를 넣은 태양광 업로드 파일",
+  "requested_at": "2026-10-07T15:20:33+09:00",
+  "request": {
+    "method": "POST",
+    "path": "/data/upload",
+    "json": null,
+    "files": {
+      "file": "datasets/hadong_upload_forecast_jma.csv"
+    },
+    "body_note": null
+  },
+  "response": {
+    "status": 200,
+    "content_type": "application/json",
+    "elapsed_ms": 5.6,
+    "body": {
+      "filename": "haic_1791354033.csv",
+      "rows": 1337
+    }
+  }
+}

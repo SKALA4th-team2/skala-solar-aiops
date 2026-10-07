@@ -1,0 +1,118 @@
+{
+  "case": "predict_volume_negative",
+  "note": "두 번째 값이 음수",
+  "requested_at": "2026-10-07T15:19:31+09:00",
+  "request": {
+    "method": "POST",
+    "path": "/predict",
+    "json": {
+      "sequence": [
+        {
+          "close": 292.674,
+          "volume": -1
+        },
+        {
+          "close": 265.146,
+          "volume": 4
+        },
+        {
+          "close": 45.42,
+          "volume": 15
+        },
+        {
+          "close": 231.726,
+          "volume": 16
+        },
+        {
+          "close": 262.698,
+          "volume": 15
+        },
+        {
+          "close": 249.714,
+          "volume": 13
+        },
+        {
+          "close": 169.11,
+          "volume": 16
+        },
+        {
+          "close": 243.468,
+          "volume": 15
+        },
+        {
+          "close": 189.516,
+          "volume": 17
+        },
+        {
+          "close": 273.84,
+          "volume": 17
+        },
+        {
+          "close": 268.452,
+          "volume": 17
+        },
+        {
+          "close": 278.286,
+          "volume": 17
+        },
+        {
+          "close": 268.326,
+          "volume": 17
+        },
+        {
+          "close": 265.8,
+          "volume": 15
+        },
+        {
+          "close": 214.044,
+          "volume": 17
+        },
+        {
+          "close": 265.386,
+          "volume": 1
+        },
+        {
+          "close": 11.532,
+          "volume": 17
+        },
+        {
+          "close": 247.932,
+          "volume": 15
+        },
+        {
+          "close": 80.244,
+          "volume": 10
+        },
+        {
+          "close": 94.848,
+          "volume": 18
+        }
+      ]
+    },
+    "files": null,
+    "body_note": null
+  },
+  "response": {
+    "status": 422,
+    "content_type": "application/json",
+    "elapsed_ms": 0.5,
+    "body": {
+      "detail": [
+        {
+          "type": "greater_than_equal",
+          "loc": [
+            "body",
+            "sequence",
+            0,
+            "volume"
+          ],
+          "msg": "Input should be greater than or equal to 0",
+          "input": -1,
+          "ctx": {
+            "ge": 0
+          }
+        }
+      ]
+    }
+  }
+}

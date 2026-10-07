@@ -1,0 +1,51 @@
+# 정리본: 경로를 짧은 표기로 바꾸고, 프레임워크 내부 호출을 한 줄로 접고, 진행 막대와 MLflow 안내 줄을 지웠다.
+# 결과와 오류 문장은 원본 그대로다. 정리 규칙은 tools/proposal/sanitize_logs.py 에 있다.
+2026-10-07 15:43:02 KST
+INFO:     Started server process [59076]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8077 (Press CTRL+C to quit)
+[lazy] 모델은 첫 /predict 요청이 들어올 때 로드됩니다.
+INFO:     127.0.0.1:59008 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59010 - "POST /data/upload HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59011 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59012 - "POST /data/upload HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59013 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59014 - "POST /data/upload HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59015 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59016 - "POST /data/upload HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59017 - "GET /data/status HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  ... (프레임워크 내부 호출 26개 생략)
+  File "(검증용 사본)/project/serving_app/routers/data.py", line 57, in status
+    rows = load_rows(path)
+           ^^^^^^^^^^^^^^^
+  File "(검증용 사본)/project/data/features.py", line 22, in load_rows
+    rows = [
+           ^
+  File "(검증용 사본)/project/data/features.py", line 25, in <listcomp>
+    "Close": float(r["Close"]),
+             ^^^^^^^^^^^^^^^^^
+ValueError: could not convert string to float: 'abc'
+INFO:     127.0.0.1:59018 - "POST /data/upload HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59019 - "GET /data/status HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  ... (프레임워크 내부 호출 26개 생략)
+  File "(검증용 사본)/project/serving_app/routers/data.py", line 57, in status
+    rows = load_rows(path)
+           ^^^^^^^^^^^^^^^
+  File "(검증용 사본)/project/data/features.py", line 22, in load_rows
+    rows = [
+           ^
+  File "(검증용 사본)/project/data/features.py", line 25, in <listcomp>
+    "Close": float(r["Close"]),
+             ^^^^^^^^^^^^^^^^^
+ValueError: could not convert string to float: ''
+INFO:     127.0.0.1:59020 - "POST /data/upload HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59021 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [59076]

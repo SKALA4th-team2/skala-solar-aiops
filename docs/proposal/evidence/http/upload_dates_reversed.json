@@ -1,0 +1,23 @@
+{
+  "case": "upload_dates_reversed",
+  "note": "날짜가 최근에서 과거 순서",
+  "requested_at": "2026-10-07T15:43:06+09:00",
+  "request": {
+    "method": "POST",
+    "path": "/data/upload",
+    "json": null,
+    "files": {
+      "file": "업로드 파일의 마지막 60행을 고친 것: 날짜가 최근에서 과거 순서"
+    },
+    "body_note": null
+  },
+  "response": {
+    "status": 200,
+    "content_type": "application/json",
+    "elapsed_ms": 9.6,
+    "body": {
+      "filename": "haic_1791355386.csv",
+      "rows": 60
+    }
+  }
+}

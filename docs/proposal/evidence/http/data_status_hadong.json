@@ -1,0 +1,26 @@
+{
+  "case": "data_status_hadong",
+  "note": "태양광 업로드 뒤 상태",
+  "requested_at": "2026-10-07T15:20:33+09:00",
+  "request": {
+    "method": "GET",
+    "path": "/data/status",
+    "json": null,
+    "files": null,
+    "body_note": null
+  },
+  "response": {
+    "status": 200,
+    "content_type": "application/json",
+    "elapsed_ms": 2.4,
+    "body": {
+      "exists": true,
+      "filename": "haic_1791354033.csv",
+      "rows": 1337,
+      "start_date": "2022-07-02",
+      "end_date": "2026-02-27",
+      "min_close": 5.886,
+      "max_close": 338.832
+    }
+  }
+}

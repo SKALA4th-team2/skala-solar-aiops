@@ -1,0 +1,18 @@
+# 정리본: 경로를 짧은 표기로 바꾸고, 프레임워크 내부 호출을 한 줄로 접고, 진행 막대와 MLflow 안내 줄을 지웠다.
+# 결과와 오류 문장은 원본 그대로다. 정리 규칙은 tools/proposal/sanitize_logs.py 에 있다.
+2026-10-07 15:21:18 KST
+[1] 기준 통계: mean=189.80, std=80.02
+
+=== local (http://localhost:8077) ===
+[2] 정상 입력 테스트 전송...
+Traceback (most recent call last):
+  File "(검증용 사본)/project/scripts/simulate_drift.py", line 141, in <module>
+    main()
+  File "(검증용 사본)/project/scripts/simulate_drift.py", line 121, in main
+    normal = send_batch(normal_batch, label=f"{name}/normal")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "(검증용 사본)/project/scripts/simulate_drift.py", line 88, in send_batch
+    resp.raise_for_status()
+  ... (프레임워크 내부 호출 1개 생략)
+requests.exceptions.HTTPError: 500 Server Error: Internal Server Error for url: http://localhost:8077/predict/batch-test
+종료 코드: 1

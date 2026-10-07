@@ -1,0 +1,22 @@
+{
+  "case": "health",
+  "note": "서버를 MODEL_SOURCE=mlflow, LOADING_MODE 기본값(lazy)으로 띄운 상태의 헬스체크",
+  "requested_at": "2026-10-07T16:58:25+09:00",
+  "request": {
+    "method": "GET",
+    "path": "/health",
+    "json": null,
+    "files": null,
+    "body_note": null
+  },
+  "response": {
+    "status": 200,
+    "content_type": "application/json",
+    "elapsed_ms": 7.5,
+    "body": {
+      "status": "ok",
+      "model_loaded": false,
+      "loading_mode": "lazy"
+    }
+  }
+}

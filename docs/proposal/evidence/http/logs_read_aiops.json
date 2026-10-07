@@ -1,0 +1,21 @@
+{
+  "case": "logs_read_aiops",
+  "note": "aiops.log 내용",
+  "requested_at": "2026-10-07T15:19:31+09:00",
+  "request": {
+    "method": "GET",
+    "path": "/logs/aiops.log",
+    "json": null,
+    "files": null,
+    "body_note": null
+  },
+  "response": {
+    "status": 200,
+    "content_type": "application/json",
+    "elapsed_ms": 0.8,
+    "body": {
+      "name": "aiops.log",
+      "content": ""
+    }
+  }
+}

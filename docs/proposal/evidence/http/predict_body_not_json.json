@@ -1,0 +1,33 @@
+{
+  "case": "predict_body_not_json",
+  "note": "JSON 이 아닌 본문",
+  "requested_at": "2026-10-07T15:19:31+09:00",
+  "request": {
+    "method": "POST",
+    "path": "/predict",
+    "json": null,
+    "files": null,
+    "body_note": "본문 문자열: not json"
+  },
+  "response": {
+    "status": 422,
+    "content_type": "application/json",
+    "elapsed_ms": 0.5,
+    "body": {
+      "detail": [
+        {
+          "type": "json_invalid",
+          "loc": [
+            "body",
+            0
+          ],
+          "msg": "JSON decode error",
+          "input": {},
+          "ctx": {
+            "error": "Expecting value"
+          }
+        }
+      ]
+    }
+  }
+}

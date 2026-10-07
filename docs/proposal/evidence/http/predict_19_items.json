@@ -1,0 +1,191 @@
+{
+  "case": "predict_19_items",
+  "note": "시퀀스가 19개",
+  "requested_at": "2026-10-07T15:19:31+09:00",
+  "request": {
+    "method": "POST",
+    "path": "/predict",
+    "json": {
+      "sequence": [
+        {
+          "close": 265.146,
+          "volume": 4
+        },
+        {
+          "close": 45.42,
+          "volume": 15
+        },
+        {
+          "close": 231.726,
+          "volume": 16
+        },
+        {
+          "close": 262.698,
+          "volume": 15
+        },
+        {
+          "close": 249.714,
+          "volume": 13
+        },
+        {
+          "close": 169.11,
+          "volume": 16
+        },
+        {
+          "close": 243.468,
+          "volume": 15
+        },
+        {
+          "close": 189.516,
+          "volume": 17
+        },
+        {
+          "close": 273.84,
+          "volume": 17
+        },
+        {
+          "close": 268.452,
+          "volume": 17
+        },
+        {
+          "close": 278.286,
+          "volume": 17
+        },
+        {
+          "close": 268.326,
+          "volume": 17
+        },
+        {
+          "close": 265.8,
+          "volume": 15
+        },
+        {
+          "close": 214.044,
+          "volume": 17
+        },
+        {
+          "close": 265.386,
+          "volume": 1
+        },
+        {
+          "close": 11.532,
+          "volume": 17
+        },
+        {
+          "close": 247.932,
+          "volume": 15
+        },
+        {
+          "close": 80.244,
+          "volume": 10
+        },
+        {
+          "close": 94.848,
+          "volume": 18
+        }
+      ]
+    },
+    "files": null,
+    "body_note": null
+  },
+  "response": {
+    "status": 422,
+    "content_type": "application/json",
+    "elapsed_ms": 4.4,
+    "body": {
+      "detail": [
+        {
+          "type": "too_short",
+          "loc": [
+            "body",
+            "sequence"
+          ],
+          "msg": "List should have at least 20 items after validation, not 19",
+          "input": [
+            {
+              "close": 265.146,
+              "volume": 4
+            },
+            {
+              "close": 45.42,
+              "volume": 15
+            },
+            {
+              "close": 231.726,
+              "volume": 16
+            },
+            {
+              "close": 262.698,
+              "volume": 15
+            },
+            {
+              "close": 249.714,
+              "volume": 13
+            },
+            {
+              "close": 169.11,
+              "volume": 16
+            },
+            {
+              "close": 243.468,
+              "volume": 15
+            },
+            {
+              "close": 189.516,
+              "volume": 17
+            },
+            {
+              "close": 273.84,
+              "volume": 17
+            },
+            {
+              "close": 268.452,
+              "volume": 17
+            },
+            {
+              "close": 278.286,
+              "volume": 17
+            },
+            {
+              "close": 268.326,
+              "volume": 17
+            },
+            {
+              "close": 265.8,
+              "volume": 15
+            },
+            {
+              "close": 214.044,
+              "volume": 17
+            },
+            {
+              "close": 265.386,
+              "volume": 1
+            },
+            {
+              "close": 11.532,
+              "volume": 17
+            },
+            {
+              "close": 247.932,
+              "volume": 15
+            },
+            {
+              "close": 80.244,
+              "volume": 10
+            },
+            {
+              "close": 94.848,
+              "volume": 18
+            }
+          ],
+          "ctx": {
+            "field_type": "List",
+            "min_length": 20,
+            "actual_length": 19
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "case": "predict_get_not_allowed",
+  "note": "POST 전용 경로를 GET 으로 호출",
+  "requested_at": "2026-10-07T15:19:31+09:00",
+  "request": {
+    "method": "GET",
+    "path": "/predict",
+    "json": null,
+    "files": null,
+    "body_note": null
+  },
+  "response": {
+    "status": 404,
+    "content_type": "application/json",
+    "elapsed_ms": 0.7,
+    "body": {
+      "detail": "Not Found"
+    }
+  }
+}

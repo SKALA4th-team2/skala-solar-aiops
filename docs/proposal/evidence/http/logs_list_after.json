@@ -1,0 +1,23 @@
+{
+  "case": "logs_list_after",
+  "note": "로그 목록",
+  "requested_at": "2026-10-07T15:21:18+09:00",
+  "request": {
+    "method": "GET",
+    "path": "/logs",
+    "json": null,
+    "files": null,
+    "body_note": null
+  },
+  "response": {
+    "status": 200,
+    "content_type": "application/json",
+    "elapsed_ms": 0.9,
+    "body": [
+      {
+        "name": "aiops.log",
+        "size": 0
+      }
+    ]
+  }
+}

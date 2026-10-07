@@ -1,0 +1,23 @@
+{
+  "case": "upload_dates_gap_duplicate",
+  "note": "5일이 빠지고 한 날짜가 두 번",
+  "requested_at": "2026-10-07T15:43:07+09:00",
+  "request": {
+    "method": "POST",
+    "path": "/data/upload",
+    "json": null,
+    "files": {
+      "file": "업로드 파일의 마지막 60행을 고친 것: 5일이 빠지고 한 날짜가 두 번"
+    },
+    "body_note": null
+  },
+  "response": {
+    "status": 200,
+    "content_type": "application/json",
+    "elapsed_ms": 4.5,
+    "body": {
+      "filename": "haic_1791355387.csv",
+      "rows": 55
+    }
+  }
+}

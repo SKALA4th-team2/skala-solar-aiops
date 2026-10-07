@@ -1,0 +1,26 @@
+{
+  "case": "data_status_after_negative_values",
+  "note": "발전량 -10, 일사량 예보 -1 이 한 행씩 업로드 뒤의 상태 조회",
+  "requested_at": "2026-10-07T15:43:08+09:00",
+  "request": {
+    "method": "GET",
+    "path": "/data/status",
+    "json": null,
+    "files": null,
+    "body_note": null
+  },
+  "response": {
+    "status": 200,
+    "content_type": "application/json",
+    "elapsed_ms": 2.8,
+    "body": {
+      "exists": true,
+      "filename": "haic_1791355388.csv",
+      "rows": 60,
+      "start_date": "2025-12-30",
+      "end_date": "2026-02-27",
+      "min_close": -10.0,
+      "max_close": 292.674
+    }
+  }
+}

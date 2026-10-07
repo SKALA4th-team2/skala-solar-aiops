@@ -1,0 +1,12 @@
+# 정리본: 경로를 짧은 표기로 바꾸고, 프레임워크 내부 호출을 한 줄로 접고, 진행 막대와 MLflow 안내 줄을 지웠다.
+# 결과와 오류 문장은 원본 그대로다. 정리 규칙은 tools/proposal/sanitize_logs.py 에 있다.
+2026-10-07 15:19:50 KST
+2026/10/07 15:19:57 INFO mlflow.store.db.utils: Creating initial MLflow database tables...
+2026/10/07 15:19:57 INFO mlflow.store.db.utils: Updating database tables
+Successfully registered model 'HAIC_Predictor'.
+2026/10/07 15:20:10 WARNING mlflow.tracking._model_registry.fluent: Run with id bc775708feab4a1da721ac4ed308f4ad has no artifacts at artifact path 'model', registering model based on models:/m-6d14d4a5bbf2498a9a06270bb5f1a14b instead
+Created version '1' of model 'HAIC_Predictor'.
+(검증용 사본)/project/serving_app/train_and_register.py:62: FutureWarning: ``mlflow.tracking.client.MlflowClient.transition_model_version_stage`` is deprecated since 2.9.0. Model registry stages will be removed in a future major release. To learn more about the deprecation of model registry stages, see our migration guide here: https://mlflow.org/docs/latest/model-registry.html#migrating-from-stages
+  MlflowClient().transition_model_version_stage(name=MODEL_NAME, version=v.version, stage="Production")
+[GATE PASSED] rmse=2.03 -> HAIC_Predictor v1 promoted to Production
+종료 코드: 0
