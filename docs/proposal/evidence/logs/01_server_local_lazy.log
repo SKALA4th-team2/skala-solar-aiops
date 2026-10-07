@@ -1,0 +1,257 @@
+# 정리본: 경로를 짧은 표기로 바꾸고, 프레임워크 내부 호출을 한 줄로 접고, 진행 막대와 MLflow 안내 줄을 지웠다.
+# 결과와 오류 문장은 원본 그대로다. 정리 규칙은 tools/proposal/sanitize_logs.py 에 있다.
+INFO:     Started server process [45510]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8077 (Press CTRL+C to quit)
+[lazy] 모델은 첫 /predict 요청이 들어올 때 로드됩니다.
+INFO:     127.0.0.1:58557 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58559 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58560 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58561 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58562 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58563 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58564 - "GET /logs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58565 - "GET /logs/aiops.log HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58566 - "GET /logs/no-such-file.log HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58567 - "GET /no-such-path HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58568 - "GET /predict HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58569 - "POST /predict HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  ... (프레임워크 내부 호출 26개 생략)
+  File "(검증용 사본)/project/serving_app/routers/predict.py", line 44, in predict
+    model = model_loader.get_model()
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "(검증용 사본)/project/serving_app/model_loader.py", line 167, in get_model
+    if ___:
+       ^^^
+NameError: name '___' is not defined
+INFO:     127.0.0.1:58570 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58571 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58572 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58573 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58574 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58575 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58576 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58577 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58578 - "POST /predict/batch-test HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  ... (프레임워크 내부 호출 26개 생략)
+  File "(검증용 사본)/project/serving_app/routers/predict.py", line 72, in batch_test
+    model = model_loader.get_model()
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "(검증용 사본)/project/serving_app/model_loader.py", line 167, in get_model
+    if ___:
+       ^^^
+NameError: name '___' is not defined
+INFO:     127.0.0.1:58579 - "POST /predict/batch-test HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58580 - "POST /predict/batch-test HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58586 - "POST /data/upload HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58587 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58598 - "POST /data/upload HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:58599 - "POST /data/upload HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:58600 - "POST /data/upload HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:58601 - "POST /data/upload HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58603 - "POST /data/upload HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58604 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58619 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58620 - "POST /predict HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  ... (프레임워크 내부 호출 26개 생략)
+  File "(검증용 사본)/project/serving_app/routers/predict.py", line 44, in predict
+    model = model_loader.get_model()
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "(검증용 사본)/project/serving_app/model_loader.py", line 167, in get_model
+    if ___:
+       ^^^
+NameError: name '___' is not defined
+INFO:     127.0.0.1:58621 - "POST /predict/batch-test HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  ... (프레임워크 내부 호출 26개 생략)
+  File "(검증용 사본)/project/serving_app/routers/predict.py", line 72, in batch_test
+    model = model_loader.get_model()
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "(검증용 사본)/project/serving_app/model_loader.py", line 167, in get_model
+    if ___:
+       ^^^
+NameError: name '___' is not defined
+INFO:     127.0.0.1:58622 - "GET /logs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58623 - "GET /logs/aiops.log HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58625 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58626 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58627 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58628 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58629 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58630 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58631 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58632 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58633 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58634 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58635 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58636 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58637 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58638 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58639 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58640 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58641 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58642 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58643 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58644 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58645 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58646 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58647 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58648 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58649 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58650 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58651 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58652 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58653 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58654 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58655 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58656 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58657 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58658 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58659 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58660 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58661 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58662 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58663 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58664 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58665 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58666 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58667 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58668 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58669 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58670 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58671 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58672 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58673 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58674 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58675 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58676 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58677 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58678 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58679 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58680 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58681 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58682 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58683 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58684 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58685 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58686 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58687 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58688 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58689 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58690 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58691 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58692 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58693 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58694 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58695 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58696 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58697 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58698 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58699 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58700 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58701 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58702 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58703 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58704 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58705 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58706 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58707 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58708 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58709 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58710 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58711 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58712 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58713 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58714 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58715 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58716 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58717 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58718 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58719 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58720 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58721 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58722 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58723 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58724 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58725 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58726 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58727 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58728 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58729 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58731 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58732 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58733 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58734 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58735 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58736 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58737 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58738 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58739 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58740 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58741 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58742 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58743 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58744 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58745 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58746 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58747 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58748 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58749 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58750 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58751 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58752 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58753 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58754 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58755 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58756 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58757 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58758 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58759 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58760 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58761 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58762 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58763 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58764 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58765 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58766 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58767 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58768 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58769 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58770 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58771 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58772 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58773 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58774 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58775 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58776 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58777 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58778 - "GET /data/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58781 - "POST /predict/batch-test HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  ... (프레임워크 내부 호출 26개 생략)
+  File "(검증용 사본)/project/serving_app/routers/predict.py", line 72, in batch_test
+    model = model_loader.get_model()
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "(검증용 사본)/project/serving_app/model_loader.py", line 167, in get_model
+    if ___:
+       ^^^
+NameError: name '___' is not defined
+INFO:     127.0.0.1:58793 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58793 - "GET /logs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58793 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58833 - "GET /logs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58842 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58842 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [45510]

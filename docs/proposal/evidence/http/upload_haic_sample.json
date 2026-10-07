@@ -1,0 +1,23 @@
+{
+  "case": "upload_haic_sample",
+  "note": "HAIC 예시 파일(스켈레톤에 들어 있던 것)",
+  "requested_at": "2026-10-07T15:19:39+09:00",
+  "request": {
+    "method": "POST",
+    "path": "/data/upload",
+    "json": null,
+    "files": {
+      "file": "project/data/sample_haic_prices.csv"
+    },
+    "body_note": null
+  },
+  "response": {
+    "status": 200,
+    "content_type": "application/json",
+    "elapsed_ms": 6.2,
+    "body": {
+      "filename": "haic_1791353979.csv",
+      "rows": 756
+    }
+  }
+}

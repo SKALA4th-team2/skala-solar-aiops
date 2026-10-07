@@ -1,0 +1,64 @@
+커밋 58d6ff8, project/ 에 커밋되지 않은 변경: 없음
+
+[1] 남아 있는 빈칸: 14줄, ___ 16개
+  scripts/train_baseline_v1.py:99  (2개)  model.fit(___, ___, epochs=BASE_EPOCHS, verbose=0)
+  serving_app/model_loader.py:74  (1개)  scaled = [self.scaler.___(p["close"], p["volume"]) for p in sequence]
+  serving_app/model_loader.py:88  (1개)  return self.scaler.___(pred_scaled)
+  serving_app/model_loader.py:125  (1개)  scaler = ___
+  serving_app/model_loader.py:167  (1개)  if ___:
+  serving_app/model_loader.py:169  (1개)  _model_cache = ___
+  serving_app/monitoring/drift_detector.py:58  (1개)  errors_sq = [(___) ** 2 for p in recent_predictions]
+  serving_app/monitoring/drift_detector.py:59  (1개)  return math.sqrt(___)
+  serving_app/monitoring/drift_detector.py:73  (1개)  if ___:
+  serving_app/monitoring/retrain_trigger.py:65  (1개)  rows = load_rows(latest_upload())[-(___):]
+  serving_app/monitoring/retrain_trigger.py:75  (1개)  result = ___
+  serving_app/monitoring/retrain_trigger.py:84  (1개)  if ___:
+  serving_app/routers/predict.py:85  (2개)  window = prices[___ : ___]
+  serving_app/routers/predict.py:88  (1개)  actual = prices[___]
+
+[2] 정책을 정하는 상수
+  serving_app/train_and_register.py:37  RMSE_GATE = 4.00
+  serving_app/train_and_register.py:38  MODEL_NAME = "HAIC_Predictor"
+  serving_app/train_and_register.py:40  BASE_EPOCHS = 100
+  serving_app/train_and_register.py:41  FINE_TUNE_EPOCHS = 10
+  serving_app/train_and_register.py:42  FINE_TUNE_LR = 1e-4
+  serving_app/train_and_register.py:34  SEED = 42
+  serving_app/monitoring/drift_detector.py:22  RMSE_THRESHOLD = 4.00
+  serving_app/monitoring/drift_detector.py:23  WINDOW_SIZE = 21
+  data/features.py:16  SEQ_LEN = 20
+  serving_app/lstm_model.py:14  N_FEATURES = 2
+  serving_app/routers/predict.py:30  SIMULATED_VOLUME = 1_200_000
+  serving_app/routers/data.py:23  REQUIRED_COLUMNS = {"Date", "Close", "Volume"}
+  serving_app/routers/data.py:24  MIN_ROWS = SEQ_LEN + WINDOW_SIZE
+  serving_app/model_loader.py:40  MLFLOW_MODEL_URI = "models:/HAIC_Predictor/Production"
+  serving_app/model_loader.py:38  LOCAL_MODEL_PATH = "serving_app/models/haic_v1.keras"
+  serving_app/model_loader.py:39  SCALER_PATH = "serving_app/models/scaler.pkl"
+  scripts/simulate_drift.py:60  BATCH_N = 41
+  scripts/simulate_drift.py:66  NORMAL_SIGMA = 0.012
+  scripts/simulate_drift.py:67  DRIFT_SIGMA = NORMAL_SIGMA * 3
+  serving_app/static/index.html:203  const WINDOW_SIZE = 21;
+  serving_app/static/index.html:204  const RMSE_THRESHOLD = 4.0;
+  serving_app/static/index.html:210  const DEFAULT_BASE_PRICE = 165.0;
+
+[3] 주가 예측 표현이 남은 곳 (낱말이 나온 횟수)
+  HAIC: 43회, 파일 13개
+  종가: 25회, 파일 7개
+  거래일: 18회, 파일 7개
+  거래량: 9회, 파일 5개
+  달러: 23회, 파일 4개
+  $4: 15회, 파일 6개
+  주가: 2회, 파일 1개
+
+[4] 모델 캐시(_model_cache)를 건드리는 코드
+  serving_app/model_loader.py:42  _model_cache = None
+  serving_app/model_loader.py:144  global _model_cache
+  serving_app/model_loader.py:145  _model_cache = model
+  serving_app/model_loader.py:158  global _model_cache
+  serving_app/model_loader.py:169  _model_cache = ___
+  serving_app/model_loader.py:171  return _model_cache
+  serving_app/routers/health.py:11  model_loaded = model_loader._model_cache is not None
+  model_loader.py 밖에서 캐시를 바꾸는 줄: 0개
+
+[5] 응답의 model_version 이 되는 값
+  serving_app/model_loader.py:99  return LoadedModel(keras_model=keras_model, scaler=scaler, version="v1-local")
+  serving_app/model_loader.py:126  return LoadedModel(keras_model=keras_model, scaler=scaler, version="production")

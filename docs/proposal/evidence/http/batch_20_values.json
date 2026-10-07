@@ -1,0 +1,79 @@
+{
+  "case": "batch_20_values",
+  "note": "값이 20개(최소 21개 미만)",
+  "requested_at": "2026-10-07T15:19:31+09:00",
+  "request": {
+    "method": "POST",
+    "path": "/predict/batch-test",
+    "json": {
+      "prices": [
+        188.166,
+        60.54,
+        223.914,
+        259.65,
+        265.596,
+        159.708,
+        255.36,
+        235.2,
+        103.56,
+        249.828,
+        220.452,
+        228.354,
+        147.474,
+        242.406,
+        260.22,
+        241.176,
+        261.138,
+        247.98,
+        224.136,
+        181.662
+      ]
+    },
+    "files": null,
+    "body_note": null
+  },
+  "response": {
+    "status": 422,
+    "content_type": "application/json",
+    "elapsed_ms": 0.6,
+    "body": {
+      "detail": [
+        {
+          "type": "too_short",
+          "loc": [
+            "body",
+            "prices"
+          ],
+          "msg": "List should have at least 21 items after validation, not 20",
+          "input": [
+            188.166,
+            60.54,
+            223.914,
+            259.65,
+            265.596,
+            159.708,
+            255.36,
+            235.2,
+            103.56,
+            249.828,
+            220.452,
+            228.354,
+            147.474,
+            242.406,
+            260.22,
+            241.176,
+            261.138,
+            247.98,
+            224.136,
+            181.662
+          ],
+          "ctx": {
+            "field_type": "List",
+            "min_length": 21,
+            "actual_length": 20
+          }
+        }
+      ]
+    }
+  }
+}

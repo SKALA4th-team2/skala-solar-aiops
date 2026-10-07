@@ -2,7 +2,7 @@
 
 대시보드에 올릴 업로드용 CSV 와 그 바탕이 되는 자료를 둔다. `project/data/` 는 서빙 앱의 코드 폴더이므로 데이터는 여기에 따로 둔다.
 
-어느 파일을 쓸지는 아직 정하지 않았다. [`../docs/decisions/`](../docs/decisions/)의 "두 번째 입력"과 "시연에 쓸 데이터 파일과 구간"이 정해지면 이 문서 맨 위에 적는다.
+어느 파일을 쓸지는 아직 확정하지 않았다. 2026-10-07 현재 예측에는 `hadong_upload_forecast_jma.csv` 를, 지난 뒤의 감시에는 `hadong_daily_full.csv` 를 쓰자는 제안이 결정 기록 [0002](../docs/decisions/0002-inputs-and-prediction-time.md)와 [0009](../docs/decisions/0009-demo-plan.md)에 있다. 확정되면 이 문단을 바꾼다.
 
 ## 업로드 파일
 
@@ -13,7 +13,7 @@
 | 파일 | 행 수와 기간 | `Volume` 에 든 값 | 예측 시점에 받을 수 있는가 |
 | --- | --- | --- | --- |
 | [`hadong_upload.csv`](hadong_upload.csv) | 4,746행, 2013-01-02 ~ 2025-12-30 | 하루 전의 광양시(266) 관측 일사량 (MJ/m2) | 받을 수 있다 |
-| [`hadong_upload_forecast_jma.csv`](hadong_upload_forecast_jma.csv) | 1,337행, 2022-07-02 ~ 2026-02-27 | 다음 날에 대한 하루 전 일사량 예보 (MJ/m2). Open-Meteo 가 보관한 JMA 예보 | 전날 낮부터 받을 수 있는 것으로 보인다 (이틀 치만 대조한 추정) |
+| [`hadong_upload_forecast_jma.csv`](hadong_upload_forecast_jma.csv) | 1,337행, 2022-07-02 ~ 2026-02-27 | 다음 날에 대한 하루 전 일사량 예보 (MJ/m2). Open-Meteo Previous Runs API 를 모델을 지정하지 않고 부른 값(Best Match)이다. 표본 대조에서는 일본 기상청(JMA) MSM 과 같았지만 전 기간이 JMA 라는 근거는 없다. 파일 이름의 `jma` 는 그 표본에서 온 것이다([T3](../docs/research/merged/T3-weather-input.md)) | 전날 낮부터 받을 수 있는 것으로 보인다 (이틀 치만 대조한 추정) |
 | [`hadong_upload_forecast_proxy.csv`](hadong_upload_forecast_proxy.csv) | 4,746행, 2013-01-02 ~ 2025-12-30 | 다음 날의 광양시 **실제 관측** 일사량 (MJ/m2) | **받을 수 없다.** 예보가 완벽하다고 가정한 상한이다 |
 | [`alt/hadong_upload_sunshine.csv`](alt/hadong_upload_sunshine.csv) | 위와 같음 | 하루 전의 광양시 관측 일조 시간 (시간) | 받을 수 있다 |
 | [`alt/hadong_upload_forecast_proxy_sunshine.csv`](alt/hadong_upload_forecast_proxy_sunshine.csv) | 위와 같음 | 다음 날의 광양시 실제 관측 일조 시간 (시간) | **받을 수 없다.** 상한이다 |

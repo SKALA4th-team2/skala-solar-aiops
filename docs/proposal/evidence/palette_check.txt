@@ -1,0 +1,15 @@
+# 그림의 구분용 두 색(파랑 #2563eb, 주황 #d97706)을 색 검증 스크립트로 확인한 출력이다.
+# 스크립트는 그림을 만든 작업 도구에 들어 있던 것이고 이 저장소에는 없다. 밝은 바탕 기준이다.
+# 회색(#9ca3af)은 참고용 막대에만 쓰고 막대마다 이름을 붙였으므로 구분용 색으로 검사하지 않았다.
+
+
+Palette (light, surface #fcfcfb, categorical): 2 slots
+  [PASS] Lightness band         all 2 inside L 0.43–0.77
+  [PASS] Chroma floor           all 2 >= 0.1
+  [PASS] CVD separation         worst adjacent #d97706↔#2563eb ΔE 32.3 (protan) · tritan 29.3
+  [PASS] Normal-vision floor    worst adjacent #d97706↔#2563eb ΔE 38.3 (normal)
+  [PASS] Contrast vs surface    all 2 >= 3:1
+
+  → ALL CHECKS PASS  (CVD in the 6–8 floor band is legal ONLY with secondary encoding: direct labels, gaps, or texture)
+  scope: categorical palettes only. For a lone status/text color check WCAG text contrast; for a sequential ramp, lightness monotonicity.
+

@@ -1,0 +1,21 @@
+{
+  "case": "data_status_after_empty_value",
+  "note": "발전량 칸 하나가 비어 있음 업로드 뒤의 상태 조회",
+  "requested_at": "2026-10-07T15:43:11+09:00",
+  "request": {
+    "method": "GET",
+    "path": "/data/status",
+    "json": null,
+    "files": null,
+    "body_note": null
+  },
+  "response": {
+    "status": 500,
+    "content_type": "text/plain; charset=utf-8",
+    "elapsed_ms": 2.2,
+    "body": {
+      "length": 21,
+      "head": "Internal Server Error"
+    }
+  }
+}

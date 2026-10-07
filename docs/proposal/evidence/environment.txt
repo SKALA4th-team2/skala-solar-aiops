@@ -1,0 +1,52 @@
+# 검증 환경 기록
+기록 시각: 2026-10-07 16:59:06 +0900
+만든 방법: tools/proposal/record_environment.py
+
+[저장소]
+커밋: 58d6ff8 (docs(research): 적량면 관측 자료 검토와 센서 계단 실험을 추가한다 (#2))
+project/ 에 커밋되지 않은 변경: 0개
+project/.venv 존재 여부: 없음
+
+[운영체제]
+macOS 26.5.2 , arm64, Darwin 25.5.0
+
+[이 스크립트를 돌린 파이썬] 저장소 밖의 가상환경(개인 실습 폴더의 것)
+python 3.11.15
+fastapi==0.141.1  (requirements.txt: 0.141.1, 일치)
+uvicorn==0.46.0  (requirements.txt: 0.46.0, 일치)
+pydantic==2.13.3  (requirements.txt: 2.13.3, 일치)
+numpy==2.4.4  (requirements.txt: 2.4.4, 일치)
+tensorflow==2.21.0  (requirements.txt: 2.21.0, 일치)
+mlflow==3.16.0  (requirements.txt: 3.16.0, 일치)
+requests==2.33.1  (requirements.txt: 2.33.1, 일치)
+python-multipart==0.0.20  (requirements.txt: 0.0.20, 일치)
+keras==3.15.1  (requirements.txt 에 직접 적히지 않은 패키지)
+starlette==1.7.0  (requirements.txt 에 직접 적히지 않은 패키지)
+httptools==0.8.0  (requirements.txt 에 직접 적히지 않은 패키지)
+websockets==17.2  (requirements.txt 에 직접 적히지 않은 패키지)
+pandas==3.0.6  (requirements.txt 에 직접 적히지 않은 패키지)
+
+[컨테이너 도구]
+docker client 29.6.2, server 29.6.2
+Docker Compose version v5.3.1
+
+[docker images solar-aiops-verify:58d6ff8] 빌드가 실패한 뒤 이미지가 남아 있는지
+(해당 이름의 이미지 없음)
+
+[docker compose -f serving_app/docker-compose.yml config] 검증용 사본의 project/ 에서 실행. 경로만 짧게 바꿨다
+name: serving_app
+services:
+  serving-app:
+    build:
+      context: (검증용 사본)/project
+      dockerfile: serving_app/Dockerfile
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 8099
+        published: "8099"
+        protocol: tcp
+networks:
+  default:
+    name: serving_app_default

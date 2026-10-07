@@ -1,0 +1,22 @@
+{
+  "case": "upload_missing_columns",
+  "note": "Date·Close·Volume 열이 없는 분석용 파일",
+  "requested_at": "2026-10-07T15:20:32+09:00",
+  "request": {
+    "method": "POST",
+    "path": "/data/upload",
+    "json": null,
+    "files": {
+      "file": "datasets/hadong_daily_full.csv"
+    },
+    "body_note": null
+  },
+  "response": {
+    "status": 400,
+    "content_type": "application/json",
+    "elapsed_ms": 2.0,
+    "body": {
+      "detail": "CSV에 ['Close', 'Date', 'Volume'] 컬럼이 모두 있어야 합니다."
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "case": "upload_empty_value",
+  "note": "발전량 칸 하나가 비어 있음",
+  "requested_at": "2026-10-07T15:43:11+09:00",
+  "request": {
+    "method": "POST",
+    "path": "/data/upload",
+    "json": null,
+    "files": {
+      "file": "업로드 파일의 마지막 60행을 고친 것: 발전량 칸 하나가 비어 있음"
+    },
+    "body_note": null
+  },
+  "response": {
+    "status": 200,
+    "content_type": "application/json",
+    "elapsed_ms": 3.9,
+    "body": {
+      "filename": "haic_1791355391.csv",
+      "rows": 60
+    }
+  }
+}

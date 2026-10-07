@@ -1,0 +1,4 @@
+점검한 문서 23개: 링크 798개, 그림 14개, 표 175개, JSON 예시 12개, Mermaid 그림 5개
+문제 0건
+참고 0건
+docs/research, tools/verify, tools/jeokryang, project 에 커밋되지 않은 변경: 없음

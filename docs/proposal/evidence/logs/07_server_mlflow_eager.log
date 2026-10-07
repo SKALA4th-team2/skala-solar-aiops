@@ -1,0 +1,22 @@
+# 정리본: 경로를 짧은 표기로 바꾸고, 프레임워크 내부 호출을 한 줄로 접고, 진행 막대와 MLflow 안내 줄을 지웠다.
+# 결과와 오류 문장은 원본 그대로다. 정리 규칙은 tools/proposal/sanitize_logs.py 에 있다.
+2026-10-07 15:25:07 KST
+INFO:     Started server process [48943]
+INFO:     Waiting for application startup.
+ERROR:    Traceback (most recent call last):
+  ... (프레임워크 내부 호출 11개 생략)
+  File "(검증용 사본)/project/serving_app/main.py", line 50, in startup
+    model_loader.load_eager()
+  File "(검증용 사본)/project/serving_app/model_loader.py", line 142, in load_eager
+    model = _load_model()
+            ^^^^^^^^^^^^^
+  File "(검증용 사본)/project/serving_app/model_loader.py", line 133, in _load_model
+    return _load_from_mlflow()
+           ^^^^^^^^^^^^^^^^^^^
+  File "(검증용 사본)/project/serving_app/model_loader.py", line 125, in _load_from_mlflow
+    scaler = ___
+             ^^^
+NameError: name '___' is not defined
+
+ERROR:    Application startup failed. Exiting.
+종료 코드: 3

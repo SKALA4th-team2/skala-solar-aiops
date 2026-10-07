@@ -1,0 +1,22 @@
+{
+  "case": "upload_cp949",
+  "note": "CP949 로 저장된 원본 발전 실적",
+  "requested_at": "2026-10-07T15:20:32+09:00",
+  "request": {
+    "method": "POST",
+    "path": "/data/upload",
+    "json": null,
+    "files": {
+      "file": "datasets/raw/data_15043409.csv"
+    },
+    "body_note": null
+  },
+  "response": {
+    "status": 400,
+    "content_type": "application/json",
+    "elapsed_ms": 7.5,
+    "body": {
+      "detail": "UTF-8로 인코딩된 CSV 파일만 업로드할 수 있습니다."
+    }
+  }
+}

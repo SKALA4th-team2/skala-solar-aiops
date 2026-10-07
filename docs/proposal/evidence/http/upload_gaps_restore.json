@@ -1,0 +1,23 @@
+{
+  "case": "upload_gaps_restore",
+  "note": "점검을 마친 뒤 원래의 태양광 업로드 파일을 다시 올려 최신 파일을 되돌린다",
+  "requested_at": "2026-10-07T15:43:12+09:00",
+  "request": {
+    "method": "POST",
+    "path": "/data/upload",
+    "json": null,
+    "files": {
+      "file": "datasets/hadong_upload_forecast_jma.csv"
+    },
+    "body_note": null
+  },
+  "response": {
+    "status": 200,
+    "content_type": "application/json",
+    "elapsed_ms": 8.1,
+    "body": {
+      "filename": "haic_1791355392.csv",
+      "rows": 1337
+    }
+  }
+}

@@ -1,0 +1,475 @@
+{
+  "case": "batch_wrong_type",
+  "note": "숫자가 아닌 값",
+  "requested_at": "2026-10-07T15:19:31+09:00",
+  "request": {
+    "method": "POST",
+    "path": "/predict/batch-test",
+    "json": {
+      "prices": [
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a"
+      ]
+    },
+    "files": null,
+    "body_note": null
+  },
+  "response": {
+    "status": 422,
+    "content_type": "application/json",
+    "elapsed_ms": 0.9,
+    "body": {
+      "detail": [
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            0
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            1
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            2
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            3
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            4
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            5
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            6
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            7
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            8
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            9
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            10
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            11
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            12
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            13
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            14
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            15
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            16
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            17
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            18
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            19
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            20
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            21
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            22
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            23
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            24
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            25
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            26
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            27
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            28
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            29
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            30
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            31
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            32
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            33
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            34
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            35
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            36
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            37
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            38
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            39
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        },
+        {
+          "type": "float_parsing",
+          "loc": [
+            "body",
+            "prices",
+            40
+          ],
+          "msg": "Input should be a valid number, unable to parse string as a number",
+          "input": "a"
+        }
+      ]
+    }
+  }
+}

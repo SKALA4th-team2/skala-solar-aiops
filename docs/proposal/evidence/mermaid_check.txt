@@ -1,0 +1,6 @@
+Mermaid mermaid@11 로 해석하고 그렸다. 블록 5개 가운데 실패 0개
+  통과  docs/proposal/1-pain-point.md:62  flowchart-v2
+  통과  docs/proposal/4-architecture.md:31  flowchart-v2
+  통과  docs/proposal/4-architecture.md:110  sequence
+  통과  docs/proposal/4-architecture.md:150  flowchart-v2
+  통과  docs/proposal/4-architecture.md:164  flowchart-v2

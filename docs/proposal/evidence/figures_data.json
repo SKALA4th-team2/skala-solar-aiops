@@ -1,0 +1,85 @@
+{
+  "pi_timeline": {
+    "window_days": 30,
+    "min_valid_days": 21,
+    "period": "2019-01-01 ~ 2025-12-31",
+    "level_2021-05-18": {
+      "pre365": 0.9817,
+      "post365": 0.8985,
+      "change_pct": -8.5
+    },
+    "level_2024-03-22": {
+      "pre365": 0.9007,
+      "post365": 0.9532,
+      "change_pct": 5.8
+    }
+  },
+  "quality_test264": {
+    "period": "2025-06-09 ~ 2026-02-27",
+    "n": 264,
+    "rmse_kwh": {
+      "어제 값": 82.44,
+      "7일 평균": 71.65,
+      "20일 평균": 74.03,
+      "규칙C": 45.26
+    },
+    "measured_lstm_seed42_rmse_kwh": 41.5888,
+    "proposed_relative_gate_kwh": 47.53
+  },
+  "pi_deviation_scenes": {
+    "baseline_2021-04-01": 0.9809,
+    "baseline_2025-02-28": 0.950992,
+    "deviation_pct": {
+      "2021_normal": -0.8,
+      "2021_drift": -14.6,
+      "2025_no_injection": -2.2,
+      "2025_x0.86": -15.6
+    },
+    "proposed_limit_pct": -7.5
+  },
+  "sensor_ratio": {
+    "months_plotted": 113,
+    "min": 0.49,
+    "max": 0.89
+  },
+  "hourly_completion": {
+    "days": 4768,
+    "cum_pct": {
+      "10시": 15.81,
+      "14시": 70.54,
+      "17시": 97.59,
+      "19시": 99.99,
+      "20시": 100.0
+    }
+  },
+  "threshold_tradeoff": {
+    "baseline_2025-02-28": 0.950992,
+    "batches": 37,
+    "limits_pct": [
+      -5.0,
+      -7.5,
+      -10.0,
+      -12.5
+    ],
+    "flagged_pct_by_factor": {
+      "0.86": [
+        100.0,
+        91.9,
+        78.4,
+        67.6
+      ],
+      "0.915": [
+        75.7,
+        67.6,
+        54.1,
+        27.0
+      ],
+      "1.0": [
+        18.9,
+        2.7,
+        0.0,
+        0.0
+      ]
+    }
+  }
+}

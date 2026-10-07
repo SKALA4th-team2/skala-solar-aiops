@@ -1,0 +1,20 @@
+{
+  "measured_at": "2026-10-07T15:44:15+09:00",
+  "what": "모델을 불러오는 시간과 한 건 계산 시간. 엔드포인트 응답 시간이 아니다",
+  "model_uri": "models:/HAIC_Predictor/Production",
+  "input_shape": [
+    1,
+    20,
+    2
+  ],
+  "import_mlflow_tensorflow_s": 6.142,
+  "load_model_s": 0.893,
+  "first_predict_ms": 251.5,
+  "repeat": {
+    "n": 50,
+    "median_ms": 32.7,
+    "p95_ms": 73.4,
+    "min_ms": 27.8,
+    "max_ms": 216.2
+  }
+}

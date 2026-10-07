@@ -1,0 +1,26 @@
+{
+  "case": "data_status_haic",
+  "note": "HAIC 업로드 뒤 상태",
+  "requested_at": "2026-10-07T15:19:39+09:00",
+  "request": {
+    "method": "GET",
+    "path": "/data/status",
+    "json": null,
+    "files": null,
+    "body_note": null
+  },
+  "response": {
+    "status": 200,
+    "content_type": "application/json",
+    "elapsed_ms": 1.7,
+    "body": {
+      "exists": true,
+      "filename": "haic_1791353979.csv",
+      "rows": 756,
+      "start_date": "2026-01-02",
+      "end_date": "2028-11-24",
+      "min_close": 105.61,
+      "max_close": 195.17
+    }
+  }
+}

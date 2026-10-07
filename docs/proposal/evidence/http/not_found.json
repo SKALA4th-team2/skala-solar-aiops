@@ -1,0 +1,20 @@
+{
+  "case": "not_found",
+  "note": "없는 경로",
+  "requested_at": "2026-10-07T15:19:31+09:00",
+  "request": {
+    "method": "GET",
+    "path": "/no-such-path",
+    "json": null,
+    "files": null,
+    "body_note": null
+  },
+  "response": {
+    "status": 404,
+    "content_type": "application/json",
+    "elapsed_ms": 0.8,
+    "body": {
+      "detail": "Not Found"
+    }
+  }
+}
