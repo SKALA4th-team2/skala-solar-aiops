@@ -61,3 +61,6 @@
 ## 운영 경계
 
 현재시각의실시간예보가아닌2026-02-27까지보관자료재생. 지역격자JMA예보이며현장관측소아님. 예보실제공개시각미검증. API실행은 project/scripts/run_backend.py, 상세는 [운영안내](../../../backend-runbook.md).
+
+
+2026-10-08 후속 검증: Linux Docker에서 원본 재학습, 31개 승인 모델의 예측·자동 재학습·롤백·재시작 영속성을 확인했다. 실행 근거: https://github.com/SangMyeong5426/skala-solar-aiops/actions/runs/37643858606 . 위 Docker 미검증 표기는 10월 7일 당시의 기록이다.

@@ -18,9 +18,12 @@ def features(history,forecast,capacity):
 
 class HourlyModel:
     def __init__(self,model,scaler,manifest):
+        import tensorflow as tf
         self._keras_model=model;self.scaler=scaler;self.manifest=manifest;self.version=str(manifest['version']);self.source='mlflow'
+        # Trace once per immutable model version, allowing any batch length.
+        self._infer=tf.function(lambda x:model(x,training=False),input_signature=[tf.TensorSpec((None,24,9),tf.float32)])
     def predict_x(self,x):
-        x=np.asarray(x,dtype='float32');values=self._keras_model(x,training=False).numpy().reshape(-1,24)*self.scaler['capacity_kw']
+        x=np.asarray(x,dtype='float32');values=self._infer(x).numpy().reshape(-1,24)*self.scaler['capacity_kw']
         values=np.clip(values,0,self.scaler['capacity_kw']);values[x[:,:,1]<=.001]=0
         if not np.isfinite(values).all():raise ValueError('Nonfinite output')
         return values

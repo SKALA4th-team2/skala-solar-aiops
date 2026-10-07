@@ -39,3 +39,6 @@ SQLite 내구 작업 큐, 단일 작업자, OS 잠금, 같은 개소·종료시�
 프론트의 24/72/168시간 차트와 24시간 예측표, 업로드·단건예측·AIOps·이력은 동일 8077 서버를 사용한다. all-approved는 31개 가상 합계이며 동일 대상시간·전 구성원이 있어야 완전한 합계로 응답한다. 설비용량 합계 22.914065MW라는 사실만으로 제도 참여·인센티브를 확정하지 않는다.
 
 재현·검증: tools/hourly/{prepare,train,finalize,verify}.py, docs/proposal/evidence/hourly_20261007. Docker가 없는 PC라 컨테이너 실제 실행은 미검증이다.
+
+
+2026-10-08 후속 검증: Linux Docker에서 원본 재학습, 31개 승인 모델의 예측·자동 재학습·롤백·재시작 영속성을 확인했다. 실행 근거: https://github.com/SangMyeong5426/skala-solar-aiops/actions/runs/37643858606 . 위 Docker 미검증 표기는 10월 7일 당시의 기록이다.

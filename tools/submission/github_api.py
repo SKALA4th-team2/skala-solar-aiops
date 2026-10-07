@@ -17,7 +17,7 @@ def token():
 def api(endpoint,method='GET',body=None,upload=None,download=None):
     if not endpoint.startswith('/repos/'+REPO+'/') and endpoint!='/repos/'+REPO:raise ValueError('Only this repository is supported')
     base='https://uploads.github.com' if upload else 'https://api.github.com'
-    headers={'Authorization':'Bearer '+token(),'Accept':'application/octet-stream' if download else 'application/vnd.github+json','User-Agent':'solar-submission','X-GitHub-Api-Version':'2022-11-28'}
+    headers={'Authorization':'Bearer '+token(),'Accept':'application/vnd.github+json','User-Agent':'solar-submission','X-GitHub-Api-Version':'2022-11-28'}
     data=None
     if upload:data=Path(upload).read_bytes();headers['Content-Type']='application/zip'
     elif body is not None:data=json.dumps(body).encode();headers['Content-Type']='application/json'

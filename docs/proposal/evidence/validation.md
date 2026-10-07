@@ -64,14 +64,14 @@
 
 | 무엇 | 막힌 곳 (정확한 오류) | 고칠 곳 | 기획서 |
 | --- | --- | --- | --- |
-| 정상 입력의 예측 응답(200) | `model_loader.py`, line 167, `if ___:` → `NameError: name '___' is not defined` | 빈칸 4(`model_loader.py` 167, 169행). 그 뒤 빈칸 2, 3(74, 88행). 읽을 모델도 있어야 한다. 기본 설정은 빈칸 1 뒤에서 저장되는 `haic_v1.keras` 를, MLflow 설정은 빈칸 5 를 거친다 | [⑥ 장면 2](../6-demo.md#장면-2-정상-예측과-422) |
-| 예측의 응답 시간 | 위와 같다 | 위와 같다 | [② 6절](../2-solution-and-goals.md#6-운영-목표) |
-| 배치 예측과 드리프트 판정 | 위와 같다(빈칸 4 에서 멈췄다). 그 뒤 `model_loader.py` 74, 88행과 `routers/predict.py` 85, 88행 | 빈칸 2 ~ 4, 6 ~ 8. 드리프트로 판정되는 배치는 9 ~ 11 도 | [⑥ 장면 7](../6-demo.md#장면-7-변화가-없는-배치와-인위로-낮춘-배치) |
-| 경고 → 재학습 → 게이트의 로그 | 판정에 닿지 못한다 | 빈칸 7 ~ 11(`drift_detector.py` 58, 59, 73행, `retrain_trigger.py` 65, 75, 84행) | [⑥ 장면 8](../6-demo.md#장면-8-경고-재학습-게이트의-로그) |
-| 승격 전후의 서빙 버전, 재학습 뒤의 서빙 모델 | `model_loader.py`, line 125, `scaler = ___` → `NameError`. 응답의 버전이 고정된 글자다. 승격 뒤 메모리의 모델을 바꾸는 코드가 없다 | 빈칸 5. 그리고 [0008](../../decisions/0008-retraining-and-version-switch.md)의 제안 | [⑥ 장면 5](../6-demo.md#장면-5-승격-전과-후의-서빙-버전), [장면 9](../6-demo.md#장면-9-재학습-뒤의-서빙-모델) |
-| 컨테이너의 실행과 호출 | `train_baseline_v1.py`, line 99, `model.fit(___, ___, ...)` → `NameError`. 이미지 빌드의 마지막 단계다 | 빈칸 1 ~ 5 | [⑥ 장면 6](../6-demo.md#장면-6-컨테이너로-띄우고-호출한다) |
+| 정상 입력의 예측 응답(200) | `model_loader.py`, line 167, `if ___:` → `NameError: name '___' is not defined` | 빈칸 4(`model_loader.py` 167, 169행). 그 뒤 빈칸 2, 3(74, 88행). 읽을 모델도 있어야 한다. 기본 설정은 빈칸 1 뒤에서 저장되는 `haic_v1.keras` 를, MLflow 설정은 빈칸 5 를 거친다 | [⑥ 장면 2](../6-demo.md) |
+| 예측의 응답 시간 | 위와 같다 | 위와 같다 | [② 6절](../2-solution-and-goals.md) |
+| 배치 예측과 드리프트 판정 | 위와 같다(빈칸 4 에서 멈췄다). 그 뒤 `model_loader.py` 74, 88행과 `routers/predict.py` 85, 88행 | 빈칸 2 ~ 4, 6 ~ 8. 드리프트로 판정되는 배치는 9 ~ 11 도 | [⑥ 장면 7](../6-demo.md) |
+| 경고 → 재학습 → 게이트의 로그 | 판정에 닿지 못한다 | 빈칸 7 ~ 11(`drift_detector.py` 58, 59, 73행, `retrain_trigger.py` 65, 75, 84행) | [⑥ 장면 8](../6-demo.md) |
+| 승격 전후의 서빙 버전, 재학습 뒤의 서빙 모델 | `model_loader.py`, line 125, `scaler = ___` → `NameError`. 응답의 버전이 고정된 글자다. 승격 뒤 메모리의 모델을 바꾸는 코드가 없다 | 빈칸 5. 그리고 [0008](../../decisions/0008-retraining-and-version-switch.md)의 제안 | [⑥ 장면 5](../6-demo.md), [장면 9](../6-demo.md) |
+| 컨테이너의 실행과 호출 | `train_baseline_v1.py`, line 99, `model.fit(___, ___, ...)` → `NameError`. 이미지 빌드의 마지막 단계다 | 빈칸 1 ~ 5 | [⑥ 장면 6](../6-demo.md) |
 | 태양광용 상대 게이트, 성능 지표의 판정, 정지와 보류의 갈래 | 코드에 없다 | [0005](../../decisions/0005-deployment-gate.md) ~ [0007](../../decisions/0007-facility-vs-model-branch-and-alerts.md)의 제안 | [③](../3-operations-design.md) |
-| 가용성 | 한 달을 띄워 둔 적이 없다 | 재는 도구가 필요하다 | [② 6절](../2-solution-and-goals.md#6-운영-목표) |
+| 가용성 | 한 달을 띄워 둔 적이 없다 | 재는 도구가 필요하다 | [② 6절](../2-solution-and-goals.md) |
 
 ## 건별 기록
 

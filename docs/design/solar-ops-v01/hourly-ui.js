@@ -22,8 +22,9 @@ document.querySelectorAll("[data-icon]").forEach((element) => {
 
 const $=s=>document.querySelector(s);
 const $$=s=>Array.from(document.querySelectorAll(s));
-const state={plant:'hadong-sewage',period:24,data:null,job:null,epoch:0};
+const state={plant:'hadong-sewage',period:24,data:null,job:null,epoch:0,demo:false};
 const fmt=n=>Number.isFinite(n)?n.toLocaleString('ko-KR',{maximumFractionDigits:2}):'—';
+const eventStamp=s=>new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Seoul',dateStyle:'short',timeStyle:'medium'}).format(new Date(s));
 const stamp=s=>String(s).replace('T',' ').replace('+09:00',' KST');
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function text(s,v){const e=$(s);if(e)e.textContent=v;}
@@ -59,7 +60,7 @@ async function loadEnergy(){
  $$('[data-value]').forEach(e=>e.textContent='—');
  try{
   const d=await api(path('/ui/energy'));if(epoch!==state.epoch)return;state.data=d;
-  const p=d.plant,rows=d.records,last=rows.at(-1);text('#page-description',`${p.name} · ${fmt(p.capacity_kw)} kW · 시간별 LSTM`);
+  const p=d.plant,rows=d.records,last=rows.at(-1);text('#page-description',state.demo?'격리된 기능 검증 환경 · 합성 드리프트 · 성능 평가 자료 아님':`${p.name} · ${fmt(p.capacity_kw)} kW · 시간별 LSTM`);
   text('.sidebar-site strong',p.name);text('.sidebar-site div span',`${fmt(p.capacity_kw)} kW`);text('#plant-scope',`${p.name} · 1시간 구간`);
   value('replay-date',last.timestamp.slice(0,10));value('actual',fmt(last.actual));value('actual-date',stamp(last.timestamp));value('today-prediction',fmt(last.predicted));
   value('week-mean',fmt(rows.slice(-24).reduce((a,r)=>a+r.actual,0)/24));value('week-range','최근 확정 24시간');
@@ -92,9 +93,9 @@ async function loadHistory(){
  const pid=state.plant;
  try{
   const [history,alerts,current]=await Promise.all([api(path('/preview-api/dashboard/history')),api(path('/preview-api/dashboard/alerts')),api(path('/preview-api/dashboard/current'))]);if(pid!==state.plant)return;
-  $('.model-panel tbody').innerHTML=history.map(m=>`<tr><td>v${esc(m.version)}</td><td>${esc(m.created_at)}</td><td>${m.parent_version?'추가 학습':'최초 학습'}</td><td class="numeric">${fmt(m.gate.rmse_kwh)}</td><td>${m.version===current.version?'운영 중':'보관'}</td></tr>`).join('');
+  $('.model-panel tbody').innerHTML=history.map(m=>`<tr><td>v${esc(m.version)}</td><td>${esc(eventStamp(m.created_at))}</td><td>${m.parent_version?'추가 학습':'최초 학습'}</td><td class="numeric">${fmt(m.gate.rmse_kwh)}</td><td>${m.version===current.version?'운영 중':'보관'}</td></tr>`).join('');
   $('.model-panel .status-badge').textContent=`v${current.version} 운영 중`;
-  $('.event-list').innerHTML=alerts.map(e=>`<li><div><strong>${esc(e.kind)}</strong><p>${esc(e.created_at)}</p><details><summary>상세</summary><pre>${esc(e.payload)}</pre></details></div></li>`).join('')||'<li>아직 운영 알림이 없습니다.</li>';
+  $('.event-list').innerHTML=alerts.map(e=>`<li><div><strong>${esc(e.kind)}</strong><p>${esc(eventStamp(e.created_at))} KST</p><details><summary>상세</summary><pre>${esc(e.payload)}</pre></details></div></li>`).join('')||'<li>아직 운영 알림이 없습니다.</li>';
   text('.events-panel .neutral-badge',`${alerts.length}건`);text('#history-status','실제 모델 등록·운영 이력');
  }catch(e){text('#history-status',e.message);$('.model-panel tbody').replaceChildren();$('.event-list').replaceChildren();}
 }
@@ -119,7 +120,7 @@ $('#refresh-interval').onchange=schedule;
 window.SolarLive={plant:()=>state.plant,reload:loadEnergy};
 async function init(){
  $('.model-panel tbody').replaceChildren();$('.event-list').replaceChildren();$('.model-summary').textContent='모델 조회 전';$('.current-model-panel .status-badge').textContent='조회 전';
- try{const plants=await api('/plants');if(!plants.some(p=>p.plant_id===state.plant))state.plant=plants[0].plant_id;
+ try{const [plants,health]=await Promise.all([api('/plants'),api('/health')]);state.demo=health.demo_mode;if(!plants.some(p=>p.plant_id===state.plant))state.plant=plants[0].plant_id;
  $('#plant-filter').innerHTML=plants.map(p=>`<option value="${esc(p.plant_id)}">${esc(p.name)} · ${fmt(p.capacity_kw)} kW</option>`).join('');$('#plant-filter').value=state.plant;text('#plant-filter-note',`시간별 품질 검증 통과 ${plants.length}개소`);await loadEnergy();view();schedule();}
  catch(e){text('#page-description',`서버 연결 실패: ${e.message}`);}
 }

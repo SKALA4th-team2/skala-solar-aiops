@@ -24,6 +24,7 @@ py -3.11 -m venv .venv
 | GET /health | 계약·작업자 heartbeat |
 | GET /ui/sample?plant_id=hadong-sewage | 실제 보관/업로드 자료의 prediction, batch 예시 |
 | POST /predict | plant_id, history 24개, forecast 24개 → predictions 24개와 total_kwh |
+| GET /predictions 및 /predictions/{id} | 예측 입력·출력·버전·시각의 영속 기록 |
 | GET /ui/energy?plant_id=… | 최근 최대 168시간 실제·현재 모델 재생, 대상일 24개 예측 |
 | POST /predict/batch-test | plant_id, rows → 시간별 예측·모니터링·조건부 작업 등록 |
 | POST /data/upload | multipart plant_id와 file; 자동 모니터링 |
@@ -33,7 +34,7 @@ py -3.11 -m venv .venv
 | GET /jobs 또는 /jobs/{id} | queued/running/succeeded/rejected/failed |
 | POST /plants/{plant_id}/rollback | {"version":1}; 저장된 통과 버전으로 복귀 |
 | POST /portfolios/all-approved/predict | inputs: {plant_id: Predict 본문}; 동일 대상시간의 31개 가상 합계 |
-| GET /preview-api/dashboard/{resource} | current/history/alerts/info/dataset/metrics/timeseries |
+| GET /preview-api/dashboard/{resource} | current/history/alerts/info/dataset/metrics/timeseries/predictions |
 | GET /logs 및 /logs/aiops-hourly.log | 시간별 AIOps 이벤트 로그 |
 
 history 행은 timestamp, generation_kwh. forecast 행은 timestamp, shortwave_radiation, temperature_2m, cloud_cover, wind_speed_10m. timestamp는 2026-02-27T00:00:00+09:00 같은 KST 구간 시작이다. 두 배열은 전날 00~23시, 대상일 00~23시이며 빈 시간·중복·순서 오류를 거절한다. 야간 0은 정상 값이다. 발전량은 1시간 kWh, 기상 단위는 각각 W/m², °C, %, km/h다. 예보는 학습과 동일한 48시간 선행 자료여야 한다.
@@ -66,4 +67,4 @@ node ../tools/design/publish-runtime.mjs
 
 prepare는 tools/hourly/candidates.json의 기존 승인 등록부와 원본 시간별 실적·JMA 보관 파일을 필요로 한다. train은 완료 result.json을 재사용한다. 처음부터 다시 실험하려면 별도 실행 디렉터리로 코드를 구성하고 기존 증빙을 보존한다. finalize는 품질 통과 모델만 운영 목록에 반영한다. verify는 운영 모델을 읽고 별도 runtime-verify-*에 실제 재학습을 수행해 운영 가중치를 바꾸지 않는다. 생성 증빙은 docs/proposal/evidence/hourly_20261007/이다.
 
-다른 PC에는 serving_app/models/hourly-seed를 별도로 전달할 수 있다. 실행기가 해당 PC 경로의 MLflow에 모델을 다시 등록한다. Git에는 모델·CSV·DB가 없으므로 clone만으로 모델이 생기지 않는다. Docker 명령 `docker compose -f serving_app/docker-compose.yml up --build`와 포트 8099는 유지하되, 이 PC에는 Docker가 없어 실제 컨테이너 실행은 확인하지 못했다.
+다른 PC에서는 [제출 안내](submission/README.md)에 따라 seed ZIP과 SHA256 manifest를 함께 설치한다. 실행기가 해당 PC 경로의 MLflow에 모델을 다시 등록한다. 모델과 운영 DB는 Git에서 제외하므로 clone 후 seed 설치가 필요하다. Docker 명령은 `docker compose -f serving_app/docker-compose.yml up --build`이며 포트는 8099다. GitHub Actions의 Linux Docker에서 실제 빌드·31개 예측·자동 재학습·롤백·재시작 후 예측 기록 보존을 확인했다. 실행 근거와 모델 묶음은 [제출 안내](submission/README.md)를 따른다.

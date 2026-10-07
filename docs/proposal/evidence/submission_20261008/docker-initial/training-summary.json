@@ -1,0 +1,122 @@
+{
+  "candidate_count": 33,
+  "approved_count": 31,
+  "approved": [
+    "hadong-sewage",
+    "15043384-u1",
+    "15043385-u1",
+    "15043387-u1",
+    "15043391-u1",
+    "15043391-u2",
+    "15043391-u3",
+    "15043394-u1",
+    "15043399-u1",
+    "15043400-u1",
+    "15043402-u1",
+    "15043404-u1",
+    "15043405-u1",
+    "15043406-u1",
+    "15043407-u1",
+    "15043407-u2",
+    "15043407-u3",
+    "15043407-u4",
+    "15043407-u6",
+    "15095374-u1",
+    "15095380-u1",
+    "15096126-u1",
+    "15096131-u1",
+    "15096132-u1",
+    "15096134-u1",
+    "15096136-u1",
+    "15109994-u1",
+    "15109999-u1",
+    "15124860-u1",
+    "15124861-u1",
+    "15140067-u1"
+  ],
+  "excluded": [
+    {
+      "plant_id": "15043395-u1",
+      "name": "신인천전망대",
+      "reason": "hourly_quality_gate_failed",
+      "evaluation": {
+        "gate": {
+          "n_hours": 8712,
+          "n_days": 363,
+          "rmse_kwh": 244.36686935462268,
+          "mae_kwh": 109.13841502725244,
+          "bias_pct": -20.59737796157384,
+          "capacity_nrmse_pct": 14.027948872251589,
+          "daylight_rmse_kwh": 189.59948160669356,
+          "limit_kwh": 222.0489361376115,
+          "passed": false,
+          "policy": "hourly-v1: n>=180days; RMSE<=.95 lag24 and <=1.05 radiation; abs bias<=15; daylight<=1.05 radiation"
+        },
+        "persistence": {
+          "n_hours": 8712,
+          "n_days": 363,
+          "rmse_kwh": 233.73572225011736,
+          "mae_kwh": 99.79807229392345,
+          "bias_pct": 0.0007002134581528302,
+          "capacity_nrmse_pct": 13.41766488232591,
+          "daylight_rmse_kwh": 229.02842531089246
+        },
+        "radiation_reference": {
+          "n_hours": 8712,
+          "n_days": 363,
+          "rmse_kwh": 312.8570453485446,
+          "mae_kwh": 156.5079439910045,
+          "bias_pct": -57.79066965301742,
+          "capacity_nrmse_pct": 17.959646690501987,
+          "daylight_rmse_kwh": 328.432951198262
+        },
+        "epochs": 25,
+        "train_end": "2024-12-31",
+        "test_start": "2025-01-01",
+        "test_end": "2025-12-31"
+      }
+    },
+    {
+      "plant_id": "15095404-u1",
+      "name": "용수리",
+      "reason": "hourly_quality_gate_failed",
+      "evaluation": {
+        "gate": {
+          "n_hours": 8712,
+          "n_days": 363,
+          "rmse_kwh": 116.53285604099102,
+          "mae_kwh": 56.10991314310064,
+          "bias_pct": 4.595413855695663,
+          "capacity_nrmse_pct": 13.109339997636601,
+          "daylight_rmse_kwh": 170.31359549330838,
+          "limit_kwh": 114.8903473922654,
+          "passed": false,
+          "policy": "hourly-v1: n>=180days; RMSE<=.95 lag24 and <=1.05 radiation; abs bias<=15; daylight<=1.05 radiation"
+        },
+        "persistence": {
+          "n_hours": 8712,
+          "n_days": 363,
+          "rmse_kwh": 120.937207781332,
+          "mae_kwh": 55.31976932205833,
+          "bias_pct": -0.11146732640884742,
+          "capacity_nrmse_pct": 13.604806653092146,
+          "daylight_rmse_kwh": 176.52147989740536
+        },
+        "radiation_reference": {
+          "n_hours": 8712,
+          "n_days": 363,
+          "rmse_kwh": 117.80645960644381,
+          "mae_kwh": 57.47843141712422,
+          "bias_pct": 0.4005772628975471,
+          "capacity_nrmse_pct": 13.252613772337957,
+          "daylight_rmse_kwh": 172.15209792944398
+        },
+        "epochs": 1,
+        "train_end": "2024-12-31",
+        "test_start": "2025-01-01",
+        "test_end": "2025-12-31"
+      }
+    }
+  ],
+  "data_excluded": []
+}
