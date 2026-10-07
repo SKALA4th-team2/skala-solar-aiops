@@ -36,3 +36,12 @@ docker compose -f serving_app/docker-compose.yml up --build -d
 ① 이해관계자 불편 →② 시간별 LSTM과독립성능 →③ 품질게이트·보류·재학습정책 →④ 실제구조 →⑤ 입력검증·예측기록 →⑥ v1→v2→v1·Docker·재시작 증빙 순서로설명한다. 발표용 시나리오는 docs/proposal/6-demo.md에있다.
 
 실시간자료수집,실제예보공개시각,현장관측기상검증,장기가용성99%,정산요건충족은실증한것이아니다. 합성드리프트기능시연의RMSE를 모델의독립예측성능으로발표하지않는다.
+
+
+## 최종 확인
+
+[최종 코드 Docker 실행](https://github.com/SangMyeong5426/skala-solar-aiops/actions/runs/37647422068)은 **전체 성공**했다. 검증 코드 c3cc07a, 원본 재학습 seed는 c96a102 실행의 승인 묶음이다. 이후 변경은 증빙과 문서뿐이다. [HTTP 통합 결과](../proposal/evidence/submission_20261008/docker-final/summary.json), [재시작 영속성](../proposal/evidence/submission_20261008/docker-final/restart-persistence.json), [CI 기록](../proposal/evidence/submission_20261008/docker-final/ci-run.json)을 보관했다.
+
+앞선 서빙 재검증에서는 기능 검사가 모두 통과한 뒤 빈 pip 캐시 정리에서 CI만 실패했다. 재학습을 생략할 때 캐시도 생략하도록 수정했으며 위 최종 실행에서 해결을 확인했다.
+
+이 PC의 `project/submission/solar-aiops-final.zip`은 코드·문서·31개 seed를 함께 담은 전달용 묶음이다. 압축을 푼 뒤 project/에서 Python 3.11 가상환경과 requirements.txt를 설치하고 scripts/run_backend.py를 실행한다. seed가 포함되어 있으므로 별도 학습 없이 시작할 수 있다. 환경 파일·키·운영 DB·가상환경은 포함하지 않는다.
