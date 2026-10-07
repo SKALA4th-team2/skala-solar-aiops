@@ -1,0 +1,47 @@
+$ python tools/multi_plant/convert_kospo_raw.py --raw datasets/raw/data_15043409.csv --plant-id hadong-sewage --out-root datasets/plants
+hadong-sewage: 2013-01-01 ~ 2026-02-28, 하루 행 4807개 (ok 4783, zero_day 24, partial 0, mismatch 0, missing 0), 시간 행 115368개 -> datasets/plants/generation/hadong-sewage
+
+$ python tools/multi_plant/validate.py --data-root datasets/plants
+등록된 발전소 1곳, 포트폴리오 1개, 실적이 있는 발전소 1곳
+  hadong-sewage: 2013-01-01 ~ 2026-02-28, 4807일 (ok 4783, zero_day 24, partial 0, mismatch 0, missing 0), 시간대별 4807일
+오류 0건, 경고 0건
+종료 코드 0
+
+$ python tools/multi_plant/portfolio_capacity.py --data-root datasets/plants --portfolio virtual-vpp --date 2026-02-28
+virtual-vpp @ 2026-02-28 (구성 v1): 구성원 1곳, 확인된 설비 용량 합계 55kW = 0.055MW
+    hadong-sewage: 55kW (적은 값 55 kW, 설치용량(공시))
+    참고: 제도 기준 20MW 의 0.275%. 기준 초과 아니오. 용량의 비교일 뿐 참여 자격의 판정이 아니다
+
+$ python tools/multi_plant/coverage.py --data-root datasets/plants --portfolio virtual-vpp
+[발전소별]
+  hadong-sewage: 2013-01-01 ~ 2026-02-28, 4807일 가운데 쓸 수 있는 날 4807일 (zero_day 24, partial 0, mismatch 0, missing 0), 가장 긴 이어진 구간 4807일, 창 4787개, 뒤 20% 는 958일
+[창 점검]
+  발전소별로 만든 창 4787개 가운데 문제 0개
+  행을 이어 붙여 만들면 창 4787개 가운데 발전소가 섞인 창 0개, 날짜가 끊긴 창 0개
+[포트폴리오 virtual-vpp]
+  구성 v1 (2013-01-01 ~ 계속): hadong-sewage
+    본 기간 2013-01-01 ~ 2026-02-28 (4807일): 모든 구성원에 값이 있는 날 4807일, 용량 기준 평균 커버리지 100.0%
+    함께 평가할 수 있는 대상일 4787일 (2013-01-21 ~ 2026-02-28), 게이트의 시험 구간 180일 이상 가능
+    공통 대상일은 모든 구성원이 이어진 20일과 대상일의 값을 가진 날이다
+종료 코드 0
+
+$ python tools/multi_plant/evaluate.py --data-root datasets/plants --portfolio virtual-vpp --start 2025-06-09 --end 2026-02-27 --hourly
+포트폴리오 virtual-vpp (구성 v1), 기간 2025-06-09 ~ 2026-02-27
+구성원: hadong-sewage
+[커버리지] 기간 264일 가운데 함께 평가한 대상일 264일 (2025-06-09 ~ 2026-02-27), 빠진 날 0일
+[전일값] (하루 kWh)
+  hadong-sewage            용량 55.00kW  RMSE 82.44  MAE 60.99  합계 오차율 31.41%  치우침 0.28%  1kW 당 RMSE 1.499
+  포트폴리오 합계          용량 55.00kW  RMSE 82.44  MAE 60.99  합계 오차율 31.41%  치우침 0.28%  1kW 당 RMSE 1.499
+  발전소별 RMSE 를 그냥 더한 값 82.44 (포트폴리오 RMSE 가 아니다). 포트폴리오 RMSE 는 그 100.0%
+  발전소 평균 합계 오차율 31.41%, 발전량 가중 31.41%, 합계끼리 견준 값 31.41%, 발전소 평균 1kW 당 RMSE 1.499
+[7일 평균] (하루 kWh)
+  hadong-sewage            용량 55.00kW  RMSE 71.65  MAE 54.82  합계 오차율 28.23%  치우침 0.79%  1kW 당 RMSE 1.303
+  포트폴리오 합계          용량 55.00kW  RMSE 71.65  MAE 54.82  합계 오차율 28.23%  치우침 0.79%  1kW 당 RMSE 1.303
+  발전소별 RMSE 를 그냥 더한 값 71.65 (포트폴리오 RMSE 가 아니다). 포트폴리오 RMSE 는 그 100.0%
+  발전소 평균 합계 오차율 28.23%, 발전량 가중 28.23%, 합계끼리 견준 값 28.23%, 발전소 평균 1kW 당 RMSE 1.303
+[제도의 식을 단순 기준 예측에 적용한 참고값] 시간대별 |예측 − 실제| ÷ 설비 용량, 이용률 10% 이상인 시간대
+  264일 (2025-06-09 ~ 2026-02-27). 단순 기준 예측에 제도의 식을 적용한 참고값. 정지일을 건너뛰지 않았다. 유효 용량(고장·정비·출력제어를 뺀 용량)이 아니라 등록부의 설비 용량을 분모로 썼다
+  전일값    hadong-sewage            평균 13.34%  4% 이하 33.8%  6% 이하 42.4%  대상 2200시간
+  전일값    포트폴리오 합계          평균 13.34%  4% 이하 33.8%  6% 이하 42.4%  대상 2200시간
+  7일 평균  hadong-sewage            평균 11.18%  4% 이하 27.5%  6% 이하 39.9%  대상 2200시간
+  7일 평균  포트폴리오 합계          평균 11.18%  4% 이하 27.5%  6% 이하 39.9%  대상 2200시간

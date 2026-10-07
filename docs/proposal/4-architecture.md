@@ -2,7 +2,7 @@
 
 - 평가 항목: 2-2 (구현·발표)
 - 담당:
-- 상태: 초안 (2026-10-07). 그림의 실선은 커밋 `58d6ff8` 의 코드에 있는 흐름이고 점선은 제안이다. 제안은 결정 기록이 확정되면 구현한다
+- 상태: 초안 (2026-10-07). 그림의 실선은 커밋 `58d6ff8` 의 코드에 있는 흐름이고 점선은 제안이다. 제안은 결정 기록이 확정되면 구현한다. 여러 발전소를 한 PC 에서 다루는 구조는 [9절](#9-한-pc-에서-여러-발전소를-다루는-구조-확장-제안)에 따로 그렸다
 
 ## 통합가이드가 요구하는 것
 
@@ -260,3 +260,59 @@ flowchart TD
 | 승격 뒤 서빙 모델이 바뀌지 않는다는 것 | 코드를 읽어 적었다. 서버에서 재현하지 못했다 |
 
 후속 조건은 [`../followups.md`](../followups.md)에 옮겨 적었다.
+
+### 9. 한 PC 에서 여러 발전소를 다루는 구조 (확장 제안)
+
+**[현재]** 1 ~ 8절의 그림은 발전소 한 곳의 흐름이다. 이 절은 발전소가 여럿일 때 상자와 파일이 어떻게 나뉘는지를 그린다. 모두 **[제안]** 이고 구현하지 않았다. 프로세스의 구성, 재학습 작업의 순서, 규모의 산정은 [한 PC 운영 문서](single-pc-operation.md)에 있다.
+
+바뀌는 것은 세 가지다. **무엇이든 발전소별로 나눈다.** 업로드 폴더, 스케일러와 모델, 메모리의 모델 상자, 감시 상태가 발전소마다 하나씩이다. **합계는 서빙이 더한다.** 합계용 모델을 따로 두지 않는다. **재학습은 서빙 프로세스 밖에서 한 번에 하나씩 돈다.**
+
+```mermaid
+flowchart TD
+    op["운영 담당자<br/>대시보드, CLI"]
+    reg[("등록부와 구성<br/>plants.csv, portfolio_members.csv")]
+    router["서빙: 라우터와 검증<br/>plant_id, portfolio_id 를 받는다<br/>등록부에 있는가, 상한 = 설비 용량 × 24시간"]
+    uploads[("발전소별 업로드<br/>data/uploads/&lt;plant_id&gt;/")]
+    boxes["서빙: 발전소별 모델 상자<br/>발전소마다 하나, 개수 한도"]
+    sum["서빙: 합산<br/>같은 대상일의 발전소별 예측을 더한다<br/>빠진 발전소를 알린다"]
+    judge["서빙: 판정기<br/>발전소별 상태, 합계는 따로"]
+    jobs[("작업 기록")]
+    worker["재학습 일꾼 (하나)<br/>작업을 하나씩, plant_id 별로"]
+    gate{"발전소별 게이트"}
+    registry[("MLflow (SQLite)<br/>solar-daily-&lt;plant_id&gt;")]
+    models[("발전소별 모델 폴더<br/>스케일러, 묶음 기록, 현재 버전 표시")]
+    keep["그 발전소의 이전 버전 유지<br/>다른 발전소는 영향 없음"]
+    log[("logs/aiops.log<br/>plant=, model=, data=, job=")]
+
+    op --> router
+    reg --> router
+    router -->|"예측 요청"| boxes
+    router -->|"업로드"| uploads
+    boxes --> sum --> judge
+    judge -->|"재학습 조건이면 적는다"| jobs
+    jobs --> worker
+    uploads --> worker
+    worker --> gate
+    gate -->|"통과: 등록과 승격"| registry
+    gate -->|"통과: 표시를 바꾼다"| models
+    gate -.->|"실패"| keep
+    registry -.->|"표시가 바뀌면 새 모델을 먼저 불러온 뒤 바꾼다"| boxes
+    models -.-> boxes
+    gate -->|"결과"| log
+    judge ---->|"판정"| log
+```
+
+| 상자나 파일 | 지금 (발전소 한 곳) | 넓힌 뒤 | 고칠 곳 |
+| --- | --- | --- | --- |
+| 등록부와 구성 | 없다. 용량이 코드의 상수에 있다 | `plants.csv`, `portfolio_members.csv` 를 읽는다 | 새 모듈. 등록부는 [`datasets/plants/`](../../datasets/plants/) |
+| 업로드 폴더 | `data/uploads/` 하나. 가장 최근 파일을 고른다 | 발전소별 폴더. 발전소를 주어 고른다 | `data/storage.py`, `serving_app/routers/data.py` |
+| 스케일러와 모델 | 파일 하나씩, 레지스트리의 이름 하나 | 발전소별 폴더와 이름. 묶음 기록으로 짝을 확인한다 | `serving_app/model_loader.py`, `serving_app/train_and_register.py`, `scripts/train_baseline_v1.py` |
+| 모델 상자 | 하나 | 발전소별, 개수 한도 | `serving_app/model_loader.py` |
+| 합산 | 없다 | 서빙이 같은 대상일의 예측을 더하고 누락을 알린다 | 새 라우터 |
+| 판정기 | 연결 하나, 발전소 구분 없음 | 발전소별 상태. 합계는 따로 | `serving_app/aiops_adapter.py`, AIOps 의 판정기 |
+| 재학습 | 요청 안에서 돈다 | 작업 기록과 일꾼 하나 | `serving_app/monitoring/retrain_trigger.py`, 새 작업 모듈 |
+| 로그 | 문장에 발전소가 없다 | 식별자를 싣는다 | `serving_app/monitoring/retrain_trigger.py`, `serving_app/static/index.html` 의 안내문 |
+
+- **[실행]** 이 구조의 크기를 어림하는 값은 발전소 한 곳으로 쟀다. 학습 한 번이 18 ~ 22초, 재학습이 4.4초, 메모리의 모델 하나가 4.6MB, 다른 프로세스가 학습하는 동안의 예측 실패가 0건이다. 조사에 쓴 PC 의 값이다. ([M09](evidence/multi-plant/validation.md#m09))
+- **[미확인]** 여러 발전소를 실제로 올린 상태의 메모리와 응답 시간, 컨테이너에서의 동작은 재지 않았다.
+- 범위는 7절과 같다. MLflow 서버, Prometheus, Grafana, Kubernetes, 메시지 브로커는 들이지 않는다.

@@ -71,8 +71,69 @@ FastAPI 입력 계약은 사용자 승인으로 `hadong_upload_forecast_jma.csv`
 
 이용 조건의 근거는 [`../docs/research/prestudy/`](../docs/research/prestudy/)의 `research_2-data-definition.md` 와 `research_3b-weather-open.md` 에 있다.
 
+## 여러 발전소 자료
+
+여러 발전소로 넓히기 위한 준비다(2026-10-07). 서비스는 아직 발전소 한 곳만 읽는다. 계약의 본문은 [`../docs/proposal/multi-plant-data-contract.md`](../docs/proposal/multi-plant-data-contract.md)에, 배경은 [`../docs/proposal/multi-plant-extension.md`](../docs/proposal/multi-plant-extension.md)에 있다.
+
+### 자료의 종류
+
+| 종류 | 파일 | 출처 | 단위 | 만드는 법 |
+| --- | --- | --- | --- | --- |
+| 발전소 등록부 | [`plants/plants.csv`](plants/plants.csv) | 한국남부발전의 공시(설비 사양, 설비 현황, 발전소 위치) | 용량은 적힌 그대로 `kW` 또는 `MW`. 좌표는 도 | **사람이 적는다.** 한 줄에 발전소 하나의 한 유효 기간. 용량과 좌표의 근거를 함께 적고 모르는 칸은 비운다 |
+| 포트폴리오 구성 | [`plants/portfolio_members.csv`](plants/portfolio_members.csv) | 우리가 정한 가상의 구성 | 없다 | **사람이 적는다.** 구성원이 바뀌면 구성 버전을 올린다 |
+| 하루 발전량 | `plants/generation/<plant_id>/generation_daily.csv` | 발전소별 원자료 | kWh (그날 하루) | `tools/multi_plant/convert_kospo_raw.py`. 커밋하지 않는다 |
+| 시간대별 발전량 | `plants/generation/<plant_id>/generation_hourly.csv` | 발전소별 원자료 | kWh (그 한 시간). 시간 h 는 (h−1)시 ~ h시 | 위와 같다. 커밋하지 않는다 |
+| 계보 | `plants/generation/<plant_id>/manifest.json` | 변환 도구 | 원자료와 결과의 해시(SHA-256) | 위와 같다 |
+| 기상 자료 | 아직 없다 | 발전소별 예보와 관측 | 일사량의 하루 합계 MJ/m² | 계약만 정했다. 발전소별 예보를 받는 도구는 과제다 |
+
+- 등록부와 구성은 손으로 적는 파일이다. 아래 "규칙"의 "손으로 고치지 않는다"는 원자료와 만든 자료에 대한 것이다. 적은 뒤에는 `python tools/multi_plant/validate.py --data-root datasets/plants` 로 검증한다.
+- `plants/generation/` 은 원자료에서 다시 만들 수 있어 커밋하지 않는다(`.gitignore`). 저장소를 받은 뒤 한 번 만든다.
+
+```bash
+# 저장소 루트에서
+python tools/multi_plant/convert_kospo_raw.py --raw datasets/raw/data_15043409.csv --plant-id hadong-sewage --out-root datasets/plants
+```
+
+### 지금 들어 있는 것
+
+| 식별자 | 내용 | 값 |
+| --- | --- | --- |
+| 발전소 `hadong-sewage` | 하동하수처리장태양광. 경남 하동군 하동읍 신기리 2-2 | 설비 용량 55kW(공시 설치용량). 좌표 35.05885, 127.7799 |
+| 포트폴리오 `virtual-vpp` | 구성 버전 1. 구성원은 `hadong-sewage` 한 곳 | **가상의 묶음이다.** 실제 집합전력자원이 아니고, 하동이 실제로 어느 묶음에 들어 있는지는 확인되지 않았다. 설비 용량 합계 55kW(20MW 의 0.275%) |
+
+- 설비 용량은 **kW, MW** 이고 기간이 붙지 않는다. 발전량은 **kWh** 이고 기간이 붙는다. 용량의 합과 발전량의 합을 섞지 않는다.
+- 제도의 참여 요건(묶음 안 태양광·풍력의 설비 용량 합계 20MW 초과)에 한참 못 미친다. 자료를 여러 곳 모아도 요건을 채웠다고 쓰지 않는다([결정 기록 0010](../docs/decisions/0010-multi-plant-scope-and-scheme.md)).
+
+### 새 발전소를 등록하는 절차
+
+단계마다의 통과 조건은 [자료 계약 6절](../docs/proposal/multi-plant-data-contract.md#6-새-자료를-넣는-절차)에 있다.
+
+1. 원자료를 받아 둔다. 출처의 주소, 이용 조건, 받은 날을 아래 "원본"의 표처럼 적는다. 파일을 고치지 않는다.
+2. `plants/plants.csv` 에 한 줄을 더한다. `plant_id` 는 영문 소문자, 숫자, 붙임표로 짓고 한번 정하면 바꾸지 않는다.
+3. `convert_kospo_raw.py` 로 정규화 실적을 만든다. 형식이 다른 원자료는 변환 도구를 하나 더 쓴다.
+4. `validate.py` 로 검증한다. 오류가 0건이어야 한다.
+5. `coverage.py` 로 그 발전소의 기간과, 포트폴리오에 넣었을 때의 공통 기간을 본다.
+6. `plants/portfolio_members.csv` 에 넣는다. 구성 버전을 올리고 적용 기간을 적는다.
+7. 발전소별 예보를 붙여 업로드 파일을 만들고 학습한다. 이 단계는 서비스가 여러 발전소를 받게 된 뒤에 할 수 있다.
+
+### 추가를 검토한 자료
+
+**저장소에 넣지 않았다.** 다른 발전소의 원자료는 백엔드를 돌릴 PC 에 둘 예정이고, 저장소에 넣을지는 정하지 않았다([`../docs/followups.md`](../docs/followups.md) 27번). 도구는 `--data-root` 와 `--raw` 로 저장소 밖의 폴더를 읽는다.
+
+| 발전소 | 원자료 | 설비 용량(공시) | 확인한 것 |
+| --- | --- | --- | --- |
+| 하동공설운동장태양광 | [data.go.kr/15043404](https://www.data.go.kr/data/15043404/fileData.do) | 369.85kW | 형식이 하동하수처리장과 같다. 4,807일, 0 인 날 47일. 하루 발전량이 지금의 입력 상한 1,320kWh 를 넘는 날이 1,936일이다 |
+| 하동변전소태양광 | [data.go.kr/15043405](https://www.data.go.kr/data/15043405/fileData.do) | 48.3kW | 4,807일, 0 인 날 41일 |
+| 하동군보건소태양광 | [data.go.kr/15043406](https://www.data.go.kr/data/15043406/fileData.do) | 40kW | 4,807일, 0 인 날 7일. 발전소 위치 공시에 좌표가 없다 |
+| 하동정수장태양광 | [data.go.kr/15043408](https://www.data.go.kr/data/15043408/fileData.do) | 93.02kW | 4,807일, 0 인 날 29일. 머리 줄에 `(kw)` 가 없다 |
+
+- 네 곳 모두 한국남부발전이 공공데이터포털에 낸 자료이고 페이지에 "무료, 이용허락범위 제한 없음"이라고 적혀 있다(이전 조사 때 저장한 페이지에서 확인).
+- 이 PC 에 이전 조사 때 받아 둔 사본으로 변환, 검증, 평가를 돌렸다. 사본의 해시가 [`tools/verify/official-result.json`](../tools/verify/official-result.json)의 공식 파일과 같다. 결과는 [검증 기록](../docs/proposal/evidence/multi-plant/validation.md)의 M04 ~ M06 에 있다.
+- 같은 군 안의 발전소라 같은 날씨를 겪는다. 다섯 곳을 더해도 설비 용량 합계는 606.17kW 다.
+- 하동 밖의 발전소는 아직 확인하지 않았다. 조사 기록에는 한국남부발전의 발전소별 실적 파일이 40개라고 적혀 있다([T1](../docs/research/merged/T1-plant-data.md)).
+
 ## 규칙
 
-- 여기 있는 파일은 손으로 고치지 않는다. 만든 스크립트는 [`../tools/`](../tools/)에 있다.
+- 여기 있는 파일은 손으로 고치지 않는다. 만든 스크립트는 [`../tools/`](../tools/)에 있다. 발전소 등록부와 포트폴리오 구성(`plants/*.csv`)은 사람이 적는 파일이고, 적은 뒤에 도구로 검증한다.
 - 서빙 앱이 실제로 읽는 것은 대시보드로 올린 사본(`project/data/uploads/`)이다. 그 폴더는 커밋하지 않는다.
 - Open-Meteo 자료를 다시 받을 때는 한 번 받아 파일로 저장하고 반복 호출하지 않는다. 무료 한도가 있다.

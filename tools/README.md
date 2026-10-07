@@ -29,6 +29,31 @@
 | `common.py` | 위 스크립트가 함께 쓰는 자료 읽기와 지표 함수 | |
 | `out/` | 2026-10-07 에 돌린 출력, 씨앗별 결과, 인위 계단 확인 결과 | |
 
+## 여러 발전소 자료의 준비 도구
+
+[`multi_plant/`](multi_plant/)에 있다. 경로가 인자라 저장소 루트에서 그대로 실행된다. `single_pc_probe.py` 를 뺀 나머지는 표준 라이브러리만 쓴다. 자세한 쓰는 법은 [`multi_plant/README.md`](multi_plant/README.md)에, 계약은 [`../docs/proposal/multi-plant-data-contract.md`](../docs/proposal/multi-plant-data-contract.md)에, 돌린 기록은 [`../docs/proposal/evidence/multi-plant/validation.md`](../docs/proposal/evidence/multi-plant/validation.md)에 있다.
+
+| 파일 | 하는 일 | 쓰는 법 |
+| --- | --- | --- |
+| `convert_kospo_raw.py` | 한국남부발전 「태양광발전실적」 원자료를 정규화 실적(하루, 시간대별)과 계보 기록으로 바꾼다. 빈 칸을 0 으로 채우지 않는다 | `python tools/multi_plant/convert_kospo_raw.py --raw <원자료> --plant-id <plant_id> --out-root <자료 폴더>` |
+| `validate.py` | 발전소 등록부, 포트폴리오 구성, 발전소별 실적이 계약을 지키는지 본다. 중복 등록, 단위, 날짜의 빠짐과 중복, 결측, 다른 발전소의 행 | `python tools/multi_plant/validate.py --data-root <자료 폴더>` |
+| `portfolio_capacity.py` | 포트폴리오의 설비 용량 합계(kW, MW)를 중복 없이 낸다. 용량을 모르는 발전소는 빼고 알린다 | `python tools/multi_plant/portfolio_capacity.py --data-root <자료 폴더> --portfolio <portfolio_id> [--date YYYY-MM-DD]` |
+| `coverage.py` | 발전소별 기간과 창의 수, 포트폴리오의 공통 평가 기간과 커버리지를 낸다. 창에 발전소가 섞이지 않는지 본다 | `python tools/multi_plant/coverage.py --data-root <자료 폴더> [--portfolio <portfolio_id>]` |
+| `evaluate.py` | 발전소별 오차와 포트폴리오 합계의 오차를 같은 대상일에서 낸다. 전일값, 7일 평균과 견주고 모델의 예측 파일도 함께 견줄 수 있다 | `python tools/multi_plant/evaluate.py --data-root <자료 폴더> --portfolio <portfolio_id> --start <날짜> --end <날짜> [--predictions <CSV>] [--hourly]` |
+| `bundle_check.py` | 모델, 스케일러, 피처의 뜻이 서로 짝이 맞는지 본다 | `python tools/multi_plant/bundle_check.py write ...`, `check ...` |
+| `selftest.py` | 합성 자료로 실패 사례 21건을 돌려 위 도구가 잘못된 자료를 실제로 잡는지 본다 | `python tools/multi_plant/selftest.py [--out <폴더>]` |
+| `single_pc_probe.py` | 한 PC 의 학습 시간, 메모리, 학습 중의 예측 시간을 잰다. 검증용 사본에서만 돌린다. tensorflow 와 mlflow 가 필요하다 | `python tools/multi_plant/single_pc_probe.py --project <사본>/project --out <폴더>` |
+| `common.py` | 계약의 열과 단위, 읽기와 검증 함수 | |
+
+- 자료 폴더는 저장소 안에서는 `datasets/plants` 다. 다른 발전소의 자료가 저장소 밖에 있으면 그 폴더를 `--data-root` 로 준다.
+- `evaluate.py --hourly` 의 값은 제도의 식을 단순 기준 예측에 적용한 참고값이다. 우리 모델의 값도 정산 성능도 아니다.
+- 합성 자료의 수치를 성능이나 제도 요건의 근거로 쓰지 않는다.
+
+## 기획서의 검증 도구와 조사의 재현 도구
+
+- [`proposal/`](proposal/): 기획서 ①~⑥ 의 검증과 그림을 만드는 도구. 문서를 고친 뒤 `python tools/proposal/check_docs.py`, `python tools/proposal/check_mermaid.py` 로 점검한다. 설명은 [`proposal/README.md`](proposal/README.md)에 있다.
+- [`verify/`](verify/): 조사 판정의 재현과 FastAPI 계약의 테스트. 설명은 [`verify/README.md`](verify/README.md)에 있다.
+
 ## 앞으로 둘 것
 
 - `/predict` 와 `/predict/batch-test` 에 보낼 요청 본문 예시
