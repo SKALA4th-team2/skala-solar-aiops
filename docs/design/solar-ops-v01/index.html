@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="SOLAR OPS — 태양광 발전 운영 대시보드. 실제 실적과 일사량 예보를 재생하고 규칙 기준선의 예측 오차를 비교합니다.">
+  <title>SOLAR OPS · 태양광 운영 대시보드</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23B87643'/%3E%3Ccircle cx='20' cy='20' r='9' fill='%23FFFFFF'/%3E%3C/svg%3E">
+  <script>if (new URLSearchParams(location.search).get("motion") === "off") document.documentElement.classList.add("motion-off");</script>
+  <link rel="stylesheet" href="styles.css">
+  <script src="dashboard-core.js" defer></script>
+  <script src="app.js" defer></script>
+  <script src="operations.js" defer></script>
+  <script src="server-dashboard.js" defer></script>
+</head>
+<body>
+  <!-- 작성자: Git 이력 참조 | 작성목적: 실제 자료 재생을 이용한 단일 발전 운영 화면 | 작성일: 2026-10-07 -->
+  <a class="skip-link" href="#main">본문으로 이동</a>
+  <aside class="sidebar" aria-label="업무 메뉴">
+    <a class="brand" href="#energy" aria-label="SOLAR OPS 발전 현황"><span class="brand-mark" data-icon="sun"></span><span>SOLAR<span class="brand-light">OPS</span></span></a>
+    <div class="sidebar-site"><span class="site-symbol" data-icon="solar"></span><div><strong>하동 태양광</strong><span>55 kW · 하동하수처리장</span></div></div>
+    <p class="nav-label">워크스페이스</p>
+    <nav aria-label="대시보드 화면">
+      <a class="nav-link selected" data-view="energy" href="#energy" aria-current="page"><span data-icon="chart"></span><span>발전 현황</span></a>
+      <a class="nav-link" data-view="service" href="#service"><span data-icon="activity"></span><span>서비스 운영</span></a>
+      <a class="nav-link" data-view="history" href="#history"><span data-icon="history"></span><span>이력 · 알림</span></a>
+    </nav>
+    <div class="sidebar-bottom"><div class="sidebar-account"><span class="account-symbol" data-icon="building"></span><div><strong>SKALA 에너지</strong><span>발전 운영 워크스페이스</span></div></div></div>
+  </aside>
+  <div class="app-shell">
+  <header class="topbar"><div class="breadcrumb">SKALA 에너지 <span>/</span> <strong id="breadcrumb-title">발전 현황</strong></div></header>
+  <main id="main" class="workspace-content" tabindex="-1">
+    <div class="page-heading">
+      <div><p class="eyebrow">SOLAR OPERATIONS</p><h1 id="page-title">발전 현황</h1><p class="site-name" id="page-description">하동하수처리장 태양광 · 55 kW</p></div>
+      <div class="page-actions"><div class="snapshot-date"><span>기준일</span><strong data-value="replay-date">—</strong></div><button class="button primary" id="upload-button"><span aria-hidden="true">↑</span>CSV 업로드</button><button class="button" id="simulation-button" hidden>드리프트 시뮬레이션</button></div>
+    </div>
+    <section id="view-energy" class="view" aria-label="발전 현황">
+      <div class="filter-bar"><div class="plant-control"><label for="plant-filter">발전소</label><select id="plant-filter" aria-describedby="plant-filter-note"><option value="all">전체 발전소 · 합계</option><option value="hadong">하동하수처리장 · 55 kW</option></select></div><div class="filter-summary"><strong id="plant-scope">전체 1개소 · 55 kW</strong><p id="plant-filter-note">단일 발전소 · 합계 = 개별</p></div></div>
+      <div class="kpi-grid">
+        <article class="kpi"><div class="kpi-label"><h2>최근 확정 발전량</h2><span class="metric-icon" data-icon="bolt"></span></div><div class="kpi-value"><span data-value="actual">—</span><span class="unit">kWh</span></div><p class="kpi-footer"><span data-value="actual-date">—</span><span>당일 예측 <strong data-value="today-prediction">—</strong> kWh</span></p></article>
+        <article class="kpi"><div class="kpi-label"><h2>최근 7일 평균</h2><span class="metric-icon" data-icon="chart"></span></div><div class="kpi-value"><span data-value="week-mean">—</span><span class="unit">kWh/일</span></div><p class="kpi-footer"><span data-value="week-range">—</span><span>확정된 실측 기준</span></p></article>
+        <article class="kpi"><div class="kpi-label"><h2>예측 오차 <span class="metric-code">RMSE</span></h2><span class="metric-icon" data-icon="target"></span></div><div class="kpi-value"><span data-value="rmse">—</span><span class="unit">kWh/일</span></div><p class="kpi-footer"><span data-value="rmse-period">최근 7일</span><span>실측과 규칙 예측의 차이</span></p></article>
+      </div>
+      <div class="primary-grid">
+        <article class="panel generation-panel">
+          <div class="panel-heading"><div><h2>발전량 추이</h2><p>실제 발전량과 규칙 예측 비교</p></div><div class="segmented" role="group" aria-label="발전량 조회 기간"><button class="selected" data-period="7" aria-pressed="true">7일</button><button data-period="30" aria-pressed="false">30일</button><button data-period="90" aria-pressed="false">90일</button></div></div>
+          <div class="chart-context"><div class="legend"><span><i class="legend-line actual-line"></i>실측</span><span><i class="legend-line predicted-line"></i>규칙 예측</span></div><span class="chart-range" data-chart-range>—</span></div>
+          <div class="chart-host" id="overview-chart"></div>
+          <div class="chart-foot"><a class="chart-attribution" href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Weather data by Open-Meteo.com</a><span>실적 · 한국남부발전 / 단위 kWh</span></div>
+          <details class="daily-records" id="daily-records"><summary><span>일별 기록 <span class="record-count" data-value="record-count">7일</span></span><span class="disclosure-icon" data-icon="chevron"></span></summary><div class="records-description">오차 = 예측 − 실측. 양수는 과대 예측입니다.</div><div class="table-scroll" tabindex="0" role="region" aria-label="일별 발전량 표, 작은 화면에서 좌우로 스크롤"><table><caption class="sr-only">실제 자료와 규칙 기준선의 날짜별 발전량 비교</caption><thead><tr><th scope="col">날짜</th><th scope="col" class="numeric">실측 (kWh)</th><th scope="col" class="numeric">예측 (kWh)</th><th scope="col" class="numeric">오차 (kWh)</th><th scope="col" class="numeric">일사량 예보 (MJ/m²)</th></tr></thead><tbody id="generation-rows"></tbody></table></div></details>
+        </article>
+        <article class="forecast-card">
+          <div class="forecast-top"><span class="eyebrow">내일의 발전 전망</span><span class="outline-badge" data-value="tomorrow-label">—</span></div>
+          <h2>내일 예상 발전량</h2><div class="forecast-number"><span data-value="forecast">—</span><span>kWh</span></div>
+          <p class="forecast-comparison">오늘 예측 대비 <strong data-value="forecast-delta">—</strong></p>
+          <div class="solar-art" aria-hidden="true"><svg viewBox="0 0 340 130"><defs><linearGradient id="panel-face" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfd8e6"/><stop offset="1" stop-color="#bfd8e6"/></linearGradient></defs><circle cx="274" cy="35" r="21" fill="#deb38e"/><circle cx="274" cy="35" r="32" fill="none" stroke="#deb38e" stroke-opacity=".2"/><path d="M0 115Q85 62 177 106T340 87V130H0Z" fill="#f8efe6"/><path d="M0 123Q85 98 186 117T340 103V130H0Z" fill="#bfd8e6"/><path d="M75 89v27m78-24v27m53-44v37m66-28v29" stroke="#476779" stroke-width="3"/><!-- 격자선은 패널 윗변·아랫변의 같은 비율 지점을 이어 기울기를 따르고, 먼 쪽(위) 칸을 좁게 둔다 --><path d="M55 58H165L186 100H30Z" fill="url(#panel-face)"/><path d="M77.0 58L61.2 100M99.0 58L92.4 100M121.0 58L123.6 100M143.0 58L154.8 100M48.7 68.6H170.3M39.9 83.3H177.7" stroke="#628296" stroke-width=".8" fill="none"/><path d="M30 100H186l-2 4H32Z" fill="#365769"/><path d="M55 58H165L186 100H30Z" fill="none" stroke="#476779" stroke-width="1.5" stroke-linejoin="round"/><path d="M195 51H272L288 84H179Z" fill="url(#panel-face)"/><path d="M214.2 51L206.2 84M233.5 51L233.5 84M252.8 51L260.8 84M190.9 59.4H276.1M185.4 70.9H281.6" stroke="#628296" stroke-width=".8" fill="none"/><path d="M179 84H288l-2 4H181Z" fill="#365769"/><path d="M195 51H272L288 84H179Z" fill="none" stroke="#476779" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+          <dl class="forecast-weather"><div><dt><span data-icon="sun"></span>일사량 예보</dt><dd><strong data-value="tomorrow-irradiance">—</strong> <span>MJ/m²</span></dd></div></dl>
+          <p class="forecast-note">최근 7일 비율 기준선 · LSTM 미적용</p>
+        </article>
+      </div>
+    </section>
+    <section id="view-service" class="view operations-section" aria-label="서비스 운영" hidden>
+      <div class="refresh-toolbar"><div><strong id="ops-status" role="status">운영 서버 연결 확인 전</strong><p id="ops-updated">조회 대기</p></div><div class="refresh-actions"><label for="refresh-interval">자동 갱신</label><select id="refresh-interval"><option value="0">끄기</option><option value="5000">5초</option><option value="10000">10초</option><option value="30000" selected>30초</option><option value="60000">1분</option></select><button class="button" id="refresh-ops"><span data-icon="refresh"></span>새로고침</button></div></div>
+      <article class="panel ops-panel">
+        <div class="service-metrics live-metrics" aria-label="운영 서버 조회 지표" id="live-metrics">
+          <div><span>서비스 상태</span><strong class="text-metric" data-ops="health">—</strong><p>현재 상태 확인</p></div>
+          <div><span>모델 로딩</span><strong class="text-metric" data-ops="model">—</strong><p>메모리 적재</p></div>
+          <div><span>상태 조회 응답시간</span><strong data-ops="latency">—</strong><p>예측 API 응답시간과 별도</p></div>
+          <div><span>등록 데이터</span><strong data-ops="rows">—</strong><p data-ops="range">업로드 기준</p></div>
+        </div>
+        <p class="ops-boundary">상세 운영 지표 · 아래 조회 메뉴</p>
+        <div class="pipeline-heading"><h2>재학습 · 모델 반영 흐름</h2><span class="status-badge" id="pipeline-status">실행 대기</span></div>
+        <ol class="pipeline" aria-label="최근 배치 실행 결과">
+          <li><span class="step-number">01</span><strong>데이터 수집</strong><small>요청 수신</small><span class="step-state">대기</span></li>
+          <li><span class="step-number">02</span><strong>오차 모니터링</strong><small>예측 기록 누적</small><span class="step-state">대기</span></li>
+          <li><span class="step-number">03</span><strong>드리프트 감지</strong><small>오차 변화 확인</small><span class="step-state">대기</span></li>
+          <li><span class="step-number">04</span><strong>재학습 요청</strong><small>학습 시작</small><span class="step-state">대기</span></li>
+          <li><span class="step-number">05</span><strong>학습 · 검증</strong><small>후보 모델 평가</small><span class="step-state">대기</span></li>
+          <li><span class="step-number">06</span><strong>모델 등록</strong><small>버전 생성</small><span class="step-state">대기</span></li>
+          <li><span class="step-number">07</span><strong>운영 반영</strong><small>검증 후 승격</small><span class="step-state">대기</span></li>
+        </ol>
+        <div class="pipeline-foot"><span id="pipeline-time">배치 실행 전</span><span>검증 실패 → 기존 모델 유지</span></div>
+      </article>
+      <article class="panel current-model-panel"><div class="panel-heading"><h2>현재 운영 모델</h2><span class="status-badge">예시 · v3 운영 중</span></div><div class="model-summary"><div><span class="metric-label">현재 운영 모델</span><strong>Solar LSTM <span class="version-badge">v3</span></strong></div><dl><div><dt>검증 RMSE</dt><dd>24.8 <small>kWh/일</small></dd></div><div><dt>입력 구간</dt><dd>최근 20일</dd></div><div><dt>배포 게이트</dt><dd>팀 결정 대기</dd></div></dl></div></article>
+      <details class="server-inspector"><summary>운영 지표 · 데이터셋 · 시스템</summary>
+      <div class="log-toolbar"><select id="server-resource" aria-label="조회 항목"><option value="timeseries">요청 지표 추이</option><option value="metrics">성능 지표 요약</option><option value="dataset">기본 데이터셋</option><option value="info">시스템 설정</option><option value="current">현재 모델</option></select><select id="server-window" aria-label="조회 기간"><option value="300">5분</option><option value="3600">1시간</option><option value="21600">6시간</option><option value="86400">24시간</option></select><button class="button" id="inspect-server">조회</button></div>
+      <p id="inspector-status" role="status">조회 대기</p><dl id="inspector-summary" class="inspector-summary"></dl><details><summary>상세 응답</summary><pre id="inspector-result" tabindex="0"></pre></details>
+      </details>
+      <details class="single-predict"><summary>단건 예측 테스트</summary><p>HAIC 입력 · 최근 20개 (close, volume) · JSON 편집</p><label for="predict-input">예측 입력</label><textarea id="predict-input" rows="6" spellcheck="false"></textarea><div class="log-toolbar"><button class="button" id="generate-sample">예시 데이터 생성</button><button class="button primary" id="run-predict">예측 실행</button></div><p id="predict-status" role="status">실행 대기</p><pre id="predict-result" tabindex="0"></pre></details>
+      <details class="server-logs"><summary>서버 로그</summary><div class="log-toolbar"><button class="button" id="load-logs">목록 새로고침</button><select id="log-files" aria-label="로그 파일"><option value="">파일 선택</option></select><button class="button" id="read-log">내용 조회</button></div><p id="log-status" role="status">조회 대기</p><pre id="log-content" tabindex="0" aria-label="서버 로그 내용"></pre></details>
+    </section>
+    <section id="view-history" class="view operations-section" aria-label="이력 및 알림" hidden>
+      <div class="history-toolbar"><button class="button" id="refresh-history">서버 이력 새로고침</button><span id="history-status" role="status">예시 기록</span></div><div class="operations-grid"><article class="panel model-panel">
+          <div class="panel-heading"><div><h2>모델 버전 이력</h2><p>등록 버전별 검증 성능 · 예시</p></div><span class="status-badge">v3 운영 중</span></div>
+
+          <div class="table-scroll" tabindex="0" role="region" aria-label="모델 버전 이력 예시, 상하좌우 스크롤"><table><caption class="sr-only">예시 모델의 등록 및 검증 이력. 실제 학습 결과가 아닙니다.</caption><thead><tr><th scope="col">버전</th><th scope="col">등록 시각</th><th scope="col">학습 방식</th><th scope="col" class="numeric">RMSE (kWh/일)</th><th scope="col">상태</th></tr></thead><tbody><tr><td><strong>v3</strong></td><td data-example-date="0" data-example-time="14:30">—</td><td>추가 학습</td><td class="numeric">24.8</td><td><span class="status-badge">운영 중</span></td></tr><tr><td>v2</td><td data-example-date="1" data-example-time="10:20">—</td><td>추가 학습</td><td class="numeric">29.1</td><td><span class="neutral-badge">보관</span></td></tr><tr><td>v1</td><td data-example-date="2" data-example-time="09:00">—</td><td>최초 학습</td><td class="numeric">35.6</td><td><span class="neutral-badge">보관</span></td></tr></tbody></table></div>
+        </article><article class="panel events-panel"><div class="panel-heading"><div><h2>최근 운영 알림</h2><p>재학습 실행과 모델 변경 · 예시</p></div><span class="neutral-badge">3건</span></div>
+          <ol class="event-list" tabindex="0" aria-label="최근 운영 알림, 위아래 스크롤">
+            <li><span class="event-mark done" data-icon="check"></span><div><div class="event-heading"><strong>모델 v3 반영 완료</strong><time>14:30</time></div><p>검증 RMSE 24.8 kWh/일</p><details><summary>상세 기록</summary><p>예시 기록 · 검증 통과 → 운영 반영 / 발전 차트: 규칙 기준선</p></details></div></li>
+            <li><span class="event-mark" data-icon="refresh"></span><div><div class="event-heading"><strong>재학습 시작</strong><time>14:25</time></div><p>최근 데이터 · 추가 학습</p></div></li>
+            <li><span class="event-mark warning" data-icon="alert"></span><div><div class="event-heading"><strong>예측 오차 변화 감지</strong><time>14:24</time></div><p>드리프트 검토 후 재학습 요청</p></div></li>
+          </ol>
+          <div class="events-foot">예시 기준일 <span data-value="replay-date">—</span></div>
+        </article></div>
+    </section>
+
+    <footer class="page-footer"><span>실적 · 한국남부발전 <span class="footer-separator">/</span> 예보 · Open-Meteo JMA</span><span>실시간 관제가 아닌 디자인 미리보기</span></footer>
+  </main>
+  </div>
+  <dialog id="simulation-dialog" aria-labelledby="simulation-title">
+    <h2 id="simulation-title">드리프트 시뮬레이션</h2>
+    <p>기존 HAIC 테스트 · 합성 입력 41개 · 예측 21회</p>
+    <p class="simulation-warning">실행 시 서버의 드리프트 검사·재학습·모델 승격이 발생할 수 있습니다.</p>
+    <div class="simulation-actions"><button class="button" id="normal-batch">정상 배치 전송</button><button class="button primary" id="drift-batch">드리프트 배치 전송</button></div>
+    <p id="simulation-status" role="status">실행 대기</p>
+    <dl class="simulation-metrics"><div><dt>클라이언트 RMSE</dt><dd id="simulation-rmse">—</dd></div><div><dt>예측 건수</dt><dd id="simulation-count">—</dd></div></dl>
+    <details><summary>예측값 · 서버 응답</summary><pre id="simulation-result" tabindex="0"></pre></details>
+    <div class="upload-actions"><button class="button" id="simulation-close">닫기</button></div>
+  </dialog>
+  <dialog id="upload-dialog" aria-labelledby="upload-title">
+    <form id="upload-form">
+      <h2 id="upload-title">CSV 업로드</h2>
+      <p>운영 서버에 데이터를 등록합니다. 현재 차트는 과거 자료 재생 화면으로 유지됩니다.</p>
+      <p id="upload-help">현재 서버 형식: Date, Close, Volume 열을 포함한 UTF-8 CSV, 최소 41행, 최대 10MB.</p>
+      <label for="upload-file">업로드할 CSV 파일</label>
+      <input id="upload-file" type="file" accept=".csv,text/csv" required aria-describedby="upload-help">
+      <p id="upload-status" role="status" aria-live="polite"></p>
+      <div class="upload-actions"><button class="button" id="upload-close" type="button">닫기</button><button class="button primary" id="upload-submit" type="submit">업로드</button></div>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>
