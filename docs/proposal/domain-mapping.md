@@ -24,6 +24,25 @@ HAIC 스켈레톤의 개념을 태양광 발전량 예측으로 바꾼 표다. �
 | 설비 이상과 모델 품질 저하 | 정지와 보류는 점검 알림과 재학습 보류. 그 밖의 수준 저하는 알림과 재학습 후보 | 제안 [0007](../decisions/0007-facility-vs-model-branch-and-alerts.md) |
 | 버전의 교체와 확인 | 승격 뒤 서빙 모델을 다시 불러온다. 응답에 레지스트리의 버전 번호를 싣는다 | 제안 [0008](../decisions/0008-retraining-and-version-switch.md) |
 
+## 여러 발전소와 포트폴리오의 개념 (확장 제안)
+
+위의 두 표는 발전소 한 곳의 서비스다. HAIC 스켈레톤에는 종목이 하나였고 "묶음"에 해당하는 개념이 없다. 여러 발전소로 넓힐 때 새로 생기는 개념을 따로 적는다. 모두 결정 기록 [0010](../decisions/0010-multi-plant-scope-and-scheme.md) ~ [0012](../decisions/0012-single-pc-retrain-jobs.md)의 **제안**이고 구현하지 않았다. 설계는 [확장 문서](multi-plant-extension.md)에 있다.
+
+| 개념 | 템플릿 (HAIC) | 지금: 발전소 한 곳 | 넓힌 뒤: 여러 발전소 | 상태 |
+| --- | --- | --- | --- | --- |
+| 예측의 대상 | 종목 하나 | 발전소 한 곳. 식별자가 없다 | 발전소(`plant_id`)마다 따로. 기본 발전소는 `hadong-sewage` | 제안 [0011](../decisions/0011-multi-plant-forecast-and-identity.md) |
+| 묶음 | 없다 | 없다. 고객의 묶음은 말로만 있다 | 포트폴리오(`portfolio_id`)와 구성 버전. **가상의 묶음**이라고 적는다 | 제안 [0010](../decisions/0010-multi-plant-scope-and-scheme.md) |
+| 묶음의 값 | 없다 | 없다 | 같은 대상일의 발전소별 예측의 합(하루 kWh). 빠진 발전소가 있으면 합계라고 부르지 않는다 | 제안 [0011](../decisions/0011-multi-plant-forecast-and-identity.md) |
+| 설비 용량 | 없다 | 55kW. 코드의 입력 상한(1,320kWh)에 들어 있다 | 발전소 등록부의 값(단위, 종류, 근거, 유효 기간). 묶음은 중복 없이 더한 **설비 용량 합계**(kW, MW). 발전량의 합과 다르다 | 제안 [0010](../decisions/0010-multi-plant-scope-and-scheme.md) |
+| 제도의 기준 | 없다 | 배경으로만 쓴다 | 묶음 안 태양광·풍력의 설비 용량 합계 20MW **초과**. 우리 합계와 견준 값은 참고다. 요건을 채웠다고 쓰지 않는다 | 제안 [0010](../decisions/0010-multi-plant-scope-and-scheme.md) |
+| 데이터 공급 | CSV 하나를 올린다 | CSV 하나. 가장 최근 파일을 쓴다 | 발전소와 자료 종류를 주어 올린다. 발전소별 폴더에서 고른다 | 제안 [0011](../decisions/0011-multi-plant-forecast-and-identity.md) |
+| 모델과 스케일러 | 하나씩 | 하나씩(`HAIC_Predictor`, `scaler.pkl`) | 발전소마다 하나씩(`solar-daily-<plant_id>`). 묶음 기록으로 짝을 확인한다 | 제안 [0011](../decisions/0011-multi-plant-forecast-and-identity.md) |
+| 배포 게이트 | 모델 하나에 한 번 | 모델 하나에 한 번 | 발전소마다 따로. 한 곳이 막혀도 다른 곳은 그대로. 합계는 "검증됨" 표시의 조건으로만 | 제안 [0011](../decisions/0011-multi-plant-forecast-and-identity.md) |
+| 드리프트 신호 | 종목 하나의 변동성 | 발전소 한 곳의 출력 수준 저하 | 발전소별 수준 저하. 여럿이 함께 내려가면 공통 요인(날씨, 예보 입력). 구성의 변경과 자료의 누락은 드리프트가 아니다 | 제안 ([확장 문서 8.3절](multi-plant-extension.md#83-aiops)) |
+| 재학습 | 요청 안에서 바로 | 요청 안에서 바로 | 조건을 채운 발전소만, 작업으로 떼어 한 번에 하나씩 | 제안 [0012](../decisions/0012-single-pc-retrain-jobs.md) |
+| 알림 | 로그 한 줄 | 로그의 문장 | 문장에 발전소, 모델, 자료, 작업의 식별자를 싣는다 | 제안 ([확장 문서 8.3절](multi-plant-extension.md#83-aiops)) |
+| 품질의 지표 | RMSE(달러) | RMSE(하루 kWh), 합계 오차율, 치우침 | 발전소별 지표와, 예측 합계와 실제 합계로 구한 포트폴리오 지표를 같은 대상일에서 함께. 발전소별 RMSE 를 더하지 않는다 | 제안 [0011](../decisions/0011-multi-plant-forecast-and-identity.md) |
+
 ## 지금의 코드와의 거리
 
 표의 "우리 팀" 열은 설계다. 커밋 `58d6ff8` 의 `project/` 는 아직 HAIC 스켈레톤 그대로다. 게이트와 드리프트의 기준이 4.00 이고, 드리프트 시뮬레이션이 변동성을 3배로 키운 무작위 가격이며, 빈칸 11곳이 남아 있다. 무엇이 돌고 무엇이 돌지 않는지는 [검증 기록](evidence/validation.md)에 있다.

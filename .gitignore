@@ -27,3 +27,6 @@ AI캠퍼스_*.pdf
 
 # 개인별 에이전트 권한과 로컬 절대 경로를 저장소에 올리지 않는다.
 **/.claude/
+
+# 여러 발전소의 정규화 실적. 원자료에서 tools/multi_plant/convert_kospo_raw.py 로 다시 만든다. 등록부(plants.csv, portfolio_members.csv)는 커밋한다.
+datasets/plants/generation/

@@ -2,7 +2,7 @@
 
 - 평가 항목: 2-2 (구현·발표)
 - 담당: 본인 (`fastapi` 브랜치, 백엔드 API)
-- 상태: FastAPI 계약 구현 완료(2026-10-07, 이슈 #5~#7). 아래 현재 계약이 우선한다. 이후 초기 실행 기록은 `58d6ff8` 당시의 증빙이며 현재 동작과 구분한다.
+- 상태: FastAPI 계약 구현 완료(2026-10-07, 이슈 #5~#7). 아래 현재 계약이 우선한다. 이후 초기 실행 기록은 `58d6ff8` 당시의 증빙이며 현재 동작과 구분한다. 여러 발전소를 받는 API 는 맨 아래 [다중 발전소 확장 제안 API](#다중-발전소-확장-제안-api)의 **제안**이고 구현되지 않았다.
 
 ## 현재 태양광 API 계약 — #5~#7
 
@@ -558,3 +558,158 @@ curl -F "file=@../datasets/hadong_upload_forecast_jma.csv" http://127.0.0.1:8077
 | 9절의 제안 | 구현되지 않았다고 적었다 |
 
 후속 조건은 [`../followups.md`](../followups.md)에 옮겨 적었다.
+
+## 다중 발전소 확장 제안 API
+
+**[현재]** 위의 "현재 태양광 API 계약"이 지금 동작하는 API 다. 요청과 응답 어디에도 발전소의 구분이 없고, 서버는 발전소 한 곳의 모델 하나로 답한다. **[제안]** 이 절은 여러 발전소를 받을 때의 계약이다. **구현되지 않았다.** 아래 예시의 숫자는 모양을 보이려는 값이고 실행 결과가 아니다. 근거는 [0011](../decisions/0011-multi-plant-forecast-and-identity.md), [0012](../decisions/0012-single-pc-retrain-jobs.md)이고 배경은 [확장 문서 8.1절](multi-plant-extension.md#81-fastapi)에 있다.
+
+### 지금의 API 와 제안의 차이
+
+| Method / URL | 지금 | 제안 | 호환 |
+| --- | --- | --- | --- |
+| `POST /predict` | `sequence` 20행. 대상이 없다 | 요청에 `plant_id`(선택)를 더한다. 응답에 `plant_id` 를 싣는다. 발전량의 상한을 그 발전소의 설비 용량 × 24시간으로 본다 | `plant_id` 가 없으면 기본 발전소(`hadong-sewage`)로 받는다. 기존 응답 필드는 그대로다 |
+| `POST /predict/batch-test` | 네 배열. 대상이 없다 | 요청에 `plant_id`(선택)를 더한다. `drift_check` 에 `plant_id` 와, 재학습을 작업으로 적었을 때의 `job_id` 를 싣는다 | 위와 같다 |
+| `POST /data/upload` | CSV 하나. `data/uploads/haic_<uuid>.csv` | `plant_id` 와 `kind`(자료 종류, 지금은 `generation_forecast_daily` 하나)를 받는다. 발전소별 폴더에 둔다. 크기 한도 5MB·20,000행 | 둘 다 없으면 기본 발전소의 기본 종류로 받는다 |
+| `GET /data/status` | 가장 최근 파일 하나 | `plant_id` 를 받아 그 발전소의 최근 파일을 본다 | 없으면 기본 발전소 |
+| `GET /health` | 메모리의 모델 하나의 버전과 출처 | 기존 필드는 기본 발전소의 값으로 두고, `models` 에 발전소별 상태를, `runtime` 에 실행 단위를 더한다 | 기존 필드는 그대로다 |
+| `GET /plants` | 없다 | 등록부의 발전소와 발전소별 상태 | 새 경로 |
+| `GET /plants/{plant_id}/status` | 없다 | 그 발전소의 자료, 모델, 감시 상태 | 새 경로 |
+| `GET /portfolios/{portfolio_id}` | 없다 | 구성 버전, 구성원, 설비 용량 합계 | 새 경로 |
+| `POST /portfolios/{portfolio_id}/predict` | 없다 | 같은 대상일의 발전소별 예측과 합계. 빠진 발전소를 함께 준다 | 새 경로 |
+
+### 오류
+
+| 상황 | 상태 코드 | 본문 |
+| --- | --- | --- |
+| 등록부에 없는 `plant_id`, 구성에 없는 `portfolio_id` | 404 | `{"detail": "등록되지 않은 발전소입니다: <plant_id>"}` |
+| 모양이 틀린 `plant_id`, 범위를 넘는 값, 이어지지 않는 날짜 | 422 | 지금의 검증 오류와 같은 모양 |
+| 그 발전소의 자료가 모자란다(올린 파일이 없거나 대상일 직전의 20일이 없다) | 409 | `{"detail": "자료가 모자랍니다: <까닭>"}` |
+| 그 발전소의 모델이나 스케일러가 준비되지 않았다. 묶음 기록의 짝이 맞지 않는다 | 503 | `{"detail": "예측 모델이 준비되지 않았습니다: <plant_id>"}` |
+| 업로드 파일이 한도를 넘는다 | 413 | `{"detail": "파일이 너무 큽니다"}` |
+| 포트폴리오에서 일부 발전소만 예측했다 | 200 | `status` 가 `partial`, `complete` 가 `false`. 발전소별 결과와 빠진 까닭을 함께 준다 |
+| 포트폴리오에서 한 곳도 예측하지 못했다 | 503 | `status` 가 `failed`. 발전소별 까닭을 준다 |
+
+한 발전소의 실패는 그 발전소의 요청에만 미친다. 다른 발전소의 요청은 그대로 답한다.
+
+### POST /predict (제안)
+
+요청. `sequence` 는 지금과 같은 20행이고 여기서는 두 행만 적었다.
+
+```json
+{
+  "plant_id": "hadong-sewage",
+  "sequence": [
+    {"date": "2026-02-08", "close": 187.3, "volume": 12.4},
+    {"date": "2026-02-09", "close": 201.6, "volume": 14.1}
+  ]
+}
+```
+
+응답.
+
+```json
+{
+  "plant_id": "hadong-sewage",
+  "predicted_close": 198.42,
+  "target_date": "2026-02-28",
+  "model_version": "v3"
+}
+```
+
+### GET /plants/{plant_id}/status (제안)
+
+```json
+{
+  "plant_id": "hadong-sewage",
+  "plant_name": "하동하수처리장태양광",
+  "capacity_kw": 55.0,
+  "max_daily_generation_kwh": 1320.0,
+  "data": {"exists": true, "kind": "generation_forecast_daily", "rows": 1337, "start_date": "2022-07-02", "end_date": "2026-02-27", "sha256_8": "a1b2c3d4"},
+  "model": {"loaded": true, "name": "solar-daily-hadong-sewage", "version": "v3", "source": "mlflow", "bundle_ok": true},
+  "monitoring": {"status": "ok", "last_judged_end_date": "2026-02-26", "retrain_job": null},
+  "runtime": "local"
+}
+```
+
+- `model.version` 은 레지스트리의 실제 번호다. 승격한 뒤 이 값이 레지스트리의 Production 버전과 같은지로 "새 모델로 서빙한다"를 확인한다.
+- `data.sha256_8` 은 올린 파일의 해시의 앞 여덟 자다. 로그의 `data=` 와 같은 값이다.
+
+### POST /portfolios/{portfolio_id}/predict (제안)
+
+요청. 서버가 구성원마다 그 발전소의 최근 업로드에서 대상일 직전의 20일을 읽는다.
+
+```json
+{"target_date": "2026-02-28"}
+```
+
+응답: 모든 구성원을 예측했을 때.
+
+```json
+{
+  "portfolio_id": "virtual-vpp",
+  "composition_version": 2,
+  "target_date": "2026-02-28",
+  "status": "ok",
+  "complete": true,
+  "verified": false,
+  "total_predicted_kwh": 2140.7,
+  "capacity_kw": {"composition": 606.17, "included": 606.17},
+  "capacity_coverage_pct": 100.0,
+  "included": [
+    {"plant_id": "hadong-sewage", "predicted_kwh": 198.42, "model_version": "v3", "data_end_date": "2026-02-27"},
+    {"plant_id": "hadong-stadium", "predicted_kwh": 1301.5, "model_version": "v1", "data_end_date": "2026-02-27"}
+  ],
+  "missing": [],
+  "runtime": "local"
+}
+```
+
+응답: 일부만 예측했을 때. 상태 코드는 200 이다.
+
+```json
+{
+  "portfolio_id": "virtual-vpp",
+  "composition_version": 2,
+  "target_date": "2026-02-28",
+  "status": "partial",
+  "complete": false,
+  "verified": false,
+  "total_predicted_kwh": null,
+  "partial_predicted_kwh": 1998.3,
+  "capacity_kw": {"composition": 606.17, "included": 566.17},
+  "capacity_coverage_pct": 93.4,
+  "included": [
+    {"plant_id": "hadong-sewage", "predicted_kwh": 198.42, "model_version": "v3", "data_end_date": "2026-02-27"}
+  ],
+  "missing": [
+    {"plant_id": "hadong-health", "reason": "no_model"}
+  ],
+  "runtime": "local"
+}
+```
+
+- **빠진 곳이 있으면 `total_predicted_kwh` 를 비운다.** 일부만 더한 값은 `partial_predicted_kwh` 로 따로 준다. 일부의 합을 합계로 읽지 않게 하려는 것이다.
+- `missing[].reason` 은 `no_model`(모델이 없거나 짝이 맞지 않는다), `no_input`(대상일 직전의 20일이 없다), `invalid_input`(올린 자료가 검증을 통과하지 못한다), `not_registered`(그 날짜에 등록부의 유효 기간 밖이다) 가운데 하나다.
+- `capacity_kw` 는 등록부의 **설비 용량**(kW)의 합이다. 발전량이 아니다. `capacity_coverage_pct` 는 포함된 설비 용량 ÷ 구성 전체의 설비 용량이다.
+- `verified` 는 이 구성의 합계가 공통 시험일에서 품질 기준을 통과한 적이 있는지다([③ 의 14절](3-operations-design.md#14-여러-발전소일-때의-게이트-감시-재학습-확장-제안)).
+- `composition_version` 은 대상일에 적용되는 구성의 버전이다. 구성이 바뀌면 합계의 수준이 달라지므로 응답마다 싣는다.
+- **합계도 하루 합계(kWh)다.** 제도가 받는 발전기별 시간대별 값이 아니다.
+
+### GET /portfolios/{portfolio_id} (제안)
+
+```json
+{
+  "portfolio_id": "virtual-vpp",
+  "note": "가상의 묶음. 실제 집합전력자원이 아니다",
+  "compositions": [
+    {"composition_version": 1, "effective_from": "2013-01-01", "effective_to": null, "members": ["hadong-sewage"], "capacity_sum_kw": 55.0, "capacity_complete": true}
+  ],
+  "reference": {"scheme_requirement": "설비 용량 20MW 초과 (참고 비교)", "share_of_reference_pct": 0.275, "exceeds_reference": false}
+}
+```
+
+`reference` 는 용량을 견준 참고값이다. 참여 자격의 판정이 아니다([0010](../decisions/0010-multi-plant-scope-and-scheme.md)). 이 예시의 값(55kW, 0.275%)은 지금의 등록부로 용량 합계 도구가 낸 값과 같다([M03](evidence/multi-plant/validation.md#m03)).
+
+### 함께 고칠 곳
+
+**[과제]** 이 계약을 구현할 때는 `serving_app/schemas.py`, 해당 라우터, `serving_app/aiops_adapter.py`, `serving_app/static/index.html`, `scripts/simulate_drift.py`, `tools/verify/test_fastapi.py` 와 이 문서의 "현재 태양광 API 계약"을 같은 변경에서 맞춘다([`AGENTS.md`](../../AGENTS.md)의 "요청과 응답의 모양", "발전소 식별자와 등록부" 묶음). 순서는 [확장 문서 9절](multi-plant-extension.md#9-다음-구현-작업)의 2, 5, 8번이다.

@@ -1,0 +1,152 @@
+{
+  "python": "3.11.15",
+  "results": [
+    {
+      "id": "S01",
+      "title": "남부발전 형식 원자료의 변환: 빈 칸은 0 이 아니라 partial, 빠진 날은 missing 행, 0 인 날은 zero_day, 합계가 다른 날은 mismatch",
+      "expected": "ok, zero_day, missing, partial, mismatch, ok (CP949, '(kw)' 가 없는 머리 줄)",
+      "actual": "ok, zero_day, missing, partial, mismatch, ok / 03-04 의 하루 값 None / 인코딩 cp949",
+      "status": "통과"
+    },
+    {
+      "id": "S02",
+      "title": "정상 합성 자료(발전소 3곳, 400일, 시간대별 포함)는 오류 없이 통과한다",
+      "expected": "오류 0건",
+      "actual": "오류 0건, 경고 0건",
+      "status": "통과"
+    },
+    {
+      "id": "S03",
+      "title": "같은 원자료를 다른 plant_id 로 한 번 더 등록하면 검증이 막고, 용량 합계는 한 번만 센다",
+      "expected": "오류 PLANT-DUPLICATE-SOURCE, 용량 합계 400kW(500kW 가 아님)",
+      "actual": "오류 ['PLANT-DUPLICATE-SOURCE'], 합계 400kW, 한 번만 센 곳 ['fx-a-copy']",
+      "status": "통과"
+    },
+    {
+      "id": "S04",
+      "title": "용량의 kW 와 MW 를 바꿔 적으면 발전량과 견줘 잡는다. 맞게 적은 MW 는 kW 로 환산된다",
+      "expected": "100MW 로 적으면 UNIT-FAR-BELOW-CAPACITY, 0.1kW 로 적으면 UNIT-OVER-CAPACITY, 0.1MW 는 100kW 로 통과",
+      "actual": "100MW: ['UNIT-FAR-BELOW-CAPACITY'] / 0.1kW: ['UNIT-OVER-CAPACITY'] / 0.1MW: 오류 0건, 100kW",
+      "status": "통과"
+    },
+    {
+      "id": "S05",
+      "title": "단위 환산: MW→kW, MWh·Wh→kWh",
+      "expected": "0.055MW=55kW, 1.2MWh=1200kWh, 1500Wh=1.5kWh",
+      "actual": "(55.0, 55.0, 1200.0, 1.5, 3.0)",
+      "status": "통과"
+    },
+    {
+      "id": "S06",
+      "title": "달력에서 하루의 행이 빠지면 막는다(값이 없어도 행은 둔다)",
+      "expected": "오류 DAILY-MISSING-DATE",
+      "actual": "오류 ['DAILY-MISSING-DATE', 'HOURLY-NO-DAILY']",
+      "status": "통과"
+    },
+    {
+      "id": "S07",
+      "title": "같은 날짜가 두 번 있으면 막는다",
+      "expected": "오류 DAILY-DUPLICATE-DATE",
+      "actual": "오류 ['DAILY-DUPLICATE-DATE']",
+      "status": "통과"
+    },
+    {
+      "id": "S08",
+      "title": "값이 빈 날을 ok 로 적으면 막는다. missing 으로 적으면 받되, 그날이 낀 창은 만들지 않는다(0 으로 채우지 않는다)",
+      "expected": "빈 값+ok 는 DAILY-BLANK-AS-VALUE. 빈 값+missing 은 통과하고 창이 21개 준다",
+      "actual": "빈 값+ok: ['DAILY-BLANK-AS-VALUE'] / 빈 값+missing: 오류 0건, 창 380개 → 359개",
+      "status": "통과"
+    },
+    {
+      "id": "S09",
+      "title": "음수와 유한하지 않은 값(nan, inf)을 막는다",
+      "expected": "오류 DAILY-NEGATIVE, DAILY-VALUE",
+      "actual": "오류 ['DAILY-NEGATIVE', 'DAILY-VALUE']",
+      "status": "통과"
+    },
+    {
+      "id": "S10",
+      "title": "한 발전소의 파일에 다른 발전소의 행이 있으면 막는다",
+      "expected": "오류 DAILY-WRONG-PLANT",
+      "actual": "오류 ['DAILY-WRONG-PLANT']",
+      "status": "통과"
+    },
+    {
+      "id": "S11",
+      "title": "발전소별로 만든 창에는 섞임이 없다. 행을 이어 붙이면 지금의 build_sequences 는 오류 없이 섞인 창을 만든다",
+      "expected": "발전소별 창의 문제 0개. 이어 붙이면 섞인 창 40개(경계 2곳 × 20). 점검 함수가 섞인 창을 찾는다",
+      "actual": "발전소별 창 1140개의 문제 0개 / 이어 붙인 창 1180개 가운데 섞인 창 40개, build_sequences 가 오류 없이 만든 창 1180개 / 만든 섞인 창 1개 가운데 찾은 것 1개",
+      "status": "통과"
+    },
+    {
+      "id": "S12",
+      "title": "구성이 바뀌면 날짜에 따라 구성 버전과 용량 합계가 달라진다. 구성 변경을 걸친 기간의 평가는 멈추고, 발전소를 고정하면 평가한다",
+      "expected": "06-30 은 v1 150kW, 07-01 은 v2 400kW. 06-01~07-31 평가는 멈춤. --members 로 고정하면 평가",
+      "actual": "06-30 v1 150kW, 07-01 v2 400kW / 멈춤: 예 / 고정 평가: ok, 대상일 61일",
+      "status": "통과"
+    },
+    {
+      "id": "S13",
+      "title": "구성 버전의 기간이 겹치거나, 한 발전소가 같은 기간에 두 포트폴리오에 들거나, 등록부에 없는 발전소를 넣으면 막는다",
+      "expected": "MEMBER-VERSION-OVERLAP, MEMBER-MULTI-PORTFOLIO, MEMBER-UNKNOWN-PLANT",
+      "actual": "['MEMBER-VERSION-OVERLAP'] / ['MEMBER-MULTI-PORTFOLIO'] / ['MEMBER-UNKNOWN-PLANT']",
+      "status": "통과"
+    },
+    {
+      "id": "S14",
+      "title": "용량이 바뀐 발전소는 유효 기간이 다른 두 행으로 적고 날짜로 고른다. 기간이 겹치면 막는다",
+      "expected": "06-30 은 100kW, 07-01 은 120kW. 겹치면 PLANT-PERIOD-OVERLAP",
+      "actual": "100kW, 120kW / 겹침: ['PLANT-PERIOD-OVERLAP']",
+      "status": "통과"
+    },
+    {
+      "id": "S15",
+      "title": "용량을 모르는 발전소는 칸을 비운다. 합계에서 빼고 '전체가 아니다'라고 알린다(값을 지어내지 않는다)",
+      "expected": "경고 PLANT-CAPACITY-UNKNOWN, 합계 150kW, 뺀 곳 fx-c, 전체 여부 거짓",
+      "actual": "경고 ['PLANT-CAPACITY-UNKNOWN'], 합계 150kW, 뺀 곳 ['fx-c'], 전체 여부 False",
+      "status": "통과"
+    },
+    {
+      "id": "S16",
+      "title": "구성원 한 곳의 자료가 없으면 합계를 평가하지 않는다(남은 발전소만 더해 합계라고 부르지 않는다). 자료가 늦게 시작하면 공통 기간이 그만큼 준다",
+      "expected": "자료 없는 구성원 fx-c, 공통 대상일 0, 평가 not_evaluable. fx-c 가 09-01 에 시작하면 첫 공통 대상일은 09-21",
+      "actual": "자료 없는 구성원 ['fx-c'], 공통 대상일 0, 평가 not_evaluable / 늦게 시작: 첫 공통 대상일 2025-09-21",
+      "status": "통과"
+    },
+    {
+      "id": "S17",
+      "title": "한 발전소의 예측(모델)이 없으면 모델의 합계 지표를 내지 않고 누락을 알린다. 일부 날짜만 없으면 모든 방법을 같은 날짜로 좁혀 견준다",
+      "expected": "전부 있으면 모델 치우침 -5%. fx-c 가 없으면 partial 이고 모델 합계 없음. fx-b 의 15일 치 3일이 없으면 restricted 이고 기준 예측도 같은 날 수",
+      "actual": "전부: 치우침 -5.00% / 누락: partial, 모델 합계 없음 / 일부 날짜: restricted, 빠진 날 3일, 날 수 89 = 89",
+      "status": "통과"
+    },
+    {
+      "id": "S18",
+      "title": "지금의 latest_upload() 는 마지막에 올린 파일을 고르므로 A 를 학습하려 해도 B 의 파일이 잡힌다. 발전소별 폴더에서 고르면 A 의 파일이 잡힌다",
+      "expected": "지금의 코드: B 의 파일(문제의 재현). 제안: A 의 파일. 파일이 없는 발전소는 FileNotFoundError",
+      "actual": "지금의 코드: haic_bbbb_plant_b.csv / 제안: upload_fx-a.csv / 파일 없는 발전소: FileNotFoundError",
+      "status": "통과"
+    },
+    {
+      "id": "S19",
+      "title": "모델의 출력 0.5 를 A 의 스케일러와 C 의 스케일러로 되돌리면 값이 크게 다른데 오류는 나지 않는다. 묶음 기록의 해시와 plant_id 를 견주면 잡힌다",
+      "expected": "짝이 맞으면 통과. 다른 발전소의 스케일러는 BUNDLE-SCALER, 다른 발전소의 요청은 BUNDLE-PLANT",
+      "actual": "맞는 짝: 문제 0건 / 다른 스케일러: ['BUNDLE-SCALER'] / 다른 발전소: ['BUNDLE-PLANT'] / 같은 출력 0.5 → A 253.4kWh, C 623.9kWh (오류 없음)",
+      "status": "통과"
+    },
+    {
+      "id": "S20",
+      "title": "포트폴리오 RMSE 는 발전소별 RMSE 의 합이 아니다. 오차가 반대로 움직이면 발전소마다 크게 틀려도 합계의 오차는 0 에 가깝다",
+      "expected": "반대로 움직이는 두 곳: 발전소별 RMSE 80kWh 씩(합 160), 포트폴리오 RMSE 0. 일반 합성 자료에서도 포트폴리오 RMSE < 발전소별 RMSE 의 합",
+      "actual": "발전소별 80.0, 80.0kWh (합 160.0), 포트폴리오 0.0kWh / 3곳 합성: 포트폴리오 239.9 < 합 364.3kWh, 합계끼리 견준 오차율 22.3% < 발전량 가중 33.6%",
+      "status": "통과"
+    },
+    {
+      "id": "S21",
+      "title": "시간대별 값이 일부만 있는 날을 온전한 하루 값으로 쓰면 막는다. 24칸의 합이 하루 값과 다르면 막는다. 시간대별 참고 계산이 돈다",
+      "expected": "HOURLY-PARTIAL-AS-FULL, HOURLY-SUM-MISMATCH. 참고 계산 status ok",
+      "actual": "['HOURLY-PARTIAL-AS-FULL'] / ['HOURLY-SUM-MISMATCH'] / 참고 계산 ok, 대상 2310시간",
+      "status": "통과"
+    }
+  ]
+}

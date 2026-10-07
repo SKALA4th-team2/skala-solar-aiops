@@ -1,0 +1,9 @@
+# 지금의 입력 상한(project/serving_app/schemas.py 의 MAX_GENERATION_KWH = 1320.0, 55kW × 24시간)을 발전소별 하루 발전량과 견준다.
+# 입력: 검증용 자료 폴더의 발전소별 generation_daily.csv (하동 5곳, 2013-01-01 ~ 2026-02-28)
+hadong-health: 최대 하루 발전량 262.5kWh, 1320kWh 초과 0일 / 4807일
+hadong-sewage: 최대 하루 발전량 379.8kWh, 1320kWh 초과 0일 / 4807일
+hadong-stadium: 최대 하루 발전량 2200.4kWh, 1320kWh 초과 1936일 / 4807일
+hadong-substation: 최대 하루 발전량 326.0kWh, 1320kWh 초과 0일 / 4807일
+hadong-water: 최대 하루 발전량 573.3kWh, 1320kWh 초과 0일 / 4807일
+# 공설운동장(369.85kW)의 파일은 지금의 업로드 검증(routers/data.py 의 validate_csv)에서 'Close은 1320kWh 이하여야 합니다'로 거절된다.
+# 직접 확인: 공설운동장의 앞 400일을 Date,Close,Volume 로 바꿔 validate_csv 에 넣은 결과 → 거절: 48행: Close은 1320kWh 이하여야 합니다.

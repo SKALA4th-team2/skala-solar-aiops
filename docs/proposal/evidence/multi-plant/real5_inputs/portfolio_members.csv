@@ -1,0 +1,6 @@
+portfolio_id,composition_version,plant_id,effective_from,effective_to,note
+hadong5-check,1,hadong-sewage,2013-01-01,,검증용 가상 구성. 실제 집합전력자원이 아니다
+hadong5-check,1,hadong-stadium,2013-01-01,,검증용 가상 구성. 실제 집합전력자원이 아니다
+hadong5-check,1,hadong-substation,2013-01-01,,검증용 가상 구성. 실제 집합전력자원이 아니다
+hadong5-check,1,hadong-health,2013-01-01,,검증용 가상 구성. 실제 집합전력자원이 아니다
+hadong5-check,1,hadong-water,2013-01-01,,검증용 가상 구성. 실제 집합전력자원이 아니다
