@@ -1,0 +1,325 @@
+{
+  "schema_version": "0.1",
+  "portfolio_id": "hadong5-check",
+  "composition_version": 1,
+  "start": "2025-06-09",
+  "end": "2026-02-27",
+  "daily": {
+    "members": [
+      "hadong-health",
+      "hadong-sewage",
+      "hadong-stadium",
+      "hadong-substation",
+      "hadong-water"
+    ],
+    "members_without_data": [],
+    "coverage": {
+      "period_days": 264,
+      "common_target_days": 264,
+      "first_target": "2025-06-09",
+      "last_target": "2026-02-27",
+      "excluded_days": 0,
+      "per_plant_own_target_days": {
+        "hadong-health": 264,
+        "hadong-sewage": 264,
+        "hadong-stadium": 264,
+        "hadong-substation": 264,
+        "hadong-water": 264
+      },
+      "per_plant_days_lost_to_others": {
+        "hadong-health": 0,
+        "hadong-sewage": 0,
+        "hadong-stadium": 0,
+        "hadong-substation": 0,
+        "hadong-water": 0
+      },
+      "evaluated_days": 264
+    },
+    "status": "ok",
+    "per_plant": {
+      "hadong-health": {
+        "capacity_kw": 40.0,
+        "methods": {
+          "persistence": {
+            "n": 264,
+            "rmse_kwh": 63.69952596322358,
+            "mae_kwh": 47.94889393939394,
+            "wape_pct": 33.06574265321116,
+            "bias_pct": 0.3147414737795892,
+            "mean_actual_kwh": 145.01078787878794,
+            "rmse_per_kw": 1.5924881490805896
+          },
+          "ma7": {
+            "n": 264,
+            "rmse_kwh": 55.02593874229899,
+            "mae_kwh": 42.393995670995636,
+            "wape_pct": 29.235063329517292,
+            "bias_pct": 0.8688441510785343,
+            "mean_actual_kwh": 145.01078787878794,
+            "rmse_per_kw": 1.3756484685574748
+          }
+        }
+      },
+      "hadong-sewage": {
+        "capacity_kw": 55.0,
+        "methods": {
+          "persistence": {
+            "n": 264,
+            "rmse_kwh": 82.44373066687804,
+            "mae_kwh": 60.99022727272727,
+            "wape_pct": 31.408839610879962,
+            "bias_pct": 0.2784411415922948,
+            "mean_actual_kwh": 194.18172727272727,
+            "rmse_per_kw": 1.4989769212159643
+          },
+          "ma7": {
+            "n": 264,
+            "rmse_kwh": 71.6519404891058,
+            "mae_kwh": 54.824347402597375,
+            "wape_pct": 28.233525457107945,
+            "bias_pct": 0.7943840663916844,
+            "mean_actual_kwh": 194.18172727272727,
+            "rmse_per_kw": 1.3027625543473782
+          }
+        }
+      },
+      "hadong-stadium": {
+        "capacity_kw": 369.85,
+        "methods": {
+          "persistence": {
+            "n": 264,
+            "rmse_kwh": 402.86069254678193,
+            "mae_kwh": 299.53963636363636,
+            "wape_pct": 31.164130571258102,
+            "bias_pct": 0.24186483348028986,
+            "mean_actual_kwh": 961.167954545455,
+            "rmse_per_kw": 1.089254272128652
+          },
+          "ma7": {
+            "n": 264,
+            "rmse_kwh": 360.162620534325,
+            "mae_kwh": 276.51907792207817,
+            "wape_pct": 28.76906961102823,
+            "bias_pct": 0.7059309235284058,
+            "mean_actual_kwh": 961.167954545455,
+            "rmse_per_kw": 0.9738072746635799
+          }
+        }
+      },
+      "hadong-substation": {
+        "capacity_kw": 48.3,
+        "methods": {
+          "persistence": {
+            "n": 264,
+            "rmse_kwh": 70.73763642695965,
+            "mae_kwh": 52.411,
+            "wape_pct": 31.70639063526877,
+            "bias_pct": 0.24328429211347147,
+            "mean_actual_kwh": 165.30106060606076,
+            "rmse_per_kw": 1.464547338032291
+          },
+          "ma7": {
+            "n": 264,
+            "rmse_kwh": 61.727329950357046,
+            "mae_kwh": 47.33036363636365,
+            "wape_pct": 28.6328251390713,
+            "bias_pct": 0.7948608527350514,
+            "mean_actual_kwh": 165.30106060606076,
+            "rmse_per_kw": 1.2779985496968334
+          }
+        }
+      },
+      "hadong-water": {
+        "capacity_kw": 93.02,
+        "methods": {
+          "persistence": {
+            "n": 264,
+            "rmse_kwh": 106.4823940058268,
+            "mae_kwh": 72.2168484848485,
+            "wape_pct": 29.039664024672966,
+            "bias_pct": 0.42005445646803063,
+            "mean_actual_kwh": 248.6834848484848,
+            "rmse_per_kw": 1.144725800965672
+          },
+          "ma7": {
+            "n": 264,
+            "rmse_kwh": 99.77984820054563,
+            "mae_kwh": 70.19232900432904,
+            "wape_pct": 28.225569159566454,
+            "bias_pct": 1.547379764451361,
+            "mean_actual_kwh": 248.6834848484848,
+            "rmse_per_kw": 1.0726709116377728
+          }
+        }
+      }
+    },
+    "portfolio": {
+      "capacity_kw": 606.17,
+      "methods": {
+        "persistence": {
+          "n": 264,
+          "rmse_kwh": 700.897134037578,
+          "mae_kwh": 516.0398636363636,
+          "wape_pct": 30.10128410999905,
+          "bias_pct": 0.27815729712693266,
+          "mean_actual_kwh": 1714.3450151515146,
+          "rmse_per_kw": 1.1562715641446757,
+          "sum_of_plant_rmse_kwh": 726.22397960967,
+          "root_sum_square_plant_rmse_kwh": 435.30868286076003,
+          "rmse_over_sum_of_plant_rmse": 0.9651252970389319
+        },
+        "ma7": {
+          "n": 264,
+          "rmse_kwh": 626.6494077827641,
+          "mae_kwh": 477.31736255411215,
+          "wape_pct": 27.842549681396928,
+          "bias_pct": 0.8603658820150644,
+          "mean_actual_kwh": 1714.3450151515146,
+          "rmse_per_kw": 1.0337849246626591,
+          "sum_of_plant_rmse_kwh": 648.3476779166325,
+          "root_sum_square_plant_rmse_kwh": 389.41654961005696,
+          "rmse_over_sum_of_plant_rmse": 0.9665329716247423
+        }
+      }
+    },
+    "averages": {
+      "persistence": {
+        "plant_mean_rmse_per_kw": 1.3579984962846339,
+        "plant_mean_wape_pct": 31.27695349905819,
+        "energy_weighted_wape_pct": 31.096809647356157,
+        "portfolio_wape_pct": 30.10128410999905
+      },
+      "ma7": {
+        "plant_mean_rmse_per_kw": 1.2005775517806077,
+        "plant_mean_wape_pct": 28.619210539258244,
+        "energy_weighted_wape_pct": 28.655848694082515,
+        "portfolio_wape_pct": 27.842549681396928
+      }
+    }
+  },
+  "hourly": {
+    "status": "ok",
+    "days": 264,
+    "first_day": "2025-06-09",
+    "last_day": "2026-02-27",
+    "capacity_kw": {
+      "hadong-health": 40.0,
+      "hadong-sewage": 55.0,
+      "hadong-stadium": 369.85,
+      "hadong-substation": 48.3,
+      "hadong-water": 93.02,
+      "_portfolio": 606.17
+    },
+    "per_plant": {
+      "hadong-health": {
+        "persistence": {
+          "eligible_hours": 2155,
+          "mean_error_pct": 14.672176334106725,
+          "median_error_pct": 9.059999999999999,
+          "share_le_4pct": 31.22969837587007,
+          "share_le_6pct": 39.953596287703014,
+          "eligible_energy_kwh": 36883.10399999996
+        },
+        "ma7": {
+          "eligible_hours": 2155,
+          "mean_error_pct": 12.320588664235995,
+          "median_error_pct": 8.88285714285713,
+          "share_le_4pct": 25.150812064965194,
+          "share_le_6pct": 37.07656612529002,
+          "eligible_energy_kwh": 36883.10399999996
+        }
+      },
+      "hadong-sewage": {
+        "persistence": {
+          "eligible_hours": 2200,
+          "mean_error_pct": 13.344758677685949,
+          "median_error_pct": 8.06181818181818,
+          "share_le_4pct": 33.77272727272727,
+          "share_le_6pct": 42.36363636363637,
+          "eligible_energy_kwh": 49434.72000000004
+        },
+        "ma7": {
+          "eligible_hours": 2200,
+          "mean_error_pct": 11.176156788665873,
+          "median_error_pct": 8.055584415584418,
+          "share_le_4pct": 27.500000000000004,
+          "share_le_6pct": 39.909090909090914,
+          "eligible_energy_kwh": 49434.72000000004
+        }
+      },
+      "hadong-stadium": {
+        "persistence": {
+          "eligible_hours": 1990,
+          "mean_error_pct": 10.101711477490186,
+          "median_error_pct": 6.249019872921453,
+          "share_le_4pct": 39.14572864321608,
+          "share_le_6pct": 48.79396984924623,
+          "eligible_energy_kwh": 240693.0840000001
+        },
+        "ma7": {
+          "eligible_hours": 1990,
+          "mean_error_pct": 8.486295825678146,
+          "median_error_pct": 6.534077521775231,
+          "share_le_4pct": 33.618090452261306,
+          "share_le_6pct": 47.23618090452261,
+          "eligible_energy_kwh": 240693.0840000001
+        }
+      },
+      "hadong-substation": {
+        "persistence": {
+          "eligible_hours": 2141,
+          "mean_error_pct": 12.85360935999607,
+          "median_error_pct": 7.3457556935817845,
+          "share_le_4pct": 35.96450256889304,
+          "share_le_6pct": 45.02568893040635,
+          "eligible_energy_kwh": 41976.707999999984
+        },
+        "ma7": {
+          "eligible_hours": 2141,
+          "mean_error_pct": 11.060707547645496,
+          "median_error_pct": 8.027210884353739,
+          "share_le_4pct": 28.49135917795423,
+          "share_le_6pct": 41.19570294255021,
+          "eligible_energy_kwh": 41976.707999999984
+        }
+      },
+      "hadong-water": {
+        "persistence": {
+          "eligible_hours": 1937,
+          "mean_error_pct": 10.732407539271621,
+          "median_error_pct": 6.011610406364222,
+          "share_le_4pct": 40.62983995869902,
+          "share_le_6pct": 49.97418688693857,
+          "eligible_energy_kwh": 61866.032000000014
+        },
+        "ma7": {
+          "eligible_hours": 1937,
+          "mean_error_pct": 9.526733376666781,
+          "median_error_pct": 6.376508892096942,
+          "share_le_4pct": 34.17656169334022,
+          "share_le_6pct": 47.70263293753227,
+          "eligible_energy_kwh": 61866.032000000014
+        }
+      }
+    },
+    "portfolio": {
+      "persistence": {
+        "eligible_hours": 2057,
+        "mean_error_pct": 10.501063488521606,
+        "median_error_pct": 6.462213570450534,
+        "share_le_4pct": 37.82207097715119,
+        "share_le_6pct": 47.73942634905202,
+        "eligible_energy_kwh": 429706.374
+      },
+      "ma7": {
+        "eligible_hours": 2057,
+        "mean_error_pct": 8.98374324717811,
+        "median_error_pct": 6.724421956122637,
+        "share_le_4pct": 32.814778804083616,
+        "share_le_6pct": 46.23237724842003,
+        "eligible_energy_kwh": 429706.374
+      }
+    },
+    "note": "단순 기준 예측에 제도의 식을 적용한 참고값. 정지일을 건너뛰지 않았다. 유효 용량(고장·정비·출력제어를 뺀 용량)이 아니라 등록부의 설비 용량을 분모로 썼다"
+  }
+}

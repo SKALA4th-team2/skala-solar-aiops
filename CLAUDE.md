@@ -26,6 +26,21 @@ SKALA 「모델 서빙 및 AIOps 구성」 과정의 조별 미니 프로젝트 
 
 `retrain_trigger.py` 가 남기는 로그 문장은 대시보드가 읽는다. 글자를 바꾸면 대시보드도 함께 고친다.
 
+### 여러 발전소로 넓힐 때의 묶음
+
+서비스는 아직 발전소 한 곳만 다룬다. 여러 발전소로 넓히는 설계는 [`docs/proposal/multi-plant-extension.md`](docs/proposal/multi-plant-extension.md)에 있다. 그 작업을 할 때는 아래 묶음도 같은 변경에서 맞춘다.
+
+| 바꾸는 것 | 함께 맞출 곳 |
+| --- | --- |
+| 발전소 식별자와 등록부 (`plant_id`, 용량과 단위, 유효 기간) | `docs/decisions/0011-*.md`, `docs/proposal/multi-plant-data-contract.md`, `datasets/plants/plants.csv`, `datasets/README.md`, `tools/multi_plant/common.py` 의 열 목록과 `SCHEMA_VERSION`, `data/storage.py` 의 업로드 선택, `serving_app/schemas.py` 의 입력 상한(`MAX_GENERATION_KWH`), `serving_app/routers/data.py` |
+| 포트폴리오 구성 (`portfolio_id`, 구성 버전, 설비 용량의 합산) | `docs/decisions/0010-*.md`, `docs/proposal/multi-plant-data-contract.md`, `datasets/plants/portfolio_members.csv`, `tools/multi_plant/portfolio_capacity.py`, `docs/proposal/5-api-spec.md` 의 포트폴리오 응답 |
+| 모델과 스케일러의 짝 (모델 이름, 경로, 묶음 기록) | `docs/decisions/0011-*.md`, `serving_app/model_loader.py`, `serving_app/train_and_register.py`, `scripts/train_baseline_v1.py`, `data/features.py` 의 `HAICScaler` 기본 경로, `tools/multi_plant/bundle_check.py` 의 `FEATURE_SCHEMA` 와 `model_name_for` |
+| 발전소별과 합계의 평가 지표 | `docs/decisions/0011-*.md`, `docs/proposal/2-solution-and-goals.md`, `docs/proposal/multi-plant-extension.md`, `tools/multi_plant/evaluate.py` |
+| 재학습 작업과 실행 단위 (작업 기록, 한도, 로컬과 컨테이너의 경로) | `docs/decisions/0012-*.md`, `docs/proposal/single-pc-operation.md`, `docs/proposal/4-architecture.md`, `serving_app/monitoring/retrain_trigger.py`, `serving_app/docker-compose.yml`, `serving_app/Dockerfile` |
+| 로그 문장에 싣는 식별자 (`plant=`, `model=`, `data=`, `job=`) | `docs/decisions/0007-*.md`, `docs/proposal/3-operations-design.md`, `docs/proposal/6-demo.md`, `serving_app/monitoring/retrain_trigger.py`, `serving_app/static/index.html` 의 로그 패널 안내문 |
+
+제도의 기준은 "주요자원(태양광·풍력) 설비 용량 합계 20MW 초과"라고 쓴다. "이상"이라고 쓰지 않고, 발전량의 기준으로 읽히게 쓰지 않는다.
+
 ## `project/` 는 폴더 구조를 바꾸지 않는다
 
 `project/` 는 강사가 배포한 HAIC 스켈레톤에서 출발한다. 안의 파일을 옮기거나 폴더 이름을 바꾸지 않는다. 교재의 명령, Docker 빌드, 트러블슈팅 안내가 이 구조를 전제로 한다. 내용은 태양광 도메인에 맞게 고친다.
@@ -44,16 +59,23 @@ SKALA 「모델 서빙 및 AIOps 구성」 과정의 조별 미니 프로젝트 
 - 조사 보고서의 수치를 근거로 인용할 때는 출처와 조건(기간, 분할 방식, 시드 수)을 함께 적는다.
 - 예측 시점에 받을 수 없는 값을 입력에 쓴 결과는 쓸 때마다 그렇게 표시한다. 예를 들어 예측 대상일의 실제 관측 날씨를 넣은 결과는 "예보가 완벽하다고 가정한 상한"이다.
 - 지표에는 단위를 붙인다(하루 kWh, %). HAIC 코드에 남아 있는 달러 표기는 고칠 때 함께 바꾼다.
+- 수치에는 그것이 무엇의 값인지를 같은 문장에 적는다. 설비 용량(kW, MW)은 기간이 붙지 않는 값이고 발전량(kWh, MWh)은 기간이 붙는 값이다. "20MW 초과"가 아니라 "설비 용량 합계 20MW 초과"라고 쓴다.
+- 포트폴리오의 오차는 예측의 합과 실제의 합으로 구한다. 발전소별 RMSE 를 더한 값을 포트폴리오의 RMSE 라고 쓰지 않는다. 구성원이 빠진 합을 합계라고 쓰지 않는다.
+- 합성 자료, 복제한 자료, 용량을 배로 늘린 자료의 수치는 기능 확인과 부하 시험에만 쓴다. 예측 성능이나 제도 요건의 근거로 쓰지 않는다.
+- 하루 합계를 24칸으로 나눈 값으로 제도의 정산용 성능을 말하지 않는다.
 
 ## 데이터
 
-- `datasets/` 의 파일은 손으로 고치지 않는다. 만드는 스크립트를 `tools/` 에 두고 다시 만든다.
+- `datasets/` 의 파일은 손으로 고치지 않는다. 만드는 스크립트를 `tools/` 에 두고 다시 만든다. 발전소 등록부와 포트폴리오 구성(`datasets/plants/*.csv`)은 사람이 적는 파일이다. 적은 뒤에 `python tools/multi_plant/validate.py --data-root datasets/plants` 로 검증한다.
+- 결측을 0 으로 채우지 않는다. 모르는 용량, 위치, 시각은 칸을 비운다. 서로 다른 발전소의 행을 이어 붙여 창을 만들지 않는다.
+- 여러 발전소의 정규화 실적(`datasets/plants/generation/`)은 원자료에서 다시 만들 수 있으므로 커밋하지 않는다.
 - 파일마다 출처, 이용 조건, 열의 뜻, 만든 방법을 [`datasets/README.md`](datasets/README.md)에 적는다.
 - API 키가 필요한 자료는 각자 `.env` 에 키를 넣어 받는다. `.env` 는 커밋하지 않는다. 에이전트는 키를 입력하거나 화면에 출력하지 않는다.
 
 ## 문서
 
 - 기획서는 [`docs/proposal/`](docs/proposal/)에 항목별 파일로 쓴다. 여섯 항목은 앞 항목의 결과가 다음 항목의 근거가 되도록 이어져야 한다.
+- 여러 발전소로 넓히는 내용은 여섯 항목과 섞지 않는다. [`multi-plant-extension.md`](docs/proposal/multi-plant-extension.md), [`multi-plant-data-contract.md`](docs/proposal/multi-plant-data-contract.md), [`single-pc-operation.md`](docs/proposal/single-pc-operation.md)에 쓰고, 여섯 항목에는 "확장 제안" 절에만 적는다. 지금의 구현, 제안하는 설계, 직접 돌린 결과를 표기로 가른다.
 - 팀이 정한 것은 [`docs/decisions/`](docs/decisions/)에 한 건씩 남긴다. 기획서 ③ 의 숫자는 결정 기록을 근거로 가리킨다.
 - [`docs/research/`](docs/research/)의 보고서는 보관 자료다. 고치지 않는다. 판단이 바뀌면 결정 기록에 적는다.
 - 증빙 캡처와 로그는 `docs/proposal/evidence/` 에 둔다. 서버를 내리기 전에 먼저 남긴다.
@@ -69,5 +91,6 @@ SKALA 「모델 서빙 및 AIOps 구성」 과정의 조별 미니 프로젝트 
 
 ## 범위 밖
 
-- MLflow 서버, Prometheus·Grafana, Kubernetes 는 교재의 실습 범위가 아니다. MLflow 는 로컬 sqlite, 컨테이너는 단일 컨테이너다.
+- MLflow 서버, Prometheus·Grafana, Kubernetes 는 교재의 실습 범위가 아니다. MLflow 는 로컬 sqlite, 컨테이너는 단일 컨테이너다. 여러 발전소로 넓혀도 같다. FastAPI, 학습, MLflow, AIOps 를 PC 한 대에서 돌리고 메시지 브로커를 들이지 않는다.
+- 시간대별 예측, 전력거래소 제출, 정산금 계산은 범위 밖이다. 여러 발전소의 자료를 모아도 제도의 참여 요건을 채웠다고 쓰지 않는다.
 - 개인 서브노트와 개인 실습은 각자의 폴더에 둔다. 이 저장소에 넣지 않는다.

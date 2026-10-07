@@ -23,7 +23,9 @@ ROOT = Path(__file__).resolve().parents[2]
 EVIDENCE = ROOT / "docs" / "proposal" / "evidence"
 DOCS = (sorted((ROOT / "docs" / "proposal").glob("*.md")) + [EVIDENCE / "validation.md"]
         + sorted((ROOT / "docs" / "decisions").glob("*.md")) + [ROOT / "docs" / "followups.md", ROOT / "datasets" / "README.md",
-                                                                 ROOT / "tools" / "proposal" / "README.md"])
+                                                                 ROOT / "tools" / "proposal" / "README.md",
+                                                                 EVIDENCE / "multi-plant" / "validation.md",       # 여러 발전소 준비의 검증 기록
+                                                                 ROOT / "tools" / "multi_plant" / "README.md"])
 DOCS = [d for d in DOCS if d.exists()]
 
 LINK = re.compile(r"(!?)\[([^\]]*)\]\(([^)\s]+)\)")

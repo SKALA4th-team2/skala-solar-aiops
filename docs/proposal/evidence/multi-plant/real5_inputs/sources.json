@@ -1,0 +1,50 @@
+{
+  "note": "하수처리장 원자료는 저장소에 있다. 이웃 4곳은 저장소에 넣지 않았고, 이 PC 에 이전 조사 때 받아 둔 사본을 읽었다. sha256 은 tools/verify/official-result.json 에 적힌 공식 파일의 값과 같다.",
+  "files": {
+    "hadong-sewage": {
+      "source_dataset": "data.go.kr/15043409",
+      "landing_url": "https://www.data.go.kr/data/15043409/fileData.do",
+      "bytes": 712495,
+      "sha256": "3070a3d960e058d93ebf31e6acfa5e13ea7c261f2b42c1c3e9758bb7f2d204e5",
+      "matches_official_record": null,
+      "official_date_modified": null,
+      "in_repository": true
+    },
+    "hadong-stadium": {
+      "source_dataset": "data.go.kr/15043404",
+      "landing_url": "https://www.data.go.kr/data/15043404/fileData.do",
+      "bytes": 754738,
+      "sha256": "b60d30b42c6a65918b614fccaa80672eed1ff8c46679ef364e67ac43054061f9",
+      "matches_official_record": true,
+      "official_date_modified": "2026-04-09",
+      "in_repository": false
+    },
+    "hadong-substation": {
+      "source_dataset": "data.go.kr/15043405",
+      "landing_url": "https://www.data.go.kr/data/15043405/fileData.do",
+      "bytes": 697283,
+      "sha256": "4e66e1e9f9e2aa3e9444fd052b744009aabe2983b4c70143a74fb24dcde3411b",
+      "matches_official_record": true,
+      "official_date_modified": "2026-04-09",
+      "in_repository": false
+    },
+    "hadong-health": {
+      "source_dataset": "data.go.kr/15043406",
+      "landing_url": "https://www.data.go.kr/data/15043406/fileData.do",
+      "bytes": 696108,
+      "sha256": "b736758a860458e23723935b44829858eb76a19aed3dbe0ebaedabb6f19c5126",
+      "matches_official_record": true,
+      "official_date_modified": "2026-04-09",
+      "in_repository": false
+    },
+    "hadong-water": {
+      "source_dataset": "data.go.kr/15043408",
+      "landing_url": "https://www.data.go.kr/data/15043408/fileData.do",
+      "bytes": 706133,
+      "sha256": "18b1e7d459fd0b8cf27927030607690d8665ae297af294d067c2e5178375bb54",
+      "matches_official_record": true,
+      "official_date_modified": "2026-04-09",
+      "in_repository": false
+    }
+  }
+}

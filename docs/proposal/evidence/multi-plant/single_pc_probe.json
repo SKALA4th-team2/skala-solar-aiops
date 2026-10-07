@@ -1,0 +1,143 @@
+{
+  "input": {
+    "upload_file": "hadong_upload_forecast_jma.csv",
+    "rows": 1337
+  },
+  "env": {
+    "measured_at": "2026-10-07T20:03:20+0900",
+    "os": "Darwin 25.5.0",
+    "machine": "arm64",
+    "cpu_model": "Apple M5",
+    "cpu_logical": 10,
+    "cpu_physical": 10,
+    "memory_gb": 16.0,
+    "disk_total_gb": 926.3,
+    "disk_free_gb": 634.3,
+    "python": "3.11.15",
+    "packages": {
+      "tensorflow": "2.21.0",
+      "mlflow": "3.16.0",
+      "numpy": "2.4.4",
+      "fastapi": "0.141.1",
+      "uvicorn": "0.46.0"
+    },
+    "docker": "Docker version 29.6.2, build dfc4efb"
+  },
+  "baseline_training": {
+    "seconds": 18.01,
+    "peak_rss_mb": 580.9,
+    "cpu_seconds": 16.59,
+    "exit_code": 0,
+    "output": [
+      "scaler fit on 1337행 -> serving_app/models/scaler.pkl",
+      "baseline v1 RMSE = 41.92  (배포 게이트: $4.00)",
+      "saved -> serving_app/models/haic_v1.keras",
+      "※ 참고: 이 RMSE는 Day1 로컬 모델이며 배포 게이트($4.00) 통과 여부는 Day2에서 MLflow로 다시 정식 검증합니다."
+    ],
+    "model_file_mb": 0.23
+  },
+  "mlflow_training": {
+    "seconds": 22.02,
+    "peak_rss_mb": 696.1,
+    "cpu_seconds": 21.71,
+    "exit_code": 0,
+    "output": [
+      "[GATE FAILED] rmse=41.59 > 4.0 -> 배포 차단, 기존 Production 유지"
+    ],
+    "disk_added_mb": 1.07
+  },
+  "model_memory": {
+    "points": [
+      {
+        "stage": "start",
+        "rss_mb": 17.9
+      },
+      {
+        "stage": "tensorflow imported",
+        "rss_mb": 489.2
+      },
+      {
+        "stage": "1 models loaded and used",
+        "rss_mb": 517.6
+      },
+      {
+        "stage": "2 models loaded and used",
+        "rss_mb": 522.1
+      },
+      {
+        "stage": "4 models loaded and used",
+        "rss_mb": 531.6
+      },
+      {
+        "stage": "8 models loaded and used",
+        "rss_mb": 550.0
+      }
+    ],
+    "per_extra_model_mb": 4.6,
+    "first_model_mb": 28.4
+  },
+  "predict_latency": {
+    "idle": {
+      "n": 200,
+      "p50_ms": 12.94,
+      "p95_ms": 13.69,
+      "max_ms": 14.36,
+      "mean_ms": 12.98,
+      "failures": 0
+    },
+    "other_process_training": {
+      "n": 1540,
+      "p50_ms": 14.35,
+      "p95_ms": 16.08,
+      "max_ms": 109.11,
+      "mean_ms": 14.66,
+      "failures": 0,
+      "training_seconds": 22.58,
+      "training_exit_code": 0
+    },
+    "same_process_training": {
+      "n": 1299,
+      "p50_ms": 15.34,
+      "p95_ms": 21.92,
+      "max_ms": 101.84,
+      "mean_ms": 16.31,
+      "failures": 0,
+      "training_seconds": 21.19,
+      "training_error": null
+    }
+  },
+  "sqlite_two_writers": {
+    "writers": [
+      {
+        "tag": "a",
+        "ok": 30,
+        "errors": {}
+      },
+      {
+        "tag": "b",
+        "ok": 30,
+        "errors": {}
+      }
+    ],
+    "seconds": 1.48,
+    "note": "두 프로세스가 같은 mlflow.db 에 실행 기록 30건씩을 동시에 쓴다"
+  },
+  "fine_tune": {
+    "base_training_seconds": 17.76,
+    "fine_tune_rows": 41,
+    "fine_tune_seconds": [
+      4.36,
+      4.35,
+      4.46
+    ],
+    "registry_load_seconds": [
+      0.03,
+      0.03,
+      0.03
+    ],
+    "last_version": 4,
+    "peak_rss_mb": 788.4,
+    "note": "게이트 값을 이 측정 프로세스 안에서만 열었다. 통과는 품질의 근거가 아니다. 다른 단계와 따로(--steps finetune) 돌린 값이다. 불러오는 시간은 같은 프로세스에서 TensorFlow 가 이미 올라온 뒤의 값이다"
+  },
+  "how": "python tools/multi_plant/single_pc_probe.py --project <사본 폴더>/project --out <임시 폴더> 를 돌린 뒤 --steps finetune 을 한 번 더 돌려 합쳤다. 사본은 커밋 9ad93b1 의 project/ 에 datasets/hadong_upload_forecast_jma.csv 를 넣은 것이다"
+}

@@ -1,0 +1,37 @@
+# 검증용 임시 자료 폴더(<검증 폴더>)에 하동 5곳을 변환해 넣고 돌렸다. 이웃 4곳의 원자료는 저장소에 없다(real5_inputs/sources.json).
+$ python tools/multi_plant/validate.py --data-root <검증 폴더>
+등록된 발전소 5곳, 포트폴리오 1개, 실적이 있는 발전소 5곳
+  hadong-health: 2013-01-01 ~ 2026-02-28, 4807일 (ok 4800, zero_day 7, partial 0, mismatch 0, missing 0), 시간대별 4807일
+  hadong-sewage: 2013-01-01 ~ 2026-02-28, 4807일 (ok 4783, zero_day 24, partial 0, mismatch 0, missing 0), 시간대별 4807일
+  hadong-stadium: 2013-01-01 ~ 2026-02-28, 4807일 (ok 4760, zero_day 47, partial 0, mismatch 0, missing 0), 시간대별 4807일
+  hadong-substation: 2013-01-01 ~ 2026-02-28, 4807일 (ok 4766, zero_day 41, partial 0, mismatch 0, missing 0), 시간대별 4807일
+  hadong-water: 2013-01-01 ~ 2026-02-28, 4807일 (ok 4778, zero_day 29, partial 0, mismatch 0, missing 0), 시간대별 4807일
+  [경고] PLANT-LOCATION-UNKNOWN  plants.csv:5  hadong-health: 좌표를 모른다. 기상 자료를 연결할 수 없다
+오류 0건, 경고 1건
+종료 코드 0
+
+$ python tools/multi_plant/portfolio_capacity.py --data-root <검증 폴더> --portfolio hadong5-check --date 2026-02-28
+hadong5-check @ 2026-02-28 (구성 v1): 구성원 5곳, 확인된 설비 용량 합계 606.17kW = 0.60617MW
+    hadong-health: 40kW (적은 값 40 kW, 설치용량(공시))
+    hadong-sewage: 55kW (적은 값 55 kW, 설치용량(공시))
+    hadong-stadium: 369.85kW (적은 값 369.85 kW, 설치용량(공시))
+    hadong-substation: 48.3kW (적은 값 48.3 kW, 설치용량(공시))
+    hadong-water: 93.02kW (적은 값 93.02 kW, 설치용량(공시))
+    참고: 제도 기준 20MW 의 3.0309%. 기준 초과 아니오. 용량의 비교일 뿐 참여 자격의 판정이 아니다
+
+$ python tools/multi_plant/coverage.py --data-root <검증 폴더> --portfolio hadong5-check
+[발전소별]
+  hadong-health: 2013-01-01 ~ 2026-02-28, 4807일 가운데 쓸 수 있는 날 4807일 (zero_day 7, partial 0, mismatch 0, missing 0), 가장 긴 이어진 구간 4807일, 창 4787개, 뒤 20% 는 958일
+  hadong-sewage: 2013-01-01 ~ 2026-02-28, 4807일 가운데 쓸 수 있는 날 4807일 (zero_day 24, partial 0, mismatch 0, missing 0), 가장 긴 이어진 구간 4807일, 창 4787개, 뒤 20% 는 958일
+  hadong-stadium: 2013-01-01 ~ 2026-02-28, 4807일 가운데 쓸 수 있는 날 4807일 (zero_day 47, partial 0, mismatch 0, missing 0), 가장 긴 이어진 구간 4807일, 창 4787개, 뒤 20% 는 958일
+  hadong-substation: 2013-01-01 ~ 2026-02-28, 4807일 가운데 쓸 수 있는 날 4807일 (zero_day 41, partial 0, mismatch 0, missing 0), 가장 긴 이어진 구간 4807일, 창 4787개, 뒤 20% 는 958일
+  hadong-water: 2013-01-01 ~ 2026-02-28, 4807일 가운데 쓸 수 있는 날 4807일 (zero_day 29, partial 0, mismatch 0, missing 0), 가장 긴 이어진 구간 4807일, 창 4787개, 뒤 20% 는 958일
+[창 점검]
+  발전소별로 만든 창 23935개 가운데 문제 0개
+  행을 이어 붙여 만들면 창 24015개 가운데 발전소가 섞인 창 80개, 날짜가 끊긴 창 0개
+[포트폴리오 hadong5-check]
+  구성 v1 (2013-01-01 ~ 계속): hadong-health, hadong-sewage, hadong-stadium, hadong-substation, hadong-water
+    본 기간 2013-01-01 ~ 2026-02-28 (4807일): 모든 구성원에 값이 있는 날 4807일, 용량 기준 평균 커버리지 100.0%
+    함께 평가할 수 있는 대상일 4787일 (2013-01-21 ~ 2026-02-28), 게이트의 시험 구간 180일 이상 가능
+    공통 대상일은 모든 구성원이 이어진 20일과 대상일의 값을 가진 날이다
+종료 코드 0
