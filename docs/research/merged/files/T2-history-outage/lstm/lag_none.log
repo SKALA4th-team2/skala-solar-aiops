@@ -1,0 +1,4 @@
+{"kind": "lag", "variant": "none", "rows": 4746, "n_train_all": 3780, "n_train_used": 3780, "n_excluded": 0, "n_test": 946, "test_first": "2023-05-30", "test_last": "2025-12-30", "flag_days": 0, "test_event_days": 16, "test_touched": 134}
+{"seed": 42, "rmse_all": 78.98576709390949, "rmse_excl_event_targets": 78.19953796019472, "rmse_excl_touched": 77.93117686131016, "bias_pred_minus_actual": 8.46537327311357, "event_day_mean_err": 99.39468138867616, "fit_seconds": 124.0}
+{"seed": 43, "rmse_all": 78.48784252592645, "rmse_excl_event_targets": 77.45170608187965, "rmse_excl_touched": 76.69704940287835, "bias_pred_minus_actual": 6.0238292608028035, "event_day_mean_err": 113.64599705426394, "fit_seconds": 164.9}
+{"seed": 44, "rmse_all": 80.04158051144813, "rmse_excl_event_targets": 79.321410104691, "rmse_excl_touched": 78.81497262008544, "bias_pred_minus_actual": -8.007346800887744, "event_day_mean_err": 90.18695772470534, "fit_seconds": 113.3}

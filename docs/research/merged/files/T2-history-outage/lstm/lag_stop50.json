@@ -1,0 +1,43 @@
+{
+ "kind": "lag",
+ "variant": "stop50",
+ "rows": 4746,
+ "n_train_all": 3780,
+ "n_train_used": 3607,
+ "n_excluded": 173,
+ "n_test": 946,
+ "test_first": "2023-05-30",
+ "test_last": "2025-12-30",
+ "flag_days": 50,
+ "test_event_days": 16,
+ "test_touched": 134,
+ "runs": [
+  {
+   "seed": 42,
+   "rmse_all": 79.64966169045142,
+   "rmse_excl_event_targets": 78.35895884820359,
+   "rmse_excl_touched": 77.54523665973412,
+   "bias_pred_minus_actual": 8.697955392700678,
+   "event_day_mean_err": 119.95057901090384,
+   "fit_seconds": 120.0
+  },
+  {
+   "seed": 43,
+   "rmse_all": 79.6642713537316,
+   "rmse_excl_event_targets": 78.63598656817312,
+   "rmse_excl_touched": 78.16599044931124,
+   "bias_pred_minus_actual": 1.999302539757648,
+   "event_day_mean_err": 113.0815654578656,
+   "fit_seconds": 163.3
+  },
+  {
+   "seed": 44,
+   "rmse_all": 82.08880040418344,
+   "rmse_excl_event_targets": 80.42571415550385,
+   "rmse_excl_touched": 80.13165234119812,
+   "bias_pred_minus_actual": 13.184120924399224,
+   "event_day_mean_err": 137.17981741645934,
+   "fit_seconds": 114.8
+  }
+ ]
+}

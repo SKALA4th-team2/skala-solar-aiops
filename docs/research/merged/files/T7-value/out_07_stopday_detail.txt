@@ -1,0 +1,4 @@
+2015-04-29: 하수처리장 0.28kWh(0.005h), 이웃 4곳 이용시간 중앙값 0.32h, ASOS 기대 43.4kWh, stop_day 1, near_zero_stop 1, pi_outage 1
+2015-05-03: 하수처리장 0.29kWh(0.005h), 이웃 4곳 이용시간 중앙값 0.59h, ASOS 기대 43.8kWh, stop_day 1, near_zero_stop 1, pi_outage 1
+2015-05-06: 하수처리장 30.78kWh(0.560h), 이웃 4곳 이용시간 중앙값 3.61h, ASOS 기대 207.3kWh, stop_day 0, near_zero_stop 0, pi_outage 1
+2024-03-22: 하수처리장 22.55kWh(0.410h), 이웃 4곳 이용시간 중앙값 2.30h, ASOS 기대 162.0kWh, stop_day 0, near_zero_stop 0, pi_outage 1
