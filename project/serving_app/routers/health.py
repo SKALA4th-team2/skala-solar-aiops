@@ -2,16 +2,20 @@
 from fastapi import APIRouter
 
 from serving_app import model_loader
+from serving_app.schemas import HealthResponse
 
 router = APIRouter()
 
 
-@router.get("/health")
+@router.get("/health", response_model=HealthResponse)
 def health():
-    model_loaded = model_loader._model_cache is not None
+    model = model_loader._model_cache
+    model_loaded = model is not None
     return {
         "status": "ok",
         "model_loaded": model_loaded,
+        "model_version": model.version if model_loaded else None,
+        "model_source": model.source if model_loaded else None,
         "loading_mode": _current_loading_mode(),
     }
 

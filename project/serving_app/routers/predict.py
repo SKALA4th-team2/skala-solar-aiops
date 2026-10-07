@@ -1,98 +1,69 @@
-"""
-[Day1 → Day3] 예측 API  —  serving_app/routers/predict.py
-【실습용】 ___ (밑줄 3개)만 채우세요. 채울 곳은 [빈칸 N] 으로 표시되어 있습니다.
-   ___ 가 남은 채 실행하면 "name '___' is not defined" 에러가 나며, 그 줄이 채울 곳입니다.
+"""태양광 단건·배치 예측. 감시·재학습 정책은 aiops_adapter로 분리한다."""
+from datetime import timedelta
+import math
 
-■ 이 파일이 하는 일 (한 줄 요약)
-   외부 요청을 받아 모델에게 전달하고, 결과를 돌려주는 "창구"입니다.
-   계산은 직접 하지 않고, 모델(model_loader)과 감시 도구(retrain_trigger)에게 맡깁니다.
-
-■ 엔드포인트
-   [Day1] POST /predict             : 20일치 데이터 → 다음날 종가 1개   (완성 — 읽고 흐름만 이해하세요)
-   [Day3] POST /predict/batch-test  : 긴 가격 목록 → 여러 번 예측 → 드리프트 검사
-
-■ 이 파일의 빈칸 : [빈칸 6]  (batch_test 의 슬라이딩 윈도우)
-"""
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 
 from data.features import SEQ_LEN  # = 20
 from serving_app import model_loader
 from serving_app.schemas import PredictRequest, PredictResponse, BatchTestRequest, BatchTestResponse
-from serving_app.monitoring.retrain_trigger import check_and_trigger
+from serving_app.aiops_adapter import evaluate_batch
 
 router = APIRouter()
 
-# (Day3) 최근 예측 기록을 모아 두는 목록.  예: [{"predicted": 161.2, "actual": 163.0}, ...]
-#        드리프트 판단은 "최근 21건"(drift_detector.py 의 WINDOW_SIZE)만 보므로 21개까지만 유지합니다.
-recent_predictions: list[dict] = []
 
-# (Day3) 시뮬레이션은 종가만 보내므로, 거래량은 이 값으로 고정해서 채웁니다.
-SIMULATED_VOLUME = 1_200_000
+def get_ready_model():
+    """모델 파일이 준비되지 않은 상태를 클라이언트가 구분할 수 있게 한다."""
+    try:
+        return model_loader.get_model()
+    except FileNotFoundError as exc:
+        raise HTTPException(
+            status_code=503,
+            detail="예측 모델 또는 스케일러가 준비되지 않았습니다. 모델 준비 후 다시 요청하세요.",
+        ) from exc
 
 
-@router.post("/predict", response_model=PredictResponse)
+@router.post("/predict", response_model=PredictResponse, responses={503: {"description": "모델 또는 스케일러 미준비"}})
 def predict(req: PredictRequest):
-    """
-    [Day1] 다음날 종가 예측  (완성)
-    받는 것  : {"sequence": [{"close": 160.0, "volume": 1200000}, ... 20개]}
-               20개가 아니면 schemas.py 가 알아서 422 에러를 돌려줍니다.
-    돌려줄 것: {"predicted_close": 161.37, "model_version": "v1-local"}
-
-    흐름: 모델 가져오기(get_model) → dict 목록으로 변환 → predict_one → 응답 포장
-    핵심 계산은 모두 model_loader.predict_one() 안에 있습니다. ([빈칸 2], [빈칸 3])
-    """
-    model = model_loader.get_model()
-    sequence = [p.model_dump() for p in req.sequence]
+    """연속 20일의 발전량과 다음 날 예보로 대상일의 발전량(kWh)을 예측한다."""
+    model = get_ready_model()
+    # 날짜는 API 검증용이다. 모델에는 학습 시와 같은 두 피처만 전달한다.
+    sequence = [{"close": point.close, "volume": point.volume} for point in req.sequence]
     predicted_close = model.predict_one(sequence)
-    return PredictResponse(predicted_close=round(predicted_close, 2), model_version=model.version)
+    if not math.isfinite(predicted_close):
+        raise HTTPException(503, "모델이 유한한 예측값을 반환하지 않았습니다.")
+    return PredictResponse(
+        predicted_close=round(max(0.0, predicted_close), 2),
+        target_date=req.sequence[-1].date + timedelta(days=1),
+        model_version=model.version,
+    )
 
 
-@router.post("/predict/batch-test", response_model=BatchTestResponse)
+@router.post("/predict/batch-test", response_model=BatchTestResponse, response_model_exclude_unset=True,
+             responses={503: {"description": "모델 또는 스케일러 미준비, 비유한 모델 출력"}})
 def batch_test(req: BatchTestRequest):
-    """
-    [Day3] 드리프트 시뮬레이션
-    받는 것  : {"prices": [165.0, 166.2, ... 41개]}   (scripts/simulate_drift.py 가 보냄)
-    돌려줄 것: {"predictions": [예측값 21개], "drift_check": {"status": "ok"} 또는 재학습 결과}
-
-    ■ 핵심 아이디어: 슬라이딩 윈도우 (20칸짜리 창문을 한 칸씩 밀기)
-      가격 41개가 들어오면, 20개씩 잘라 "그다음 날"을 예측하고 실제 값과 비교합니다.
-
-        i=0 : [p0  ~ p19] → 예측   vs  실제 p20
-        i=1 : [p1  ~ p20] → 예측   vs  실제 p21
-        ...
-        i=20: [p20 ~ p39] → 예측   vs  실제 p40
-        → 총 41 - 20 = 21번 예측 = 드리프트 판단에 필요한 21건이 딱 채워집니다.
-
-    확인 방법
-      python scripts/simulate_drift.py
-        [normal]          drift_check = {'status': 'ok'}
-        [drift_injection] drift_check = {'status': 'retrain_triggered', 'promoted': True, ...}
-      /docs 에서 직접 호출할 때는 predictions 가 (가격 개수 - 20)개인지 확인하세요.
-    """
-    model = model_loader.get_model()
-    predictions: list[float] = []
-
-    prices = req.prices
-    for i in range(len(prices) - SEQ_LEN):
-        # ════════════════════════════ [빈칸 6] ════════════════════════════
-        # i번째 창문(window)의 시작·끝 위치와, 그 창문 바로 다음 날(actual)의 위치를 채우세요. (i 와 SEQ_LEN 으로)
-        #   (위 docstring 의 그림에서 i=0 일 때 무엇이 창문이고 무엇이 실제 값인지 먼저 확인)
-        #
-        #   생각해 볼 질문
-        #     · 파이썬 슬라이싱 prices[a:b] 는 b 를 포함하나요?
-        #     · 실제 값을 한 칸 앞(창문의 마지막 날)으로 잡으면, 모델은 무엇을 "맞힌" 셈이 될까요?
-        #     · 반대로 창문을 한 칸 더 길게 잡아서 실제 값이 창문 안에 들어가면 RMSE는 어떻게 될까요?
-        window = prices[i : i + SEQ_LEN]
-        sequence = [{"close": p, "volume": SIMULATED_VOLUME} for p in window]
-        pred = model.predict_one(sequence)
-        actual = prices[i + SEQ_LEN]
+    """실제 예보로 배치 예측하고, 전체 행과 사후 기대 발전량을 AIOps 연결부에 전달한다."""
+    model = get_ready_model()
+    predictions = []
+    records = []
+    for i in range(len(req.prices) - SEQ_LEN):
+        sequence = [
+            {"close": req.prices[j], "volume": req.volumes[j]}
+            for j in range(i, i + SEQ_LEN)
+        ]
+        value = model.predict_one(sequence)
+        if not math.isfinite(value):
+            raise HTTPException(503, "모델이 유한한 예측값을 반환하지 않았습니다.")
+        pred = max(0.0, value)
+        target = i + SEQ_LEN
         predictions.append(pred)
-        recent_predictions.append({"predicted": pred, "actual": actual})
-
-    # 최근 21건만 남기기 — 오래된 기록까지 섞이면 "지금" 상태를 판단할 수 없습니다.
-    # (recent_predictions = ... 로 쓰면 함수 안의 새 변수가 되므로, [:] 로 목록 내용을 바꿉니다)
-    recent_predictions[:] = recent_predictions[-21:]  # WINDOW_SIZE 유지
-
-    # 드리프트 판단·재학습은 retrain_trigger.py 가 합니다. 여기서는 넘겨주기만!
-    drift_check = check_and_trigger(recent_predictions)
-    return BatchTestResponse(predictions=predictions, drift_check=drift_check)
+        records.append({
+            "date": req.dates[target].isoformat(), "predicted": pred,
+            "actual": req.prices[target], "expected": req.expected[target],
+        })
+    rows = [
+        {"date": day.isoformat(), "close": close, "volume": volume, "expected": expected}
+        for day, close, volume, expected in zip(req.dates, req.prices, req.volumes, req.expected)
+    ]
+    check = evaluate_batch(rows=rows, predictions=records, model_version=model.version)
+    return BatchTestResponse(predictions=predictions, drift_check=check)

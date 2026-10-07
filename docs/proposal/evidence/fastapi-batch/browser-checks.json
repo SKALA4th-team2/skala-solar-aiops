@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "pipelineScenarios": 7,
+  "requests": 2,
+  "rows": 41,
+  "status": "\n      예측 완료 · AIOps 판정기 미연결\n      클라이언트 계산 RMSE: 98.35 kWh"
+}
