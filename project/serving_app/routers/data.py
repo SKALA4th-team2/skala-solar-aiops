@@ -12,6 +12,7 @@ from fastapi import APIRouter, File, HTTPException, UploadFile
 from data.features import SEQ_LEN
 from data.storage import UPLOAD_DIR, latest_upload
 from serving_app.monitoring.drift_detector import WINDOW_SIZE
+from serving_app.schemas import MAX_GENERATION_KWH, MAX_FORECAST_MJ
 
 router = APIRouter(prefix="/data")
 REQUIRED_COLUMNS = {"Date", "Close", "Volume"}
@@ -38,8 +39,8 @@ def validate_csv(text: str) -> list[dict]:
                     raise ValueError
             except (ValueError, TypeError):
                 raise ValueError(f"{number}행: Date는 YYYY-MM-DD 형식의 유효한 날짜여야 합니다.") from None
-            if previous is not None and day <= previous:
-                raise ValueError(f"{number}행: 날짜는 중복 없이 오름차순이어야 합니다.")
+            if previous is not None and (day - previous).days != 1:
+                raise ValueError(f"{number}행: 날짜는 중복이나 빠진 날 없이 하루씩 이어진 오름차순이어야 합니다.")
             previous = day
             parsed = {"Date": day.isoformat()}
             for column in ('Close', 'Volume'):
@@ -49,6 +50,10 @@ def validate_csv(text: str) -> list[dict]:
                     raise ValueError(f"{number}행: {column}은 빈 값이 아닌 숫자여야 합니다.") from None
                 if not math.isfinite(value) or value < 0:
                     raise ValueError(f"{number}행: {column}은 유한한 0 이상의 숫자여야 합니다.")
+                limit = MAX_GENERATION_KWH if column == 'Close' else MAX_FORECAST_MJ
+                if value > limit:
+                    unit = 'kWh' if column == 'Close' else 'MJ/m²'
+                    raise ValueError(f"{number}행: {column}은 {limit:g}{unit} 이하여야 합니다.")
                 parsed[column] = value
             rows.append(parsed)
         if len(rows) < MIN_ROWS:
