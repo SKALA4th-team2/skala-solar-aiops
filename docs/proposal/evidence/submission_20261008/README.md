@@ -11,3 +11,5 @@
 합성 저하 자료는 기능 검증 전용이다. 예측 성능은 2025년 독립 평가 자료를 사용한다.
 
 아키텍처는 Mermaid 11에서 실제 SVG 렌더링을 확인했다. [렌더링 화면](architecture.png), [검증 결과](local/mermaid.json), [최신 운영 화면](frontend-production.png), [운영 서버 검사](local/production-smoke.json).
+
+최종 서빙 검증은 [docker-final/summary.json](docker-final/summary.json), [재시작](docker-final/restart-persistence.json), [전체 성공 CI](docker-final/ci-run.json)에 있다.

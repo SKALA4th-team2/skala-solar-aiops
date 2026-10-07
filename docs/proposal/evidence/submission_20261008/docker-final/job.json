@@ -1,0 +1,23 @@
+{
+  "id": "ad275739a3f94cb38711d8673bd2d5f6",
+  "plant_id": "hadong-sewage",
+  "kind": "hourly_fine_tune",
+  "end_date": "2027-08-08T23:00:00+09:00",
+  "status": "succeeded",
+  "result": {
+    "promoted": true,
+    "version": "2",
+    "gate": {
+      "passed": true,
+      "rmse_kwh": 3.7068369226709295,
+      "limit_kwh": 5.463811556081687,
+      "incumbent_rmse_kwh": 6.435859338187292,
+      "validation_hours": 168,
+      "policy": "hourly-retrain-v1: <= initial gate and same-window incumbent"
+    },
+    "run_id": "cf2d4732dc6f45f59ac89178b727a7b3"
+  },
+  "attempts": 1,
+  "created_at": "2026-10-07T15:54:38.071951+00:00",
+  "updated_at": "2026-10-07T15:54:42.298035+00:00"
+}
