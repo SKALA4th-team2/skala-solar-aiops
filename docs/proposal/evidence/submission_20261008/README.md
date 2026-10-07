@@ -9,3 +9,5 @@
 - frontend-*.png: 합성 기능 검증임을 표시한 실제 프론트 화면.
 
 합성 저하 자료는 기능 검증 전용이다. 예측 성능은 2025년 독립 평가 자료를 사용한다.
+
+아키텍처는 Mermaid 11에서 실제 SVG 렌더링을 확인했다. [렌더링 화면](architecture.png), [검증 결과](local/mermaid.json), [최신 운영 화면](frontend-production.png), [운영 서버 검사](local/production-smoke.json).
