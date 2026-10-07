@@ -1729,7 +1729,7 @@ readPeriod();
       const response = await query(resource === 'timeseries' ? `timeseries?window_sec=${element('server-window').value}` : resource);
       let entries;
       if (resource === 'timeseries') {
-        if (!Array.isArray(response) || !response.every(row => Number.isFinite(row.request_count) && row.request_count >= 0 && Number.isFinite(row.avg_latency_ms) && Number.isFinite(row.error_rate))) throw new Error('응답 형식 오류');
+        if (!Array.isArray(response) || !response.every(row => row && Number.isInteger(row.request_count) && row.request_count >= 0 && Number.isFinite(row.avg_latency_ms) && row.avg_latency_ms >= 0 && Number.isFinite(row.error_rate) && row.error_rate >= 0 && row.error_rate <= 1)) throw new Error('응답 형식 오류');
         const count = response.reduce((sum, row) => sum + row.request_count, 0);
         const weighted = response.reduce((sum, row) => sum + row.avg_latency_ms * row.request_count, 0);
         const errors = response.reduce((sum, row) => sum + row.error_rate * row.request_count, 0);
@@ -1766,7 +1766,7 @@ readPeriod();
     try {
       let payload;
       try { payload = JSON.parse(element('predict-input').value); } catch { throw new Error('JSON 형식 확인 필요'); }
-      if (!Array.isArray(payload.sequence) || payload.sequence.length !== 20 || !payload.sequence.every(row => Number.isFinite(row.close) && row.close > 0 && Number.isInteger(row.volume) && row.volume >= 0)) throw new Error('입력 20개 · close > 0 · volume은 0 이상 정수');
+      if (!Array.isArray(payload?.sequence) || payload.sequence.length !== 20 || !payload.sequence.every(row => row && Number.isFinite(row.close) && row.close > 0 && Number.isInteger(row.volume) && row.volume >= 0)) throw new Error('입력 20개 · close > 0 · volume은 0 이상 정수');
       const response = await query('predict', payload);
       if (!Number.isFinite(response.predicted_close)) throw new Error('예측 응답 형식 오류');
       element('predict-status').textContent = `예측값 ${response.predicted_close} · 모델 ${display(response.model_version)}`;
@@ -1779,33 +1779,37 @@ readPeriod();
   async function refreshHistory() {
     if (historyPending) return;
     historyPending = true; element('refresh-history').disabled = true; element('history-status').textContent = '조회 중…';
-    const results = await Promise.allSettled([query('history'), query('alerts')]);
-    results.forEach((result, index) => {
-      const panel = document.querySelector(index ? '.events-panel' : '.model-panel');
-      const target = panel.querySelector(index ? '.event-list' : 'tbody');
-      target.replaceChildren();
-      const valid = result.status === 'fulfilled' && Array.isArray(result.value);
-      const rows = valid ? result.value : [];
-      panel.querySelector('.panel-heading p').textContent = valid ? '서버 조회' : '조회 불가';
-      panel.querySelector('.panel-heading > span').textContent = valid ? `${rows.length}건` : '미연결';
-      if (!rows.length) {
-        const empty = document.createElement(index ? 'li' : 'tr');
-        if (index) empty.textContent = valid ? '운영 알림 없음' : '알림 조회 불가';
-        else { const cell = document.createElement('td'); cell.colSpan = 5; cell.textContent = valid ? '등록된 모델 없음' : '모델 이력 조회 불가'; empty.append(cell); }
-        target.append(empty);
-      }
-      rows.forEach(row => {
-        const entry = document.createElement(index ? 'li' : 'tr');
-        if (index) { const content = document.createElement('div'), title = document.createElement('strong'), stamp = document.createElement('p'); title.textContent = `${display(row.level)} · ${display(row.message)}`; stamp.textContent = time(row.ts); content.append(title, stamp); entry.append(content); }
-        else [row.version, time(row.created_at), row.mode, row.rmse, row.stage].forEach(value => { const cell = document.createElement('td'); cell.textContent = display(value); entry.append(cell); });
-        target.append(entry);
+    try {
+      const results = await Promise.allSettled([query('history'), query('alerts')]);
+      let allValid = true;
+      results.forEach((result, index) => {
+        const panel = document.querySelector(index ? '.events-panel' : '.model-panel');
+        const target = panel.querySelector(index ? '.event-list' : 'tbody');
+        target.replaceChildren();
+        const valid = result.status === 'fulfilled' && Array.isArray(result.value) && result.value.every(row => row && typeof row === 'object' && !Array.isArray(row) && (index ? typeof row.message === 'string' : row.version !== undefined));
+        allValid = allValid && valid;
+        const rows = valid ? result.value : [];
+        panel.querySelector('.panel-heading p').textContent = valid ? '서버 조회' : '조회 불가';
+        panel.querySelector('.panel-heading > span').textContent = valid ? `${rows.length}건` : '미연결';
+        if (!rows.length) {
+          const empty = document.createElement(index ? 'li' : 'tr');
+          if (index) empty.textContent = valid ? '운영 알림 없음' : '알림 조회 불가';
+          else { const cell = document.createElement('td'); cell.colSpan = 5; cell.textContent = valid ? '등록된 모델 없음' : '모델 이력 조회 불가'; empty.append(cell); }
+          target.append(empty);
+        }
+        rows.forEach(row => {
+          const entry = document.createElement(index ? 'li' : 'tr');
+          if (index) { const content = document.createElement('div'), title = document.createElement('strong'), stamp = document.createElement('p'); title.textContent = `${display(row.level)} · ${display(row.message)}`; stamp.textContent = time(row.ts); content.append(title, stamp); entry.append(content); }
+          else [row.version, time(row.created_at), row.mode, row.rmse, row.stage].forEach(value => { const cell = document.createElement('td'); cell.textContent = display(value); entry.append(cell); });
+          target.append(entry);
+        });
       });
-    });
-    document.querySelector('.events-foot').textContent = `조회 시각 ${new Date().toLocaleTimeString('ko-KR')}`;
-    document.querySelector('.model-panel caption').textContent = '서버 모델 버전 이력';
-    document.querySelector('.model-panel .table-scroll').setAttribute('aria-label', '모델 버전 이력, 상하좌우 스크롤');
-    element('history-status').textContent = results.every(result => result.status === 'fulfilled') ? '조회 완료' : '일부 API 조회 불가';
-    historyPending = false; element('refresh-history').disabled = false;
+      document.querySelector('.events-foot').textContent = `조회 시각 ${new Date().toLocaleTimeString('ko-KR')}`;
+      document.querySelector('.model-panel caption').textContent = '서버 모델 버전 이력';
+      document.querySelector('.model-panel .table-scroll').setAttribute('aria-label', '모델 버전 이력, 상하좌우 스크롤');
+      element('history-status').textContent = allValid ? '조회 완료' : '일부 API 조회 불가';
+    } catch { element('history-status').textContent = '응답 처리 실패 · 다시 조회해 주세요'; }
+    finally { historyPending = false; element('refresh-history').disabled = false; }
   }
   element('refresh-history').addEventListener('click', refreshHistory);
   // Honor the existing refresh interval only while the corresponding live view is visible.

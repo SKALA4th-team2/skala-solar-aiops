@@ -22,7 +22,7 @@ export async function handleDashboardRoute(req, res, base, url) {
       for await (const chunk of req) { size += chunk.length; if (size > 32768) { fail(413, 'too_large'); return true; } chunks.push(chunk); }
       let payload;
       try { payload = JSON.parse(Buffer.concat(chunks).toString()); } catch { fail(400, 'invalid_input'); return true; }
-      if (!Array.isArray(payload.sequence) || payload.sequence.length !== 20 || !payload.sequence.every(p => Number.isFinite(p.close) && p.close > 0 && Number.isInteger(p.volume) && p.volume >= 0)) { fail(400, 'invalid_input'); return true; }
+      if (!Array.isArray(payload?.sequence) || payload.sequence.length !== 20 || !payload.sequence.every(p => p && Number.isFinite(p.close) && p.close > 0 && Number.isInteger(p.volume) && p.volume >= 0)) { fail(400, 'invalid_input'); return true; }
       path = '/predict'; body = JSON.stringify({ sequence: payload.sequence.map(p => ({ close: p.close, volume: p.volume })) });
     }
     const upstream = await fetch(new URL(path, base), { method: predict ? 'POST' : 'GET', ...(predict ? { body, headers: { 'Content-Type': 'application/json' } } : {}), redirect: 'error', signal: AbortSignal.timeout(15000) });

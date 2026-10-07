@@ -22,7 +22,7 @@ export async function handleOperationRoute(request, response, base, path) {
       }
       let payload;
       try { payload = JSON.parse(Buffer.concat(chunks).toString()); } catch { fail(400, 'invalid_batch'); return true; }
-      if (!Array.isArray(payload.prices) || payload.prices.length !== 41 || !payload.prices.every(n => Number.isFinite(n) && n > 0)) { fail(400, 'invalid_batch'); return true; }
+      if (!Array.isArray(payload?.prices) || payload.prices.length !== 41 || !payload.prices.every(n => Number.isFinite(n) && n > 0)) { fail(400, 'invalid_batch'); return true; }
       body = JSON.stringify({ prices: payload.prices });
     } else {
       const name = decodeURIComponent(path.slice('/preview-api/logs/'.length));
@@ -38,7 +38,7 @@ export async function handleOperationRoute(request, response, base, path) {
       response.end(JSON.stringify({ predictions: result.predictions, drift_check: { status: check.status, ...(typeof check.promoted === 'boolean' ? { promoted: check.promoted } : {}), ...(Number.isFinite(check.rmse) ? { rmse: check.rmse } : {}) } }));
     } else if (upstreamPath === '/logs') {
       if (!Array.isArray(result)) throw new Error('Invalid logs response');
-      response.end(JSON.stringify(result.filter(log => /^[a-zA-Z0-9_.-]+$/.test(log.name) && Number.isFinite(log.size)).map(log => ({ name: log.name, size: log.size }))));
+      response.end(JSON.stringify(result.filter(log => log && typeof log.name === 'string' && /^[a-zA-Z0-9_.-]+$/.test(log.name) && Number.isFinite(log.size)).map(log => ({ name: log.name, size: log.size }))));
     } else {
       if (typeof result.content !== 'string') throw new Error('Invalid log response');
       response.end(JSON.stringify({ content: result.content }));
