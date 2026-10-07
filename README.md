@@ -21,6 +21,6 @@ cd project
 
 [채택 결정 0014](docs/decisions/0014-hourly-forecast-and-aiops.md) · [시간별 데이터](datasets/hourly/README.md) · [검증 결과](docs/proposal/evidence/hourly_20261007/README.md) · [API 명세](docs/proposal/5-api-spec.md) · [기획서](docs/proposal/README.md)
 
-현재 화면은 보관 자료(2026-02-27까지)의 재생이다. 기상은 지역격자의 48시간 선행 JMA 예보이며 현장 관측이나 실시간 수집이 아니다. 당시 공개시각은 검증하지 못했다. 가상 31개소 설비용량 합계는 22.914065MW지만 제도 참여·시장 제출·정산 성능을 검증한 것은 아니다. 컨테이너 실제 실행은 Docker 미설치로 확인하지 못했다.
+현재 화면은 보관 자료(2026-02-27까지)의 재생이다. 기상은 지역격자의 48시간 선행 JMA 예보이며 현장 관측이나 실시간 수집이 아니다. 당시 공개시각은 검증하지 못했다. 가상 31개소 설비용량 합계는 22.914065MW지만 제도 참여·시장 제출·정산 성능을 검증한 것은 아니다. GitHub Actions의 Linux Docker에서 31개 모델·재학습·롤백·재시작을 검증했다. [제출 파일과 실행 안내](docs/submission/README.md)를 함께 전달한다.
 
 이전 일별 모델·실험은 별도 runtime과 증빙에 남기고 시간별 운영에 혼용하지 않는다. 연구 보관 자료는 docs/research/, 과거 결정은 docs/decisions/에 있다. 기여 규칙은 [CONTRIBUTING.md](CONTRIBUTING.md), 작업 규칙은 [AGENTS.md](AGENTS.md)를 따른다.

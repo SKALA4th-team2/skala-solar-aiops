@@ -27,3 +27,13 @@
 화면·추가 캡처는 [제출 증빙 폴더](evidence/submission_20261008/)에 있다. JSON의 prediction_id로 GET /predictions/{id}를 조회하면 당시 입력과24개 출력,모델 버전을 재확인할 수 있다. GET /predictions는 선택 개소의 최근 기록을 반환한다.
 
 재현 명령은 project/에서 `python ../tools/submission/exercise_http.py --base http://127.0.0.1:8078 --out ../docs/proposal/evidence/submission_20261008/local`이다. 이 도구는 demo_mode=true 환경에서만 합성 드리프트를 전송한다. 새seed로 시작한 격리 상태에서 수행한다. 기존 시연에 반복 실행하면 학습 기간 중복 방지 정책에 걸릴 수 있다.
+
+## 실제 프론트 확인
+
+합성 기능 검증 환경임을 표시한 화면에서 완료된 작업과 버전 이력을 조회했다. v2는 합성 자료의 추가 학습 버전이며, v1의 2025년 독립 성능과 비교하는 수치가 아니다.
+
+![자동 재학습 완료](evidence/submission_20261008/frontend-pipeline.png)
+
+![등록 및 롤백 이력](evidence/submission_20261008/frontend-history.png)
+
+[예측 저장 이력 화면](evidence/submission_20261008/frontend-predictions.png)에서도 실제 SQLite 기록을 조회했다.

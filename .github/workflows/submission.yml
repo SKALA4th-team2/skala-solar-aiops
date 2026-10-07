@@ -10,8 +10,14 @@ on:
       - 'datasets/plant_forecasts/raw/**'
       - '.github/workflows/submission.yml'
   workflow_dispatch:
+    inputs:
+      seed_run_id:
+        description: "Reuse the approved seed artifact from a completed run (serving-only verification)"
+        required: false
+        default: ""
 permissions:
   contents: read
+  actions: read
 jobs:
   docker-verification:
     runs-on: ubuntu-latest
@@ -31,9 +37,23 @@ jobs:
           python-version: '3.11'
           cache: pip
           cache-dependency-path: project/requirements*.txt
+      - name: Download previously trained seed for serving-only verification
+        if: inputs.seed_run_id != ''
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: ${{ inputs.seed_run_id }}
+          pattern: solar-hourly-submission-*
+          merge-multiple: true
+          path: project/submission/import
+      - name: Install verified reused seed
+        if: inputs.seed_run_id != ''
+        run: python scripts/install_bundle.py submission/import/solar-hourly-seed.zip
       - name: Install training dependencies
+        if: inputs.seed_run_id == ''
         run: python -m pip install -r requirements-training.txt
       - name: Recreate hourly data and models from original sources
+        if: inputs.seed_run_id == ''
         run: |
           python ../tools/hourly/prepare.py
           python ../tools/hourly/train.py --workers 2
@@ -67,6 +87,8 @@ jobs:
             project/submission/solar-hourly-seed.zip.manifest.json
             project/submission/docker-evidence/
             project/submission/training-evidence/summary.json
+            project/submission/import/solar-hourly-seed.zip
+            project/submission/import/solar-hourly-seed.zip.manifest.json
           retention-days: 30
       - name: Stop test container
         if: always()

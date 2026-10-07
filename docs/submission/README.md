@@ -19,7 +19,9 @@ py -3.11 -m venv .venv
 
 ## 컨테이너 검증
 
-이PC에는 Docker/WSL이없어 GitHub Actions의 Linux Docker에서실제빌드·실행검증을수행한다. 워크플로우는 .github/workflows/submission.yml이다. 원본시간자료를다시만들고학습한뒤컨테이너에서31개모델예측·자동재학습·버전변경·롤백·재시작영속성을확인한다. 성공여부는 Actions실행결과와artifact의 docker-evidence/summary.json,restart-persistence.json,compose-ps.json,container.log로판정한다. 실행이성공하기전에는 검증완료로표시하지않는다.
+[원본 재학습 및 Docker 검증 실행](https://github.com/SangMyeong5426/skala-solar-aiops/actions/runs/37643858606)이 성공했다. 코드 c96a102에서 33개 후보를 재학습해 같은 31개소를 승인했고, Linux Docker에서 31개 예측·자동 재학습·v1→v2→v1·컨테이너 재시작 후 예측 기록 보존을 확인했다. [실제 HTTP 결과](../proposal/evidence/submission_20261008/docker-initial/summary.json), [재시작 결과](../proposal/evidence/submission_20261008/docker-initial/restart-persistence.json), [컨테이너 상태](../proposal/evidence/submission_20261008/docker-initial/compose-ps.json)를 보관했다.
+
+워크플로우는 `.github/workflows/submission.yml`이다. 실행 페이지의 artifact에는 모델 ZIP과 manifest, Swagger HTML, Docker 버전·빌드·컨테이너 로그가 포함된다. 비공개 저장소 접근 권한이 필요하며 artifact 보존 기간은 30일이므로 제출 시 ZIP과 manifest도 별도로 전달한다. Windows에서 만든 로컬 묶음과 Linux 재학습 묶음의 해시는 각각 따로 검증한다. 서빙 코드만 바꿀 때는 workflow_dispatch의 seed_run_id에 성공한 원본 학습 실행 ID를 넣어 동일 승인 묶음으로 컨테이너를 다시 검증할 수 있다.
 
 Docker가있는PC에서는 seed설치후다음과같이실행한다.
 
