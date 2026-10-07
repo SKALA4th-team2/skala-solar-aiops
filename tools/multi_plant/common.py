@@ -16,6 +16,7 @@ import csv
 import hashlib
 import math
 import re
+import sys
 from datetime import date, timedelta
 from pathlib import Path
 
@@ -50,6 +51,24 @@ DAILY_COLUMNS = ["plant_id", "date", "energy_kwh", "quality", "source_file"]
 HOURLY_COLUMNS = ["plant_id", "date", "hour", "energy_kwh", "quality", "source_file"]
 
 FAR_FUTURE = date(9999, 12, 31)
+
+
+def use_utf8_output():
+    """출력을 UTF-8 로 고정한다.
+
+    Windows 에서 출력을 파일이나 파이프로 돌리면 콘솔의 코드 페이지(cp949)로 쓰다가 그 코드 페이지에 없는 글자에서 멈춘다.
+    """
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except (AttributeError, ValueError):
+            pass
+
+
+def relative_where(where, root):
+    """문제의 위치에서 자료 폴더의 경로를 뗀다. 구분자가 / 이든 \\ 이든 같게 줄인다."""
+    prefix = str(root)
+    return where[len(prefix):].lstrip("/\\") if where.startswith(prefix) else where
 
 
 def issue(level, code, where, message):
@@ -458,7 +477,7 @@ def load_root(root):
         f = folder / "generation_daily.csv"
         if f.exists():
             rows, got = load_generation_daily(f, expect_plant_id=pid, rejected=rejected)
-            issues += [{**i, "where": i["where"].replace(str(root) + "/", "")} for i in got]
+            issues += [{**i, "where": relative_where(i["where"], root)} for i in got]
             daily[pid] = rows
             unit_issues, _ = check_units(pid, plants, rows)
             issues += unit_issues
@@ -472,7 +491,7 @@ def load_root(root):
         f = folder / "generation_hourly.csv"
         if f.exists():
             days, got = load_generation_hourly(f, expect_plant_id=pid)
-            issues += [{**i, "where": i["where"].replace(str(root) + "/", "")} for i in got]
+            issues += [{**i, "where": relative_where(i["where"], root)} for i in got]
             hourly[pid] = days
             issues += check_hourly_against_daily(pid, days, daily.get(pid, []), skip=rejected)
         if not (folder / "manifest.json").exists():
