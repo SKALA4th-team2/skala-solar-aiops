@@ -2,26 +2,53 @@
 
 - 평가 항목: 2-2 (구현·발표)
 - 담당: 본인 (`fastapi` 브랜치, 백엔드 API)
-- 상태: FastAPI 공통 검증·오류 처리 보완 (2026-10-07). 아래 최신 변경표가 현재 계약이다. 기존 본문 1~8절은 `58d6ff8` 당시의 실행 기록으로 보존하며 현재 응답과 구분한다. 9절의 태양광 단건·업로드 규격은 #6에서 적용했고 배치 규격은 후속 작업이다
+- 상태: FastAPI 계약 구현 완료(2026-10-07, 이슈 #5~#7). 아래 현재 계약이 우선한다. 이후 초기 실행 기록은 `58d6ff8` 당시의 증빙이며 현재 동작과 구분한다.
 
-## 현재 태양광 API 계약 — #6 (2026-10-07)
+## 현재 태양광 API 계약 — #5~#7
 
-사용자가 9절의 입력 계약 적용을 승인했다. 단건 예측과 업로드는 아래를 따른다. 배치 입력과 AIOps는 다음 이슈에서 호출부와 함께 연결한다.
+사용자가 9절의 입력 계약 적용을 승인했다. 모델 학습·레지스트리 버전·AIOps 판정 정책은 팀원이 이어받는다.
 
-| API | 현재 계약 |
-| --- | --- |
-| `POST /predict` | `sequence` 정확히 20개. 각 점에 `date`(YYYY-MM-DD), `close`(숫자 0~1,320kWh), `volume`(숫자 0~45MJ/m²)가 필수다. 날짜는 하루씩 이어져야 한다. `volume`은 **다음 날** 예보이며 소수를 그대로 받는다. 알 수 없는 필드는 422 |
-| 단건 응답 | `predicted_close`(kWh, 음수는 0으로 제한 후 소수 둘째 자리), `target_date`(마지막 날짜 다음 날), `model_version`(모델 제공자의 버전). 날짜와 사후 관측값은 모델 피처에 넣지 않는다 |
-| 오류 | 검증 실패 422. 모델·스케일러 미준비 또는 비유한 예측 결과 503. 음수·범위 초과·비유한 입력·날짜 누락·중복·역순·빠진 날은 거절한다 |
-| `POST /data/upload` | 기존 UTF-8·필수 열·최소 41행 검사에 같은 값 범위와 연속 달력일 검사를 적용한다. 실패는 400. 태양광 예보 업로드 파일을 소수 손실 없이 저장한다 |
-| `GET /health` | `model_source` 추가: 캐시 모델의 `local`/`mlflow`, 미로딩이면 null. `model_version`도 캐시 모델 기준이다. 실제 레지스트리 버전·승격 교체는 MLOps 담당 |
-| `POST /predict/batch-test` | 아직 HAIC의 `prices` 요청 계약. 태양광 모델에 연결하는 것은 후속 배치 이슈가 끝난 뒤다 |
+| Method / URL | 현재 계약 | 오류 |
+| --- | --- | --- |
+| `POST /predict` | 연속 20일의 `sequence`: 각 행의 `date`(YYYY-MM-DD), `close`(0~1,320kWh), `volume`(소수 0~45MJ/m²). `volume`은 **다음 날** 일사량 예보다. 반환은 `predicted_close`, `target_date`, `model_version` | 422 검증 실패, 503 모델·스케일러 미준비 또는 비유한 출력 |
+| `POST /predict/batch-test` | `dates`, `prices`, `volumes`, `expected` 네 배열 필수. 같은 길이, 최소 21개. 날짜는 연속이며 발전량·예보 범위는 단건과 같다. `expected`는 해당 날짜의 사후 기대 발전량(kWh), 유한한 0 이상 숫자 또는 null. 반환은 `predictions`(N−20개), `drift_check` | 422 검증 실패, 503 모델 미준비·비유한 출력 |
+| `GET /health` | `status`, `model_loaded`, `model_version`, `model_source`, `loading_mode`. 버전·출처는 현재 메모리에 로드된 객체에서 읽고 미로딩이면 null | 200, 모델을 새로 로드하지 않는다 |
+| `POST /data/upload` | UTF-8 CSV(BOM 허용), `Date,Close,Volume` 필수, 최소 41행. 연속 날짜와 단건의 값 범위 적용. 추가 열 허용. 반환 `filename`, `rows` | 400 인코딩·컬럼·행 수·값·날짜 오류, 422 파일 없음 |
+| `GET /data/status` | 미업로드는 `exists:false`. 있으면 파일명·행 수·기간·발전량 최솟값/최댓값 | 409 저장된 파일이 현재 규격에 맞지 않음 |
+| `GET /logs`, `/logs/{filename}` | 파일 목록, 또는 `name`·`content` | 404 없는 로그, 400 잘못된 파일명 |
+| `GET /`, `/docs`, `/openapi.json` | 대시보드, Swagger UI, OpenAPI | 200 |
 
-검증은 [21개 API 테스트](evidence/fastapi-solar/api-tests.txt), [응답](evidence/fastapi-solar/http-results.json), [OpenAPI](evidence/fastapi-solar/openapi.json)에 있다. 200 예측은 고정 대체 모델로 API 경로를 검사한 결과이며 실제 모델의 예측 성능이 아니다. 요청 예시는 아래 9절의 20행을 그대로 사용할 수 있다.
+### 예측 데이터의 의미
+
+- JSON의 숫자 필드는 숫자 타입만 받는다. 숫자 문자열·불리언·비유한 값은 거절한다. CSV 숫자는 파싱 후 같은 값 범위를 검사한다.
+- 날짜는 중복·역순·빠진 날 없이 하루씩 이어져야 한다. 단건 응답의 대상일은 마지막 날짜의 다음 날이다.
+- 날짜와 `expected`는 모델 피처에 들어가지 않는다. 두 피처는 해당일 발전량과 **다음 날** 예보다. 대상일 실적을 입력 창에 넣지 않는다.
+- 음수 예측은 0으로 자른다. 단건은 소수 둘째 자리로 반올림하고, 배치는 계산 정밀도를 유지한다.
+- 단건·배치에서 알 수 없는 요청 필드는 422로 거절한다. 옛 `prices`만 있는 배치 요청도 422다.
+- 저장 파일은 `haic_<uuid>.csv`. 임시 파일에 모두 쓴 뒤 공개해 부분 파일·같은 초 덮어쓰기를 방지한다.
+
+### AIOps 응답과 구현 경계
+
+`drift_check.status`, `model_version`은 필수다. `status`는 `ok`, `drift_alerted`, `retrain_triggered`, `facility_check`, `skipped`, `input_anomaly`다. 9절의 지표 필드는 계산한 경우에만 싣는다. `pi` 등 명시적으로 반환한 null은 유지한다. `reason`은 미판정 사유를 담는 선택 필드다.
+
+현재 판정기를 연결하지 않은 기본 응답은 다음과 같다. 이는 **정상 판정이나 재학습 성공이 아니다.**
+
+```json
+{"status":"skipped","model_version":"모델 제공자가 반환한 버전","reason":"aiops_not_configured"}
+```
+
+`aiops_adapter.configure_evaluator()`로 태양광 판정기를 연결한다. AIOps에는 전체 N행과 대상일별 예측·실제·기대값 N−20행을 넘긴다. 감시·재학습 정책은 팀원이 구현한다. 실습 `production` 문자열을 실제 레지스트리 버전으로 바꾸고 승격 뒤 캐시를 교체하는 일도 MLOps 담당이다. 상세 계약은 [인수인계](../fastapi-handoff.md)에 있다.
+
+### 호출과 검증
+
+요청 생성 및 대시보드 사용법은 [시연 문서](6-demo.md#fastapi-호출부-구현-2026-10-07)에 있다. 대시보드는 CLI가 실제 CSV로 만든 normal/drift JSON을 읽는다. 하락 배치는 발전량에만 0.86을 곱하며 클라이언트에서 감시 기준을 판단하지 않는다.
+
+[27개 테스트](evidence/fastapi-batch/api-tests.txt), [응답 증빙](evidence/fastapi-batch/http-results.json), [OpenAPI](evidence/fastapi-batch/openapi.json). 예측 200은 고정 대체 모델을 통한 TestClient 검사다. 실제 학습 품질·운영 서버·재학습 증빙과 구분한다. #5의 [공통 검사](evidence/fastapi/), #6의 [단건 검사](evidence/fastapi-solar/)도 이력으로 보존했다.
+
 
 ## 공통 오류 처리 변경 이력 — #5 (2026-10-07)
 
-아래 표는 #5 시점의 기록이다. 현재 태양광 단건·업로드 계약은 위 표가 우선한다.
+아래 표는 #5 시점의 기록이다. 현재 계약은 위 표가 우선한다.
 
 정답 빈칸 11개는 `347af06`에서 채웠다. 아래 응답은 모델·AIOps를 격리한 FastAPI TestClient 검사로 확인했다. **실제 학습 모델의 예측 성공이나 품질 검증을 뜻하지 않는다.** 기존 `58d6ff8` 증빙은 덮어쓰지 않았다.
 

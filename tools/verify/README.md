@@ -45,3 +45,11 @@ python -B -m unittest discover -s tools/verify -p 'test_t6t7_source_evidence.py'
 ```
 
 FastAPI TestClient로 업로드·예측 요청 전달·배치 분할·오류·상태·로그를 검사한다. 모델 계산과 AIOps는 대체 객체를 쓰고 파일은 임시 폴더에 둔다. 실제 학습·승격·모델 품질을 검사하는 테스트가 아니다. 담당 범위와 남은 일은 [FastAPI 인수인계](../../docs/fastapi-handoff.md)에 있다.
+
+현재 태양광 API·CLI 검사는 27개다. 증빙을 다시 생성하려면 `project/`에서 다음을 실행한다.
+
+```bash
+.venv/bin/python ../tools/verify/capture_fastapi.py --output ../docs/proposal/evidence/fastapi-batch
+```
+
+브라우저 검증은 `agent-browser` 별도 세션으로 정적 대시보드를 열고 `fetch`를 대체하여 확인했다. 실제 서버에 요청하지 않았다. 정상·하락 41행 전송, 예보·기대값 유지, 발전량 0.86배, 7가지 파이프라인 상태를 확인했다. [결과](../../docs/proposal/evidence/fastapi-batch/browser-checks.json)의 RMSE는 고정 대체 모델에서 나온 화면 검사용 숫자다.
