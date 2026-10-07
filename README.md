@@ -28,8 +28,9 @@ skala-solar-aiops/
 ## 진행 현황
 
 - [x] 저장소 뼈대와 작업 규칙
-- [x] HAIC 스켈레톤 원본 커밋 (빈칸 11곳은 비어 있다)
-- [ ] 빈칸 11곳을 채워 HAIC 그대로 끝까지 도는지 확인
+- [x] HAIC 스켈레톤 원본 커밋
+- [x] 정답 이미지에 따라 HAIC 실습 빈칸 11곳 채우기
+- [ ] HAIC 그대로 학습·서빙·자동 재학습이 끝까지 도는지 확인
 - [ ] 조사 보고서를 `docs/research/` 에 넣고, 팀이 정할 것을 `docs/decisions/` 에 기록
 - [ ] 업로드용 데이터를 `datasets/` 에 넣기
 - [ ] 도메인 매핑표 확정 ([`docs/proposal/domain-mapping.md`](docs/proposal/domain-mapping.md))
@@ -48,6 +49,7 @@ skala-solar-aiops/
 | | 서빙 API | `project/serving_app/` 의 스키마와 라우터 |
 | | 배포 | MLflow 게이트, 컨테이너 |
 | | 모니터링 | `project/serving_app/monitoring/`, 시뮬레이션 |
+| Codex (`fastapi` 브랜치) | HAIC 실습 빈칸 1~11 구현 | `project/scripts/train_baseline_v1.py`, `project/serving_app/model_loader.py`, `project/serving_app/routers/predict.py`, `project/serving_app/monitoring/` |
 
 ## 실행
 
