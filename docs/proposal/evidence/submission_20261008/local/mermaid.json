@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "status": "Mermaid 문법 및 SVG 렌더링 통과",
+  "source": "docs/proposal/4-architecture.md",
+  "renderer": "mermaid@11"
+}
