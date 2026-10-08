@@ -17,7 +17,7 @@ cd project
 .venv\Scripts\python -X utf8 scripts/run_backend.py
 ```
 
-화면 http://127.0.0.1:8077/ , API http://127.0.0.1:8077/docs . 최초 설치와 다른 PC 이전은 [운영 안내](docs/backend-runbook.md)를 따른다. 모델·DB·업로드는 Git에 넣지 않으므로 다른 PC에서는 재생성 또는 hourly-seed 전달이 필요하다.
+화면 http://127.0.0.1:8077/ , API http://127.0.0.1:8077/docs . 최초 설치와 다른 PC 이전은 [운영 안내](docs/backend-runbook.md)를 따른다. **Git pull만으로 모델이 설치되지 않는다.** [모델 다운로드·설치](docs/submission/README.md#팀원-최초-실행-모델-다운로드-필수)를 먼저 수행한다. 모델·DB·업로드는 Git에서 제외한다.
 
 [채택 결정 0014](docs/decisions/0014-hourly-forecast-and-aiops.md) · [시간별 데이터](datasets/hourly/README.md) · [검증 결과](docs/proposal/evidence/hourly_20261007/README.md) · [API 명세](docs/proposal/5-api-spec.md) · [기획서](docs/proposal/README.md)
 
@@ -26,4 +26,4 @@ cd project
 이전 일별 모델·실험은 별도 runtime과 증빙에 남기고 시간별 운영에 혼용하지 않는다. 연구 보관 자료는 docs/research/, 과거 결정은 docs/decisions/에 있다. 기여 규칙은 [CONTRIBUTING.md](CONTRIBUTING.md), 작업 규칙은 [AGENTS.md](AGENTS.md)를 따른다.
 
 
-2026-10-08 추가: 발전 현황의 인센티브 참고 평가 패널에서 시간별 예측오차율, 6%·8% 충족률, 평가 대상·제외 시간, 예상 인센티브 모의 금액을 조회한다. 24/72/168시간 선택과 계수 1.0/0.5 시나리오를 지원한다. 계산 조건은 결정 0015와 API 명세를 따른다. 단일 예측·과거 재생 기반이며 실제 지급액 판정이 아니다.
+2026-10-08 추가: 발전 현황의 인센티브 참고 평가 패널에서 시간별 예측오차율, 4%·6% 충족률, 평가 대상·제외 시간, 예상 인센티브 모의 금액을 조회한다. 24/72/168시간 선택과 계수 1.0/0.5 시나리오를 지원한다. 계산 조건은 결정 0015와 API 명세를 따른다. 단일 예측·과거 재생 기반이며 실제 지급액 판정이 아니다.

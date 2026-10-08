@@ -52,17 +52,17 @@ function chart(){
  $('#overview-chart').innerHTML=`<svg viewBox="0 0 ${w} ${h}" style="width:100%;height:auto;min-height:180px" role="img" aria-label="시간별 실측과 LSTM 예측, 단위 kWh. 아래 시간별 기록에서 정확한 값을 확인할 수 있습니다."><text x="8" y="15">kWh</text>${grid}<polyline points="${points('predicted')}" fill="none" stroke="#bd7950" stroke-width="2" stroke-dasharray="5 4"/><polyline points="${points('actual')}" fill="none" stroke="#273e48" stroke-width="2"/>${ticks}</svg>`;
  text('[data-chart-range]',`${stamp(rows[0].timestamp)} – ${stamp(rows.at(-1).timestamp)}`);
  $('#generation-rows').innerHTML=rows.map(r=>`<tr><td>${esc(stamp(r.timestamp))}</td><td class="numeric">${fmt(r.actual)}</td><td class="numeric">${fmt(r.predicted)}</td><td class="numeric">${fmt(r.predicted-r.actual)}</td><td class="numeric">${fmt(r.irradiance)}</td></tr>`).join('');
- renderIncentives();value('record-count',`${rows.length}시간`);value('rmse',fmt(Math.sqrt(rows.reduce((a,r)=>a+(r.predicted-r.actual)**2,0)/rows.length)));value('rmse-period',`최근 ${rows.length}시간 · 자료 재생`);
+ renderIncentives();value('record-count',`${rows.length}시간`);value('rmse',fmt(Math.sqrt(rows.reduce((a,r)=>a+(r.predicted-r.actual)**2,0)/rows.length)));value('rmse-period',`최근 ${rows.length}시간 · ${state.data.incentives[String(state.period)].training_scope.label}`);
  $$('[data-period]').forEach(e=>{const selected=Number(e.dataset.period)===state.period;e.classList.toggle('selected',selected);e.setAttribute('aria-pressed',selected);});
 }
 function renderIncentives(){
  const report=state.data?.incentives?.[String(state.period)];$('#incentive-rows').replaceChildren();
- if(!report){['inc-error','inc-le6','inc-le8','inc-eligible','inc-excluded','inc-won'].forEach(k=>value(k,'—'));text('#incentive-period','인센티브 지표를 불러오지 못했습니다.');return;}
+ if(!report){['inc-error','inc-le4','inc-le6','inc-eligible','inc-excluded','inc-won'].forEach(k=>value(k,'—'));text('#incentive-period','인센티브 지표를 불러오지 못했습니다.');return;}
  const factor=Number($('#incentive-coefficient').value);
- value('inc-error',fmt(report.mean_error_pct));value('inc-le6',fmt(report.le6_pct));value('inc-le8',fmt(report.le8_pct));value('inc-eligible',report.eligible_hours);value('inc-excluded',report.excluded_hours);value('inc-won',fmt(report.scenario_krw*factor));
- text('#incentive-period',`최근 ${report.total_hours}시간 · LSTM v${state.data.model_version} · 단일 예측 대용 · 과거 재생`);
+ value('inc-error',fmt(report.mean_error_pct));value('inc-le4',fmt(report.le4_pct));value('inc-le6',fmt(report.le6_pct));value('inc-eligible',report.eligible_hours);value('inc-excluded',report.excluded_hours);value('inc-won',fmt(report.scenario_krw*factor));
+ text('#incentive-period',`최근 ${report.total_hours}시간 · LSTM v${state.data.model_version} · 단일 예측 대용 · ${report.training_scope.label}`);
  text('#incentive-exclusions',Object.entries(report.excluded_reasons).map(([reason,n])=>`${reason} ${n}시간`).join(' · ')||'제외 시간 없음');
- $('#incentive-rows').innerHTML=report.rows.map(r=>`<tr><td>${esc(stamp(r.timestamp))}</td><td class="numeric">${fmt(r.utilization_pct)}</td><td class="numeric">${fmt(r.error_pct)}</td><td>${esc(r.exclusion_reason||({le6:'6% 이하',le8:'6~8%',gt8:'8% 초과'}[r.band]))}</td><td class="numeric">${fmt(r.base_rate_krw_per_kwh*factor)}</td><td class="numeric">${fmt(r.scenario_krw*factor)}</td></tr>`).join('');
+ $('#incentive-rows').innerHTML=report.rows.map(r=>`<tr><td>${esc(stamp(r.timestamp))}</td><td class="numeric">${fmt(r.utilization_pct)}</td><td class="numeric">${fmt(r.error_pct)}</td><td>${esc(r.exclusion_reason||({le4:'4% 이하',le6:'4~6%',gt6:'6% 초과'}[r.band]))}</td><td class="numeric">${fmt(r.base_rate_krw_per_kwh*factor)}</td><td class="numeric">${fmt(r.scenario_krw*factor)}</td></tr>`).join('');
 }
 $('#incentive-coefficient').onchange=renderIncentives;
 async function loadEnergy(){
@@ -92,11 +92,11 @@ async function operations(){
   if(d.plant.monitor)renderMonitor(d.plant.monitor,d.plant.jobs.find(j=>j.id===d.plant.monitor.job?.id));
  }catch(e){text('#ops-status',`연결 오류: ${e.message}`);}
 }
-const reasons={normal:'정상',daytime_near_zero_check_data_or_facility:'주간 저발전 연속 발생 · 데이터/설비 확인',need_7_complete_days_and_48_daylight_hours:'7일·주간 48시간 미충족',forecast_conditioned_drop_and_error:'예보 대비 실적 저하와 오차 증가'};
+const reasons={existing_job_terminal:'이미 종료된 작업 · 새 재학습 없음',normal:'정상',daytime_near_zero_check_data_or_facility:'주간 저발전 연속 발생 · 데이터/설비 확인',need_7_complete_days_and_48_daylight_hours:'7일·주간 48시간 미충족',forecast_conditioned_drop_and_error:'예보 대비 실적 저하와 오차 증가'};
 function renderMonitor(m,job=null){
  const status=job?.status||m.state;text('#pipeline-status',status);text('#pipeline-time',`${reasons[m.reason]||m.reason} · 예보 기반 검사`);if(m.job)state.job=m.job.id;
  const stages=['완료','완료',m.state==='normal'?'정상':m.state==='held'?'보류':m.state==='skipped'?'자료 부족':'감지','미요청','미실행','미등록','기존 유지'];
- if(m.job){stages[3]='등록';stages[4]=status==='queued'?'대기':status==='running'?'학습 중':status==='succeeded'?'통과':status==='rejected'?'게이트 미달':'실패';if(status==='succeeded'){stages[5]='등록 완료';stages[6]='반영 완료';}}
+ if(m.job){stages[3]='등록';stages[4]=status==='queued'?'대기':status==='running'?'학습 중':status==='succeeded'?'통과':status==='rejected'?'게이트 미달':'실패';if(status==='succeeded'){stages[5]='등록 완료';stages[6]=m.reason==='existing_job_terminal'?'과거 반영 · 현재 버전 별도 확인':'반영 완료';}}
  $$('.step-state').forEach((e,i)=>e.textContent=stages[i]);
 }
 async function loadHistory(){

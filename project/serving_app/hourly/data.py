@@ -36,3 +36,11 @@ def sample(pid):
     history=[{k:r[k] for k in ('timestamp','generation_kwh')} for r in rows[-48:-24]]
     forecast=[{k:v for k,v in r.items() if k!='generation_kwh'} for r in rows[-24:]]
     return dict(plant_id=pid,prediction=dict(plant_id=pid,history=history,forecast=forecast),batch=dict(plant_id=pid,rows=rows),source=source)
+
+
+def replay_scope(records, train_end):
+    """Describe overlap per selected period, including mixed uploaded windows."""
+    end = datetime.fromisoformat(train_end)
+    overlap = sum(datetime.fromisoformat(r['timestamp']) <= end for r in records)
+    return dict(training_overlap_hours=overlap, total_hours=len(records),
+                label=('학습에 포함된 기간의 재생 · 독립 평가 아님' if overlap == len(records) else '학습 기간과 이후 자료가 섞인 재생 · 독립 평가 아님' if overlap else '학습 종료 이후 자료 재생 · 독립 평가 절차와 별도'))

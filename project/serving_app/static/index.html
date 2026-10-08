@@ -41,16 +41,16 @@
         <article class="kpi"><div class="kpi-label"><h2>예측 오차 <span class="metric-code">RMSE</span></h2><span class="metric-icon" data-icon="target"></span></div><div class="kpi-value"><span data-value="rmse">—</span><span class="unit">kWh/시간</span></div><p class="kpi-footer"><span data-value="rmse-period">최근 24시간</span><span>실측과 LSTM 예측의 차이</span></p></article>
       </div>
       <article class="panel incentive-panel" aria-labelledby="incentive-title">
-        <div class="panel-heading"><div><h2 id="incentive-title">인센티브 기준 참고 평가</h2><p id="incentive-period">계산 중</p></div><span class="outline-badge">모의 계산</span></div>
+        <div class="panel-heading"><div><h2 id="incentive-title">인센티브 기준 참고 평가</h2><p id="incentive-period">계산 중</p></div><span class="outline-badge">2026-07-25 규칙 · 모의 계산</span></div>
         <div class="incentive-grid" aria-live="polite">
           <div><span>평가 시간 평균 예측오차율</span><strong><span data-value="inc-error">—</span><small>%</small></strong><p>유효 설비용량 기준 절대오차</p></div>
-          <div><span>6% / 8% 이하 충족률</span><strong><span data-value="inc-le6">—</span><small>% / </small><span data-value="inc-le8">—</span><small>%</small></strong><p>평가 대상 시간 중 비율 · 8%는 6% 포함</p></div>
+          <div><span>4% / 6% 이하 충족률</span><strong><span data-value="inc-le4">—</span><small>% / </small><span data-value="inc-le6">—</span><small>%</small></strong><p>평가 대상 시간 중 비율 · 6%는 4% 포함</p></div>
           <div><span>평가 대상 / 제외 시간</span><strong><span data-value="inc-eligible">—</span><small>h / </small><span data-value="inc-excluded">—</span><small>h</small></strong><p id="incentive-exclusions">설비이용률 10% 기준</p></div>
           <div><span>예상 인센티브 · 모의</span><strong><span data-value="inc-won">—</span><small>원</small></strong><p>해당 조회 기간의 실적에 기준단가 적용</p></div>
         </div>
         <div class="incentive-controls"><div class="segmented" role="group" aria-label="인센티브 조회 기간"><button class="selected" data-period="24" aria-pressed="true">24시간</button><button data-period="72" aria-pressed="false">72시간</button><button data-period="168" aria-pressed="false">168시간</button></div><label for="incentive-coefficient">정산 계수 시나리오</label><select id="incentive-coefficient"><option value="1">기본 기준단가 × 1.0</option><option value="0.5">제주 입찰·예측제도 동시 참여 가정 × 0.5</option></select></div>
-        <p class="incentive-note">현재 모델의 과거 자료 재생입니다. 제출 1·2차 예측이 없어 단일 예측을 대용하며, 실적을 거래량으로 사용하고 출력제어·고장·정비는 없는 것으로 가정합니다. 개소별 참고값으로 참여자격이나 실제 지급액을 확정하지 않습니다.</p>
-        <details class="incentive-details"><summary>시간별 오차율·평가 대상·모의 정산 내역</summary><p>2025-05 공개 규칙 고정: 설비이용률 ≥10%인 시간에 오차율 ≤6%는 4원/kWh, 6% 초과~8% 이하는 3원/kWh, 8% 초과는 0원/kWh. <a href="https://marketrule.kpx.or.kr/lmxdata/attach/2025/5/upload_5127126665285383397_p3.pdf" target="_blank" rel="noopener noreferrer">기준 원문</a></p><div class="table-scroll" role="region" aria-label="인센티브 시간별 계산 내역" tabindex="0"><table><thead><tr><th>구간 시작 (KST)</th><th>이용률 (%)</th><th>오차율 (%)</th><th>평가 상태</th><th>적용 단가 (원/kWh)</th><th>모의 금액 (원)</th></tr></thead><tbody id="incentive-rows"></tbody></table></div></details>
+        <p class="incentive-note">조회 구간의 학습 포함 여부는 위에 표시합니다. 학습에 포함된 구간의 수치는 독립 예측 성능이 아닙니다. 제출 1·2차 예측이 없어 단일 예측을 대용하며, 실적을 거래량으로 사용하고 출력제어·고장·정비는 없는 것으로 가정합니다. 과거 날짜에도 2026-07-25 규칙을 고정 적용한 개소별 참고값이며, 당시 지급액 복원이나 참여자격 확정이 아닙니다.</p>
+        <details class="incentive-details"><summary>시간별 오차율·평가 대상·모의 정산 내역</summary><p>2026-07-25 공개 규칙 고정: 설비이용률 ≥10%인 시간에 오차율 ≤4%는 4원/kWh, 4% 초과~6% 이하는 3원/kWh, 6% 초과는 0원/kWh. <a href="https://www.kpx.or.kr/boardDownload.es?bid=0030&list_no=77795&seq=4" target="_blank" rel="noopener noreferrer">기준 원문</a></p><div class="table-scroll" role="region" aria-label="인센티브 시간별 계산 내역" tabindex="0"><table><thead><tr><th>구간 시작 (KST)</th><th>이용률 (%)</th><th>오차율 (%)</th><th>평가 상태</th><th>적용 단가 (원/kWh)</th><th>모의 금액 (원)</th></tr></thead><tbody id="incentive-rows"></tbody></table></div></details>
       </article>
       <div class="primary-grid">
         <article class="panel generation-panel">

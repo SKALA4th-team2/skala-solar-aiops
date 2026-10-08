@@ -42,7 +42,11 @@ def enqueue(pid,rows,model,reason):
 def monitor(pid,rows,model):
     report,pred,y,times=inspect(rows,model);report.update(plant_id=pid,end_timestamp=times[-1],model_version=model.version)
     if report['state']=='drift':
-        try:report['job']=enqueue(pid,rows,model,'hourly_drift');report['state']='queued'
+        try:
+            report['job'] = enqueue(pid, rows, model, 'hourly_drift')
+            report['state'] = report['job']['status']
+            if report['state'] not in ('queued', 'running'):
+                report['reason'] = 'existing_job_terminal'
         except ValueError as exc:report['state']='held';report['reason']=str(exc)
     with rt.db() as conn:
         old=conn.execute('SELECT end_date FROM monitoring WHERE plant_id=?',(pid,)).fetchone()

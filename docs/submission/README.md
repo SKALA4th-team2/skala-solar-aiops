@@ -47,4 +47,10 @@ docker compose -f serving_app/docker-compose.yml up --build -d
 이 PC의 `project/submission/solar-aiops-final.zip`은 코드·문서·31개 seed를 함께 담은 전달용 묶음이다. 압축을 푼 뒤 project/에서 Python 3.11 가상환경과 requirements.txt를 설치하고 scripts/run_backend.py를 실행한다. seed가 포함되어 있으므로 별도 학습 없이 시작할 수 있다. 환경 파일·키·운영 DB·가상환경은 포함하지 않는다.
 
 
-2026-10-08 추가: 발전 현황의 인센티브 참고 평가 패널에서 시간별 예측오차율, 6%·8% 충족률, 평가 대상·제외 시간, 예상 인센티브 모의 금액을 조회한다. 24/72/168시간 선택과 계수 1.0/0.5 시나리오를 지원한다. 계산 조건은 결정 0015와 API 명세를 따른다. 단일 예측·과거 재생 기반이며 실제 지급액 판정이 아니다.
+2026-10-08 추가: 발전 현황의 인센티브 참고 평가 패널에서 시간별 예측오차율, 4%·6% 충족률, 평가 대상·제외 시간, 예상 인센티브 모의 금액을 조회한다. 24/72/168시간 선택과 계수 1.0/0.5 시나리오를 지원한다. 계산 조건은 결정 0015와 API 명세를 따른다. 단일 예측·과거 재생 기반이며 실제 지급액 판정이 아니다.
+
+## 팀원 최초 실행: 모델 다운로드 필수
+
+Git pull에는 모델이 포함되지 않는다. [검증된 모델 artifact](https://github.com/SangMyeong5426/skala-solar-aiops/actions/runs/37707323227/artifacts/11520531455)를 저장소 권한이 있는 GitHub 계정으로 내려받아 압축을 푼다. 안의 solar-hourly-seed.zip과 동명 .zip.manifest.json을 project/submission/에 함께 놓고 위 설치 명령을 실행한다. 31개 .keras와 31개 .pkl이 포함되어 있다. artifact는 2026-11-07 만료 예정이므로 발표 PC에 파일을 미리 보관한다. 모델 자체는 이번 리뷰 수정으로 바뀌지 않는다.
+
+진입점은 scripts/run_backend.py다. SOLAR_MODEL_CONTRACT 설정과 bootstrap, API/worker 실행을 묶으므로 uvicorn을 직접 호출하지 않는다. 앞의 “최종 코드” 실행은 당시 버전의 기록이다. 인센티브 기능 추가 코드는 [f7bb2e7 검증](https://github.com/SangMyeong5426/skala-solar-aiops/actions/runs/37707323227), 이후 리뷰 수정 검증은 PR #12의 최신 실행을 확인한다.
