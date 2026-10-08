@@ -1,0 +1,271 @@
+{
+  "plant_id": "15043391-u1",
+  "history": [
+    {
+      "timestamp": "2026-02-26T00:00:00+09:00",
+      "generation_kwh": 0.0
+    },
+    {
+      "timestamp": "2026-02-26T01:00:00+09:00",
+      "generation_kwh": 0.0
+    },
+    {
+      "timestamp": "2026-02-26T02:00:00+09:00",
+      "generation_kwh": 0.0
+    },
+    {
+      "timestamp": "2026-02-26T03:00:00+09:00",
+      "generation_kwh": 0.0
+    },
+    {
+      "timestamp": "2026-02-26T04:00:00+09:00",
+      "generation_kwh": 0.0
+    },
+    {
+      "timestamp": "2026-02-26T05:00:00+09:00",
+      "generation_kwh": 0.0
+    },
+    {
+      "timestamp": "2026-02-26T06:00:00+09:00",
+      "generation_kwh": 0.0
+    },
+    {
+      "timestamp": "2026-02-26T07:00:00+09:00",
+      "generation_kwh": 1.44
+    },
+    {
+      "timestamp": "2026-02-26T08:00:00+09:00",
+      "generation_kwh": 23.76
+    },
+    {
+      "timestamp": "2026-02-26T09:00:00+09:00",
+      "generation_kwh": 65.52
+    },
+    {
+      "timestamp": "2026-02-26T10:00:00+09:00",
+      "generation_kwh": 146.88
+    },
+    {
+      "timestamp": "2026-02-26T11:00:00+09:00",
+      "generation_kwh": 213.84
+    },
+    {
+      "timestamp": "2026-02-26T12:00:00+09:00",
+      "generation_kwh": 200.88
+    },
+    {
+      "timestamp": "2026-02-26T13:00:00+09:00",
+      "generation_kwh": 184.32
+    },
+    {
+      "timestamp": "2026-02-26T14:00:00+09:00",
+      "generation_kwh": 105.12
+    },
+    {
+      "timestamp": "2026-02-26T15:00:00+09:00",
+      "generation_kwh": 61.92
+    },
+    {
+      "timestamp": "2026-02-26T16:00:00+09:00",
+      "generation_kwh": 33.84
+    },
+    {
+      "timestamp": "2026-02-26T17:00:00+09:00",
+      "generation_kwh": 2.88
+    },
+    {
+      "timestamp": "2026-02-26T18:00:00+09:00",
+      "generation_kwh": 0.0
+    },
+    {
+      "timestamp": "2026-02-26T19:00:00+09:00",
+      "generation_kwh": 0.0
+    },
+    {
+      "timestamp": "2026-02-26T20:00:00+09:00",
+      "generation_kwh": 0.0
+    },
+    {
+      "timestamp": "2026-02-26T21:00:00+09:00",
+      "generation_kwh": 0.0
+    },
+    {
+      "timestamp": "2026-02-26T22:00:00+09:00",
+      "generation_kwh": 0.0
+    },
+    {
+      "timestamp": "2026-02-26T23:00:00+09:00",
+      "generation_kwh": 0.0
+    }
+  ],
+  "forecast": [
+    {
+      "timestamp": "2026-02-27T00:00:00+09:00",
+      "shortwave_radiation": 0,
+      "temperature_2m": 6.6,
+      "cloud_cover": 60,
+      "wind_speed_10m": 8.7
+    },
+    {
+      "timestamp": "2026-02-27T01:00:00+09:00",
+      "shortwave_radiation": 0,
+      "temperature_2m": 6.9,
+      "cloud_cover": 73,
+      "wind_speed_10m": 16.3
+    },
+    {
+      "timestamp": "2026-02-27T02:00:00+09:00",
+      "shortwave_radiation": 0,
+      "temperature_2m": 7.0,
+      "cloud_cover": 49,
+      "wind_speed_10m": 16.1
+    },
+    {
+      "timestamp": "2026-02-27T03:00:00+09:00",
+      "shortwave_radiation": 0,
+      "temperature_2m": 7.1,
+      "cloud_cover": 66,
+      "wind_speed_10m": 17.9
+    },
+    {
+      "timestamp": "2026-02-27T04:00:00+09:00",
+      "shortwave_radiation": 0,
+      "temperature_2m": 7.1,
+      "cloud_cover": 67,
+      "wind_speed_10m": 20.4
+    },
+    {
+      "timestamp": "2026-02-27T05:00:00+09:00",
+      "shortwave_radiation": 0,
+      "temperature_2m": 7.2,
+      "cloud_cover": 77,
+      "wind_speed_10m": 21.3
+    },
+    {
+      "timestamp": "2026-02-27T06:00:00+09:00",
+      "shortwave_radiation": 0,
+      "temperature_2m": 7.3,
+      "cloud_cover": 72,
+      "wind_speed_10m": 21.3
+    },
+    {
+      "timestamp": "2026-02-27T07:00:00+09:00",
+      "shortwave_radiation": 20,
+      "temperature_2m": 7.4,
+      "cloud_cover": 64,
+      "wind_speed_10m": 20.8
+    },
+    {
+      "timestamp": "2026-02-27T08:00:00+09:00",
+      "shortwave_radiation": 160,
+      "temperature_2m": 6.4,
+      "cloud_cover": 54,
+      "wind_speed_10m": 25.2
+    },
+    {
+      "timestamp": "2026-02-27T09:00:00+09:00",
+      "shortwave_radiation": 260,
+      "temperature_2m": 6.4,
+      "cloud_cover": 60,
+      "wind_speed_10m": 25.2
+    },
+    {
+      "timestamp": "2026-02-27T10:00:00+09:00",
+      "shortwave_radiation": 339,
+      "temperature_2m": 6.5,
+      "cloud_cover": 59,
+      "wind_speed_10m": 25.2
+    },
+    {
+      "timestamp": "2026-02-27T11:00:00+09:00",
+      "shortwave_radiation": 402,
+      "temperature_2m": 6.5,
+      "cloud_cover": 58,
+      "wind_speed_10m": 27.0
+    },
+    {
+      "timestamp": "2026-02-27T12:00:00+09:00",
+      "shortwave_radiation": 428,
+      "temperature_2m": 6.4,
+      "cloud_cover": 66,
+      "wind_speed_10m": 28.8
+    },
+    {
+      "timestamp": "2026-02-27T13:00:00+09:00",
+      "shortwave_radiation": 374,
+      "temperature_2m": 6.3,
+      "cloud_cover": 55,
+      "wind_speed_10m": 30.3
+    },
+    {
+      "timestamp": "2026-02-27T14:00:00+09:00",
+      "shortwave_radiation": 416,
+      "temperature_2m": 6.3,
+      "cloud_cover": 51,
+      "wind_speed_10m": 31.2
+    },
+    {
+      "timestamp": "2026-02-27T15:00:00+09:00",
+      "shortwave_radiation": 344,
+      "temperature_2m": 6.0,
+      "cloud_cover": 81,
+      "wind_speed_10m": 30.5
+    },
+    {
+      "timestamp": "2026-02-27T16:00:00+09:00",
+      "shortwave_radiation": 183,
+      "temperature_2m": 5.8,
+      "cloud_cover": 76,
+      "wind_speed_10m": 29.0
+    },
+    {
+      "timestamp": "2026-02-27T17:00:00+09:00",
+      "shortwave_radiation": 63,
+      "temperature_2m": 5.6,
+      "cloud_cover": 67,
+      "wind_speed_10m": 26.8
+    },
+    {
+      "timestamp": "2026-02-27T18:00:00+09:00",
+      "shortwave_radiation": 1,
+      "temperature_2m": 5.5,
+      "cloud_cover": 59,
+      "wind_speed_10m": 25.6
+    },
+    {
+      "timestamp": "2026-02-27T19:00:00+09:00",
+      "shortwave_radiation": 0,
+      "temperature_2m": 5.5,
+      "cloud_cover": 42,
+      "wind_speed_10m": 26.0
+    },
+    {
+      "timestamp": "2026-02-27T20:00:00+09:00",
+      "shortwave_radiation": 0,
+      "temperature_2m": 5.4,
+      "cloud_cover": 34,
+      "wind_speed_10m": 26.0
+    },
+    {
+      "timestamp": "2026-02-27T21:00:00+09:00",
+      "shortwave_radiation": 0,
+      "temperature_2m": 5.3,
+      "cloud_cover": 41,
+      "wind_speed_10m": 23.8
+    },
+    {
+      "timestamp": "2026-02-27T22:00:00+09:00",
+      "shortwave_radiation": 0,
+      "temperature_2m": 5.2,
+      "cloud_cover": 45,
+      "wind_speed_10m": 22.1
+    },
+    {
+      "timestamp": "2026-02-27T23:00:00+09:00",
+      "shortwave_radiation": 0,
+      "temperature_2m": 5.3,
+      "cloud_cover": 52,
+      "wind_speed_10m": 24.6
+    }
+  ]
+}

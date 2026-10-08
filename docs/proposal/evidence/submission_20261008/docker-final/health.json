@@ -1,0 +1,15 @@
+{
+  "status": "ok",
+  "contract": "solar_hourly_24_jma_day2_v1",
+  "interval": "1h",
+  "forecast_hours": 24,
+  "worker_alive": true,
+  "worker_heartbeat": {
+    "name": "worker",
+    "updated_at": "2026-10-07T15:54:54.313380+00:00",
+    "pid": 335
+  },
+  "plants": 31,
+  "execution_unit": "container",
+  "demo_mode": true
+}

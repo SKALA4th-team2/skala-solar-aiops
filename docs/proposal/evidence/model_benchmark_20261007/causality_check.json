@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "test": "Perturb generation from first test target onward by +10000 kWh in memory. All three model feature sets up to and including that target remain unchanged; its label changes.",
+  "checked_samples": 953,
+  "benchmark_sha256": "e25c8384485e574278d1462c5678c7c990f4e4b00a65b92bb845a9bcf8c8cb83"
+}

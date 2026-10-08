@@ -1,0 +1,18 @@
+{
+  "source_id": "15043390",
+  "name": "삼척사택",
+  "landing_url": "https://www.data.go.kr/data/15043390/fileData.do",
+  "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623579&fileDetailSn=1&insertDataPrcus=N",
+  "retrieved_at_utc": "2026-10-07T08:48:16.440402+00:00",
+  "sha256": "8702427eb0f995083a3e7ad2dc02cd2e5ff670c4303e448af7819f257860d316",
+  "bytes": 2312,
+  "metadata": {
+    "name": "한국남부발전(주)_삼척사택 태양광발전실적",
+    "description": "본 파일 데이터는 한국남부발전(주) 삼척사택 태양광발전실적입니다. <br/>이 데이터는 한국남부발전(주) 삼척사택의 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 월별 태양광 발전량(kw)로 구성되어 있습니다. 월별 발전량 정보를 기록하여 시계열 분석이 가능합니다. <br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+    "dateModified": "2026-04-09",
+    "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+    "temporalCoverage": null,
+    "spatialCoverage": null
+  },
+  "usage_label": "이용허락범위 제한 없음"
+}

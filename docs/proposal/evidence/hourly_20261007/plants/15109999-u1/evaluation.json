@@ -1,0 +1,36 @@
+{
+  "gate": {
+    "n_hours": 8712,
+    "n_days": 363,
+    "rmse_kwh": 159.67687844802327,
+    "mae_kwh": 75.63451256080403,
+    "bias_pct": 1.4111209645907246,
+    "capacity_nrmse_pct": 8.704678335351632,
+    "daylight_rmse_kwh": 232.66782483817138,
+    "limit_kwh": 191.74943375363875,
+    "passed": true,
+    "policy": "hourly-v1: n>=180days; RMSE<=.95 lag24 and <=1.05 radiation; abs bias<=15; daylight<=1.05 radiation"
+  },
+  "persistence": {
+    "n_hours": 8712,
+    "n_days": 363,
+    "rmse_kwh": 276.6606762063459,
+    "mae_kwh": 127.6039007145914,
+    "bias_pct": -0.08695003929322077,
+    "capacity_nrmse_pct": 15.081971903659323,
+    "daylight_rmse_kwh": 403.31887735551066
+  },
+  "radiation_reference": {
+    "n_hours": 8712,
+    "n_days": 363,
+    "rmse_kwh": 182.6185083367988,
+    "mae_kwh": 93.26429165761114,
+    "bias_pct": -3.1662771963247254,
+    "capacity_nrmse_pct": 9.9553259595503,
+    "daylight_rmse_kwh": 266.28108357633465
+  },
+  "epochs": 24,
+  "train_end": "2024-12-31",
+  "test_start": "2025-01-01",
+  "test_end": "2025-12-31"
+}

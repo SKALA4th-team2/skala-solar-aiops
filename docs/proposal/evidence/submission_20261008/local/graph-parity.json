@@ -1,0 +1,129 @@
+{
+  "passed": true,
+  "plants": [
+    {
+      "plant_id": "hadong-sewage",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15043384-u1",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15043385-u1",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15043387-u1",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15043391-u1",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15043391-u2",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15043391-u3",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15043394-u1",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15043399-u1",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15043400-u1",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15043402-u1",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15043404-u1",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15043405-u1",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15043406-u1",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15043407-u1",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15043407-u2",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15043407-u3",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15043407-u4",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15043407-u6",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15095374-u1",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15095380-u1",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15096126-u1",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15096131-u1",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15096132-u1",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15096134-u1",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15096136-u1",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15109994-u1",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15109999-u1",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15124860-u1",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15124861-u1",
+      "max_fraction_difference": 0.0
+    },
+    {
+      "plant_id": "15140067-u1",
+      "max_fraction_difference": 0.0
+    }
+  ]
+}

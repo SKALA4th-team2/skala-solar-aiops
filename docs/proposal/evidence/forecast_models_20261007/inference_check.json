@@ -1,0 +1,79 @@
+{
+  "passed": true,
+  "model_choices_checked": 9,
+  "invalid_inputs_rejected": 5,
+  "checks": [
+    {
+      "plant_id": "15043409_u1",
+      "role": "evaluation",
+      "model": "LSTM",
+      "model_version": "15043409_u1-forecast-evaluation-20261007",
+      "target_date": "2025-01-01",
+      "predicted_kwh": 199.88755798339844
+    },
+    {
+      "plant_id": "15043409_u1",
+      "role": "evaluation",
+      "model": "XGBoost",
+      "model_version": "15043409_u1-forecast-evaluation-20261007",
+      "target_date": "2025-01-01",
+      "predicted_kwh": 208.24290466308594
+    },
+    {
+      "plant_id": "15043409_u1",
+      "role": "evaluation",
+      "model": "Prophet",
+      "model_version": "15043409_u1-forecast-evaluation-20261007",
+      "target_date": "2025-01-01",
+      "predicted_kwh": 201.1347972443636
+    },
+    {
+      "plant_id": "15043409_u1",
+      "role": "evaluation",
+      "model": "Ensemble",
+      "model_version": "15043409_u1-forecast-evaluation-20261007",
+      "target_date": "2025-01-01",
+      "predicted_kwh": 205.15021384340395
+    },
+    {
+      "plant_id": "15043409_u1",
+      "role": "evaluation",
+      "model": "LSTM_Main_Ensemble",
+      "model_version": "15043409_u1-forecast-evaluation-20261007",
+      "target_date": "2025-01-01",
+      "predicted_kwh": 204.0652313232422
+    },
+    {
+      "plant_id": "15043409_u1",
+      "role": "evaluation",
+      "model": "Persistence",
+      "model_version": "15043409_u1-forecast-evaluation-20261007",
+      "target_date": "2025-01-01",
+      "predicted_kwh": 226.278
+    },
+    {
+      "plant_id": "15043409_u1",
+      "role": "evaluation",
+      "model": "Mean7",
+      "model_version": "15043409_u1-forecast-evaluation-20261007",
+      "target_date": "2025-01-01",
+      "predicted_kwh": 189.9437142857143
+    },
+    {
+      "plant_id": "15043409_u1",
+      "role": "evaluation",
+      "model": "RuleC",
+      "model_version": "15043409_u1-forecast-evaluation-20261007",
+      "target_date": "2025-01-01",
+      "predicted_kwh": 207.6788712661399
+    },
+    {
+      "plant_id": "15043409_u1",
+      "role": "evaluation",
+      "model": "Ensemble",
+      "model_version": "15043409_u1-forecast-evaluation-20261007",
+      "target_date": "2025-01-01",
+      "predicted_kwh": 205.15021384340395
+    }
+  ]
+}

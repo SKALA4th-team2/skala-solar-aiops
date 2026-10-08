@@ -1,0 +1,61 @@
+{
+  "github_main": "9ad93b1571c8300f3e26d00837cba338a94987c4",
+  "real_weights": true,
+  "unmodified_native_loader": {
+    "predicted_close": 199.89,
+    "target_date": "2025-01-01",
+    "model_version": "v1-local"
+  },
+  "versioned_bundle_loader": {
+    "predicted_close": 199.89,
+    "target_date": "2025-01-01",
+    "model_version": "15043409_u1-forecast-evaluation-20261007"
+  },
+  "health": {
+    "status": "ok",
+    "model_loaded": true,
+    "model_version": "15043409_u1-forecast-evaluation-20261007",
+    "model_source": "local",
+    "loading_mode": "lazy"
+  },
+  "batch": {
+    "predictions": [
+      199.88755798339844,
+      190.42849731445312,
+      206.31781005859375,
+      204.64834594726562,
+      91.84825134277344,
+      183.374267578125,
+      158.4320526123047,
+      154.50083923339844,
+      189.27581787109375,
+      207.46279907226562,
+      205.35350036621094,
+      202.83558654785156,
+      214.7699432373047,
+      161.49075317382812,
+      234.3666534423828,
+      216.68707275390625,
+      226.76651000976562,
+      210.91098022460938,
+      148.80458068847656,
+      216.63070678710938,
+      220.3794403076172
+    ],
+    "drift_check": {
+      "status": "skipped",
+      "model_version": "15043409_u1-forecast-evaluation-20261007",
+      "reason": "aiops_not_configured"
+    }
+  },
+  "warm_start_smoke": {
+    "passed": true,
+    "training_examples": 4,
+    "steps": 1,
+    "weights_changed_in_disposable_copy": true,
+    "saved_model_and_scaler_unchanged": true,
+    "automatic_retraining_tested": false
+  },
+  "passed": true,
+  "aiops_policy_connected": false
+}

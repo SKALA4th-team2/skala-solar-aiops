@@ -6,17 +6,22 @@ from fastapi import APIRouter, HTTPException
 
 from data.features import SEQ_LEN  # = 20
 from serving_app import model_loader
+from serving_app import runtime as rt
 from serving_app.schemas import PredictRequest, PredictResponse, BatchTestRequest, BatchTestResponse
 from serving_app.aiops_adapter import evaluate_batch
 
 router = APIRouter()
 
 
-def get_ready_model():
+def get_ready_model(plant_id=rt.DEFAULT_PLANT):
     """모델 파일이 준비되지 않은 상태를 클라이언트가 구분할 수 있게 한다."""
     try:
-        return model_loader.get_model()
-    except FileNotFoundError as exc:
+        entry=rt.plant(plant_id)
+        if not entry.get('capacity_kw'):raise FileNotFoundError('Capacity unverified')
+        return model_loader.get_model(plant_id)
+    except KeyError as exc:
+        raise HTTPException(404,'등록되지 않은 발전소입니다.') from exc
+    except (FileNotFoundError,ValueError,OSError) as exc:
         raise HTTPException(
             status_code=503,
             detail="예측 모델 또는 스케일러가 준비되지 않았습니다. 모델 준비 후 다시 요청하세요.",
@@ -26,13 +31,14 @@ def get_ready_model():
 @router.post("/predict", response_model=PredictResponse, responses={503: {"description": "모델 또는 스케일러 미준비"}})
 def predict(req: PredictRequest):
     """연속 20일의 발전량과 다음 날 예보로 대상일의 발전량(kWh)을 예측한다."""
-    model = get_ready_model()
+    model = get_ready_model(req.plant_id)
     # 날짜는 API 검증용이다. 모델에는 학습 시와 같은 두 피처만 전달한다.
     sequence = [{"close": point.close, "volume": point.volume} for point in req.sequence]
     predicted_close = model.predict_one(sequence)
     if not math.isfinite(predicted_close):
         raise HTTPException(503, "모델이 유한한 예측값을 반환하지 않았습니다.")
     return PredictResponse(
+        plant_id=req.plant_id,
         predicted_close=round(max(0.0, predicted_close), 2),
         target_date=req.sequence[-1].date + timedelta(days=1),
         model_version=model.version,
@@ -43,7 +49,7 @@ def predict(req: PredictRequest):
              responses={503: {"description": "모델 또는 스케일러 미준비, 비유한 모델 출력"}})
 def batch_test(req: BatchTestRequest):
     """실제 예보로 배치 예측하고, 전체 행과 사후 기대 발전량을 AIOps 연결부에 전달한다."""
-    model = get_ready_model()
+    model = get_ready_model(req.plant_id)
     predictions = []
     records = []
     for i in range(len(req.prices) - SEQ_LEN):
@@ -65,5 +71,6 @@ def batch_test(req: BatchTestRequest):
         {"date": day.isoformat(), "close": close, "volume": volume, "expected": expected}
         for day, close, volume, expected in zip(req.dates, req.prices, req.volumes, req.expected)
     ]
-    check = evaluate_batch(rows=rows, predictions=records, model_version=model.version)
-    return BatchTestResponse(predictions=predictions, drift_check=check)
+    try:check = evaluate_batch(rows=rows, predictions=records, model_version=model.version,plant_id=req.plant_id)
+    except ValueError as exc:raise HTTPException(409,str(exc)) from exc
+    return BatchTestResponse(plant_id=req.plant_id,predictions=predictions, drift_check=check)

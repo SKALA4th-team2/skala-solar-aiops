@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "interrupted_job_retry": true,
+  "retry_limit": true,
+  "interprocess_lock": true,
+  "aggregate_facility_screen": true
+}

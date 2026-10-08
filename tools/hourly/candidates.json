@@ -1,0 +1,359 @@
+{
+  "plants": {
+    "hadong-sewage": {
+      "plant_id": "hadong-sewage",
+      "source_id": "15043409_u1",
+      "name": "하동하수처리장",
+      "capacity_kw": 55.0,
+      "region": "hadong",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15043384-u1": {
+      "plant_id": "15043384-u1",
+      "source_id": "15043384_u1",
+      "name": "남제주소내",
+      "capacity_kw": 196.0,
+      "region": "jeju_west",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15043385-u1": {
+      "plant_id": "15043385-u1",
+      "source_id": "15043385_u1",
+      "name": "부산복합자재창고",
+      "capacity_kw": 187.0,
+      "region": "busan",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15043387-u1": {
+      "plant_id": "15043387-u1",
+      "source_id": "15043387_u1",
+      "name": "부산수처리장",
+      "capacity_kw": 110.5,
+      "region": "busan",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15043391-u1": {
+      "plant_id": "15043391-u1",
+      "source_id": "15043391_u1",
+      "name": "삼척소내",
+      "capacity_kw": 999.0,
+      "region": "samcheok",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15043391-u2": {
+      "plant_id": "15043391-u2",
+      "source_id": "15043391_u2",
+      "name": "삼척소내",
+      "capacity_kw": 990.45,
+      "region": "samcheok",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15043391-u3": {
+      "plant_id": "15043391-u3",
+      "source_id": "15043391_u3",
+      "name": "삼척소내",
+      "capacity_kw": 2002.32,
+      "region": "samcheok",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15043394-u1": {
+      "plant_id": "15043394-u1",
+      "source_id": "15043394_u1",
+      "name": "신인천소내",
+      "capacity_kw": 200.0,
+      "region": "incheon",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15043395-u1": {
+      "plant_id": "15043395-u1",
+      "source_id": "15043395_u1",
+      "name": "신인천전망대",
+      "capacity_kw": 1742.0,
+      "region": "incheon",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15043399-u1": {
+      "plant_id": "15043399-u1",
+      "source_id": "15043399_u1",
+      "name": "영월본부",
+      "capacity_kw": 76.0,
+      "region": "yeongwol",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15043400-u1": {
+      "plant_id": "15043400-u1",
+      "source_id": "15043400_u1",
+      "name": "영월철도부지",
+      "capacity_kw": 1190.7,
+      "region": "yeongwol",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15043402-u1": {
+      "plant_id": "15043402-u1",
+      "source_id": "15043402_u1",
+      "name": "인천수산정수장",
+      "capacity_kw": 998.0,
+      "region": "incheon",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15043404-u1": {
+      "plant_id": "15043404-u1",
+      "source_id": "15043404_u1",
+      "name": "하동공설운동장",
+      "capacity_kw": 369.85,
+      "region": "hadong",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15043405-u1": {
+      "plant_id": "15043405-u1",
+      "source_id": "15043405_u1",
+      "name": "하동변전소",
+      "capacity_kw": 48.3,
+      "region": "hadong",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15043406-u1": {
+      "plant_id": "15043406-u1",
+      "source_id": "15043406_u1",
+      "name": "하동보건소",
+      "capacity_kw": 40.0,
+      "region": "hadong",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15043407-u1": {
+      "plant_id": "15043407-u1",
+      "source_id": "15043407_u1",
+      "name": "하동본부",
+      "capacity_kw": 998.4,
+      "region": "hadong",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15043407-u2": {
+      "plant_id": "15043407-u2",
+      "source_id": "15043407_u2",
+      "name": "하동본부",
+      "capacity_kw": 1900.8,
+      "region": "hadong",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15043407-u3": {
+      "plant_id": "15043407-u3",
+      "source_id": "15043407_u3",
+      "name": "하동본부",
+      "capacity_kw": 600.6,
+      "region": "hadong",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15043407-u4": {
+      "plant_id": "15043407-u4",
+      "source_id": "15043407_u4",
+      "name": "하동본부",
+      "capacity_kw": 997.56,
+      "region": "hadong",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15043407-u6": {
+      "plant_id": "15043407-u6",
+      "source_id": "15043407_u6",
+      "name": "하동본부",
+      "capacity_kw": 998.325,
+      "region": "hadong",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15095374-u1": {
+      "plant_id": "15095374-u1",
+      "source_id": "15095374_u1",
+      "name": "무릉리",
+      "capacity_kw": 809.2,
+      "region": "jeju_west",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15095380-u1": {
+      "plant_id": "15095380-u1",
+      "source_id": "15095380_u1",
+      "name": "부산역선상주차장",
+      "capacity_kw": 834.0,
+      "region": "busan",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15095404-u1": {
+      "plant_id": "15095404-u1",
+      "source_id": "15095404_u1",
+      "name": "용수리",
+      "capacity_kw": 888.93,
+      "region": "jeju_west",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15096126-u1": {
+      "plant_id": "15096126-u1",
+      "source_id": "15096126_u1",
+      "name": "송당리",
+      "capacity_kw": 996.93,
+      "region": "jeju_east",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15096131-u1": {
+      "plant_id": "15096131-u1",
+      "source_id": "15096131_u1",
+      "name": "신인천북측부지",
+      "capacity_kw": 302.4,
+      "region": "incheon",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15096132-u1": {
+      "plant_id": "15096132-u1",
+      "source_id": "15096132_u1",
+      "name": "신인천주차장",
+      "capacity_kw": 605.55,
+      "region": "incheon",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15096134-u1": {
+      "plant_id": "15096134-u1",
+      "source_id": "15096134_u1",
+      "name": "이천D백사면B",
+      "capacity_kw": 995.0,
+      "region": "icheon",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15096136-u1": {
+      "plant_id": "15096136-u1",
+      "source_id": "15096136_u1",
+      "name": "화촌주민참여형",
+      "capacity_kw": 999.6,
+      "region": "hadong",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15109994-u1": {
+      "plant_id": "15109994-u1",
+      "source_id": "15109994_u1",
+      "name": "감우리",
+      "capacity_kw": 554.4,
+      "region": "eumseong",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15109999-u1": {
+      "plant_id": "15109999-u1",
+      "source_id": "15109999_u1",
+      "name": "이천시백사면A",
+      "capacity_kw": 1834.38,
+      "region": "icheon",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15124860-u1": {
+      "plant_id": "15124860-u1",
+      "source_id": "15124860_u1",
+      "name": "세화리",
+      "capacity_kw": 999.6,
+      "region": "jeju_east",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15124861-u1": {
+      "plant_id": "15124861-u1",
+      "source_id": "15124861_u1",
+      "name": "신인천본관주차장",
+      "capacity_kw": 208.2,
+      "region": "incheon",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    },
+    "15140067-u1": {
+      "plant_id": "15140067-u1",
+      "source_id": "15140067_u1",
+      "name": "와산리",
+      "capacity_kw": 816.0,
+      "region": "jeju_north",
+      "capacity_basis": "source catalog; not settlement registered capacity"
+    }
+  },
+  "portfolios": {
+    "virtual-vpp": {
+      "version": "20261007-approved33",
+      "members": [
+        "hadong-sewage",
+        "15043384-u1",
+        "15043385-u1",
+        "15043387-u1",
+        "15043391-u1",
+        "15043391-u2",
+        "15043391-u3",
+        "15043394-u1",
+        "15043395-u1",
+        "15043399-u1",
+        "15043400-u1",
+        "15043402-u1",
+        "15043404-u1",
+        "15043405-u1",
+        "15043406-u1",
+        "15043407-u1",
+        "15043407-u2",
+        "15043407-u3",
+        "15043407-u4",
+        "15043407-u6",
+        "15095374-u1",
+        "15095380-u1",
+        "15095404-u1",
+        "15096126-u1",
+        "15096131-u1",
+        "15096132-u1",
+        "15096134-u1",
+        "15096136-u1",
+        "15109994-u1",
+        "15109999-u1",
+        "15124860-u1",
+        "15124861-u1",
+        "15140067-u1"
+      ],
+      "virtual": true
+    },
+    "approved-vpp": {
+      "version": "20261007-approved",
+      "members": [
+        "hadong-sewage",
+        "15043384-u1",
+        "15043385-u1",
+        "15043387-u1",
+        "15043391-u1",
+        "15043391-u2",
+        "15043391-u3",
+        "15043394-u1",
+        "15043395-u1",
+        "15043399-u1",
+        "15043400-u1",
+        "15043402-u1",
+        "15043404-u1",
+        "15043405-u1",
+        "15043406-u1",
+        "15043407-u1",
+        "15043407-u2",
+        "15043407-u3",
+        "15043407-u4",
+        "15043407-u6",
+        "15095374-u1",
+        "15095380-u1",
+        "15095404-u1",
+        "15096126-u1",
+        "15096131-u1",
+        "15096132-u1",
+        "15096134-u1",
+        "15096136-u1",
+        "15109994-u1",
+        "15109999-u1",
+        "15124860-u1",
+        "15124861-u1",
+        "15140067-u1"
+      ],
+      "virtual": true
+    },
+    "hadong-demo": {
+      "version": "20261007-hadong",
+      "members": [
+        "hadong-sewage",
+        "15043404-u1",
+        "15043405-u1",
+        "15043406-u1"
+      ],
+      "virtual": true
+    }
+  },
+  "created_at": "2026-10-07T12:29:24.612031+00:00"
+}

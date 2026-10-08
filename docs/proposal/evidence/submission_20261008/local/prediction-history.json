@@ -1,0 +1,47 @@
+[
+  {
+    "id": "4017d7c0dba7481e9e4dbec6ad975b2f",
+    "plant_id": "hadong-sewage",
+    "model_version": "1",
+    "kind": "forecast",
+    "origin": "2027-08-08T00:00:00+09:00",
+    "input_sha256": "2155488af0c7686f55c465269d6cfb38babfc0f0165e0c7dbc3df59808fe6e2f",
+    "created_at": "2026-10-07T15:09:36.869180+00:00"
+  },
+  {
+    "id": "20aafbad0fe644b7b229a00fb4ece7e2",
+    "plant_id": "hadong-sewage",
+    "model_version": "2",
+    "kind": "forecast",
+    "origin": "2027-08-08T00:00:00+09:00",
+    "input_sha256": "2155488af0c7686f55c465269d6cfb38babfc0f0165e0c7dbc3df59808fe6e2f",
+    "created_at": "2026-10-07T15:09:34.339824+00:00"
+  },
+  {
+    "id": "1a9fdd6d04dc40e49320fe092adb10fe",
+    "plant_id": "hadong-sewage",
+    "model_version": "1",
+    "kind": "retrospective_batch",
+    "origin": "2027-07-12T00:00:00+09:00",
+    "input_sha256": "a3c97b84d15ee712ed71910af801d67853857e79bc020564d4ca9de32261634d",
+    "created_at": "2026-10-07T15:09:26.084976+00:00"
+  },
+  {
+    "id": "fd9a44a202324231acbd526b75ea0c42",
+    "plant_id": "hadong-sewage",
+    "model_version": "1",
+    "kind": "forecast",
+    "origin": "2027-08-08T00:00:00+09:00",
+    "input_sha256": "2155488af0c7686f55c465269d6cfb38babfc0f0165e0c7dbc3df59808fe6e2f",
+    "created_at": "2026-10-07T15:09:25.851991+00:00"
+  },
+  {
+    "id": "7ed6c02d1e0a459eaaac83469653fac5",
+    "plant_id": "hadong-sewage",
+    "model_version": "1",
+    "kind": "forecast",
+    "origin": "2026-02-27T00:00:00+09:00",
+    "input_sha256": "389cb5bbb5acfb4b987a037edf6c68e03720e1b2e8300751987e80c5e2c777e4",
+    "created_at": "2026-10-07T15:09:17.175212+00:00"
+  }
+]

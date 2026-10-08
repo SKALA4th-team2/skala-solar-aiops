@@ -1,0 +1,18 @@
+{
+  "source_id": "15156688",
+  "name": "부산철도2호기",
+  "landing_url": "https://www.data.go.kr/data/15156688/fileData.do",
+  "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003565487&fileDetailSn=1&insertDataPrcus=N",
+  "retrieved_at_utc": "2026-10-07T08:48:24.854937+00:00",
+  "sha256": "921775b83c38b63d1fd45dc67970875c44706ba10d5978f299750841669e62db",
+  "bytes": 54985,
+  "metadata": {
+    "name": "한국남부발전(주)_부산철도 2호기 태양광 발전실적",
+    "description": "본 데이터는 한국남부발전(주) 부산철도 2호기 태양광 발전실적 파일데이터입니다.<br/>해당 데이터는 한국남부발전(주)에서 운영하는 부산철도 2호기 태양광발전소의 일별 및 시간대별 세부 발전실적을 포함하고 있습니다.<br/>본 데이터는 일자, 발전소명(신재생사업본부), 발전기명(부산 철도태양광 #2), 계량구분(KPX), 일별 합계 발전량(단위: kWh) 및 1시부터 24시까지 각 시간대별 발전량(단위: kWh)으로 구성되어 있습니다.<br/>해당 데이터를 활용하여 부산철도 2호기의 일자별 및 시간대별 세부 발전량을 분석할 수 있습니다.",
+    "dateModified": "2025-12-18",
+    "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+    "temporalCoverage": null,
+    "spatialCoverage": null
+  },
+  "usage_label": "이용허락범위 제한 없음"
+}

@@ -1,0 +1,412 @@
+{
+  "passed": true,
+  "units_checked": 45,
+  "files_checked": 78,
+  "upload_rows": 113944,
+  "sequence_samples": 112384,
+  "checks": [
+    "original-generation equality",
+    "source hashes",
+    "unique ascending calendar dates",
+    "no missing calendar days inside uploads",
+    "finite nonnegative values",
+    "exact ASOS d-1 lookup",
+    "Hadong original Volume equality",
+    "real load_rows/build_sequences shape and targets",
+    "no stale uploads"
+  ],
+  "model_training_performed": false,
+  "http_predict_verified": false,
+  "files": [
+    {
+      "file": "uploads/15043384_u1_asos_lag1_20130102_20251231.csv",
+      "rows": 4747,
+      "samples": 4727
+    },
+    {
+      "file": "uploads/15043385_u1_asos_lag1_20130102_20180517.csv",
+      "rows": 1962,
+      "samples": 1942
+    },
+    {
+      "file": "uploads/15043385_u1_asos_lag1_20180917_20200220.csv",
+      "rows": 522,
+      "samples": 502
+    },
+    {
+      "file": "uploads/15043385_u1_asos_lag1_20210924_20221117.csv",
+      "rows": 420,
+      "samples": 400
+    },
+    {
+      "file": "uploads/15043385_u1_asos_lag1_20230526_20250630.csv",
+      "rows": 767,
+      "samples": 747
+    },
+    {
+      "file": "uploads/15043386_u1_asos_lag1_20130102_20180517.csv",
+      "rows": 1962,
+      "samples": 1942
+    },
+    {
+      "file": "uploads/15043386_u1_asos_lag1_20180917_20200220.csv",
+      "rows": 522,
+      "samples": 502
+    },
+    {
+      "file": "uploads/15043386_u1_asos_lag1_20210924_20221117.csv",
+      "rows": 420,
+      "samples": 400
+    },
+    {
+      "file": "uploads/15043386_u1_asos_lag1_20230526_20250630.csv",
+      "rows": 767,
+      "samples": 747
+    },
+    {
+      "file": "uploads/15043386_u2_asos_lag1_20190101_20200220.csv",
+      "rows": 416,
+      "samples": 396
+    },
+    {
+      "file": "uploads/15043386_u2_asos_lag1_20210924_20221117.csv",
+      "rows": 420,
+      "samples": 400
+    },
+    {
+      "file": "uploads/15043386_u2_asos_lag1_20230526_20250630.csv",
+      "rows": 767,
+      "samples": 747
+    },
+    {
+      "file": "uploads/15043387_u1_asos_lag1_20180917_20200220.csv",
+      "rows": 522,
+      "samples": 502
+    },
+    {
+      "file": "uploads/15043387_u1_asos_lag1_20210924_20221117.csv",
+      "rows": 420,
+      "samples": 400
+    },
+    {
+      "file": "uploads/15043387_u1_asos_lag1_20230526_20250630.csv",
+      "rows": 767,
+      "samples": 747
+    },
+    {
+      "file": "uploads/15043388_u1_asos_lag1_20130102_20180517.csv",
+      "rows": 1962,
+      "samples": 1942
+    },
+    {
+      "file": "uploads/15043388_u1_asos_lag1_20180917_20200220.csv",
+      "rows": 522,
+      "samples": 502
+    },
+    {
+      "file": "uploads/15043388_u1_asos_lag1_20210924_20221117.csv",
+      "rows": 420,
+      "samples": 400
+    },
+    {
+      "file": "uploads/15043388_u1_asos_lag1_20230526_20250630.csv",
+      "rows": 767,
+      "samples": 747
+    },
+    {
+      "file": "uploads/15043389_u1_asos_lag1_20180917_20200220.csv",
+      "rows": 522,
+      "samples": 502
+    },
+    {
+      "file": "uploads/15043389_u1_asos_lag1_20210924_20221117.csv",
+      "rows": 420,
+      "samples": 400
+    },
+    {
+      "file": "uploads/15043389_u1_asos_lag1_20230526_20250630.csv",
+      "rows": 767,
+      "samples": 747
+    },
+    {
+      "file": "uploads/15043391_u1_asos_lag1_20180101_20210820.csv",
+      "rows": 1328,
+      "samples": 1308
+    },
+    {
+      "file": "uploads/15043391_u1_asos_lag1_20221210_20240609.csv",
+      "rows": 548,
+      "samples": 528
+    },
+    {
+      "file": "uploads/15043391_u2_asos_lag1_20180509_20191003.csv",
+      "rows": 513,
+      "samples": 493
+    },
+    {
+      "file": "uploads/15043391_u2_asos_lag1_20191005_20210820.csv",
+      "rows": 686,
+      "samples": 666
+    },
+    {
+      "file": "uploads/15043391_u2_asos_lag1_20221210_20240609.csv",
+      "rows": 548,
+      "samples": 528
+    },
+    {
+      "file": "uploads/15043391_u3_asos_lag1_20181101_20210820.csv",
+      "rows": 1024,
+      "samples": 1004
+    },
+    {
+      "file": "uploads/15043391_u3_asos_lag1_20221210_20240609.csv",
+      "rows": 548,
+      "samples": 528
+    },
+    {
+      "file": "uploads/15043391_u4_asos_lag1_20191101_20210820.csv",
+      "rows": 659,
+      "samples": 639
+    },
+    {
+      "file": "uploads/15043391_u4_asos_lag1_20221210_20240609.csv",
+      "rows": 548,
+      "samples": 528
+    },
+    {
+      "file": "uploads/15043394_u1_asos_lag1_20130102_20160503.csv",
+      "rows": 1218,
+      "samples": 1198
+    },
+    {
+      "file": "uploads/15043394_u1_asos_lag1_20160602_20251231.csv",
+      "rows": 3500,
+      "samples": 3480
+    },
+    {
+      "file": "uploads/15043395_u1_asos_lag1_20180101_20210720.csv",
+      "rows": 1297,
+      "samples": 1277
+    },
+    {
+      "file": "uploads/15043395_u1_asos_lag1_20210811_20240430.csv",
+      "rows": 994,
+      "samples": 974
+    },
+    {
+      "file": "uploads/15043395_u1_asos_lag1_20241227_20251231.csv",
+      "rows": 370,
+      "samples": 350
+    },
+    {
+      "file": "uploads/15043396_u1_asos_lag1_20181229_20200731.csv",
+      "rows": 581,
+      "samples": 561
+    },
+    {
+      "file": "uploads/15043396_u1_asos_lag1_20210801_20251231.csv",
+      "rows": 1614,
+      "samples": 1594
+    },
+    {
+      "file": "uploads/15043399_u1_asos_lag1_20130102_20150830.csv",
+      "rows": 971,
+      "samples": 951
+    },
+    {
+      "file": "uploads/15043399_u1_asos_lag1_20170419_20251231.csv",
+      "rows": 3179,
+      "samples": 3159
+    },
+    {
+      "file": "uploads/15043400_u1_asos_lag1_20180401_20251231.csv",
+      "rows": 2832,
+      "samples": 2812
+    },
+    {
+      "file": "uploads/15043401_u1_asos_lag1_20220408_20240229.csv",
+      "rows": 693,
+      "samples": 673
+    },
+    {
+      "file": "uploads/15043401_u1_asos_lag1_20240302_20251231.csv",
+      "rows": 670,
+      "samples": 650
+    },
+    {
+      "file": "uploads/15043402_u1_asos_lag1_20130102_20160530.csv",
+      "rows": 1245,
+      "samples": 1225
+    },
+    {
+      "file": "uploads/15043402_u1_asos_lag1_20160601_20181123.csv",
+      "rows": 906,
+      "samples": 886
+    },
+    {
+      "file": "uploads/15043402_u1_asos_lag1_20181125_20251231.csv",
+      "rows": 2594,
+      "samples": 2574
+    },
+    {
+      "file": "uploads/15043404_u1_asos_lag1_20130102_20251231.csv",
+      "rows": 4747,
+      "samples": 4727
+    },
+    {
+      "file": "uploads/15043405_u1_asos_lag1_20130102_20251231.csv",
+      "rows": 4747,
+      "samples": 4727
+    },
+    {
+      "file": "uploads/15043406_u1_asos_lag1_20130102_20251231.csv",
+      "rows": 4747,
+      "samples": 4727
+    },
+    {
+      "file": "uploads/15043407_u1_asos_lag1_20130102_20251231.csv",
+      "rows": 4747,
+      "samples": 4727
+    },
+    {
+      "file": "uploads/15043407_u2_asos_lag1_20130102_20251231.csv",
+      "rows": 4747,
+      "samples": 4727
+    },
+    {
+      "file": "uploads/15043407_u3_asos_lag1_20130102_20251231.csv",
+      "rows": 4747,
+      "samples": 4727
+    },
+    {
+      "file": "uploads/15043407_u4_asos_lag1_20171201_20251231.csv",
+      "rows": 2953,
+      "samples": 2933
+    },
+    {
+      "file": "uploads/15043407_u5_asos_lag1_20180713_20251231.csv",
+      "rows": 2729,
+      "samples": 2709
+    },
+    {
+      "file": "uploads/15043407_u6_asos_lag1_20201201_20251231.csv",
+      "rows": 1857,
+      "samples": 1837
+    },
+    {
+      "file": "uploads/15043408_u1_asos_lag1_20130102_20251231.csv",
+      "rows": 4747,
+      "samples": 4727
+    },
+    {
+      "file": "uploads/15095374_u1_asos_lag1_20210501_20251231.csv",
+      "rows": 1706,
+      "samples": 1686
+    },
+    {
+      "file": "uploads/15095380_u1_asos_lag1_20210924_20221117.csv",
+      "rows": 420,
+      "samples": 400
+    },
+    {
+      "file": "uploads/15095380_u1_asos_lag1_20230526_20250630.csv",
+      "rows": 767,
+      "samples": 747
+    },
+    {
+      "file": "uploads/15095404_u1_asos_lag1_20201001_20211202.csv",
+      "rows": 428,
+      "samples": 408
+    },
+    {
+      "file": "uploads/15095404_u1_asos_lag1_20211204_20251231.csv",
+      "rows": 1489,
+      "samples": 1469
+    },
+    {
+      "file": "uploads/15096126_u1_asos_lag1_20191203_20240229.csv",
+      "rows": 1550,
+      "samples": 1530
+    },
+    {
+      "file": "uploads/15096126_u1_asos_lag1_20241014_20251231.csv",
+      "rows": 444,
+      "samples": 424
+    },
+    {
+      "file": "uploads/15096129_u1_asos_lag1_20201205_20230331.csv",
+      "rows": 847,
+      "samples": 827
+    },
+    {
+      "file": "uploads/15096129_u1_asos_lag1_20240401_20251231.csv",
+      "rows": 640,
+      "samples": 620
+    },
+    {
+      "file": "uploads/15096131_u1_asos_lag1_20201205_20251231.csv",
+      "rows": 1853,
+      "samples": 1833
+    },
+    {
+      "file": "uploads/15096132_u1_asos_lag1_20191225_20251231.csv",
+      "rows": 2199,
+      "samples": 2179
+    },
+    {
+      "file": "uploads/15096134_u1_asos_lag1_20210209_20251231.csv",
+      "rows": 1787,
+      "samples": 1767
+    },
+    {
+      "file": "uploads/15096136_u1_asos_lag1_20210504_20251231.csv",
+      "rows": 1703,
+      "samples": 1683
+    },
+    {
+      "file": "uploads/15109994_u1_asos_lag1_20211119_20240321.csv",
+      "rows": 854,
+      "samples": 834
+    },
+    {
+      "file": "uploads/15109998_u1_asos_lag1_20210501_20240229.csv",
+      "rows": 1035,
+      "samples": 1015
+    },
+    {
+      "file": "uploads/15109998_u1_asos_lag1_20241014_20251231.csv",
+      "rows": 444,
+      "samples": 424
+    },
+    {
+      "file": "uploads/15109999_u1_asos_lag1_20210823_20251231.csv",
+      "rows": 1592,
+      "samples": 1572
+    },
+    {
+      "file": "uploads/15124860_u1_asos_lag1_20220417_20240229.csv",
+      "rows": 684,
+      "samples": 664
+    },
+    {
+      "file": "uploads/15124860_u1_asos_lag1_20241014_20251231.csv",
+      "rows": 444,
+      "samples": 424
+    },
+    {
+      "file": "uploads/15124861_u1_asos_lag1_20211227_20251231.csv",
+      "rows": 1466,
+      "samples": 1446
+    },
+    {
+      "file": "uploads/15140067_u1_asos_lag1_20220915_20240229.csv",
+      "rows": 533,
+      "samples": 513
+    },
+    {
+      "file": "uploads/15140067_u1_asos_lag1_20241014_20251231.csv",
+      "rows": 444,
+      "samples": 424
+    }
+  ]
+}

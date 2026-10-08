@@ -1,0 +1,257 @@
+{
+  "frozen_utc": "2026-10-07T11:58:17.021337+00:00",
+  "selected_by_validation": "Ensemble",
+  "lstm_epochs": 69,
+  "seed": 42,
+  "xgb": {
+    "config": {
+      "max_depth": 3,
+      "learning_rate": 0.03,
+      "min_child_weight": 5,
+      "reg_lambda": 5.0,
+      "subsample": 0.9,
+      "colsample_bytree": 0.9,
+      "objective": "reg:squarederror",
+      "tree_method": "hist",
+      "n_jobs": 2,
+      "random_state": 42
+    },
+    "rounds": 91,
+    "rmse_kwh": 842.421749821402,
+    "mae_kwh": 661.8639768318508,
+    "wape_pct": 30.77381021544794,
+    "bias_pct": 7.138627575901771,
+    "n": 184
+  },
+  "prophet": {
+    "cps": 0.05,
+    "rmse_kwh": 890.4589842500823,
+    "mae_kwh": 677.4189033544453,
+    "wape_pct": 31.497046973267704,
+    "bias_pct": 6.081841563934749,
+    "n": 184
+  },
+  "weights_order": [
+    "LSTM",
+    "XGBoost",
+    "Prophet"
+  ],
+  "ensemble_weights": {
+    "Ensemble": [
+      0.4,
+      0.6,
+      0.0
+    ],
+    "LSTM_Main_Ensemble": [
+      0.5,
+      0.5,
+      0.0
+    ]
+  },
+  "validation_metrics": {
+    "Persistence": {
+      "rmse_kwh": 1307.2328327391813,
+      "mae_kwh": 1015.0708695652174,
+      "wape_pct": 47.19640196276424,
+      "bias_pct": -0.5157987238757493,
+      "n": 184
+    },
+    "Mean7": {
+      "rmse_kwh": 1110.815867892615,
+      "mae_kwh": 901.3958385093167,
+      "wape_pct": 41.911005031669184,
+      "bias_pct": -0.8748954822061786,
+      "n": 184
+    },
+    "RuleC": {
+      "rmse_kwh": 925.0378486571998,
+      "mae_kwh": 705.6980263076314,
+      "wape_pct": 32.81190379171298,
+      "bias_pct": 0.15124373160953386,
+      "n": 184
+    },
+    "XGBoost": {
+      "rmse_kwh": 842.421749821402,
+      "mae_kwh": 661.8639768318508,
+      "wape_pct": 30.77381021544794,
+      "bias_pct": 7.138627575901771,
+      "n": 184
+    },
+    "Prophet": {
+      "rmse_kwh": 890.4589842500823,
+      "mae_kwh": 677.4189033544453,
+      "wape_pct": 31.497046973267704,
+      "bias_pct": 6.081841563934749,
+      "n": 184
+    },
+    "LSTM": {
+      "rmse_kwh": 858.8550982029835,
+      "mae_kwh": 654.0068554289445,
+      "wape_pct": 30.40848807773293,
+      "bias_pct": 1.121902709121446,
+      "n": 184
+    },
+    "Ensemble": {
+      "rmse_kwh": 832.0113862850445,
+      "mae_kwh": 638.5244584125021,
+      "wape_pct": 29.688623628024004,
+      "bias_pct": 4.731937629189642,
+      "n": 184
+    },
+    "LSTM_Main_Ensemble": {
+      "rmse_kwh": 832.9744548504348,
+      "mae_kwh": 637.350416813726,
+      "wape_pct": 29.63403577521667,
+      "bias_pct": 4.130265142511608,
+      "n": 184
+    }
+  },
+  "search_xgb": [
+    {
+      "config": {
+        "max_depth": 2,
+        "learning_rate": 0.03,
+        "min_child_weight": 5,
+        "reg_lambda": 5.0,
+        "subsample": 0.9,
+        "colsample_bytree": 0.9,
+        "objective": "reg:squarederror",
+        "tree_method": "hist",
+        "n_jobs": 2,
+        "random_state": 42
+      },
+      "rounds": 111,
+      "rmse_kwh": 845.9848116685235,
+      "mae_kwh": 657.5131690912661,
+      "wape_pct": 30.571516486858044,
+      "bias_pct": 5.49589901647989,
+      "n": 184
+    },
+    {
+      "config": {
+        "max_depth": 2,
+        "learning_rate": 0.08,
+        "min_child_weight": 5,
+        "reg_lambda": 5.0,
+        "subsample": 0.9,
+        "colsample_bytree": 0.9,
+        "objective": "reg:squarederror",
+        "tree_method": "hist",
+        "n_jobs": 2,
+        "random_state": 42
+      },
+      "rounds": 41,
+      "rmse_kwh": 843.3567227025078,
+      "mae_kwh": 654.3481820181141,
+      "wape_pct": 30.424358286785356,
+      "bias_pct": 5.284219222313218,
+      "n": 184
+    },
+    {
+      "config": {
+        "max_depth": 3,
+        "learning_rate": 0.03,
+        "min_child_weight": 5,
+        "reg_lambda": 5.0,
+        "subsample": 0.9,
+        "colsample_bytree": 0.9,
+        "objective": "reg:squarederror",
+        "tree_method": "hist",
+        "n_jobs": 2,
+        "random_state": 42
+      },
+      "rounds": 91,
+      "rmse_kwh": 842.421749821402,
+      "mae_kwh": 661.8639768318508,
+      "wape_pct": 30.77381021544794,
+      "bias_pct": 7.138627575901771,
+      "n": 184
+    },
+    {
+      "config": {
+        "max_depth": 3,
+        "learning_rate": 0.08,
+        "min_child_weight": 5,
+        "reg_lambda": 5.0,
+        "subsample": 0.9,
+        "colsample_bytree": 0.9,
+        "objective": "reg:squarederror",
+        "tree_method": "hist",
+        "n_jobs": 2,
+        "random_state": 42
+      },
+      "rounds": 41,
+      "rmse_kwh": 846.3664650777471,
+      "mae_kwh": 652.8256828308106,
+      "wape_pct": 30.353568664320136,
+      "bias_pct": 6.550669172113637,
+      "n": 184
+    },
+    {
+      "config": {
+        "max_depth": 5,
+        "learning_rate": 0.03,
+        "min_child_weight": 5,
+        "reg_lambda": 5.0,
+        "subsample": 0.9,
+        "colsample_bytree": 0.9,
+        "objective": "reg:squarederror",
+        "tree_method": "hist",
+        "n_jobs": 2,
+        "random_state": 42
+      },
+      "rounds": 74,
+      "rmse_kwh": 853.981274707699,
+      "mae_kwh": 670.5297031634785,
+      "wape_pct": 31.17672898251097,
+      "bias_pct": 6.5242623852635395,
+      "n": 184
+    },
+    {
+      "config": {
+        "max_depth": 5,
+        "learning_rate": 0.08,
+        "min_child_weight": 5,
+        "reg_lambda": 5.0,
+        "subsample": 0.9,
+        "colsample_bytree": 0.9,
+        "objective": "reg:squarederror",
+        "tree_method": "hist",
+        "n_jobs": 2,
+        "random_state": 42
+      },
+      "rounds": 24,
+      "rmse_kwh": 862.3789960287513,
+      "mae_kwh": 677.0416850347104,
+      "wape_pct": 31.479507954092075,
+      "bias_pct": 7.6595448266107935,
+      "n": 184
+    }
+  ],
+  "search_prophet": [
+    {
+      "cps": 0.01,
+      "rmse_kwh": 950.7635555131434,
+      "mae_kwh": 730.7884236618711,
+      "wape_pct": 33.97849867138221,
+      "bias_pct": 17.535482314606586,
+      "n": 184
+    },
+    {
+      "cps": 0.05,
+      "rmse_kwh": 890.4589842500823,
+      "mae_kwh": 677.4189033544453,
+      "wape_pct": 31.497046973267704,
+      "bias_pct": 6.081841563934749,
+      "n": 184
+    },
+    {
+      "cps": 0.2,
+      "rmse_kwh": 901.9451915663549,
+      "mae_kwh": 683.2280077792351,
+      "wape_pct": 31.767145185812687,
+      "bias_pct": -6.215305325977171,
+      "n": 184
+    }
+  ]
+}

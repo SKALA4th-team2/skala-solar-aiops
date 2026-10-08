@@ -1,0 +1,132 @@
+{
+  "plant_id": "15043405_u1",
+  "name": "하동변전소",
+  "unit": "1",
+  "completed_utc": "2026-10-07T10:36:01.443444+00:00",
+  "selected_by_validation": "Ensemble",
+  "splits": {
+    "train": {
+      "first": "2022-01-02",
+      "last": "2024-07-04",
+      "n": 915
+    },
+    "validation": {
+      "first": "2024-07-05",
+      "last": "2024-12-31",
+      "n": 180
+    },
+    "test": {
+      "first": "2025-01-01",
+      "last": "2025-12-31",
+      "n": 365
+    }
+  },
+  "test_metrics": {
+    "Persistence": {
+      "rmse_kwh": 80.6385457818975,
+      "mae_kwh": 57.793786301369856,
+      "wape_pct": 33.82447837485996,
+      "n": 365
+    },
+    "Mean7": {
+      "rmse_kwh": 70.41037915248704,
+      "mae_kwh": 55.04970019569472,
+      "wape_pct": 32.218470409641,
+      "n": 365
+    },
+    "Seasonal7": {
+      "rmse_kwh": 96.97610838930507,
+      "mae_kwh": 73.28626849315067,
+      "wape_pct": 42.891631825167345,
+      "n": 365
+    },
+    "XGBoost": {
+      "rmse_kwh": 65.23107013660157,
+      "mae_kwh": 53.185779093703175,
+      "wape_pct": 31.127589139498923,
+      "n": 365
+    },
+    "Prophet": {
+      "rmse_kwh": 66.11645755374052,
+      "mae_kwh": 53.11978363593799,
+      "wape_pct": 31.088964538536164,
+      "n": 365
+    },
+    "LSTM": {
+      "rmse_kwh": 65.88958709238224,
+      "mae_kwh": 52.02183262370907,
+      "wape_pct": 30.446376076237875,
+      "n": 365
+    },
+    "Ensemble": {
+      "rmse_kwh": 65.48818125266774,
+      "mae_kwh": 52.23707711967573,
+      "wape_pct": 30.572350393981438,
+      "n": 365
+    },
+    "LSTM_Main_Ensemble": {
+      "rmse_kwh": 65.48818125266774,
+      "mae_kwh": 52.23707711967573,
+      "wape_pct": 30.572350393981438,
+      "n": 365
+    }
+  },
+  "validation_metrics": {
+    "Persistence": {
+      "rmse_kwh": 70.15054406631499,
+      "mae_kwh": 52.37126666666666,
+      "wape_pct": 33.20416804271401,
+      "n": 180
+    },
+    "Mean7": {
+      "rmse_kwh": 60.09681397877927,
+      "mae_kwh": 48.09513333333333,
+      "wape_pct": 30.493035415795486,
+      "n": 180
+    },
+    "Seasonal7": {
+      "rmse_kwh": 80.61973578555894,
+      "mae_kwh": 62.770244444444444,
+      "wape_pct": 39.79727582075353,
+      "n": 180
+    },
+    "XGBoost": {
+      "rmse_kwh": 57.357657823197414,
+      "mae_kwh": 46.919102879163944,
+      "wape_pct": 29.74741448071041,
+      "n": 180
+    },
+    "Prophet": {
+      "rmse_kwh": 58.233071825949075,
+      "mae_kwh": 47.030823590646,
+      "wape_pct": 29.8182470863358,
+      "n": 180
+    },
+    "LSTM": {
+      "rmse_kwh": 56.70620469320509,
+      "mae_kwh": 47.838466030205616,
+      "wape_pct": 30.330304498508976,
+      "n": 180
+    },
+    "Ensemble": {
+      "rmse_kwh": 56.58843214686596,
+      "mae_kwh": 47.29413305223254,
+      "wape_pct": 29.98518923164237,
+      "n": 180
+    },
+    "LSTM_Main_Ensemble": {
+      "rmse_kwh": 56.58843214686596,
+      "mae_kwh": 47.29413305223254,
+      "wape_pct": 29.98518923164237,
+      "n": 180
+    }
+  },
+  "reload_passed": true,
+  "artifact_hashes": {
+    "lstm.keras": "a89111389de5ba0898a7f09d36e20610a16fe7cb8c50cba44846342b9c9620cc",
+    "metadata.json": "10ba4ff4fda24ecc8ec10bbaacfc0860df45e335d2846db3a9233bc59b0fc3a2",
+    "prophet.json": "b865c6a72047b15f2ccf2625811793ee7df2a57f1dcc09882ed978ff96462269",
+    "scaler.json": "e60cea6114270b0a9bbdcbe32715b17804f77de52d963a9e38a5d9ba14f319be",
+    "xgboost.ubj": "5dc592befda97218b38c52d5309bf4d766324d35cf8d183d4957f28ab1cb80b3"
+  }
+}

@@ -1,0 +1,52 @@
+진행 중 중간 결과
+새 JMA MSM 예보 기반 모델 — 실제 학습 결과
+
+학습 완료 20개 호기, 제외 6개 매핑 항목.
+기준 코드: GitHub main 9ad93b1571c8300f3e26d00837cba338a94987c4
+입력: 연속 20일 × (당일 발전량, 다음 날 일사량 예보). 소수 예보와 0 발전량 허용.
+새 데이터는 JMA MSM 모델을 명시한 예보. 과거 ASOS 입력 모델을 재사용하지 않고 새로 학습.
+선택: 2024-07~12 검증. 시험: 2025년(품질상 제외된 창은 개소별 일수가 다름).
+주 모델 LSTM: 수업 32-32-16-Dense16-Dense1, 시드42, 검증 최소손실 epoch 선택.
+validation 모델 선택 분포: {'Ensemble': 19, 'XGBoost': 1}
+LSTM이 7일 평균보다 시험 RMSE가 낮은 호기: 20/20
+LSTM이 예보 기반 RuleC보다 시험 RMSE가 낮은 호기: 11/20
+
+발전소 | ID | 선택 모델 | LSTM RMSE(kWh/일) | 선택 모델 RMSE | 시험일수
+하동하수처리장 | 15043409_u1 | Ensemble | 41.13 | 42.03 | 365
+남제주소내 | 15043384_u1 | Ensemble | 157.90 | 146.00 | 365
+부산복합자재창고 | 15043385_u1 | Ensemble | 133.89 | 126.40 | 365
+부산본부 | 15043386_u1 | Ensemble | 111.58 | 108.28 | 365
+부산본부 | 15043386_u2 | Ensemble | 430.20 | 466.82 | 365
+부산수처리장 | 15043387_u1 | Ensemble | 92.67 | 87.14 | 365
+부산신항 | 15043388_u1 | Ensemble | 86.63 | 74.28 | 365
+부산운동장 | 15043389_u1 | Ensemble | 1278.75 | 1249.45 | 365
+삼척소내 | 15043391_u1 | Ensemble | 908.65 | 870.43 | 365
+삼척소내 | 15043391_u2 | Ensemble | 846.90 | 862.14 | 365
+삼척소내 | 15043391_u3 | Ensemble | 1661.14 | 1668.94 | 365
+삼척소내 | 15043391_u4 | Ensemble | 2237.99 | 2134.08 | 365
+신인천소내 | 15043394_u1 | Ensemble | 172.07 | 168.73 | 365
+신인천전망대 | 15043395_u1 | XGBoost | 1304.44 | 1373.88 | 350
+신인천해수구취수구 | 15043396_u1 | Ensemble | 710.60 | 672.15 | 365
+영월본부 | 15043399_u1 | Ensemble | 24.48 | 25.28 | 365
+영월철도부지 | 15043400_u1 | Ensemble | 1062.86 | 1061.88 | 365
+위미2리 | 15043401_u1 | Ensemble | 1349.56 | 1244.41 | 365
+인천수산정수장 | 15043402_u1 | Ensemble | 1092.44 | 1032.16 | 365
+하동공설운동장 | 15043404_u1 | Ensemble | 234.24 | 240.02 | 365
+
+파일: plants/<plant_id>/evaluation/ 와 release/ 에 각각 model.keras, scaler.pkl, scaler.json, xgboost.ubj, prophet.json, metadata.json, bundle_hashes.json.
+evaluation은 2024-12-31 이전 학습으로 2025년 재생·AIOps 시연에 사용. release는 최대 2026-02-28까지 다시 학습한 최신 자료용 모델.
+여기에 적힌 시험 성능은 evaluation 모델의 결과. release 모델로 과거 시험을 재생하면 학습 데이터가 포함되므로 별도 성능으로 주장하지 않는다.
+앙상블 2종은 metadata.json의 가중치와 세 개별 모델을 함께 사용한다. 현재 API 기본 모델은 LSTM이다.
+MLflow native TensorFlow LSTM 버전 등록·재로딩 확인: 0개. replay/candidate 별칭으로 구분. Production 승격 없음.
+최신 GitHub API 실제 모델 테스트: github_api_integration.json. 단건·배치·헬스·스케일러 호환 확인. 임시 가중치에서 1회 업데이트 가능 확인.
+현재 API는 plant_id가 없고 발전량 상한이 1320kWh이므로 큰 발전소의 HTTP 호출에는 별도 다개소 계약이 필요하다. 모델 파일 자체와 predict_one 인터페이스는 개소별로 준비했다.
+AIOps 판정기·자동 재학습·승격·캐시 교체·프론트 실시간 차트는 이번 모델 생성만으로 연결되지 않는다.
+예보 발표 시각의 운영 마감 검증은 미완료. 지역 대표 좌표를 공유하며 현장별 정밀 기상이 아니다.
+
+제외 항목:
+15043411_u1 행원소수력: upstream_quality_or_non_daily_generation
+15096129_u1 신인천1_2단계주차장: insufficient_valid_calendar_windows_or_excess_zeros
+15140095_u1 익산다송리: upstream_quality_or_non_daily_generation
+15043390 삼척사택: upstream_quality_or_non_daily_generation
+15043397 안동소내: upstream_quality_or_non_daily_generation
+15156688 부산철도2호기: upstream_quality_or_non_daily_generation

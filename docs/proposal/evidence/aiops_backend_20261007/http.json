@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "health": {
+    "plant_id": "hadong-sewage",
+    "worker_updated_at": "2026-10-07T13:07:19.865280+00:00",
+    "execution_unit": "local",
+    "status": "ok",
+    "model_loaded": true,
+    "model_version": "1",
+    "model_source": "mlflow",
+    "loading_mode": "lazy"
+  },
+  "prediction": {
+    "plant_id": "hadong-sewage",
+    "predicted_close": 199.89,
+    "target_date": "2025-01-01",
+    "model_version": "1"
+  },
+  "plants": 43,
+  "ready": 33,
+  "jobs": [],
+  "first_request_seconds": 5.0205419000121765,
+  "warm_request_seconds": [
+    0.11375020002014935,
+    0.1040431999717839,
+    0.09430699999211356
+  ],
+  "scope": "local smoke only, not load/SLO validation"
+}

@@ -1,0 +1,22 @@
+{
+  "created_utc": "2026-10-07T10:27:47.691650+00:00",
+  "catalog_sha256": "f41c338e6bb6cf7edd0f1cc54d0b08dd034b64cac4f42d26a356b7261c3bbbee",
+  "weather_semantics": "Volume[d] = observed ASOS GSR[d-1]; target T sees GSR[T-2]",
+  "sequence_days": 20,
+  "screening": "Latest segment with >=1115 contiguous rows and end >=2025-01-01; use last <=1480 rows. No gap joining, imputation or post-test error exclusions.",
+  "splits": "Chronological: final365 test, preceding180 validation, rest training (>=550 targets).",
+  "evaluation": "Rolling next-day with actual history through T-1, fixed weights during test; no target-day observed weather.",
+  "lstm": "Teaching architecture (20,2), seed42, Adam .001, 120 full epochs; best validation-loss epoch then refit train+validation for that fixed count.",
+  "xgb": "depth2/3/5 x learning_rate .03/.08, 800 rounds max, patience40; selected on validation",
+  "prophet": "cps .01/.05/.2, yearly Fourier5, observed GSR T-2/lag1/mean7 regressors",
+  "ensembles": "Validation-only simplex grid .1; Ensemble unrestricted, LSTM_Main_Ensemble requires LSTM>=.5.",
+  "selection": "validation RMSE including Persistence/Mean7/Seasonal7; no forced ML winner or Production promotion",
+  "limitations": [
+    "Single seed per site screening; less tuning than previous 3-seed Hadong forecast experiment",
+    "Lagged observed weather differs from previous forecast-based Hadong experiment",
+    "Regional ASOS proxy, finalized historical observations; historical revision availability not reconstructed",
+    "Evaluation-fit artifacts end before test; not refit on all history or a live AIOps deployment",
+    "43 eligible-format units are not 43 distinct sites; capacities/units retain source caveats",
+    "Different feature engineering, same causal information; no fault labels inferred from zero generation"
+  ]
+}

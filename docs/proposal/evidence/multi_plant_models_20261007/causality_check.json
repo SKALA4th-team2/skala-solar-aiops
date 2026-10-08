@@ -1,0 +1,173 @@
+{
+  "passed": true,
+  "plants": [
+    {
+      "plant_id": "15043384_u1",
+      "passed": true,
+      "first_test_target": "2025-01-01",
+      "latest_observed_weather_date": "2024-12-30",
+      "unchanged_causal_windows": 1096
+    },
+    {
+      "plant_id": "15043394_u1",
+      "passed": true,
+      "first_test_target": "2025-01-01",
+      "latest_observed_weather_date": "2024-12-30",
+      "unchanged_causal_windows": 1096
+    },
+    {
+      "plant_id": "15043396_u1",
+      "passed": true,
+      "first_test_target": "2025-01-01",
+      "latest_observed_weather_date": "2024-12-30",
+      "unchanged_causal_windows": 1096
+    },
+    {
+      "plant_id": "15043399_u1",
+      "passed": true,
+      "first_test_target": "2025-01-01",
+      "latest_observed_weather_date": "2024-12-30",
+      "unchanged_causal_windows": 1096
+    },
+    {
+      "plant_id": "15043400_u1",
+      "passed": true,
+      "first_test_target": "2025-01-01",
+      "latest_observed_weather_date": "2024-12-30",
+      "unchanged_causal_windows": 1096
+    },
+    {
+      "plant_id": "15043402_u1",
+      "passed": true,
+      "first_test_target": "2025-01-01",
+      "latest_observed_weather_date": "2024-12-30",
+      "unchanged_causal_windows": 1096
+    },
+    {
+      "plant_id": "15043404_u1",
+      "passed": true,
+      "first_test_target": "2025-01-01",
+      "latest_observed_weather_date": "2024-12-30",
+      "unchanged_causal_windows": 1096
+    },
+    {
+      "plant_id": "15043405_u1",
+      "passed": true,
+      "first_test_target": "2025-01-01",
+      "latest_observed_weather_date": "2024-12-30",
+      "unchanged_causal_windows": 1096
+    },
+    {
+      "plant_id": "15043406_u1",
+      "passed": true,
+      "first_test_target": "2025-01-01",
+      "latest_observed_weather_date": "2024-12-30",
+      "unchanged_causal_windows": 1096
+    },
+    {
+      "plant_id": "15043407_u1",
+      "passed": true,
+      "first_test_target": "2025-01-01",
+      "latest_observed_weather_date": "2024-12-30",
+      "unchanged_causal_windows": 1096
+    },
+    {
+      "plant_id": "15043407_u2",
+      "passed": true,
+      "first_test_target": "2025-01-01",
+      "latest_observed_weather_date": "2024-12-30",
+      "unchanged_causal_windows": 1096
+    },
+    {
+      "plant_id": "15043407_u3",
+      "passed": true,
+      "first_test_target": "2025-01-01",
+      "latest_observed_weather_date": "2024-12-30",
+      "unchanged_causal_windows": 1096
+    },
+    {
+      "plant_id": "15043407_u4",
+      "passed": true,
+      "first_test_target": "2025-01-01",
+      "latest_observed_weather_date": "2024-12-30",
+      "unchanged_causal_windows": 1096
+    },
+    {
+      "plant_id": "15043407_u5",
+      "passed": true,
+      "first_test_target": "2025-01-01",
+      "latest_observed_weather_date": "2024-12-30",
+      "unchanged_causal_windows": 1096
+    },
+    {
+      "plant_id": "15043407_u6",
+      "passed": true,
+      "first_test_target": "2025-01-01",
+      "latest_observed_weather_date": "2024-12-30",
+      "unchanged_causal_windows": 1096
+    },
+    {
+      "plant_id": "15043408_u1",
+      "passed": true,
+      "first_test_target": "2025-01-01",
+      "latest_observed_weather_date": "2024-12-30",
+      "unchanged_causal_windows": 1096
+    },
+    {
+      "plant_id": "15095374_u1",
+      "passed": true,
+      "first_test_target": "2025-01-01",
+      "latest_observed_weather_date": "2024-12-30",
+      "unchanged_causal_windows": 1096
+    },
+    {
+      "plant_id": "15095404_u1",
+      "passed": true,
+      "first_test_target": "2025-01-01",
+      "latest_observed_weather_date": "2024-12-30",
+      "unchanged_causal_windows": 1096
+    },
+    {
+      "plant_id": "15096131_u1",
+      "passed": true,
+      "first_test_target": "2025-01-01",
+      "latest_observed_weather_date": "2024-12-30",
+      "unchanged_causal_windows": 1096
+    },
+    {
+      "plant_id": "15096132_u1",
+      "passed": true,
+      "first_test_target": "2025-01-01",
+      "latest_observed_weather_date": "2024-12-30",
+      "unchanged_causal_windows": 1096
+    },
+    {
+      "plant_id": "15096134_u1",
+      "passed": true,
+      "first_test_target": "2025-01-01",
+      "latest_observed_weather_date": "2024-12-30",
+      "unchanged_causal_windows": 1096
+    },
+    {
+      "plant_id": "15096136_u1",
+      "passed": true,
+      "first_test_target": "2025-01-01",
+      "latest_observed_weather_date": "2024-12-30",
+      "unchanged_causal_windows": 1096
+    },
+    {
+      "plant_id": "15109999_u1",
+      "passed": true,
+      "first_test_target": "2025-01-01",
+      "latest_observed_weather_date": "2024-12-30",
+      "unchanged_causal_windows": 1096
+    },
+    {
+      "plant_id": "15124861_u1",
+      "passed": true,
+      "first_test_target": "2025-01-01",
+      "latest_observed_weather_date": "2024-12-30",
+      "unchanged_causal_windows": 1082
+    }
+  ]
+}

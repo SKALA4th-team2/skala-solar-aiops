@@ -1,0 +1,552 @@
+{
+  "passed": true,
+  "plants": [
+    {
+      "plant_id": "hadong-sewage",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15043384-u1",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15043385-u1",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15043386-u1",
+      "served": false,
+      "reason": "capacity_unknown"
+    },
+    {
+      "plant_id": "15043386-u2",
+      "served": false,
+      "reason": "capacity_unknown"
+    },
+    {
+      "plant_id": "15043387-u1",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15043388-u1",
+      "served": false,
+      "reason": "gate_failed"
+    },
+    {
+      "plant_id": "15043389-u1",
+      "served": false,
+      "reason": "capacity_unknown"
+    },
+    {
+      "plant_id": "15043391-u1",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15043391-u2",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15043391-u3",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15043391-u4",
+      "served": false,
+      "reason": "gate_failed"
+    },
+    {
+      "plant_id": "15043394-u1",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15043395-u1",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15043396-u1",
+      "served": false,
+      "reason": "gate_failed"
+    },
+    {
+      "plant_id": "15043399-u1",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15043400-u1",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15043401-u1",
+      "served": false,
+      "reason": "gate_failed"
+    },
+    {
+      "plant_id": "15043402-u1",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15043404-u1",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15043405-u1",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15043406-u1",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15043407-u1",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15043407-u2",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15043407-u3",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15043407-u4",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15043407-u5",
+      "served": false,
+      "reason": "capacity_unknown"
+    },
+    {
+      "plant_id": "15043407-u6",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15043408-u1",
+      "served": false,
+      "reason": "gate_failed"
+    },
+    {
+      "plant_id": "15095374-u1",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15095380-u1",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15095404-u1",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15096126-u1",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15096131-u1",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15096132-u1",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15096134-u1",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15096136-u1",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15109994-u1",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15109998-u1",
+      "served": false,
+      "reason": "gate_failed"
+    },
+    {
+      "plant_id": "15109999-u1",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15124860-u1",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15124861-u1",
+      "served": true,
+      "version": "1"
+    },
+    {
+      "plant_id": "15140067-u1",
+      "served": true,
+      "version": "1"
+    }
+  ],
+  "approved": 33,
+  "complete_portfolio": {
+    "portfolio_id": "approved-vpp",
+    "composition_version": "20261007-approved",
+    "target_date": "2025-01-16",
+    "status": "complete",
+    "complete": true,
+    "total_predicted_kwh": 71348.86070733638,
+    "partial_predicted_kwh": 71348.86070733638,
+    "capacity_coverage": 1.0,
+    "capacity_unknown": [],
+    "members": [
+      {
+        "plant_id": "hadong-sewage",
+        "predicted_kwh": 216.68707100486756,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15043384-u1",
+        "predicted_kwh": 343.21884914746886,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15043385-u1",
+        "predicted_kwh": 563.8623174476623,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15043387-u1",
+        "predicted_kwh": 485.94959438323974,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15043391-u1",
+        "predicted_kwh": 3768.9925090312954,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15043391-u2",
+        "predicted_kwh": 4128.043169260025,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15043391-u3",
+        "predicted_kwh": 6501.566864848137,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15043394-u1",
+        "predicted_kwh": 294.13646048274643,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15043395-u1",
+        "predicted_kwh": 2490.0215356349945,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15043399-u1",
+        "predicted_kwh": 53.02244690825045,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15043400-u1",
+        "predicted_kwh": 2888.0455286693573,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15043402-u1",
+        "predicted_kwh": 1748.7655332756044,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15043404-u1",
+        "predicted_kwh": 1034.784516484022,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15043405-u1",
+        "predicted_kwh": 201.12088961887358,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15043406-u1",
+        "predicted_kwh": 159.94588604807856,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15043407-u1",
+        "predicted_kwh": 3850.9420213508606,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15043407-u2",
+        "predicted_kwh": 4397.481969133615,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15043407-u3",
+        "predicted_kwh": 1909.4048274593354,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15043407-u4",
+        "predicted_kwh": 4008.2225463867185,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15043407-u6",
+        "predicted_kwh": 3911.1305653704403,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15095374-u1",
+        "predicted_kwh": 1863.8854580118657,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15095380-u1",
+        "predicted_kwh": 3040.2329595422743,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15095404-u1",
+        "predicted_kwh": 2036.8671684765816,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15096126-u1",
+        "predicted_kwh": 2549.020000688434,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15096131-u1",
+        "predicted_kwh": 756.2971494555475,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15096132-u1",
+        "predicted_kwh": 1220.935260261327,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15096134-u1",
+        "predicted_kwh": 1993.9666704539359,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15096136-u1",
+        "predicted_kwh": 3763.3093531103136,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15109994-u1",
+        "predicted_kwh": 1555.0895161771775,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15109999-u1",
+        "predicted_kwh": 4435.168813553989,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15124860-u1",
+        "predicted_kwh": 3005.609786254168,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15124861-u1",
+        "predicted_kwh": 423.17524322509763,
+        "model_version": "1"
+      },
+      {
+        "plant_id": "15140067-u1",
+        "predicted_kwh": 1749.9582261800767,
+        "model_version": "1"
+      }
+    ],
+    "missing": [],
+    "quality_verified": true,
+    "virtual": true
+  },
+  "partial_portfolio": {
+    "portfolio_id": "approved-vpp",
+    "composition_version": "20261007-approved",
+    "target_date": "2025-01-16",
+    "status": "partial",
+    "complete": false,
+    "total_predicted_kwh": null,
+    "partial_predicted_kwh": 216.68707100486756,
+    "capacity_coverage": 0.0021530636431911616,
+    "capacity_unknown": [],
+    "members": [
+      {
+        "plant_id": "hadong-sewage",
+        "predicted_kwh": 216.68707100486756,
+        "model_version": "1"
+      }
+    ],
+    "missing": [
+      {
+        "plant_id": "15043384-u1",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15043385-u1",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15043387-u1",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15043391-u1",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15043391-u2",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15043391-u3",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15043394-u1",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15043395-u1",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15043399-u1",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15043400-u1",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15043402-u1",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15043404-u1",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15043405-u1",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15043406-u1",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15043407-u1",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15043407-u2",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15043407-u3",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15043407-u4",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15043407-u6",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15095374-u1",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15095380-u1",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15095404-u1",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15096126-u1",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15096131-u1",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15096132-u1",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15096134-u1",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15096136-u1",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15109994-u1",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15109999-u1",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15124860-u1",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15124861-u1",
+        "reason": "input_missing"
+      },
+      {
+        "plant_id": "15140067-u1",
+        "reason": "input_missing"
+      }
+    ],
+    "quality_verified": false,
+    "virtual": true
+  }
+}

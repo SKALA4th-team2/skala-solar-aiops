@@ -1,0 +1,18 @@
+{
+  "source_id": "15096132",
+  "name": "신인천주차장",
+  "landing_url": "https://www.data.go.kr/data/15096132/fileData.do",
+  "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623503&fileDetailSn=1&insertDataPrcus=N",
+  "retrieved_at_utc": "2026-10-07T08:48:23.197726+00:00",
+  "sha256": "5af22e8c7fb0a2d395f6530070d9b330de597c9d1d26eba042cbab2b8d4f5ef2",
+  "bytes": 375750,
+  "metadata": {
+    "name": "한국남부발전(주)_신인천 주차장 태양광발전실적",
+    "description": "본 파일 데이터는 한국남부발전(주)의 신인천 주차장 태양광발전실적입니다. <br/>이 데이터는 신인천 지역의 주차장 부지에 설치된 태양광 발전 설비의 일별, 시간별 전력 생산량에 대한 자료입니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 시간대별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량을 기록합니다. 1시부터 24시까지의 매 시간대별 발전량을 상세하게 제공하여 정밀한 분석이 가능합니다.<br/><br/>이 데이터는 태양광 발전 시스템의 성능 평가, 발전 효율에 영향을 미치는 환경 요인 분석, 그리고 전력 수요-공급 예측 모델 구축에 활용될 수 있습니다.",
+    "dateModified": "2026-04-09",
+    "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+    "temporalCoverage": null,
+    "spatialCoverage": null
+  },
+  "usage_label": "이용허락범위 제한 없음"
+}

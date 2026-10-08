@@ -1,0 +1,1398 @@
+{
+  "seed_list": [
+    42,
+    43,
+    44
+  ],
+  "variants": {
+    "base": [
+      "generation",
+      "gsr_lag1"
+    ],
+    "calendar": [
+      "generation",
+      "gsr_lag1",
+      "season_sin",
+      "season_cos"
+    ],
+    "temperature": [
+      "generation",
+      "gsr_lag1",
+      "temperature_lag1"
+    ],
+    "sunshine": [
+      "generation",
+      "gsr_lag1",
+      "sunshine_lag1"
+    ],
+    "expanded": [
+      "generation",
+      "gsr_lag1",
+      "temperature_lag1",
+      "sunshine_lag1",
+      "season_sin",
+      "season_cos"
+    ],
+    "forecast": [
+      "generation",
+      "forecast_gsr"
+    ],
+    "forecast_expanded": [
+      "generation",
+      "gsr_lag1",
+      "temperature_lag1",
+      "sunshine_lag1",
+      "season_sin",
+      "season_cos",
+      "forecast_gsr",
+      "forecast_sunshine",
+      "forecast_cloud"
+    ]
+  },
+  "lstm_variants": [
+    "base",
+    "expanded",
+    "forecast",
+    "forecast_expanded"
+  ],
+  "lstm": {
+    "architecture": "32-32-16 stacked LSTM + Dense16 relu + Dense1, only input width changes",
+    "lr": 0.001,
+    "epochs": 80,
+    "batch_size": 32,
+    "selection": "minimum validation MSE checkpoint, no test-based tuning; no refit"
+  },
+  "xgboost": {
+    "max_depth": 3,
+    "learning_rate": 0.03,
+    "n_estimators": 600,
+    "early_stopping_rounds": 40,
+    "subsample": 1,
+    "colsample_bytree": 1,
+    "reg_lambda": 10,
+    "selection": "validation early stopping, no refit"
+  },
+  "forecast_timing": "Previous Runs previous_day1 for d+1 stored at row d; publication availability assumed per repository, not independently timestamp-audited",
+  "observed_weather_timing": "row d uses observations d-1; 20-row input ends t-1, so latest observed weather is t-2",
+  "evaluation": "rolling one-day forecast with observed generation through t-1; fixed trained model; all variants within a plant have identical dates and targets; target calendar known beforehand",
+  "missing": "XGBoost native missing; LSTM per-channel training-window median, then training-only minmax; no backward fill",
+  "plants": [
+    {
+      "plant_id": "hadong",
+      "name": "하동하수처리장",
+      "region": "경남 하동",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded",
+        "forecast",
+        "forecast_expanded"
+      ],
+      "rows": 1279,
+      "train": [
+        "2022-07-22",
+        "2024-06-30",
+        710
+      ],
+      "validation": [
+        "2024-07-01",
+        "2024-12-31",
+        184
+      ],
+      "test": [
+        "2025-01-01",
+        "2025-12-31",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 0,
+        "sunshine_lag1": 0,
+        "season_sin": 0,
+        "season_cos": 0,
+        "forecast_gsr": 0,
+        "forecast_sunshine": 0,
+        "forecast_cloud": 0
+      }
+    },
+    {
+      "plant_id": "15043384_u1",
+      "name": "남제주소내 #1",
+      "region": "제주 서부",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1825,
+      "train": [
+        "2021-01-22",
+        "2024-07-04",
+        1260
+      ],
+      "validation": [
+        "2024-07-05",
+        "2024-12-31",
+        180
+      ],
+      "test": [
+        "2025-01-01",
+        "2025-12-31",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 0,
+        "sunshine_lag1": 0,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15043385_u1",
+      "name": "부산복합자재창고 #1",
+      "region": "부산",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1825,
+      "train": [
+        "2013-06-08",
+        "2016-11-18",
+        1260
+      ],
+      "validation": [
+        "2016-11-19",
+        "2017-05-17",
+        180
+      ],
+      "test": [
+        "2017-05-18",
+        "2018-05-17",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 0,
+        "sunshine_lag1": 7,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15043386_u1",
+      "name": "부산본부 #1",
+      "region": "부산",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1825,
+      "train": [
+        "2013-06-08",
+        "2016-11-18",
+        1260
+      ],
+      "validation": [
+        "2016-11-19",
+        "2017-05-17",
+        180
+      ],
+      "test": [
+        "2017-05-18",
+        "2018-05-17",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 0,
+        "sunshine_lag1": 7,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15043388_u1",
+      "name": "부산신항 #1",
+      "region": "부산",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1825,
+      "train": [
+        "2013-06-08",
+        "2016-11-18",
+        1260
+      ],
+      "validation": [
+        "2016-11-19",
+        "2017-05-17",
+        180
+      ],
+      "test": [
+        "2017-05-18",
+        "2018-05-17",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 0,
+        "sunshine_lag1": 7,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15043391_u1",
+      "name": "삼척소내 #1",
+      "region": "강원 삼척",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1328,
+      "train": [
+        "2018-01-21",
+        "2020-02-22",
+        763
+      ],
+      "validation": [
+        "2020-02-23",
+        "2020-08-20",
+        180
+      ],
+      "test": [
+        "2020-08-21",
+        "2021-08-20",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 1,
+        "sunshine_lag1": 2,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15043391_u3",
+      "name": "삼척소내 #3",
+      "region": "강원 삼척",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1024,
+      "train": [
+        "2018-11-21",
+        "2020-02-22",
+        459
+      ],
+      "validation": [
+        "2020-02-23",
+        "2020-08-20",
+        180
+      ],
+      "test": [
+        "2020-08-21",
+        "2021-08-20",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 1,
+        "sunshine_lag1": 2,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15043394_u1",
+      "name": "신인천소내 #1",
+      "region": "인천",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1825,
+      "train": [
+        "2021-01-22",
+        "2024-07-04",
+        1260
+      ],
+      "validation": [
+        "2024-07-05",
+        "2024-12-31",
+        180
+      ],
+      "test": [
+        "2025-01-01",
+        "2025-12-31",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 0,
+        "sunshine_lag1": 0,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15043395_u1",
+      "name": "신인천전망대 #1",
+      "region": "인천",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 994,
+      "train": [
+        "2021-08-31",
+        "2022-11-02",
+        429
+      ],
+      "validation": [
+        "2022-11-03",
+        "2023-05-01",
+        180
+      ],
+      "test": [
+        "2023-05-02",
+        "2024-04-30",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 0,
+        "sunshine_lag1": 0,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15043396_u1",
+      "name": "신인천해수구취수구 #1",
+      "region": "인천",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1614,
+      "train": [
+        "2021-08-21",
+        "2024-07-04",
+        1049
+      ],
+      "validation": [
+        "2024-07-05",
+        "2024-12-31",
+        180
+      ],
+      "test": [
+        "2025-01-01",
+        "2025-12-31",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 1,
+        "sunshine_lag1": 1,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15043399_u1",
+      "name": "영월본부 #1",
+      "region": "강원 영월",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1825,
+      "train": [
+        "2021-01-22",
+        "2024-07-04",
+        1260
+      ],
+      "validation": [
+        "2024-07-05",
+        "2024-12-31",
+        180
+      ],
+      "test": [
+        "2025-01-01",
+        "2025-12-31",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 0,
+        "sunshine_lag1": 8,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15043400_u1",
+      "name": "영월철도부지 #1",
+      "region": "강원 영월",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1825,
+      "train": [
+        "2021-01-22",
+        "2024-07-04",
+        1260
+      ],
+      "validation": [
+        "2024-07-05",
+        "2024-12-31",
+        180
+      ],
+      "test": [
+        "2025-01-01",
+        "2025-12-31",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 0,
+        "sunshine_lag1": 8,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15043402_u1",
+      "name": "인천수산정수장 #1",
+      "region": "인천",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1825,
+      "train": [
+        "2021-01-22",
+        "2024-07-04",
+        1260
+      ],
+      "validation": [
+        "2024-07-05",
+        "2024-12-31",
+        180
+      ],
+      "test": [
+        "2025-01-01",
+        "2025-12-31",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 0,
+        "sunshine_lag1": 0,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15043404_u1",
+      "name": "하동공설운동장 #1",
+      "region": "경남 하동",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1825,
+      "train": [
+        "2021-01-22",
+        "2024-07-04",
+        1260
+      ],
+      "validation": [
+        "2024-07-05",
+        "2024-12-31",
+        180
+      ],
+      "test": [
+        "2025-01-01",
+        "2025-12-31",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 0,
+        "sunshine_lag1": 3,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15043405_u1",
+      "name": "하동변전소 #1",
+      "region": "경남 하동",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1825,
+      "train": [
+        "2021-01-22",
+        "2024-07-04",
+        1260
+      ],
+      "validation": [
+        "2024-07-05",
+        "2024-12-31",
+        180
+      ],
+      "test": [
+        "2025-01-01",
+        "2025-12-31",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 0,
+        "sunshine_lag1": 3,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15043406_u1",
+      "name": "하동보건소 #1",
+      "region": "경남 하동",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1825,
+      "train": [
+        "2021-01-22",
+        "2024-07-04",
+        1260
+      ],
+      "validation": [
+        "2024-07-05",
+        "2024-12-31",
+        180
+      ],
+      "test": [
+        "2025-01-01",
+        "2025-12-31",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 0,
+        "sunshine_lag1": 3,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15043407_u1",
+      "name": "하동본부 #1",
+      "region": "경남 하동",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1825,
+      "train": [
+        "2021-01-22",
+        "2024-07-04",
+        1260
+      ],
+      "validation": [
+        "2024-07-05",
+        "2024-12-31",
+        180
+      ],
+      "test": [
+        "2025-01-01",
+        "2025-12-31",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 0,
+        "sunshine_lag1": 3,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15043407_u2",
+      "name": "하동본부 #2",
+      "region": "경남 하동",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1825,
+      "train": [
+        "2021-01-22",
+        "2024-07-04",
+        1260
+      ],
+      "validation": [
+        "2024-07-05",
+        "2024-12-31",
+        180
+      ],
+      "test": [
+        "2025-01-01",
+        "2025-12-31",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 0,
+        "sunshine_lag1": 3,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15043407_u3",
+      "name": "하동본부 #3",
+      "region": "경남 하동",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1825,
+      "train": [
+        "2021-01-22",
+        "2024-07-04",
+        1260
+      ],
+      "validation": [
+        "2024-07-05",
+        "2024-12-31",
+        180
+      ],
+      "test": [
+        "2025-01-01",
+        "2025-12-31",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 0,
+        "sunshine_lag1": 3,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15043407_u4",
+      "name": "하동본부 #4",
+      "region": "경남 하동",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1825,
+      "train": [
+        "2021-01-22",
+        "2024-07-04",
+        1260
+      ],
+      "validation": [
+        "2024-07-05",
+        "2024-12-31",
+        180
+      ],
+      "test": [
+        "2025-01-01",
+        "2025-12-31",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 0,
+        "sunshine_lag1": 3,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15043407_u5",
+      "name": "하동본부 #5",
+      "region": "경남 하동",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1825,
+      "train": [
+        "2021-01-22",
+        "2024-07-04",
+        1260
+      ],
+      "validation": [
+        "2024-07-05",
+        "2024-12-31",
+        180
+      ],
+      "test": [
+        "2025-01-01",
+        "2025-12-31",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 0,
+        "sunshine_lag1": 3,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15043407_u6",
+      "name": "하동본부 #6",
+      "region": "경남 하동",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1825,
+      "train": [
+        "2021-01-22",
+        "2024-07-04",
+        1260
+      ],
+      "validation": [
+        "2024-07-05",
+        "2024-12-31",
+        180
+      ],
+      "test": [
+        "2025-01-01",
+        "2025-12-31",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 0,
+        "sunshine_lag1": 3,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15043408_u1",
+      "name": "하동정수장 #1",
+      "region": "경남 하동",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1825,
+      "train": [
+        "2021-01-22",
+        "2024-07-04",
+        1260
+      ],
+      "validation": [
+        "2024-07-05",
+        "2024-12-31",
+        180
+      ],
+      "test": [
+        "2025-01-01",
+        "2025-12-31",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 0,
+        "sunshine_lag1": 3,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15095374_u1",
+      "name": "무릉리 #1",
+      "region": "제주 서부",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1706,
+      "train": [
+        "2021-05-21",
+        "2024-07-04",
+        1141
+      ],
+      "validation": [
+        "2024-07-05",
+        "2024-12-31",
+        180
+      ],
+      "test": [
+        "2025-01-01",
+        "2025-12-31",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 1,
+        "sunshine_lag1": 1,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15095404_u1",
+      "name": "용수리 #1",
+      "region": "제주 서부",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1489,
+      "train": [
+        "2021-12-24",
+        "2024-07-04",
+        924
+      ],
+      "validation": [
+        "2024-07-05",
+        "2024-12-31",
+        180
+      ],
+      "test": [
+        "2025-01-01",
+        "2025-12-31",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 0,
+        "sunshine_lag1": 0,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15096126_u1",
+      "name": "송당리 #1",
+      "region": "제주 동부",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1550,
+      "train": [
+        "2019-12-23",
+        "2022-09-02",
+        985
+      ],
+      "validation": [
+        "2022-09-03",
+        "2023-03-01",
+        180
+      ],
+      "test": [
+        "2023-03-02",
+        "2024-02-29",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 1,
+        "sunshine_lag1": 1,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15096131_u1",
+      "name": "신인천북측부지 #1",
+      "region": "인천",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1825,
+      "train": [
+        "2021-01-22",
+        "2024-07-04",
+        1260
+      ],
+      "validation": [
+        "2024-07-05",
+        "2024-12-31",
+        180
+      ],
+      "test": [
+        "2025-01-01",
+        "2025-12-31",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 0,
+        "sunshine_lag1": 0,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15096132_u1",
+      "name": "신인천주차장 #1",
+      "region": "인천",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1825,
+      "train": [
+        "2021-01-22",
+        "2024-07-04",
+        1260
+      ],
+      "validation": [
+        "2024-07-05",
+        "2024-12-31",
+        180
+      ],
+      "test": [
+        "2025-01-01",
+        "2025-12-31",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 0,
+        "sunshine_lag1": 0,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15096134_u1",
+      "name": "이천D백사면B #1",
+      "region": "경기 이천",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1787,
+      "train": [
+        "2021-03-01",
+        "2024-07-04",
+        1222
+      ],
+      "validation": [
+        "2024-07-05",
+        "2024-12-31",
+        180
+      ],
+      "test": [
+        "2025-01-01",
+        "2025-12-31",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 1,
+        "sunshine_lag1": 1,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15096136_u1",
+      "name": "화촌주민참여형 #1",
+      "region": "경남 하동",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1703,
+      "train": [
+        "2021-05-24",
+        "2024-07-04",
+        1138
+      ],
+      "validation": [
+        "2024-07-05",
+        "2024-12-31",
+        180
+      ],
+      "test": [
+        "2025-01-01",
+        "2025-12-31",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 1,
+        "sunshine_lag1": 3,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15109998_u1",
+      "name": "신풍리 #1",
+      "region": "제주 동부",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1035,
+      "train": [
+        "2021-05-21",
+        "2022-09-02",
+        470
+      ],
+      "validation": [
+        "2022-09-03",
+        "2023-03-01",
+        180
+      ],
+      "test": [
+        "2023-03-02",
+        "2024-02-29",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 1,
+        "sunshine_lag1": 1,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15109999_u1",
+      "name": "이천시백사면A #1",
+      "region": "경기 이천",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1592,
+      "train": [
+        "2021-09-12",
+        "2024-07-04",
+        1027
+      ],
+      "validation": [
+        "2024-07-05",
+        "2024-12-31",
+        180
+      ],
+      "test": [
+        "2025-01-01",
+        "2025-12-31",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 1,
+        "sunshine_lag1": 1,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    },
+    {
+      "plant_id": "15124861_u1",
+      "name": "신인천본관주차장 #1",
+      "region": "인천",
+      "variants": [
+        "base",
+        "calendar",
+        "temperature",
+        "sunshine",
+        "expanded"
+      ],
+      "rows": 1466,
+      "train": [
+        "2022-01-16",
+        "2024-07-04",
+        901
+      ],
+      "validation": [
+        "2024-07-05",
+        "2024-12-31",
+        180
+      ],
+      "test": [
+        "2025-01-01",
+        "2025-12-31",
+        365
+      ],
+      "missing_counts": {
+        "generation": 0,
+        "gsr_lag1": 0,
+        "temperature_lag1": 1,
+        "sunshine_lag1": 1,
+        "season_sin": 0,
+        "season_cos": 0
+      }
+    }
+  ],
+  "excluded": [
+    {
+      "plant_id": "15043386_u2",
+      "reason": "no contiguous upload segment >=930 days"
+    },
+    {
+      "plant_id": "15043387_u1",
+      "reason": "no contiguous upload segment >=930 days"
+    },
+    {
+      "plant_id": "15043389_u1",
+      "reason": "no contiguous upload segment >=930 days"
+    },
+    {
+      "plant_id": "15043391_u2",
+      "reason": "no contiguous upload segment >=930 days"
+    },
+    {
+      "plant_id": "15043391_u4",
+      "reason": "no contiguous upload segment >=930 days"
+    },
+    {
+      "plant_id": "15043401_u1",
+      "reason": "no contiguous upload segment >=930 days"
+    },
+    {
+      "plant_id": "15043411_u1",
+      "reason": "no contiguous upload segment >=930 days"
+    },
+    {
+      "plant_id": "15095380_u1",
+      "reason": "no contiguous upload segment >=930 days"
+    },
+    {
+      "plant_id": "15096129_u1",
+      "reason": "no contiguous upload segment >=930 days"
+    },
+    {
+      "plant_id": "15109994_u1",
+      "reason": "no contiguous upload segment >=930 days"
+    },
+    {
+      "plant_id": "15124860_u1",
+      "reason": "no contiguous upload segment >=930 days"
+    },
+    {
+      "plant_id": "15140067_u1",
+      "reason": "no contiguous upload segment >=930 days"
+    },
+    {
+      "plant_id": "15140095_u1",
+      "reason": "no contiguous upload segment >=930 days"
+    }
+  ],
+  "source_sha256": {
+    "datasets/hadong_daily_full.csv": "658eea52d18b6fa52a723db7a6b0dce80ef2628127c0b070ce47f261cf9731af",
+    "datasets/raw/wx_prevruns_daily.csv": "772304bd7bb692aa424d641cbc961bc44cf962974e5ff1d6ee857707467dd234",
+    "datasets/hadong_upload_forecast_jma.csv": "2583590f24a9e852837de1d44e899cf400a0f68d860fbbbbb46d76e94bfab151",
+    "datasets/multi_plant/uploads/15043384_u1_asos_lag1_20130102_20251231.csv": "210ba385456369f0a2894ebf93f7cdcff62cad0f9c78f4663876b764f091ee26",
+    "datasets/multi_plant/daily/15043384_u1.csv": "848e4cbc73a42945538029e7f15e5637fe145a5c8c020a99deb8ee3ee78dc187",
+    "datasets/multi_plant/uploads/15043385_u1_asos_lag1_20130102_20180517.csv": "c06a8ba15abc59a38735a3efd5b9c52b4ca5f7039ba1ff05a194d37347c2055b",
+    "datasets/multi_plant/daily/15043385_u1.csv": "960035cde26076390e4aac370e9f7522de1f9beacab6b151893d161de54d5d3a",
+    "datasets/multi_plant/uploads/15043386_u1_asos_lag1_20130102_20180517.csv": "1d7b609429099a905f04540e75593cf195243e12472d0190948f2ac067cb01be",
+    "datasets/multi_plant/daily/15043386_u1.csv": "61b756a1b6f4493375071c1ad307574f67da24ed51e6a34af49406105746c14c",
+    "datasets/multi_plant/uploads/15043388_u1_asos_lag1_20130102_20180517.csv": "2a4e2d60ec3993bc588833e922a09376be829c90bb969f0998c04c49e62b3ce5",
+    "datasets/multi_plant/daily/15043388_u1.csv": "dc9569c8deeb91b3f3b189a17696b4f66e4054fd4a749a7ced92b9d55a793dbc",
+    "datasets/multi_plant/uploads/15043391_u1_asos_lag1_20180101_20210820.csv": "0e3a02ba7dad9075d1ec2293389711ddd797938cb853b84b4f573d58ee7d87a5",
+    "datasets/multi_plant/daily/15043391_u1.csv": "28b25de53e7a56d6966d5f4f276d99d79c4151bdb81f939f6fe69843ab2347d2",
+    "datasets/multi_plant/uploads/15043391_u3_asos_lag1_20181101_20210820.csv": "a0a581e96bee474bfe9be04fec4cf2175df78985547a3151796eedbcde3895d5",
+    "datasets/multi_plant/daily/15043391_u3.csv": "f4ae1019955331f69cf147787020dbb705cee439faca80458244afef133de268",
+    "datasets/multi_plant/uploads/15043394_u1_asos_lag1_20160602_20251231.csv": "f66d41d3c9966f4f2e211426b48bc09da99654b37d64e0bc36ee6e831fa29710",
+    "datasets/multi_plant/daily/15043394_u1.csv": "4e53707d2c74135ede5f5fb30215908250f43455ea67c917ca52ff52b4408482",
+    "datasets/multi_plant/uploads/15043395_u1_asos_lag1_20210811_20240430.csv": "9ef892773ff6ed43ccf2239cc31aa6862185138058059e9eeedc3ebb6fe5228f",
+    "datasets/multi_plant/daily/15043395_u1.csv": "5125b8493c7f36417be987acf65ab96a22d4bc717f7ff37c4a7dcb9572d1fadf",
+    "datasets/multi_plant/uploads/15043396_u1_asos_lag1_20210801_20251231.csv": "648d6b84b9c97279d8a17e6bc76693b7c9cdf8107d343e82aac245c6e8b64c2e",
+    "datasets/multi_plant/daily/15043396_u1.csv": "df74635790650c68ee53850eca5599cca5d590925f9629bfcb384b0427cb0e85",
+    "datasets/multi_plant/uploads/15043399_u1_asos_lag1_20170419_20251231.csv": "d8e648d090c4deb3ebec8dc543a2557f216553d38374e74feca874837d9b6f74",
+    "datasets/multi_plant/daily/15043399_u1.csv": "c179f72c3c3e3e39b4aea7e301b4d76b93749a9b6a49fd06805df88bf1f051d4",
+    "datasets/multi_plant/uploads/15043400_u1_asos_lag1_20180401_20251231.csv": "7195f022949b4ba2be8ef6354abb5091ebbd86ac13502e871fe335eedfabedc2",
+    "datasets/multi_plant/daily/15043400_u1.csv": "edf431609741501e2be1e92dc066c3699be61b3eaa25199cdca9d84f1a7d0255",
+    "datasets/multi_plant/uploads/15043402_u1_asos_lag1_20181125_20251231.csv": "799b63683b3bddddd77da83a1a7ec6a5f9b48984663de2da1572ab5cf8a723aa",
+    "datasets/multi_plant/daily/15043402_u1.csv": "50ac02eb1ba6395b669487fc17306324f736628e22372df7cac6850321eef680",
+    "datasets/multi_plant/uploads/15043404_u1_asos_lag1_20130102_20251231.csv": "fc82c83b1721a44fff5391dc164d81d0b5827fe06c999fa97239f37746d319c2",
+    "datasets/multi_plant/daily/15043404_u1.csv": "9442783cb577316a53f6322281f66749fdb43e6200fc419bddc22e3742fde11f",
+    "datasets/multi_plant/uploads/15043405_u1_asos_lag1_20130102_20251231.csv": "d1d7d7e534416e5e5ee031193a249293fcb946de456dd9a6888fff7a48547268",
+    "datasets/multi_plant/daily/15043405_u1.csv": "1964cc67a8ab8fc96ebe1b211af724081e9785066f19b245853db927819e9fb7",
+    "datasets/multi_plant/uploads/15043406_u1_asos_lag1_20130102_20251231.csv": "95dd43b0d549b4b77d76dd42bfb79a7cf5ebf1edaa30b7e15f0715dcf5a623ad",
+    "datasets/multi_plant/daily/15043406_u1.csv": "ea062dcce8bc80e30f3517eb65ffbcdcccb2948bcc7cef58c72870e4e8f8c2d6",
+    "datasets/multi_plant/uploads/15043407_u1_asos_lag1_20130102_20251231.csv": "1a1956f3c3852627f1a81d8a590862e596862977c612a3fa718a8dd291fd0aa8",
+    "datasets/multi_plant/daily/15043407_u1.csv": "4f4a6f4aedf692300cf2a72e25df355a9e05353f180f9c79ded42deb03995b17",
+    "datasets/multi_plant/uploads/15043407_u2_asos_lag1_20130102_20251231.csv": "69c1097860726749aec328b486ec886b254a7e14a8413655602c67ef6558c349",
+    "datasets/multi_plant/daily/15043407_u2.csv": "489fb0877e59316df1be0b09bbb5a9792f69b86833cb103a9aa7c8cce81f680d",
+    "datasets/multi_plant/uploads/15043407_u3_asos_lag1_20130102_20251231.csv": "2300e1b7f825c73fe17aa784aa22a9f3062fd92d3d84a35a787d838db9b59afe",
+    "datasets/multi_plant/daily/15043407_u3.csv": "7a5f0c1f3a35e7c903661b68548669b8a06235ef790d7ad7eed6c31c14a7058f",
+    "datasets/multi_plant/uploads/15043407_u4_asos_lag1_20171201_20251231.csv": "8194b3b5a06eddd91e58b694caf0dfe7783f8ee7cab20cca4bfa6f7cadc503be",
+    "datasets/multi_plant/daily/15043407_u4.csv": "f997fe7219c7befd6e23f0bec8acbd6c79bdd90d635d5dd07134c890cc9739e4",
+    "datasets/multi_plant/uploads/15043407_u5_asos_lag1_20180713_20251231.csv": "49746d9db1260f4fbf20aee47aca0d729b922bd18b424323be5b46c9e09ef133",
+    "datasets/multi_plant/daily/15043407_u5.csv": "c9a5589f9fb48d701300bd6535aa5c7a9ff2d5fc0dacf8d3f8593d534f1551bf",
+    "datasets/multi_plant/uploads/15043407_u6_asos_lag1_20201201_20251231.csv": "5eed4cece8d87f0f750b4f7caf821ddc01ee33f695bd2a5133ba449e28f94fc4",
+    "datasets/multi_plant/daily/15043407_u6.csv": "0575f3de41418e7434cde4da0fcb9dd4465de5334ca9a1a2d084c0cd9ae0792c",
+    "datasets/multi_plant/uploads/15043408_u1_asos_lag1_20130102_20251231.csv": "6bb6d0d4498b69c64f7daa946228c4c7489fcd57a1a1c4ba1aa32c86f4e947c7",
+    "datasets/multi_plant/daily/15043408_u1.csv": "22de8a86e120309e481a84c0a8ced67e3fc98260e33b6392449e310a5feaf6f2",
+    "datasets/multi_plant/uploads/15095374_u1_asos_lag1_20210501_20251231.csv": "38ac9ef2b575dcdb97490781f25eb5d868ee6618909295fa320aacc9323fb74b",
+    "datasets/multi_plant/daily/15095374_u1.csv": "be0e02de4fde9a2e5d73881059e8e87c9a5518f44af5efdec201bd6f0e7f58af",
+    "datasets/multi_plant/uploads/15095404_u1_asos_lag1_20211204_20251231.csv": "3a9d6fb2a00c78c36ef672f7d8823df320f89841bf23b9eca37bc8ffefe51bc6",
+    "datasets/multi_plant/daily/15095404_u1.csv": "4c57a5b0aea026fc3def0795dc5d3b44d887bea52c42dc7c2e8dabbc29f99da7",
+    "datasets/multi_plant/uploads/15096126_u1_asos_lag1_20191203_20240229.csv": "779cd89c11f12a2622db9ddc37ca6f8a46dce17a6655cb7136c99592a29dc86a",
+    "datasets/multi_plant/daily/15096126_u1.csv": "cb898d8f133d8cc20a314510c9cbf4b51f35f56f67195b46fc639fdf4ab52898",
+    "datasets/multi_plant/uploads/15096131_u1_asos_lag1_20201205_20251231.csv": "c83182c5039da4623b112259fdffebc321b9ccd3e79e52301ed395d8df8f6ff2",
+    "datasets/multi_plant/daily/15096131_u1.csv": "4f030804a957b35f1e5475a019f332693c65f2db9714b3c7a93a7fec1ff6a2fb",
+    "datasets/multi_plant/uploads/15096132_u1_asos_lag1_20191225_20251231.csv": "ff0637041301fb52008f27e610450970768db24231823e2b5dc82fa91ff79377",
+    "datasets/multi_plant/daily/15096132_u1.csv": "9b82f73d7aa924756791929cb6ec7c1407589ead88d4bcbb23ae9a24481240b4",
+    "datasets/multi_plant/uploads/15096134_u1_asos_lag1_20210209_20251231.csv": "227afd129e978d08b9b84713ce05196230b6f894720f6b8672c7da245d6c7ec7",
+    "datasets/multi_plant/daily/15096134_u1.csv": "df0f25a137b7caf0fc425f7ef35f1069b17cf53e40fdad0d8e781979a061e963",
+    "datasets/multi_plant/uploads/15096136_u1_asos_lag1_20210504_20251231.csv": "54ca1e12ebcc9e9d895c15766f041ae6954c2babd3f7399e734312f22369b97c",
+    "datasets/multi_plant/daily/15096136_u1.csv": "f413dc92f82f54e97520473f0a025d794d5e861495ca33f477fa750d55000a36",
+    "datasets/multi_plant/uploads/15109998_u1_asos_lag1_20210501_20240229.csv": "e2989872243a4ff559aad103a9174a6ad2f9a0905b3de9d0548b5468bce94c67",
+    "datasets/multi_plant/daily/15109998_u1.csv": "947f595b3febc5f0399043226431aeb752c2775902e8cfad68fbee7826861118",
+    "datasets/multi_plant/uploads/15109999_u1_asos_lag1_20210823_20251231.csv": "92d55572721b06bea040cb8f0861733100ec5e7ffb5d28e9c8ede55ea03b703a",
+    "datasets/multi_plant/daily/15109999_u1.csv": "659fd21d6d4c485d4bb481a17d4e7c7dd1c9e9f1e38a0b9225bec8ff1558b55f",
+    "datasets/multi_plant/uploads/15124861_u1_asos_lag1_20211227_20251231.csv": "1798c3417af36a05933bb8ea3b12228590ab2c29167631a9967326a347a148da",
+    "datasets/multi_plant/daily/15124861_u1.csv": "7a5bb4128761e7287c46c66245d901df3da989230fa12e9c5e86afb777b62546"
+  },
+  "not_independent": "nearby plants and units share weather; heterogeneous plant test periods; this is retrospective, not a new blind dataset"
+}

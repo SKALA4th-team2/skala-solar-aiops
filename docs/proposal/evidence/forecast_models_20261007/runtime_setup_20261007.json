@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "github_main": "c16b0364927b38aec404c547872ca726b7d9d90e",
+  "requirements_versions": {
+    "fastapi": "0.141.1",
+    "uvicorn": "0.46.0",
+    "pydantic": "2.13.3",
+    "numpy": "2.4.4",
+    "tensorflow": "2.21.0",
+    "mlflow": "3.16.0",
+    "requests": "2.33.1",
+    "python-multipart": "0.0.20"
+  },
+  "keras": "3.15.1",
+  "prediction_kwh": 199.88755830574036,
+  "app_imported": true,
+  "preserved_training_environment": ".venv-models-20261007"
+}

@@ -1,0 +1,81 @@
+{
+  "passed": true,
+  "plants_checked": 17,
+  "registry_models_checked": 0,
+  "checks": [
+    {
+      "plant_id": "15043384_u1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043394_u1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043396_u1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043399_u1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043400_u1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043402_u1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043404_u1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043405_u1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043406_u1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043407_u1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043407_u2",
+      "passed": true
+    },
+    {
+      "plant_id": "15043407_u3",
+      "passed": true
+    },
+    {
+      "plant_id": "15043407_u4",
+      "passed": true
+    },
+    {
+      "plant_id": "15043407_u5",
+      "passed": true
+    },
+    {
+      "plant_id": "15043407_u6",
+      "passed": true
+    },
+    {
+      "plant_id": "15043408_u1",
+      "passed": true
+    },
+    {
+      "plant_id": "15095374_u1",
+      "passed": true
+    }
+  ],
+  "selected_model_counts": {
+    "Ensemble": 14,
+    "LSTM": 3
+  },
+  "lstm_beats_validation_selected_baseline_on_test": 16,
+  "selected_beats_validation_selected_baseline_on_test": 16
+}

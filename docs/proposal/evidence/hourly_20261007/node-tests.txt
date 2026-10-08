@@ -1,0 +1,23 @@
+✔ 90 consecutive replay days and supplied RMSE checkpoints agree (1.1731ms)
+✔ D forecast uses D-1 Volume, including denominator days (0.1595ms)
+✔ target-day actual and next-day forecast cannot leak into target prediction (0.339ms)
+✔ missing lookback row and zero denominator fail visibly (1.4486ms)
+✔ duplicate dates and invalid numeric values are rejected (0.1935ms)
+✔ regeneration is deterministic and leaves all surrounding code intact (1.8591ms)
+✔ individual selection does not include another plant (1.0213ms)
+✔ portfolio sums energy, averages irradiance and computes error after aggregation (0.1383ms)
+✔ unknown plant and mismatched dates cannot silently produce partial totals (0.186ms)
+✔ status reader only calls fixed read-only routes and strips unused fields (1.8508ms)
+✔ partial failure retains independent successful endpoint; malformed payload is rejected (0.2995ms)
+✔ network errors do not leak diagnostics; credentials or arbitrary base paths are rejected (0.4152ms)
+✔ upload forwards multipart to fixed endpoint, handles rejection, and blocks foreign origins (63.6669ms)
+✔ operation proxy validates batches, limits routes, and reads logs without HTML interpolation (79.2052ms)
+✔ saved dashboard routes forward only supported reads and validated single predictions (282.369ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 633.9708

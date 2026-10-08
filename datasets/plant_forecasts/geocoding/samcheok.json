@@ -1,0 +1,25 @@
+{
+  "url": "https://geocoding-api.open-meteo.com/v1/search?name=Samcheok&count=10&language=en&countryCode=KR",
+  "response": {
+    "results": [
+      {
+        "id": 1838069,
+        "name": "Samcheok",
+        "latitude": 37.44056,
+        "longitude": 129.17084,
+        "elevation": 23.0,
+        "feature_code": "PPL",
+        "country_code": "KR",
+        "admin1_id": 1843125,
+        "admin2_id": 8604737,
+        "timezone": "Asia/Seoul",
+        "population": 42145,
+        "country_id": 1835841,
+        "country": "South Korea",
+        "admin1": "Gangwon-do",
+        "admin2": "Samcheok-si"
+      }
+    ],
+    "generationtime_ms": 0.29349327
+  }
+}

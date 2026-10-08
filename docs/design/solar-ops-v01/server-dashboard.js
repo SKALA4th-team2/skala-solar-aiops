@@ -3,7 +3,7 @@
   const element = id => document.getElementById(id);
   const display = value => value === null || value === undefined ? '—' : typeof value === 'object' ? JSON.stringify(value) : String(value);
   async function query(path, payload) {
-    const response = await fetch(`/preview-api/dashboard/${path}`, { ...(payload ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) } : {}), signal: AbortSignal.timeout(20000) });
+    const response = await fetch(`/preview-api/dashboard/${path}${path.includes("?")?"&":"?"}plant_id=${encodeURIComponent(window.SolarLive.plant())}`, { ...(payload ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) } : {}), signal: AbortSignal.timeout(20000) });
     if (!response.ok) throw new Error('조회 불가 · API 연결/지원 여부 확인');
     return response.json();
   }
@@ -49,13 +49,13 @@
   element('inspect-server').addEventListener('click', inspect);
   element('server-window').addEventListener('change', inspect);
   element('server-resource').addEventListener('change', () => { element('server-window').hidden = element('server-resource').value !== 'timeseries'; inspect(); });
-  function generate() {
-    let level = Math.log(165);
-    const sequence = Array.from({ length: 20 }, () => {
-      level += Math.sqrt(-2 * Math.log(1 - Math.random())) * Math.cos(2 * Math.PI * Math.random()) * .012;
-      return { close: Number(Math.exp(level).toFixed(2)), volume: Math.round(1250000 + (Math.random() - .5) * 300000) };
-    });
-    element('predict-input').value = JSON.stringify({ sequence }, null, 2);
+  async function generate() {
+    try {
+      const response=await fetch(`/ui/sample?plant_id=${encodeURIComponent(window.SolarLive.plant())}`);
+      const body=await response.json();if(!response.ok)throw new Error(body.detail);
+      element('predict-input').value=JSON.stringify(body.prediction,null,2);
+      element('predict-status').textContent='실제 자료의 마지막 20일 · 날짜와 예보 포함';
+    }catch(error){element('predict-status').textContent=error.message;}
   }
   element('generate-sample').addEventListener('click', generate);
   element('run-predict').addEventListener('click', async event => {
@@ -63,7 +63,7 @@
     try {
       let payload;
       try { payload = JSON.parse(element('predict-input').value); } catch { throw new Error('JSON 형식 확인 필요'); }
-      if (!Array.isArray(payload?.sequence) || payload.sequence.length !== 20 || !payload.sequence.every(row => row && Number.isFinite(row.close) && row.close > 0 && Number.isInteger(row.volume) && row.volume >= 0)) throw new Error('입력 20개 · close > 0 · volume은 0 이상 정수');
+      if (!Array.isArray(payload?.sequence) || payload.sequence.length !== 20 || !payload.sequence.every(row => row && Number.isFinite(row.close) && row.close >= 0 && Number.isFinite(row.volume) && row.volume >= 0 && row.volume <= 45 && /^\d{4}-\d{2}-\d{2}$/.test(row.date))) throw new Error('연속 날짜 20개 · 발전량 ≥ 0 · 예보 0~45 MJ/m²');
       const response = await query('predict', payload);
       if (!Number.isFinite(response.predicted_close)) throw new Error('예측 응답 형식 오류');
       element('predict-status').textContent = `예측값 ${response.predicted_close} · 모델 ${display(response.model_version)}`;
@@ -124,5 +124,14 @@
   element('refresh-interval').addEventListener('change', schedule);
   document.addEventListener('visibilitychange', schedule);
   window.addEventListener('pagehide', () => clearTimeout(timer));
-  generate(); schedule();
+  async function current(){
+    try{const model=await query('current');document.querySelector('.current-model-panel .status-badge').textContent=`운영 v${model.version}`;const summary=document.querySelector('.current-model-panel .model-summary');summary.replaceChildren();const dl=document.createElement('dl');dl.className='inspector-summary';pairs(dl,[['모델',model.name],['최초/배포 검증 RMSE',model.rmse],['상태',model.stage]]);summary.append(dl);}catch(error){document.querySelector('.current-model-panel .status-badge').textContent=error.message;}
+  }
+  document.querySelector('.current-model-panel .model-summary').replaceChildren();
+  document.querySelector('.model-panel tbody').replaceChildren();document.querySelector('.events-panel .event-list').replaceChildren();
+  document.querySelector('.current-model-panel .status-badge').textContent='조회 중';
+  document.querySelectorAll('.model-panel .panel-heading > span,.events-panel .panel-heading > span').forEach(e=>e.textContent='조회 중');
+  window.addEventListener('plantchange',()=>{generate();current();refreshHistory();});
+  window.addEventListener('hashchange',()=>{if(location.hash==='#history')refreshHistory();if(location.hash==='#service')current();});
+  generate();current();refreshHistory();schedule();
 })();
