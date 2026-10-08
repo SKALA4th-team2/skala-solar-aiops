@@ -83,3 +83,8 @@ prepare는 tools/hourly/candidates.json의 기존 승인 등록부와 원본 시
 [적용 기준 원문, 별표2 Ⅴ](https://www.kpx.or.kr/boardDownload.es?bid=0030&list_no=77795&seq=4). 규칙 적용 버전은 kpx-2026-07-25-scenario-v1이며 최신 개정 자동 반영은 하지 않는다.
 
 리뷰 보완: 인센티브 응답은 rule_profile=kpx-2026-07-25-scenario-v1, le4/le6 지표를 사용한다. 과거 날짜에도 이 규칙을 고정 적용하므로 과거 지급액 복원이 아니다. training_scope에 total_hours, training_overlap_hours, label을 제공하며 선택 구간의 학습 포함 여부를 표시한다. 감시 응답 state는 기존 작업의 실제 status를 유지한다. existing_job_terminal은 완료 작업 재조회로 신규 학습이 없다는 뜻이다.
+
+
+### 이력에서 운영 버전 전환
+
+이력·알림의 `운영 적용`은 기존 `POST /plants/{plant_id}/rollback`에 `{"version": 1}` 형식으로 요청한다. 검증을 통과한 저장 버전만 선택할 수 있고, 현재 버전에는 적용 버튼이 없다. 서버가 모델·스케일러를 검증하고 운영 포인터와 MLflow 상태를 갱신한다. 프리뷰도 동일 출처 POST만 전달한다.

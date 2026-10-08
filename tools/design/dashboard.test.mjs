@@ -136,3 +136,42 @@ test('saved dashboard routes forward only supported reads and validated single p
   assert.deepEqual(await (await predict(payload)).json(),{total_kwh:160,model_version:'test'});
   assert.deepEqual(calls, ['info','dataset','metrics','current','history','alerts','timeseries?window_sec=3600','predict'].map(key=>'/preview-api/dashboard/'+key));
 });
+
+test('batch proxy distinguishes input contract rejection from model readiness without exposing upstream details', async (t) => {
+  const { default: http } = await import('node:http');
+  let code = 422;
+  const upstream = http.createServer((req, res) => { req.resume(); res.writeHead(code, { 'Content-Type': 'application/json' }).end('{"detail":"private upstream detail"}'); });
+  await new Promise(resolve => upstream.listen(0, '127.0.0.1', resolve));
+  const preview = createPreviewServer(`http://127.0.0.1:${upstream.address().port}`);
+  await new Promise(resolve => preview.listen(0, '127.0.0.1', resolve));
+  t.after(() => { upstream.close(); preview.close(); });
+  const origin = `http://127.0.0.1:${preview.address().port}`;
+  const send = () => fetch(`${origin}/preview-api/batch-test`, { method: 'POST', headers: { Origin: origin, 'Content-Type': 'application/json' }, body: JSON.stringify({ prices: Array(41).fill(165) }) });
+  assert.deepEqual(await (await send()).json(), { error: 'upstream_input_mismatch' });
+  code = 503;
+  assert.deepEqual(await (await send()).json(), { error: 'upstream_model_unavailable' });
+});
+
+test('model switch forwards only same-origin POST with a positive integer version', async (t) => {
+  const { default: http } = await import('node:http');
+  const calls = [];
+  const upstream = http.createServer(async (req, res) => {
+    let body = ''; for await (const chunk of req) body += chunk;
+    calls.push({ path: req.url, body: JSON.parse(body) });
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ version: '1', previous_version: '2' }));
+  });
+  await new Promise(resolve => upstream.listen(0, '127.0.0.1', resolve));
+  const preview = createPreviewServer(`http://127.0.0.1:${upstream.address().port}`);
+  await new Promise(resolve => preview.listen(0, '127.0.0.1', resolve));
+  t.after(() => { upstream.close(); preview.close(); });
+  const origin = `http://127.0.0.1:${preview.address().port}`;
+  const url = `${origin}/plants/hadong-sewage/rollback`;
+  const send = (body, site = origin) => fetch(url, { method: 'POST', headers: { Origin: site, 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  assert.equal((await fetch(url)).status, 405);
+  assert.equal((await send({ version: 1 }, 'https://foreign.example')).status, 403);
+  for (const body of [{ version: 0 }, { version: 1.5 }, { version: '1' }, { version: 1, force: true }, null]) assert.equal((await send(body)).status, 400);
+  assert.equal(calls.length, 0);
+  assert.deepEqual(await (await send({ version: 1 })).json(), { version: '1', previous_version: '2' });
+  assert.deepEqual(calls, [{ path: '/plants/hadong-sewage/rollback', body: { version: 1 } }]);
+});
