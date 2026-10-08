@@ -70,7 +70,7 @@ jobs:
       - name: Verify incentive boundary cases
         run: |
           python ../tools/submission/test_incentives.py
-          python -m pip install numpy
+          python -m pip install "numpy<3" "pydantic>=2,<3"
           python ../tools/submission/test_review_regressions.py
       - name: Build and start actual Docker container
         run: |
