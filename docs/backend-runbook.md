@@ -68,3 +68,16 @@ node ../tools/design/publish-runtime.mjs
 prepare는 tools/hourly/candidates.json의 기존 승인 등록부와 원본 시간별 실적·JMA 보관 파일을 필요로 한다. train은 완료 result.json을 재사용한다. 처음부터 다시 실험하려면 별도 실행 디렉터리로 코드를 구성하고 기존 증빙을 보존한다. finalize는 품질 통과 모델만 운영 목록에 반영한다. verify는 운영 모델을 읽고 별도 runtime-verify-*에 실제 재학습을 수행해 운영 가중치를 바꾸지 않는다. 생성 증빙은 docs/proposal/evidence/hourly_20261007/이다.
 
 다른 PC에서는 [제출 안내](submission/README.md)에 따라 seed ZIP과 SHA256 manifest를 함께 설치한다. 실행기가 해당 PC 경로의 MLflow에 모델을 다시 등록한다. 모델과 운영 DB는 Git에서 제외하므로 clone 후 seed 설치가 필요하다. Docker 명령은 `docker compose -f serving_app/docker-compose.yml up --build`이며 포트는 8099다. GitHub Actions의 Linux Docker에서 실제 빌드·31개 예측·자동 재학습·롤백·재시작 후 예측 기록 보존을 확인했다. 실행 근거와 모델 묶음은 [제출 안내](submission/README.md)를 따른다.
+
+
+## 인센티브 기준 참고 평가
+
+발전 현황 화면에서 선택 발전소와 최근 24/72/168시간에 대해 네 가지를 확인한다: 시간별 용량 기준 절대 예측오차율과 대상 시간 평균, 6%·8% 이하 시간 비율, 평가 대상·제외 시간, 기준단가를 적용한 모의 금액. 8% 이하 비율은 6% 이하 시간을 포함하며 분모는 평가 대상 시간이다. 평가 대상이 없으면 오차율과 비율은 미산정(null/—)이고 금액은 0원이다.
+
+2025-05 공개 전력시장운영규칙 별표2의 예측제도 기준을 고정한 시나리오다. 시간별 설비이용률 ≥10%에 대해 용량 기준 오차율 ≤6%는 4원/kWh, 6% 초과~8% 이하는 3원/kWh, 그 외는 0원/kWh를 적용한다. 실제 발전량(kWh)을 유효용량(kW) × 1시간으로 나눈 값이 설비이용률이다. 두 차수 예측이 있을 때는 각 절대오차율의 평균을 사용한다. 현재 화면은 제출 1·2차 기록이 없어 단일 예측을 두 차수의 대용으로 사용한다.
+
+실적 발전량을 거래량의 대용으로 쓰며, 출력제어·고장·정비 미제공 시 없음으로 가정한다. 기본 계수는 1.0이고 제주 입찰·예측제도 동시 참여 가정 시 0.5를 선택할 수 있다. 선택은 참여 사실을 확인하는 것이 아니다. 개소별 참고값으로, 서로 다른 지역·등록자원을 합쳐 참여자격을 확정하지 않는다. 현재 운영 모델의 과거 재생이므로 독립 평가나 실제 지급액으로 표시하지 않는다.
+
+구현: serving_app/hourly/incentives.py. `GET /ui/incentives?plant_id=hadong-sewage&hours=24&coefficient=1`로 같은 결과와 시간별 내역·가정을 조회한다. hours는 24/72/168, coefficient는 1/0.5만 허용한다. 기존 `/ui/energy`에도 기간별 incentives를 포함한다.
+
+[적용 기준 원문, 81~83쪽](https://marketrule.kpx.or.kr/lmxdata/attach/2025/5/upload_5127126665285383397_p3.pdf). 규칙 적용 버전은 kpx-2025-05-scenario-v1이며 최신 개정 자동 반영은 하지 않는다.

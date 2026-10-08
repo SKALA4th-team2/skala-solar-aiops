@@ -17,6 +17,7 @@ from serving_app.hourly.schemas import Predict,Batch,Rollback,Portfolio
 from serving_app.hourly.data import parse_csv,rows_for,arrays,sample
 from serving_app.hourly.policy import monitor,enqueue
 from serving_app.hourly.model import CONTRACT
+from serving_app.hourly.incentives import evaluate as evaluate_incentives
 import numpy as np
 
 if rt.CONTRACT!=CONTRACT:raise RuntimeError('Set SOLAR_MODEL_CONTRACT='+CONTRACT)
@@ -107,7 +108,14 @@ def energy(plant_id:str=rt.DEFAULT_PLANT):
     except (ValueError,FileNotFoundError) as exc:raise HTTPException(409,str(exc)) from exc
     x,y,times=arrays(rows,m.scaler['capacity_kw']);p=m.predict_x(x)
     records=[dict(date=t,timestamp=t,actual=float(a),predicted=float(b),irradiance=float(r['shortwave_radiation'])) for t,a,b,r in zip(times,y.ravel(),p.ravel(),rows[24:])]
-    return dict(plant=plant(plant_id),records=records,model_version=m.version,forecast=[dict(timestamp=r['timestamp'],predicted_kwh=r['predicted']) for r in records[-24:]],forecast_total_kwh=sum(r['predicted'] for r in records[-24:]),source=source,quality_scope='현재 모델의 과거 자료 재생 · 독립 평가 성능은 모델 검증 지표 참조',heldout=m.manifest['evaluation'])
+    return dict(plant=plant(plant_id),records=records,model_version=m.version,forecast=[dict(timestamp=r['timestamp'],predicted_kwh=r['predicted']) for r in records[-24:]],forecast_total_kwh=sum(r['predicted'] for r in records[-24:]),source=source,quality_scope='현재 모델의 과거 자료 재생 · 독립 평가 성능은 모델 검증 지표 참조',heldout=m.manifest['evaluation'],incentives={str(hours):evaluate_incentives(records[-hours:],plant(plant_id)['capacity_kw']) for hours in (24,72,168)})
+
+@app.get('/ui/incentives')
+def incentives(plant_id:str=rt.DEFAULT_PLANT,hours:int=Query(24,ge=24,le=168),coefficient:float=Query(1)):
+    if hours not in (24,72,168) or coefficient not in (1,.5):raise HTTPException(422,'hours: 24/72/168; coefficient: 1/0.5')
+    data=energy(plant_id)
+    report=evaluate_incentives(data['records'][-hours:],data['plant']['capacity_kw'],coefficient)
+    return dict(report,plant_id=plant_id,model_version=data['model_version'],data_source=data['source'],quality_scope=data['quality_scope'])
 
 @app.post('/data/upload')
 async def upload(plant_id:str=Form(...),file:UploadFile=File(...)):
