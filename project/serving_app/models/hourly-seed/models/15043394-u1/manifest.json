@@ -1,0 +1,59 @@
+{
+  "plant_id": "15043394-u1",
+  "train_end": "2026-02-27T23:00:00+09:00",
+  "trained_through": "2026-02-27",
+  "hourly_source": "datasets\\hourly\\plants\\15043394-u1.csv",
+  "source_sha256": "1272fa4c908df5bdde5716534a110ea7bc48bd6c1db8d7253fd3ec63b7ba64fc",
+  "capacity_kw": 200.0,
+  "features": [
+    "lag24_generation_fraction",
+    "radiation_kw_m2",
+    "temperature_40c",
+    "cloud_fraction",
+    "wind_30kmh",
+    "hour_sin",
+    "hour_cos",
+    "year_sin",
+    "year_cos"
+  ],
+  "radiation_coefficient": 0.14372727934498913,
+  "forecast_lead_hours": 48,
+  "interval": "start timestamp [t,t+1h), Asia/Seoul",
+  "evaluation": {
+    "n_hours": 8712,
+    "n_days": 363,
+    "rmse_kwh": 17.575972781992938,
+    "mae_kwh": 8.789203817113165,
+    "bias_pct": -11.732587664818455,
+    "capacity_nrmse_pct": 8.787986390996469,
+    "daylight_rmse_kwh": 25.65839290868079,
+    "limit_kwh": 20.08521026950754,
+    "passed": true,
+    "policy": "hourly-v1: n>=180days; RMSE<=.95 lag24 and <=1.05 radiation; abs bias<=15; daylight<=1.05 radiation"
+  },
+  "evaluation_model": "evaluation.keras through 2024-12-31",
+  "release_uses_all_valid_data": true,
+  "publication_cutoff_verified": false,
+  "regional_weather_proxy": true,
+  "contract": "solar_hourly_24_jma_day2_v1",
+  "version": "1",
+  "model_name": "solar-hourly-15043394-u1",
+  "run_id": "5cafab664e4d4727b2dc9c62bf6909a8",
+  "gate": {
+    "n_hours": 8712,
+    "n_days": 363,
+    "rmse_kwh": 17.575972781992938,
+    "mae_kwh": 8.789203817113165,
+    "bias_pct": -11.732587664818455,
+    "capacity_nrmse_pct": 8.787986390996469,
+    "daylight_rmse_kwh": 25.65839290868079,
+    "limit_kwh": 20.08521026950754,
+    "passed": true,
+    "policy": "hourly-v1: n>=180days; RMSE<=.95 lag24 and <=1.05 radiation; abs bias<=15; daylight<=1.05 radiation"
+  },
+  "created_at": "2026-10-07T14:05:32.051497+00:00",
+  "hashes": {
+    "model.keras": "1d6132f4abce0b59fefeb083e6e3ef7a704307c98ff42c6350de95c5a8ea8bd4",
+    "scaler.pkl": "6b09d006398980cfd399d93389a913f5296b1d93a716e003ae005d49d4d20024"
+  }
+}
