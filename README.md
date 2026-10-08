@@ -10,14 +10,16 @@ SKALA 모델 서빙·AIOps 미니 프로젝트. **31개 발전소별 LSTM이 1�
 - 업로드 → 시간별 검사 → 조건부 재학습 큐 → 실제 LSTM 학습 → 성능 게이트 → 버전 교체·롤백.
 - 프론트: 24/72/168시간 차트, 대상일 24시간 예측표, CSV 업로드·예측 테스트·AIOps·모델 이력.
 
-모든 명령은 project/에서 실행한다. 기존 Python 3.11 가상환경이 준비되어 있다.
+모든 명령은 project/에서 실행한다. 최초 실행 PC에서는 Python 3.11 가상환경과 의존성을 설치한다. 승인된 모델 31개는 저장소에 포함되어 별도 ZIP 다운로드가 필요 없다.
 
 ```powershell
 cd project
+py -3.11 -m venv .venv
+.venv\Scripts\python -m pip install -r requirements.txt
 .venv\Scripts\python -X utf8 scripts/run_backend.py
 ```
 
-화면 http://127.0.0.1:8077/ , API http://127.0.0.1:8077/docs . 최초 설치와 다른 PC 이전은 [운영 안내](docs/backend-runbook.md)를 따른다. **Git pull만으로 모델이 설치되지 않는다.** [모델 다운로드·설치](docs/submission/README.md#팀원-최초-실행-모델-다운로드-필수)를 먼저 수행한다. 모델·DB·업로드는 Git에서 제외한다.
+화면 http://127.0.0.1:8077/ , API http://127.0.0.1:8077/docs . 최초 설치와 다른 PC 이전은 [운영 안내](docs/backend-runbook.md)를 따른다. **clone/pull에 승인 모델과 스케일러가 포함된다.** 최초 실행 시 현재 PC의 MLflow에 자동 등록하며 시간이 걸릴 수 있다. 운영 DB·로그·업로드는 Git에서 제외한다.
 
 [채택 결정 0014](docs/decisions/0014-hourly-forecast-and-aiops.md) · [시간별 데이터](datasets/hourly/README.md) · [검증 결과](docs/proposal/evidence/hourly_20261007/README.md) · [API 명세](docs/proposal/5-api-spec.md) · [기획서](docs/proposal/README.md)
 

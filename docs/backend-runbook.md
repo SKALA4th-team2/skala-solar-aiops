@@ -1,6 +1,6 @@
 # 시간별 백엔드·프론트 운영 안내
 
-현재 기본 서비스는 **31개소 시간별 LSTM**이다. [결정 0014](decisions/0014-hourly-forecast-and-aiops.md)가 이전 일별 계약을 대체한다. 모델과 스케일러는 이미 이 PC에 생성되어 있다.
+현재 기본 서비스는 **31개소 시간별 LSTM**이다. [결정 0014](decisions/0014-hourly-forecast-and-aiops.md)가 이전 일별 계약을 대체한다. 승인된 모델과 스케일러는 저장소의 hourly-seed에 포함되어 있다.
 
 ## 실행
 
@@ -67,7 +67,7 @@ node ../tools/design/publish-runtime.mjs
 
 prepare는 tools/hourly/candidates.json의 기존 승인 등록부와 원본 시간별 실적·JMA 보관 파일을 필요로 한다. train은 완료 result.json을 재사용한다. 처음부터 다시 실험하려면 별도 실행 디렉터리로 코드를 구성하고 기존 증빙을 보존한다. finalize는 품질 통과 모델만 운영 목록에 반영한다. verify는 운영 모델을 읽고 별도 runtime-verify-*에 실제 재학습을 수행해 운영 가중치를 바꾸지 않는다. 생성 증빙은 docs/proposal/evidence/hourly_20261007/이다.
 
-다른 PC에서는 [제출 안내](submission/README.md)에 따라 seed ZIP과 SHA256 manifest를 함께 설치한다. 실행기가 해당 PC 경로의 MLflow에 모델을 다시 등록한다. 모델과 운영 DB는 Git에서 제외하므로 clone 후 seed 설치가 필요하다. Docker 명령은 `docker compose -f serving_app/docker-compose.yml up --build`이며 포트는 8099다. GitHub Actions의 Linux Docker에서 실제 빌드·31개 예측·자동 재학습·롤백·재시작 후 예측 기록 보존을 확인했다. 실행 근거와 모델 묶음은 [제출 안내](submission/README.md)를 따른다.
+다른 PC에서는 저장소를 clone/pull하면 승인된 hourly-seed도 함께 받는다. 별도 ZIP 설치 없이 [제출 안내](submission/README.md)에 따라 실행한다. 실행기가 해당 PC 경로의 MLflow에 모델을 다시 등록한다. 승인 seed만 Git에 포함하며 운영 DB와 재학습 산출물은 제외한다. Docker 명령은 `docker compose -f serving_app/docker-compose.yml up --build`이며 포트는 8099다. GitHub Actions의 Linux Docker에서 실제 빌드·31개 예측·자동 재학습·롤백·재시작 후 예측 기록 보존을 확인했다. 실행 근거와 모델 묶음은 [제출 안내](submission/README.md)를 따른다.
 
 
 ## 인센티브 기준 참고 평가
