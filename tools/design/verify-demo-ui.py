@@ -19,6 +19,14 @@ with sync_playwright() as playwright:
     page.goto(base + '/index.html#energy')
     page.wait_for_selector('.chart-y-tick')
     page.evaluate('document.fonts.ready')
+    page.locator('[data-view="service"]').click()
+    page.wait_for_timeout(200)
+    with page.expect_response(lambda response: '/ui/energy?' in response.url):
+        page.locator('#plant-filter').select_option(index=1)
+    page.wait_for_timeout(200)
+    page.locator('[data-view="energy"]').click()
+    page.wait_for_function("document.querySelector('#overview-chart svg')?.viewBox.baseVal.width === document.querySelector('#overview-chart').clientWidth")
+    print('PASS: hidden-view plant change restores full chart width')
     for width in [1440, 1280, 1024, 768, 390, 320]:
         page.set_viewport_size({'width': width, 'height': 900})
         for period in [24, 72, 168]:

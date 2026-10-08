@@ -75,7 +75,10 @@ function chart(){
  const magnitude=10**Math.floor(Math.log10(rawStep)),step=([1,2,2.5,5,10].find(n=>n*magnitude>=rawStep)||10)*magnitude;
  const min=Math.floor(lower/step)*step,max=Math.ceil(upper/step)*step;
  const ticksY=Array.from({length:Math.round((max-min)/step)+1},(_,i)=>min+i*step);
- const host=$('#overview-chart'),w=Math.max(200,Math.round(host.clientWidth)),h=280;
+ const host=$('#overview-chart');
+ // Hidden views have no measurable width; redraw when the observer sees them again.
+ if(host.clientWidth===0)return;
+ const w=Math.max(200,Math.round(host.clientWidth)),h=280;
  const left=Math.max(48,...ticksY.map(n=>fmt(n).length*9+12)),right=w-16,top=24,bottom=232;
  const x=i=>left+i*(right-left)/Math.max(1,rows.length-1),y=n=>bottom-(n-min)/(max-min)*(bottom-top);
  const line=key=>{let connected=false;return rows.map((r,i)=>{if(!Number.isFinite(r[key])){connected=false;return '';}const point=`${connected?'L':'M'}${x(i)},${y(r[key])}`;connected=true;return point;}).join(' ');};
@@ -96,7 +99,7 @@ function chart(){
  $$('[data-period]').forEach(e=>{const selected=Number(e.dataset.period)===state.period;e.classList.toggle('selected',selected);e.setAttribute('aria-pressed',selected);});
 }
 let chartWidth=0;
-new ResizeObserver(entries=>{const width=Math.round(entries[0].contentRect.width);if(width>0&&width!==chartWidth){chartWidth=width;chart();}}).observe($('#overview-chart'));
+new ResizeObserver(entries=>{const width=Math.round(entries[0].contentRect.width);if(width!==chartWidth){chartWidth=width;if(width>0)chart();}}).observe($('#overview-chart'));
 function renderIncentives(){
  const report=state.data?.incentives?.[String(state.period)];$('#incentive-rows').replaceChildren();
  if(!report){['inc-error','inc-le4','inc-le6','inc-eligible','inc-excluded','inc-won'].forEach(k=>value(k,'—'));text('#incentive-period','인센티브 지표를 불러오지 못했습니다.');return;}
@@ -239,8 +242,40 @@ $('#drift-batch').onclick=async()=>{
  try{const jobs=await api(path('/jobs'));text('#simulation-result',JSON.stringify(jobs,null,2));text('#simulation-status',jobs[0]?`최근 작업 · ${jobLabels[jobs[0].status]||jobs[0].status}`:'재학습 작업 없음 · 현재 모델 유지');await operations();}
  catch(e){text('#simulation-status',`조회 실패 · ${e.message}`);}finally{button.disabled=false;}
 };
-$('#upload-button').onclick=()=>{stopFlowPreview();$('#upload-dialog').showModal();};$('#upload-close').onclick=()=>$('#upload-dialog').close();
-$('#upload-form').onsubmit=async event=>{event.preventDefault();const b=$('#upload-submit');b.disabled=true;text('#upload-status','업로드·검증 중…');try{const f=$('#upload-file').files[0];if(!f||f.size>5*1024*1024)throw Error('5MB 이하 CSV를 선택하세요.');const form=new FormData();form.append('plant_id',state.plant);form.append('file',f);const r=await api('/data/upload',{method:'POST',body:form});text('#upload-status',`${r.rows}시간 등록 완료 · ${r.monitor.state}`);await loadEnergy();await operations();}catch(e){text('#upload-status',e.message);}finally{b.disabled=false;}};
+let uploadFile=null,uploadPending=false,uploadDragDepth=0;
+function selectUploadFiles(files){
+ if(uploadPending)return;
+ uploadFile=null;$('#upload-file').value='';text('#upload-status','');
+ const file=files[0];
+ if(files.length!==1||!file||!/\.csv$/i.test(file.name)||file.size===0||file.size>5*1024*1024){
+  text('#upload-status','비어 있지 않은 5MB 이하 CSV 파일 1개를 선택하세요.');
+ }else uploadFile=file;
+ $('#upload-selection').hidden=!uploadFile;
+ text('#upload-filename',uploadFile?.name||'');text('#upload-filesize',uploadFile?`${Math.max(1,Math.ceil(uploadFile.size/1024)).toLocaleString()} KB`:'');
+ $('#upload-submit').disabled=!uploadFile;
+}
+$('#upload-pick').onclick=()=>$('#upload-file').click();
+$('#upload-file').onchange=e=>selectUploadFiles(Array.from(e.target.files));
+$('#upload-remove').onclick=()=>{selectUploadFiles([]);text('#upload-status','');};
+const uploadDropzone=$('#upload-dropzone');
+uploadDropzone.addEventListener('dragenter',e=>{e.preventDefault();if(!uploadPending){uploadDragDepth++;uploadDropzone.classList.add('drag-over');}});
+uploadDropzone.addEventListener('dragover',e=>{e.preventDefault();e.dataTransfer.dropEffect=uploadPending?'none':'copy';});
+uploadDropzone.addEventListener('dragleave',e=>{e.preventDefault();if(--uploadDragDepth<=0){uploadDragDepth=0;uploadDropzone.classList.remove('drag-over');}});
+uploadDropzone.addEventListener('drop',e=>{e.preventDefault();uploadDragDepth=0;uploadDropzone.classList.remove('drag-over');selectUploadFiles(Array.from(e.dataTransfer.files));});
+$('#upload-button').onclick=()=>{stopFlowPreview();$('#upload-submit').disabled=!uploadFile;$('.upload-format').open=true;$('#upload-dialog').showModal();};
+$('#upload-close').onclick=()=>{if(!uploadPending)$('#upload-dialog').close();};
+$('#upload-dialog').addEventListener('cancel',e=>{if(uploadPending)e.preventDefault();});
+$('#upload-form').onsubmit=async event=>{
+ event.preventDefault();if(uploadPending||!uploadFile)return;
+ uploadPending=true;const plant=state.plant;
+ for(const id of ['upload-submit','upload-pick','upload-remove','upload-close'])$('#'+id).disabled=true;
+ $('#upload-dropzone').setAttribute('aria-busy','true');text('#upload-status','업로드·검증 중…');
+ try{
+  const form=new FormData();form.append('plant_id',plant);form.append('file',uploadFile);
+  const r=await api('/data/upload',{method:'POST',body:form});text('#upload-status',`${r.rows}시간 등록 완료 · ${r.monitor.state}`);await loadEnergy();await operations();
+ }catch(e){text('#upload-status',e.message);}
+ finally{uploadPending=false;$('#upload-dropzone').removeAttribute('aria-busy');for(const id of ['upload-pick','upload-remove','upload-close'])$('#'+id).disabled=false;$('#upload-submit').disabled=!uploadFile;}
+};
 function inspectorEntries(resource,d){
  const shown=n=>Number.isFinite(n)?fmt(n):'—';
  if(resource==='metrics')return [['요청 수',`${shown(d.requests)}건`],['오류 수',`${shown(d.errors)}건`],['평균 응답시간',d.mean_latency_ms==null?'아직 요청 없음':`${shown(d.mean_latency_ms)} ms`]];
