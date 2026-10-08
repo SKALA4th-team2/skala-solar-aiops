@@ -41,7 +41,6 @@ docs/proposal/evidence/aiops_backend_20261007/*.log
 
 # Hourly generated data and native model artifacts
 project/data/runtime-hourly/
-project/serving_app/models/hourly-seed/
 datasets/hourly/plants/
 docs/proposal/evidence/hourly_20261007/**/*.keras
 docs/proposal/evidence/hourly_20261007/**/*.pkl
@@ -63,3 +62,15 @@ docs/proposal/evidence/submission_20261008/*.log
 
 # Inspection-only copies of upstream branches
 docs/proposal/evidence/forecast_models_20261007/github_snapshot/
+
+# Team decision 0016: only approved portable seeds are versioned.
+project/serving_app/models/hourly-seed/**
+!project/serving_app/models/hourly-seed/catalog.json
+!project/serving_app/models/hourly-seed/portfolio_quality.json
+!project/serving_app/models/hourly-seed/history/
+!project/serving_app/models/hourly-seed/history/*.csv
+!project/serving_app/models/hourly-seed/models/
+!project/serving_app/models/hourly-seed/models/*/
+!project/serving_app/models/hourly-seed/models/*/model.keras
+!project/serving_app/models/hourly-seed/models/*/scaler.pkl
+!project/serving_app/models/hourly-seed/models/*/manifest.json

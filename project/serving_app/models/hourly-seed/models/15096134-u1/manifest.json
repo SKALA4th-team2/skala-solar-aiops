@@ -1,0 +1,59 @@
+{
+  "plant_id": "15096134-u1",
+  "train_end": "2026-02-27T23:00:00+09:00",
+  "trained_through": "2026-02-27",
+  "hourly_source": "datasets\\hourly\\plants\\15096134-u1.csv",
+  "source_sha256": "79cd25399f480db227c8fb02639277772bb3cd0a9c5ef20ee2e366f03ba3c83b",
+  "capacity_kw": 995.0,
+  "features": [
+    "lag24_generation_fraction",
+    "radiation_kw_m2",
+    "temperature_40c",
+    "cloud_fraction",
+    "wind_30kmh",
+    "hour_sin",
+    "hour_cos",
+    "year_sin",
+    "year_cos"
+  ],
+  "radiation_coefficient": 0.8122096427377997,
+  "forecast_lead_hours": 48,
+  "interval": "start timestamp [t,t+1h), Asia/Seoul",
+  "evaluation": {
+    "n_hours": 8712,
+    "n_days": 363,
+    "rmse_kwh": 85.68794902232369,
+    "mae_kwh": 41.80222436584984,
+    "bias_pct": -0.971945433907766,
+    "capacity_nrmse_pct": 8.611854173097859,
+    "daylight_rmse_kwh": 124.5166485211823,
+    "limit_kwh": 124.00617058712369,
+    "passed": true,
+    "policy": "hourly-v1: n>=180days; RMSE<=.95 lag24 and <=1.05 radiation; abs bias<=15; daylight<=1.05 radiation"
+  },
+  "evaluation_model": "evaluation.keras through 2024-12-31",
+  "release_uses_all_valid_data": true,
+  "publication_cutoff_verified": false,
+  "regional_weather_proxy": true,
+  "contract": "solar_hourly_24_jma_day2_v1",
+  "version": "1",
+  "model_name": "solar-hourly-15096134-u1",
+  "run_id": "2d3f826922e342b8b480ca4cc499780e",
+  "gate": {
+    "n_hours": 8712,
+    "n_days": 363,
+    "rmse_kwh": 85.68794902232369,
+    "mae_kwh": 41.80222436584984,
+    "bias_pct": -0.971945433907766,
+    "capacity_nrmse_pct": 8.611854173097859,
+    "daylight_rmse_kwh": 124.5166485211823,
+    "limit_kwh": 124.00617058712369,
+    "passed": true,
+    "policy": "hourly-v1: n>=180days; RMSE<=.95 lag24 and <=1.05 radiation; abs bias<=15; daylight<=1.05 radiation"
+  },
+  "created_at": "2026-10-07T14:09:16.516190+00:00",
+  "hashes": {
+    "model.keras": "a720f7eeb718b37d7a74c9d6c6594e6314afaea0602931a3e288506166a866a3",
+    "scaler.pkl": "69b20dcbc8e69faa908b721c42c4b57c16134842321e86d6a21247b07d1337dd"
+  }
+}

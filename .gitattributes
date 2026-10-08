@@ -12,3 +12,6 @@
 *.pdf binary
 *.pkl binary
 *.keras binary
+
+# Preserve portable seed bytes and recorded hashes across operating systems.
+project/serving_app/models/hourly-seed/** -text

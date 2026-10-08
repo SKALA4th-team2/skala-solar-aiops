@@ -1,7 +1,7 @@
 name: Submission Docker verification
 on:
   push:
-    branches: [final]
+    branches: [main, final]
     paths:
       - 'project/**'
       - 'tools/hourly/**'
@@ -9,12 +9,19 @@ on:
       - 'datasets/multi_plant/raw/**'
       - 'datasets/plant_forecasts/raw/**'
       - '.github/workflows/submission.yml'
+  pull_request:
+    paths:
+      - 'project/**'
+      - 'tools/hourly/**'
+      - 'tools/submission/**'
+      - '.github/workflows/submission.yml'
   workflow_dispatch:
     inputs:
-      seed_run_id:
-        description: "Reuse the approved seed artifact from a completed run (serving-only verification)"
+      retrain:
+        description: "Recreate seeds from original sources instead of verifying committed models"
+        type: boolean
         required: false
-        default: ""
+        default: false
 permissions:
   contents: read
   actions: read
@@ -33,39 +40,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        if: inputs.seed_run_id == ''
         with:
           python-version: '3.11'
-          cache: pip
-          cache-dependency-path: project/requirements*.txt
-      - uses: actions/setup-python@v5
-        if: inputs.seed_run_id != ''
-        with:
-          python-version: '3.11'
-      - name: Download previously trained seed for serving-only verification
-        if: inputs.seed_run_id != ''
-        uses: actions/download-artifact@v4
-        with:
-          github-token: ${{ github.token }}
-          run-id: ${{ inputs.seed_run_id }}
-          pattern: solar-hourly-submission-*
-          merge-multiple: true
-          path: project/submission/import
-      - name: Install verified reused seed
-        if: inputs.seed_run_id != ''
-        run: |
-          python scripts/install_bundle.py submission/import/solar-hourly-seed.zip
-          cp submission/import/solar-hourly-seed.zip submission/
-          cp submission/import/solar-hourly-seed.zip.manifest.json submission/
       - name: Install training dependencies
-        if: inputs.seed_run_id == ''
+        if: inputs.retrain == true
         run: python -m pip install -r requirements-training.txt
       - name: Recreate hourly data and models from original sources
-        if: inputs.seed_run_id == ''
+        if: inputs.retrain == true
         run: |
           python ../tools/hourly/prepare.py
           python ../tools/hourly/train.py --workers 2
           python ../tools/hourly/finalize.py
+      - name: Verify approved seed integrity and package optional backup
+        run: |
+          python ../tools/submission/check_seed.py
           python ../tools/submission/package_models.py
       - name: Verify incentive boundary cases
         run: |
