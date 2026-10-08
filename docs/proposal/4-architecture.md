@@ -39,6 +39,6 @@ flowchart TD
 | 격리된 제출 시연 | 8078; data/runtime-submission; 합성 제어자료 표기 |
 | 컨테이너 | 8099; /runtime 볼륨; 동일 실행기 |
 
-Git에는 코드를 넣고 모델은 SHA가 포함된 별도seed ZIP으로 전달한다. 새 환경에서 MLflow를 다시 등록하므로 기존 PC의 절대경로 DB를 복사하지 않는다. Docker 이미지에는 seed를 넣되 운영 DB·업로드·기존 일별 seed·가상환경은 .dockerignore로 제외한다.
+팀 합의 결정0016에 따라 Git에 코드와 승인된 모델·스케일러·manifest·재생 이력을 함께 넣는다. seed ZIP은 선택적 백업 전달 수단이다. 새 환경에서 MLflow를 다시 등록하므로 기존 PC의 절대경로 DB를 복사하지 않는다. Docker 이미지에는 seed를 넣되 운영 DB·업로드·기존 일별 seed·가상환경은 .dockerignore로 제외한다.
 
 재현은 [제출 안내](../submission/README.md), 실제 실행 결과는 [제출 증빙](evidence/submission_20261008/)에서 확인한다. 외부 API 실시간 수집,중앙 MLflow 서버,메시지 브로커,장기 가용성 보장은 범위 밖이다.

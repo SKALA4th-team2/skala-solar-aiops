@@ -89,7 +89,7 @@ SKALA 「모델 서빙 및 AIOps 구성」 과정의 조별 미니 프로젝트 
 
 - 커밋은 `type(scope): 요약` 형식으로 쓴다. type 은 `feat` `fix` `docs` `chore` `refactor` `test`, scope 는 `serving` `mlops` `aiops` `data` `proposal` `docs` 등이다.
 - 스켈레톤 원본은 첫 커밋에 그대로 있다. 태양광용 수정은 그 위의 변경 내역으로 남긴다.
-- 모델 파일, MLflow 기록, 로그, 업로드 파일은 커밋하지 않는다. `.gitignore` 가 막는다.
+- 팀 합의(결정0016)에 따라 승인된 배포용 `project/serving_app/models/hourly-seed/`의 모델 31개, 고정 스케일러, manifest, 등록부와 재생용 이력만 커밋한다. 모델·스케일러·manifest는 한 묶음으로 SHA와 승인 게이트를 검증한다. 재학습 중 생성되는 모델, MLflow 기록, 운영 DB, 로그, 업로드, API 키는 계속 제외한다. seed 갱신은 팀 검토 후 수행하며 실행 중 모델을 자동 커밋하지 않는다.
 - 원격 저장소는 비공개로 만든다. 강사가 배포한 스켈레톤 코드가 들어 있고, 학습 목적으로만 쓰라는 조건이 붙어 있다.
 - 작업 흐름은 [`CONTRIBUTING.md`](CONTRIBUTING.md)에 있다.
 

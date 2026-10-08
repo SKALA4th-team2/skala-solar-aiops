@@ -1,0 +1,59 @@
+{
+  "plant_id": "15124861-u1",
+  "train_end": "2026-02-27T23:00:00+09:00",
+  "trained_through": "2026-02-27",
+  "hourly_source": "datasets\\hourly\\plants\\15124861-u1.csv",
+  "source_sha256": "ef928157c2b7a84613a87d9f0c107ac9ff56646fef33b45e8828790f20d65d6c",
+  "capacity_kw": 208.2,
+  "features": [
+    "lag24_generation_fraction",
+    "radiation_kw_m2",
+    "temperature_40c",
+    "cloud_fraction",
+    "wind_30kmh",
+    "hour_sin",
+    "hour_cos",
+    "year_sin",
+    "year_cos"
+  ],
+  "radiation_coefficient": 0.16683702575575396,
+  "forecast_lead_hours": 48,
+  "interval": "start timestamp [t,t+1h), Asia/Seoul",
+  "evaluation": {
+    "n_hours": 8712,
+    "n_days": 363,
+    "rmse_kwh": 16.419650407370167,
+    "mae_kwh": 7.960129074971839,
+    "bias_pct": -6.084852763281733,
+    "capacity_nrmse_pct": 7.886479542444845,
+    "daylight_rmse_kwh": 23.982910381152262,
+    "limit_kwh": 18.372515438027893,
+    "passed": true,
+    "policy": "hourly-v1: n>=180days; RMSE<=.95 lag24 and <=1.05 radiation; abs bias<=15; daylight<=1.05 radiation"
+  },
+  "evaluation_model": "evaluation.keras through 2024-12-31",
+  "release_uses_all_valid_data": true,
+  "publication_cutoff_verified": false,
+  "regional_weather_proxy": true,
+  "contract": "solar_hourly_24_jma_day2_v1",
+  "version": "1",
+  "model_name": "solar-hourly-15124861-u1",
+  "run_id": "144af99cbca94497bafbbdb196211a7e",
+  "gate": {
+    "n_hours": 8712,
+    "n_days": 363,
+    "rmse_kwh": 16.419650407370167,
+    "mae_kwh": 7.960129074971839,
+    "bias_pct": -6.084852763281733,
+    "capacity_nrmse_pct": 7.886479542444845,
+    "daylight_rmse_kwh": 23.982910381152262,
+    "limit_kwh": 18.372515438027893,
+    "passed": true,
+    "policy": "hourly-v1: n>=180days; RMSE<=.95 lag24 and <=1.05 radiation; abs bias<=15; daylight<=1.05 radiation"
+  },
+  "created_at": "2026-10-07T14:10:24.292964+00:00",
+  "hashes": {
+    "model.keras": "ba1c1fc0fbb0a28a504bf2c08eeee0185736eccb865dcf38f2dab555cd3778e3",
+    "scaler.pkl": "30a9f93cab8d4d66ab24b640bb0cfcbe90369f6847c1a0b246dd992fb4945eda"
+  }
+}
