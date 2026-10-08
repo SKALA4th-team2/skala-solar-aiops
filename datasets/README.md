@@ -156,3 +156,9 @@ python tools/multi_plant/convert_kospo_raw.py --raw datasets/raw/data_15043409.c
 ## 2026-10-07 백엔드 통합
 
 운영 등록부는 bootstrap.py가 source_id에서 생성한다. 업로드의 Volume은 d+1 예보, Expected는 d 관측 일사량으로 추정한 사후 기대 발전량이다. 기대 발전량 계수는 개소별 2022–2023년 자료에 맞추고, PI 기준선은 2024년 마지막 365일에서 정한다. 결측·설비 이상은 제외하며 용량 미확인 개소는 보류한다.
+
+## 2026-10-08 PR의 데이터 보관 정책
+
+이 절이 위의 일별·확장 검토 당시 설명보다 우선한다. 시간별 재현을 위해 수집 원본과 출처 메타데이터를 비공개 Git에 보관한다. `multi_plant/raw/{source_id}.csv`별 출처·수집 시각·SHA·이용 조건은 동명 JSON 및 sources.json에, 예보 원본은 `plant_forecasts/raw/*.meta.json`에 기록한다. 남부발전 자료는 수집 당시 이용허락범위 제한 없음, Open-Meteo는 CC BY 4.0 출처표시 조건을 따른다. 세부 조건은 각 폴더 README를 따른다.
+
+`datasets/plants/generation/`과 `datasets/hourly/plants/`는 원본에서 재생성하므로 Git에서 제외한다. 기존 일별 `multi_plant/daily`, `uploads` 및 `plant_forecasts/daily`, `training`은 과거 검증의 고정 자료로 이 PR에서 유지하고 신규 시간별 가공본은 추가하지 않는다. 증빙 JSON·그림은 발표 재현 근거로 보관하고 모델·DB·로그는 제외한다. 저장소 용량 감소를 위한 과거 자료 이관은 팀 검토 사항이며 이 리뷰 수정에서 원자료를 삭제하지 않는다. 현행 재생성 경로는 tools/hourly/prepare.py이며 ASOS 일별 가공본은 시간별 모델 입력이 아니다.

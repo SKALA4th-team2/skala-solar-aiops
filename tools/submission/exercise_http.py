@@ -21,7 +21,7 @@ def main():
         before=json.loads((a.out/'before.json').read_text(encoding='utf-8'));stored=call('/predictions/'+before['prediction_id'])
         assert stored['response']==before
         save('restart-persistence.json',dict(preserved=True,prediction_id=before['prediction_id'],health=health));print('RESTART PERSISTENCE VERIFIED');return
-    assert health['demo_mode'],'Do not inject synthetic drift into production'
+    if not health['demo_mode']:raise RuntimeError('Do not inject synthetic drift into production')
     items=call('/plants');assert len(items)==31
     for entry in items:
         pid=entry['plant_id'];s=call('/ui/sample?plant_id='+pid);r=call('/predict',s['prediction']);assert len(r['predictions'])==24
@@ -49,6 +49,8 @@ def main():
     assert 'hourly_job_finished' in call('/logs/aiops-hourly.log')['content']
     rolled=call('/plants/'+pid+'/rollback',{'version':int(before['model_version'])});save('rollback.json',rolled)
     restored=call('/predict',request);save('restored.json',restored);assert restored['model_version']==before['model_version'] and restored['predictions']==before['predictions']
+    repeated=call('/predict/batch-test',dict(plant_id=pid,rows=rows));assert repeated['monitor']['state']=='succeeded' and repeated['monitor']['job']['id']==job_id
+    save('repeated-completed-job.json',repeated['monitor'])
     save('prediction-history.json',call('/predictions?plant_id='+pid))
     raw=io.StringIO();w=csv.DictWriter(raw,fieldnames=list(s['batch']['rows'][0]));w.writeheader();w.writerows(rows);(a.out/'synthetic-control.csv').write_text(raw.getvalue(),encoding='utf-8')
     save('summary.json',dict(passed=True,scope='isolated synthetic AIOps functionality, not forecast performance',plants_checked=31,before_version=before['model_version'],after_version=after['model_version'],rollback_version=restored['model_version'],prediction_persisted=True,invalid_422=True,worker_log=True,execution_unit=health['execution_unit']))
