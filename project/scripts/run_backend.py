@@ -2,9 +2,19 @@
 import argparse,os,subprocess,sys,time
 from pathlib import Path
 PROJECT=Path(__file__).resolve().parents[1]
+def configure_model_store():
+    from dotenv import dotenv_values
+    settings=dotenv_values(PROJECT/'.env')
+    os.environ.setdefault('SOLAR_MODEL_STORE',settings.get('SOLAR_MODEL_STORE') or 'disabled')
+    if os.environ['SOLAR_MODEL_STORE'] not in ('disabled','local','r2'):
+        raise ValueError('SOLAR_MODEL_STORE must be disabled, local or r2')
+    if settings.get('SOLAR_MODEL_ARCHIVE_DIR'):
+        os.environ.setdefault('SOLAR_MODEL_ARCHIVE_DIR',settings['SOLAR_MODEL_ARCHIVE_DIR'])
+
 def main():
     p=argparse.ArgumentParser();p.add_argument('--host',default='127.0.0.1');p.add_argument('--port',type=int,default=8077);a=p.parse_args()
     os.chdir(PROJECT)
+    configure_model_store()
     os.environ.setdefault('TF_ENABLE_ONEDNN_OPTS','0');os.environ.setdefault('TF_CPP_MIN_LOG_LEVEL','3')
     os.environ.setdefault('PYTHONUTF8','1')
     os.environ.setdefault('SOLAR_MODEL_CONTRACT','solar_hourly_24_jma_day2_v1')

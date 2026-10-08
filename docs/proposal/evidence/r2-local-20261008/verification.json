@@ -1,0 +1,11 @@
+{
+  "plant_id": "hadong-sewage",
+  "version": "3",
+  "verified_at": "2026-10-08T08:15:29.724378+00:00",
+  "backend": "r2",
+  "restored_from_r2": true,
+  "bundle_hashes_verified": true,
+  "predictions_identical": true,
+  "forecast_hours": 24,
+  "source_runtime_untouched": true
+}

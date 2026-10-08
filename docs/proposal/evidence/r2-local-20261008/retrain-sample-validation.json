@@ -1,0 +1,23 @@
+{
+  "synthetic": true,
+  "scope": "functional test only; not forecast performance",
+  "plant_id": "hadong-sewage",
+  "base_version": "1",
+  "csv_sha256": "2bfea15ba712993525b8801819292ab1fe953aca1bde2d8014f466019050880e",
+  "start": "2027-02-28T00:00:00+09:00",
+  "end": "2027-03-28T23:00:00+09:00",
+  "rows": 696,
+  "queue_validation": true,
+  "training_executed": true,
+  "candidate_file_created": true,
+  "gate": {
+    "passed": true,
+    "rmse_kwh": 4.467879366235363,
+    "limit_kwh": 5.463811556081687,
+    "incumbent_rmse_kwh": 6.556029156727577,
+    "validation_hours": 168,
+    "policy": "hourly-retrain-v1: <= initial gate and same-window incumbent"
+  },
+  "registry_and_r2_mocked": true,
+  "operational_runtime_untouched": true
+}
