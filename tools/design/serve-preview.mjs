@@ -41,7 +41,7 @@ export function createPreviewServer(apiBase) {
     response.setHeader('Cache-Control', 'no-store');
     const path = new URL(request.url, 'http://localhost').pathname;
     // The integrated frontend uses the same contracts as the live FastAPI app.
-    const direct = ['/plants','/ui/sample','/ui/energy','/data/status','/data/upload','/predict','/predict/batch-test','/jobs','/predictions','/logs','/preview-api/operations'].includes(path) || /^\/(jobs|logs|predictions)\/[a-zA-Z0-9_.-]+$/.test(path) || /^\/preview-api\/dashboard\/(info|dataset|metrics|current|history|alerts|timeseries|predict|predictions)$/.test(path);
+    const direct = ['/plants','/ui/sample','/ui/energy','/ui/incentives','/data/status','/data/upload','/predict','/predict/batch-test','/jobs','/predictions','/logs','/preview-api/operations'].includes(path) || /^\/(jobs|logs|predictions)\/[a-zA-Z0-9_.-]+$/.test(path) || /^\/preview-api\/dashboard\/(info|dataset|metrics|current|history|alerts|timeseries|predict|predictions)$/.test(path);
     if(direct){
       if(!base){response.writeHead(503,{'Content-Type':'application/json'}).end(JSON.stringify({error:'not_configured'}));return;}
       if(!['GET','POST'].includes(request.method)){response.writeHead(405).end();return;}

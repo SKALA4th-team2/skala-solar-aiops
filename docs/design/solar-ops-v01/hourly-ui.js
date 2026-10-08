@@ -52,11 +52,21 @@ function chart(){
  $('#overview-chart').innerHTML=`<svg viewBox="0 0 ${w} ${h}" style="width:100%;height:auto;min-height:180px" role="img" aria-label="시간별 실측과 LSTM 예측, 단위 kWh. 아래 시간별 기록에서 정확한 값을 확인할 수 있습니다."><text x="8" y="15">kWh</text>${grid}<polyline points="${points('predicted')}" fill="none" stroke="#bd7950" stroke-width="2" stroke-dasharray="5 4"/><polyline points="${points('actual')}" fill="none" stroke="#273e48" stroke-width="2"/>${ticks}</svg>`;
  text('[data-chart-range]',`${stamp(rows[0].timestamp)} – ${stamp(rows.at(-1).timestamp)}`);
  $('#generation-rows').innerHTML=rows.map(r=>`<tr><td>${esc(stamp(r.timestamp))}</td><td class="numeric">${fmt(r.actual)}</td><td class="numeric">${fmt(r.predicted)}</td><td class="numeric">${fmt(r.predicted-r.actual)}</td><td class="numeric">${fmt(r.irradiance)}</td></tr>`).join('');
- value('record-count',`${rows.length}시간`);value('rmse',fmt(Math.sqrt(rows.reduce((a,r)=>a+(r.predicted-r.actual)**2,0)/rows.length)));value('rmse-period',`최근 ${rows.length}시간 · 자료 재생`);
+ renderIncentives();value('record-count',`${rows.length}시간`);value('rmse',fmt(Math.sqrt(rows.reduce((a,r)=>a+(r.predicted-r.actual)**2,0)/rows.length)));value('rmse-period',`최근 ${rows.length}시간 · 자료 재생`);
  $$('[data-period]').forEach(e=>{const selected=Number(e.dataset.period)===state.period;e.classList.toggle('selected',selected);e.setAttribute('aria-pressed',selected);});
 }
+function renderIncentives(){
+ const report=state.data?.incentives?.[String(state.period)];$('#incentive-rows').replaceChildren();
+ if(!report){['inc-error','inc-le6','inc-le8','inc-eligible','inc-excluded','inc-won'].forEach(k=>value(k,'—'));text('#incentive-period','인센티브 지표를 불러오지 못했습니다.');return;}
+ const factor=Number($('#incentive-coefficient').value);
+ value('inc-error',fmt(report.mean_error_pct));value('inc-le6',fmt(report.le6_pct));value('inc-le8',fmt(report.le8_pct));value('inc-eligible',report.eligible_hours);value('inc-excluded',report.excluded_hours);value('inc-won',fmt(report.scenario_krw*factor));
+ text('#incentive-period',`최근 ${report.total_hours}시간 · LSTM v${state.data.model_version} · 단일 예측 대용 · 과거 재생`);
+ text('#incentive-exclusions',Object.entries(report.excluded_reasons).map(([reason,n])=>`${reason} ${n}시간`).join(' · ')||'제외 시간 없음');
+ $('#incentive-rows').innerHTML=report.rows.map(r=>`<tr><td>${esc(stamp(r.timestamp))}</td><td class="numeric">${fmt(r.utilization_pct)}</td><td class="numeric">${fmt(r.error_pct)}</td><td>${esc(r.exclusion_reason||({le6:'6% 이하',le8:'6~8%',gt8:'8% 초과'}[r.band]))}</td><td class="numeric">${fmt(r.base_rate_krw_per_kwh*factor)}</td><td class="numeric">${fmt(r.scenario_krw*factor)}</td></tr>`).join('');
+}
+$('#incentive-coefficient').onchange=renderIncentives;
 async function loadEnergy(){
- const epoch=++state.epoch;state.data=null;text('#overview-chart','시간별 자료 조회 중…');$('#generation-rows').replaceChildren();$('#forecast-hours').replaceChildren();
+ const epoch=++state.epoch;state.data=null;text('#overview-chart','시간별 자료 조회 중…');$('#generation-rows').replaceChildren();$('#forecast-hours').replaceChildren();$('#incentive-rows').replaceChildren();text('#incentive-period','조회 중…');text('#incentive-exclusions','');
  $$('[data-value]').forEach(e=>e.textContent='—');
  try{
   const d=await api(path('/ui/energy'));if(epoch!==state.epoch)return;state.data=d;
@@ -68,7 +78,7 @@ async function loadEnergy(){
   value('tomorrow-irradiance',fmt(rows.slice(-24).reduce((a,r)=>a+r.irradiance,0)/24));
   text('.forecast-note',`LSTM v${d.model_version} · ${d.source==='uploaded'?'업로드':'보관'} 자료 대상일 재생. 오늘 기준 실시간 예보가 아닙니다.`);
   $('#forecast-hours').innerHTML=d.forecast.map(r=>`<tr><td>${esc(r.timestamp.slice(11,16))}–${String((Number(r.timestamp.slice(11,13))+1)%24).padStart(2,'0')}:00</td><td class="numeric">${fmt(r.predicted_kwh)}</td></tr>`).join('');chart();
- }catch(e){text('#overview-chart',`조회 실패: ${e.message}`);text('.forecast-note','시간별 자료를 불러오지 못했습니다.');}
+ }catch(e){renderIncentives();text('#overview-chart',`조회 실패: ${e.message}`);text('.forecast-note','시간별 자료를 불러오지 못했습니다.');}
 }
 async function operations(){
  const pid=state.plant;

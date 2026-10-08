@@ -67,6 +67,8 @@ jobs:
           python ../tools/hourly/train.py --workers 2
           python ../tools/hourly/finalize.py
           python ../tools/submission/package_models.py
+      - name: Verify incentive boundary cases
+        run: python ../tools/submission/test_incentives.py
       - name: Build and start actual Docker container
         run: |
           mkdir -p submission/docker-evidence

@@ -25,6 +25,8 @@ def main():
     items=call('/plants');assert len(items)==31
     for entry in items:
         pid=entry['plant_id'];s=call('/ui/sample?plant_id='+pid);r=call('/predict',s['prediction']);assert len(r['predictions'])==24
+        inc=call('/ui/incentives?plant_id='+pid);assert inc['total_hours']==24 and inc['eligible_hours']+inc['excluded_hours']==24 and not inc['settlement_confirmed']
+        assert abs(sum(row['scenario_krw'] for row in inc['rows'])-inc['scenario_krw'])<.011
     pid='hadong-sewage';s=call('/ui/sample?plant_id='+pid);rows=s['batch']['rows'];assert len(rows)==696
     manifest=call('/preview-api/dashboard/current?plant_id='+pid);capacity=manifest['capacity_kw'];coef=manifest['radiation_coefficient']
     start=datetime.fromisoformat('2027-07-11T00:00:00+09:00')
