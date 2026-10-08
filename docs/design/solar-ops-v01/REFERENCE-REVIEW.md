@@ -103,3 +103,15 @@ Dribbble·CodePen·Awwwards 등의 확인된 레퍼런스 모음은 조사 범�
 이번 작업은 프론트 디자인 변경이다. 실제 태양광 예측·재학습·승격 성공을 검증한 것은 아니다. 작은 화면과 펼친 상세 내용은 세로 스크롤을 유지한다. 내용을 숨기거나 글자를 줄여 한 화면에 억지로 맞추지 않는다.
 
 추가 브라우저 검증: 키보드 Enter로 native details 펼침, textarea 3px focus, 업로드 dialog Escape 닫기와 호출 버튼 포커스 복귀, reduced-motion 차트·수치 최종 표시, 생성 HTML CSS 포함 확인. 로컬 연결 상태는 “연결됨 · 서버 조회 값”으로 표시됐다. 배치·재학습 등 변경 요청은 실행하지 않았다.
+
+## 2026-10-08 추가 레퍼런스 적용
+
+| 확인한 자료 | 적용 판단 |
+| --- | --- |
+| [WWIT 탭 사례](https://wwit.design/component/tab) | 기간 선택은 중립 배경 위 흰색 선택 면으로 구분. 기존 공유 상태와 버튼 위치 유지. |
+| [Growth.Design 대시보드 사례](https://growth.design/case-studies/coronavirus-dashboard-ux) | 숫자와 상태 해석의 우선순위를 유지하고, 완료는 하늘색·진행/주의는 주황으로 구분. 효과로 수치를 과장하지 않음. |
+| [Animista](https://animista.net/) | 등장 효과의 길이와 easing을 참고해 팝업에 220ms의 짧은 이동·등장 효과 자체 구현. |
+| [Animate.css](https://animate.style/) | 의미 있는 국소 전환과 reduced-motion 지침 적용. 상세 내용은 opacity만 변경해 레이아웃 이동 방지. |
+| [Hover.css](https://ianlunn.github.io/Hover/#effects) | 배경 전환·아이콘 반응 아이디어 참고. 버튼 외곽/클릭 영역은 고정, 실행 아이콘만 2px 이동. |
+
+외부 라이브러리나 사이트 CSS·이미지는 복사하지 않았다. 기존 CSS에 자체 구현했으며 무한 반복·바운스·차트 확대축소는 적용하지 않았다. 운영 적용 버튼의 진한 hover와 8px 컨트롤 모서리는 유지한다. OS의 움직임 줄이기와 `?motion=off` 모두 지원한다.

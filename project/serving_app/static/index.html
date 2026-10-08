@@ -132,10 +132,16 @@
   <dialog id="upload-dialog" aria-labelledby="upload-title">
     <form id="upload-form">
       <h2 id="upload-title">CSV 업로드</h2>
-      <p>운영 서버에 데이터를 등록합니다. 업로드 후 선택 발전소 차트가 실제 모델로 갱신됩니다.</p>
-      <p id="upload-help">UTF-8 CSV: timestamp,generation_kwh,shortwave_radiation,temperature_2m,cloud_cover,wind_speed_10m 순서. 최소 48행, 24의 배수, 연속된 완전한 날짜, +09:00 시각, 최대 5MB. 기상값은 48시간 선행 예보입니다.</p>
-      <label for="upload-file">업로드할 CSV 파일</label>
-      <input id="upload-file" type="file" accept=".csv,text/csv" required aria-describedby="upload-help">
+      <p>선택한 발전소에 시간별 실적과 예보를 등록합니다.</p>
+      <div id="upload-dropzone" class="upload-dropzone">
+        <span class="upload-symbol" data-icon="file"></span>
+        <strong>CSV 파일을 여기에 놓으세요</strong>
+        <span class="upload-limit">CSV 파일 1개 · 최대 5MB</span>
+        <button class="button" id="upload-pick" type="button">CSV 파일 선택</button>
+        <input id="upload-file" type="file" accept=".csv,text/csv" hidden aria-label="CSV 파일 선택" aria-describedby="upload-help">
+      </div>
+      <div id="upload-selection" class="upload-selection" hidden><span data-icon="file"></span><div><strong id="upload-filename"></strong><span id="upload-filesize"></span></div><button class="button" id="upload-remove" type="button">제거</button></div>
+      <details class="upload-format" open><summary class="disclosure-summary"><span>CSV 작성 기준</span><span class="disclosure-icon" data-icon="chevron"></span></summary><div id="upload-help"><p>UTF-8 · 최소 48행 · 24행 단위<br>연속된 완전한 날짜 · +09:00 시각<br>기상값은 48시간 선행 예보</p><strong>열 순서</strong><code>timestamp, generation_kwh, shortwave_radiation, temperature_2m, cloud_cover, wind_speed_10m</code></div></details>
       <p id="upload-status" role="status" aria-live="polite"></p>
       <div class="upload-actions"><button class="button" id="upload-close" type="button">닫기</button><button class="button primary" id="upload-submit" type="submit">업로드</button></div>
     </form>
