@@ -144,6 +144,8 @@ python tools/multi_plant/convert_kospo_raw.py --raw datasets/raw/data_15043409.c
 
 ## 파일 관리 규칙
 
+시간별 자동 재학습 흐름 확인용 합성 CSV는 [fixtures/retrain](fixtures/retrain/README.md)에 있다. 생성 도구·원본 이력·변환 조건·열 단위와 사용 범위를 함께 기록하며 실제 신규 실적이나 예측 성능 자료로 사용하지 않는다.
+
 - 여기 있는 파일은 손으로 고치지 않는다. 만든 스크립트는 [`../tools/`](../tools/)에 있다. 발전소 등록부와 포트폴리오 구성(`plants/*.csv`)은 사람이 적는 파일이고, 적은 뒤에 도구로 검증한다.
 - 서빙 앱이 실제로 읽는 것은 대시보드로 올린 사본(`project/data/uploads/`)이다. 그 폴더는 커밋하지 않는다.
 - Open-Meteo 자료를 다시 받을 때는 한 번 받아 파일로 저장하고 반복 호출하지 않는다. 무료 한도가 있다.
