@@ -106,3 +106,21 @@ node --test ../tools/design/chart-data.test.mjs ../tools/design/dashboard.test.m
 - Open-Meteo 예보를 실제 사용하므로 datasets/README.md의 출처 지침에 따라 링크를 유지한다.
 
 백엔드 담당별 연결 지점과 미완료 항목: [INTEGRATION.md](INTEGRATION.md).
+
+## 2026-10-08 기존 디자인과 시간별 API 통합
+
+현재 진입점은 `index.html` + `hourly-ui.js`이며 구형 app.js/operations.js/server-dashboard.js는 로드하지 않는다. 디자인 수정은 styles.css와 refinements.css에 반영한다. `node ../tools/design/publish-runtime.mjs`가 단일 HTML 빌드와 FastAPI static 복사를 함께 수행한다. 생성된 static을 직접 수정하지 않는다.
+
+Mac에서 project/ 기준:
+
+```sh
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python -X utf8 scripts/install_bundle.py submission/solar-hourly-seed.zip
+.venv/bin/python -X utf8 scripts/run_backend.py
+```
+
+화면: http://127.0.0.1:8077/ . 기존 미리보기는 `SOLAR_API_BASE_URL=http://127.0.0.1:8077 SOLAR_PREVIEW_PORT=8767 node ../tools/design/serve-preview.mjs`로 실행한다.
+
+AIOps 검사는 `/ui/sample`의 선택 발전소 `batch`(plant_id, rows)를 `/predict/batch-test`로 보낸다. 구형 prices 배열/41개 합성 배치는 사용하지 않는다. 실제 자료 검사와 작업 상태 조회는 서로 다른 버튼이다. 흐름은 서버 monitor/jobs 응답을 사용하며 자동 조회한다. 실제 검사 시 조건부 재학습이 등록될 수 있다.
+
+[디자인 레퍼런스 검토](REFERENCE-REVIEW.md): SVG, 15px 이상 글자, 주황·하늘색, 토글·여백·단일 구분선 개선을 유지했다.
