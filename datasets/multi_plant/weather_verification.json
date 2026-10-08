@@ -1,0 +1,172 @@
+{
+  "checks": {
+    "gy_gsr_obs": {
+      "rows": 4748,
+      "mismatches": 0,
+      "max_abs_diff": 0.0
+    },
+    "gy_gsr": {
+      "rows": 4748,
+      "mismatches": 0,
+      "max_abs_diff": 0.0
+    },
+    "gy_ss_obs": {
+      "rows": 4748,
+      "mismatches": 0,
+      "max_abs_diff": 0.0
+    },
+    "gy_ss": {
+      "rows": 4748,
+      "mismatches": 0,
+      "max_abs_diff": 0.0
+    },
+    "gy_max_ta": {
+      "rows": 4748,
+      "mismatches": 0,
+      "max_abs_diff": 0.0
+    },
+    "gy_gsr_fill": {
+      "rows": 4748,
+      "mismatches": 0
+    },
+    "upload_Volume_lag1": {
+      "rows": 4746,
+      "mismatches": 0,
+      "max_abs_diff": 0.0
+    },
+    "upload_Close": {
+      "rows": 4746,
+      "mismatches": 0,
+      "max_abs_diff": 0.0
+    }
+  },
+  "passed": true,
+  "provider": "기상청",
+  "source_type": "user-supplied annual ASOS daily API exports",
+  "source_url": "https://www.data.go.kr/data/15059093/openapi.do",
+  "source_api_license": "공공누리 제1유형(출처표시), 무료; 공식 API 페이지 2026-10-07 확인",
+  "station_ids": [
+    105,
+    112,
+    114,
+    119,
+    121,
+    127,
+    130,
+    140,
+    146,
+    159,
+    184,
+    185,
+    188,
+    189,
+    192,
+    203,
+    263,
+    266
+  ],
+  "columns": [
+    "stnId",
+    "stnNm",
+    "tm",
+    "sumGsr",
+    "sumSsHr",
+    "ssDur",
+    "maxTa"
+  ],
+  "policy": "Compare raw observations and original Gwangyang/Jinju/Uiryeong fill before publishing extracted weather.",
+  "sources": [
+    {
+      "file": "ASOS_2013.csv",
+      "sha256": "961cba1d5b6361f5cc38b3de9cfcb9dffa349f41c045acf5b7c379dff63ecedc",
+      "bytes": 9650394,
+      "source_rows": 33215,
+      "selected_rows": 6570
+    },
+    {
+      "file": "ASOS_2014.csv",
+      "sha256": "dcd7b5732bdf9296d5ae1c3298cadfb7639f48c6d4f1a9ec876adf869bd36855",
+      "bytes": 9671510,
+      "source_rows": 33452,
+      "selected_rows": 6570
+    },
+    {
+      "file": "ASOS_2015.csv",
+      "sha256": "01ee025824c1e65f0236fe30da0a92d98191109d5c8af811ab4641e5e9efc822",
+      "bytes": 9126810,
+      "source_rows": 33639,
+      "selected_rows": 6570
+    },
+    {
+      "file": "ASOS_2016.csv",
+      "sha256": "8f25f0a8eb1c3912441945ba93f589574831221840ff7e9d7755ea8e6957aae6",
+      "bytes": 8944097,
+      "source_rows": 34130,
+      "selected_rows": 6588
+    },
+    {
+      "file": "ASOS_2017.csv",
+      "sha256": "2c1c14cefb9e1f6fab337023958f39032497a24d8f4c5b96aa23ce5b233ce256",
+      "bytes": 9206474,
+      "source_rows": 34310,
+      "selected_rows": 6570
+    },
+    {
+      "file": "ASOS_2018.csv",
+      "sha256": "27a99998fb6ca1a414b41bfc791561ef9aee4d87164f2fdc5ea4a04fefd6bce8",
+      "bytes": 9343508,
+      "source_rows": 34310,
+      "selected_rows": 6570
+    },
+    {
+      "file": "ASOS_2019.csv",
+      "sha256": "4280d328ffc0e4d7e77359f8f18952900a2b0380069100c152e61d0219900dc0",
+      "bytes": 9440857,
+      "source_rows": 34525,
+      "selected_rows": 6570
+    },
+    {
+      "file": "ASOS_2020.csv",
+      "sha256": "21325caaf992f210f39392f82ae35b63ebdff6a801f2adf5954b4b52f959d55a",
+      "bytes": 9572329,
+      "source_rows": 34770,
+      "selected_rows": 6588
+    },
+    {
+      "file": "ASOS_2021.csv",
+      "sha256": "276d41e3be0c8ffc875bf9a6caee827851de13657e7139eef89942795b83aae6",
+      "bytes": 9495198,
+      "source_rows": 34674,
+      "selected_rows": 6570
+    },
+    {
+      "file": "ASOS_2022.csv",
+      "sha256": "ccdc58f3f5b5d8af648c1a23c4c4c7fb2cafa6f0e1eee65837bf3e3d8b9f8d03",
+      "bytes": 9324864,
+      "source_rows": 34674,
+      "selected_rows": 6569
+    },
+    {
+      "file": "ASOS_2023.csv",
+      "sha256": "ceb5b7b4673df85fc33cd54f081abdfc31dbe88e4d4fa5d0a22af3bc1105dca8",
+      "bytes": 9530215,
+      "source_rows": 34670,
+      "selected_rows": 6570
+    },
+    {
+      "file": "ASOS_2024.csv",
+      "sha256": "a414dd713d2de37337d826e324f662c96dc040df79938f2439a4fd7857d99fcd",
+      "bytes": 9518909,
+      "source_rows": 34767,
+      "selected_rows": 6588
+    },
+    {
+      "file": "ASOS_2025.csv",
+      "sha256": "aabe79f174f7620cc5281d3f389a782f1852d52cc595fbf8909b3d9cb8e83e2b",
+      "bytes": 9524434,
+      "source_rows": 34674,
+      "selected_rows": 6570
+    }
+  ],
+  "output_sha256": "f60326b02c90a29e115c8330cd0f9e717d85d30eaf46884499c64e0812b07a33"
+}

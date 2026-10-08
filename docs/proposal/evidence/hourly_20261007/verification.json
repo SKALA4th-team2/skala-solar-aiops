@@ -1,0 +1,249 @@
+{
+  "all_sites": [
+    {
+      "plant_id": "hadong-sewage",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15043384-u1",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15043385-u1",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15043387-u1",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15043391-u1",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15043391-u2",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15043391-u3",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15043394-u1",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15043399-u1",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15043400-u1",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15043402-u1",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15043404-u1",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15043405-u1",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15043406-u1",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15043407-u1",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15043407-u2",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15043407-u3",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15043407-u4",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15043407-u6",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15095374-u1",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15095380-u1",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15096126-u1",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15096131-u1",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15096132-u1",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15096134-u1",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15096136-u1",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15109994-u1",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15109999-u1",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15124860-u1",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15124861-u1",
+      "model_version": "1",
+      "hours": 24
+    },
+    {
+      "plant_id": "15140067-u1",
+      "model_version": "1",
+      "hours": 24
+    }
+  ],
+  "api_invalid_cases": 9,
+  "night_zero": true,
+  "complete_and_partial_portfolio": true,
+  "isolated_runtime": "C:\\Users\\dove8\\OneDrive\\바탕 화면\\SKALA 과제\\AIOps 미니 플젝\\skala-solar-aiops\\docs\\proposal\\evidence\\hourly_20261007\\runtime-verify-84369ab0",
+  "native_retrain": {
+    "promoted": true,
+    "version": "2",
+    "gate": {
+      "passed": true,
+      "rmse_kwh": 0.4196494282728869,
+      "limit_kwh": 1.0164109065845495,
+      "incumbent_rmse_kwh": 1.0164109065845495,
+      "validation_hours": 168,
+      "policy": "hourly-retrain-v1: <= initial gate and same-window incumbent"
+    },
+    "run_id": "f3d3f2d976074291be678dda16841bad"
+  },
+  "worker_job": {
+    "id": "830e94ad2af145f68f08afbf70be97e6",
+    "plant_id": "hadong-sewage",
+    "kind": "hourly_fine_tune",
+    "end_date": "2027-06-29T23:00:00+09:00",
+    "status": "succeeded",
+    "result": {
+      "promoted": true,
+      "version": "2",
+      "gate": {
+        "passed": true,
+        "rmse_kwh": 0.4196494282728869,
+        "limit_kwh": 1.0164109065845495,
+        "incumbent_rmse_kwh": 1.0164109065845495,
+        "validation_hours": 168,
+        "policy": "hourly-retrain-v1: <= initial gate and same-window incumbent"
+      },
+      "run_id": "f3d3f2d976074291be678dda16841bad"
+    },
+    "attempts": 1,
+    "created_at": "2026-10-07T14:23:18.502847+00:00",
+    "updated_at": "2026-10-07T14:23:20.536239+00:00"
+  },
+  "automatic_drift_job": {
+    "id": "34b7387449d249ed9358ab49cb8c3848",
+    "plant_id": "hadong-sewage",
+    "kind": "hourly_fine_tune",
+    "end_date": "2027-08-08T23:00:00+09:00",
+    "status": "succeeded",
+    "result": {
+      "promoted": true,
+      "version": "3",
+      "gate": {
+        "passed": true,
+        "rmse_kwh": 3.706836478205669,
+        "limit_kwh": 5.463811556081687,
+        "incumbent_rmse_kwh": 6.435859060568323,
+        "validation_hours": 168,
+        "policy": "hourly-retrain-v1: <= initial gate and same-window incumbent"
+      },
+      "run_id": "929faa2c74124ef6bc1ed980ed991be1"
+    },
+    "attempts": 1,
+    "created_at": "2026-10-07T14:23:21.155905+00:00",
+    "updated_at": "2026-10-07T14:23:23.302529+00:00"
+  },
+  "scaler_preserved": true,
+  "other_plant_unchanged": true,
+  "rollback": true,
+  "gate_failure_no_promote": true,
+  "immutable_duplicate": true,
+  "upload": {
+    "plant_id": "hadong-sewage",
+    "rows": 696,
+    "start": "2026-01-30T00:00:00+09:00",
+    "end": "2026-02-27T23:00:00+09:00",
+    "monitor": {
+      "state": "normal",
+      "reason": "normal",
+      "rmse_kwh": 5.46878709621079,
+      "daylight_hours": 73,
+      "reference_ratio": 1.117486555895225,
+      "limit_kwh": 5.463811556081687,
+      "scope": "forecast-conditioned residual; not observed-weather diagnosis",
+      "plant_id": "hadong-sewage",
+      "end_timestamp": "2026-02-27T23:00:00+09:00",
+      "model_version": "1"
+    }
+  },
+  "facility_hold": true,
+  "insufficient_skip": true,
+  "normal": true,
+  "synthetic_scope": "AIOps functional controls only; not forecast quality"
+}

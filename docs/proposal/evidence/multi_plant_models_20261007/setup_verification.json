@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "admitted": 24,
+  "excluded": 21,
+  "source_snapshot_files": 4,
+  "scope": "Post-training tooling update: automatic source/environment capture and atomic JSON writes; no repeated training"
+}

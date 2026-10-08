@@ -1,0 +1,16 @@
+{
+  "url": "https://previous-runs-api.open-meteo.com/v1/forecast?latitude=37.33868&longitude=127.4764&start_date=2021-01-01&end_date=2021-12-31&hourly=shortwave_radiation_previous_day1%2Ctemperature_2m_previous_day1%2Csunshine_duration_previous_day1%2Ccloud_cover_previous_day1%2Cprecipitation_previous_day1%2Cwind_speed_10m_previous_day1%2Cshortwave_radiation_previous_day2%2Ctemperature_2m_previous_day2%2Csunshine_duration_previous_day2%2Ccloud_cover_previous_day2%2Cprecipitation_previous_day2%2Cwind_speed_10m_previous_day2&models=jma_msm&timezone=Asia%2FSeoul",
+  "parameters": {
+    "latitude": 37.33868,
+    "longitude": 127.4764,
+    "start_date": "2021-01-01",
+    "end_date": "2021-12-31",
+    "hourly": "shortwave_radiation_previous_day1,temperature_2m_previous_day1,sunshine_duration_previous_day1,cloud_cover_previous_day1,precipitation_previous_day1,wind_speed_10m_previous_day1,shortwave_radiation_previous_day2,temperature_2m_previous_day2,sunshine_duration_previous_day2,cloud_cover_previous_day2,precipitation_previous_day2,wind_speed_10m_previous_day2",
+    "models": "jma_msm",
+    "timezone": "Asia/Seoul"
+  },
+  "retrieved_at_utc": "2026-10-07T11:05:03.102574+00:00",
+  "sha256_uncompressed": "1578c6782bc9e5b2a553c8550214c530f790197a121b529e974c91f908bcee19",
+  "model": "jma_msm",
+  "publication_timestamp_available": false
+}

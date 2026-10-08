@@ -1,0 +1,98 @@
+[
+  {
+    "config": {
+      "changepoint_prior_scale": 0.01,
+      "regressors": [
+        "irradiance"
+      ]
+    },
+    "rmse_kwh": 44.6013187870314,
+    "mae_kwh": 36.68443978737909,
+    "wape_pct": 19.543059468621905,
+    "bias_pct": -0.8417635086886656,
+    "n": 180,
+    "seconds": 0.3569840000127442
+  },
+  {
+    "config": {
+      "changepoint_prior_scale": 0.01,
+      "regressors": [
+        "irradiance",
+        "lag1",
+        "mean7",
+        "efficiency7",
+        "rule_c"
+      ]
+    },
+    "rmse_kwh": 40.82260684397945,
+    "mae_kwh": 32.48112924373645,
+    "wape_pct": 17.303811754997152,
+    "bias_pct": 0.3450601779982526,
+    "n": 180,
+    "seconds": 0.23517229995923117
+  },
+  {
+    "config": {
+      "changepoint_prior_scale": 0.05,
+      "regressors": [
+        "irradiance"
+      ]
+    },
+    "rmse_kwh": 44.37666067613281,
+    "mae_kwh": 36.511753380509425,
+    "wape_pct": 19.451063495985093,
+    "bias_pct": -0.9200232459717387,
+    "n": 180,
+    "seconds": 0.20876830001361668
+  },
+  {
+    "config": {
+      "changepoint_prior_scale": 0.05,
+      "regressors": [
+        "irradiance",
+        "lag1",
+        "mean7",
+        "efficiency7",
+        "rule_c"
+      ]
+    },
+    "rmse_kwh": 40.3470584262709,
+    "mae_kwh": 32.39308287727165,
+    "wape_pct": 17.256906435308732,
+    "bias_pct": -1.4321631604301646,
+    "n": 180,
+    "seconds": 0.23945640004239976
+  },
+  {
+    "config": {
+      "changepoint_prior_scale": 0.2,
+      "regressors": [
+        "irradiance"
+      ]
+    },
+    "rmse_kwh": 46.38653315622128,
+    "mae_kwh": 35.87626051005836,
+    "wape_pct": 19.11251464445314,
+    "bias_pct": 7.30085503564656,
+    "n": 180,
+    "seconds": 0.24577780003892258
+  },
+  {
+    "config": {
+      "changepoint_prior_scale": 0.2,
+      "regressors": [
+        "irradiance",
+        "lag1",
+        "mean7",
+        "efficiency7",
+        "rule_c"
+      ]
+    },
+    "rmse_kwh": 40.832114252139455,
+    "mae_kwh": 31.799881648315647,
+    "wape_pct": 16.940887791940074,
+    "bias_pct": 3.142680252725684,
+    "n": 180,
+    "seconds": 0.2196752000018023
+  }
+]

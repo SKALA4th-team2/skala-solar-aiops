@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "plants": 33,
+  "feature_cells_checked": 19863500,
+  "checks": [
+    "every historical feature against original date lookup",
+    "target-date equality",
+    "same test days across variants",
+    "disjoint ordered split indices",
+    "forecast_previous_day1 target alignment"
+  ]
+}

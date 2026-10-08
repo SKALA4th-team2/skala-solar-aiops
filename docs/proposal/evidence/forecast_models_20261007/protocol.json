@@ -1,0 +1,24 @@
+{
+  "created_utc": "2026-10-07T11:23:05.505169+00:00",
+  "github_main": "9ad93b1571c8300f3e26d00837cba338a94987c4",
+  "contract": "solar_next_day_jma_msm_day1_v1",
+  "input": "20 rows: generation[d] and JMA MSM previous_day1 radiation for d+1; target T uses volume[T-1]",
+  "train": "valid targets before 2024-07-01",
+  "validation": "2024-07-01..2024-12-31",
+  "test": "2025-01-01..2025-12-31",
+  "missing": "No interpolation/backfill; require 20 consecutive valid calendar rows and valid target generation. Target gen never enters window.",
+  "models": "LSTM teaching 32-32-16-Dense16-1 (20,2); XGB six settings; Prophet three settings; simplex ensembles",
+  "lstm": "seed42, Adam .001, 120 full validation epochs, restore best validation-loss weights; refit for chosen fixed epochs",
+  "evaluation_bundle": "refit train+validation only, frozen through test, valid for historical 2025 replay",
+  "release_bundle": "scratch refit all available valid targets through <=2026-02-28 with frozen settings; historical test metrics do not measure this refit",
+  "scaler": "fit on training windows plus training labels only; separate paired scaler for each scratch model version; fine-tuning must reuse it",
+  "selection": "Freeze model configs, epochs and ensemble weights before test; keep LSTM primary interface even if a comparator wins",
+  "limitations": [
+    "Archive previous_day1 contains hourly leads, not a verified single issue before 20:00. publication_cutoff_verified=false",
+    "Regional coordinates are proxies, not exact individual plant sites",
+    "Daily energy only, not hourly settlement accuracy",
+    "One seed per site, one calendar test; publication availability and live field performance unverified",
+    "Current GitHub HTTP schema caps generation at1320kWh and has no plant ID; large-site HTTP integration remains separate",
+    "No Production promotion or automatic AIOps policy connection in this model-first task"
+  ]
+}

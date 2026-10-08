@@ -67,6 +67,7 @@ def send_batch(base_url: str, payload: dict, label: str) -> dict:
 def main() -> int:
     parser = argparse.ArgumentParser(description='태양광 CSV 기반 정상·14% 하락 배치')
     parser.add_argument('--target', choices=['local', 'container', 'both'], default='local')
+    parser.add_argument('--scenario', choices=['normal','drift'], default='normal',help='서버 상태를 보존하므로 한 번에 한 시나리오만 보냅니다. 같은 날짜의 다른 자료는 409입니다.')
     parser.add_argument('--csv', type=Path, help='Date,Close,Volume CSV. 생략하면 최근 업로드, 없으면 태양광 예보 파일')
     parser.add_argument('--expected-csv', type=Path, default=DATASETS / 'hadong_daily_full.csv')
     parser.add_argument('--end-date', help='배치의 마지막 실제 날짜 YYYY-MM-DD. 생략하면 CSV 마지막 날짜')
@@ -94,7 +95,7 @@ def main() -> int:
         return 0
     failed = False
     for target in (['local', 'container'] if args.target == 'both' else [args.target]):
-        for label, payload in bundle.items():
+        for label, payload in [(args.scenario,bundle[args.scenario])]:
             try:
                 send_batch(TARGETS[target], payload, f'{target}/{label}')
             except requests.RequestException as exc:

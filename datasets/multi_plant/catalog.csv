@@ -1,0 +1,36 @@
+plant_id,source_id,name,unit,region,capacity_kw,unit_basis,rows,start,end,status,daily_file,invalid_generation_days,missing_calendar_days,zero_days,primary_upload,upload_files
+15043384_u1,15043384,남제주소내,1,제주 서부,196.0,inferred_kWh_legacy_label,4807,2013-01-01,2026-02-28,upload_ready,daily/15043384_u1.csv,0,0,101,uploads/15043384_u1_asos_lag1_20130102_20251231.csv,1
+15043385_u1,15043385,부산복합자재창고,1,부산,187.0,inferred_kWh_legacy_label,4807,2013-01-01,2026-02-28,upload_ready,daily/15043385_u1.csv,0,0,66,uploads/15043385_u1_asos_lag1_20130102_20180517.csv,4
+15043387_u1,15043387,부산수처리장,1,부산,110.5,inferred_kWh_legacy_label,2981,2018-01-01,2026-02-28,upload_ready,daily/15043387_u1.csv,0,0,39,uploads/15043387_u1_asos_lag1_20230526_20250630.csv,3
+15043391_u1,15043391,삼척소내,1,강원 삼척,999.0,inferred_kWh_legacy_label,2981,2018-01-01,2026-02-28,upload_ready,daily/15043391_u1.csv,0,0,27,uploads/15043391_u1_asos_lag1_20180101_20210820.csv,2
+15043391_u2,15043391,삼척소내,2,강원 삼척,990.45,inferred_kWh_legacy_label,2852,2018-05-09,2026-02-28,upload_ready,daily/15043391_u2.csv,0,1,21,uploads/15043391_u2_asos_lag1_20191005_20210820.csv,3
+15043391_u3,15043391,삼척소내,3,강원 삼척,2002.32,inferred_kWh_legacy_label,2677,2018-11-01,2026-02-28,upload_ready,daily/15043391_u3.csv,0,0,10,uploads/15043391_u3_asos_lag1_20181101_20210820.csv,2
+15043394_u1,15043394,신인천소내,1,인천,200.0,inferred_kWh_legacy_label,4805,2013-01-01,2026-02-28,upload_ready,daily/15043394_u1.csv,0,2,30,uploads/15043394_u1_asos_lag1_20160602_20251231.csv,2
+15043395_u1,15043395,신인천전망대,1,인천,1742.0,inferred_kWh_legacy_label,2981,2018-01-01,2026-02-28,upload_ready,daily/15043395_u1.csv,30,0,24,uploads/15043395_u1_asos_lag1_20180101_20210720.csv,3
+15043399_u1,15043399,영월본부,1,강원 영월,76.0,inferred_kWh_legacy_label,4806,2013-01-01,2026-02-28,upload_ready,daily/15043399_u1.csv,0,1,8,uploads/15043399_u1_asos_lag1_20170419_20251231.csv,2
+15043400_u1,15043400,영월철도부지,1,강원 영월,1190.7,inferred_kWh_legacy_label,2891,2018-04-01,2026-02-28,upload_ready,daily/15043400_u1.csv,0,0,22,uploads/15043400_u1_asos_lag1_20180401_20251231.csv,1
+15043402_u1,15043402,인천수산정수장,1,인천,998.0,inferred_kWh_legacy_label,4805,2013-01-01,2026-02-28,upload_ready,daily/15043402_u1.csv,0,2,75,uploads/15043402_u1_asos_lag1_20181125_20251231.csv,3
+15043404_u1,15043404,하동공설운동장,1,경남 하동,369.85,inferred_kWh_legacy_label,4807,2013-01-01,2026-02-28,upload_ready,daily/15043404_u1.csv,0,0,47,uploads/15043404_u1_asos_lag1_20130102_20251231.csv,1
+15043405_u1,15043405,하동변전소,1,경남 하동,48.3,inferred_kWh_legacy_label,4807,2013-01-01,2026-02-28,upload_ready,daily/15043405_u1.csv,0,0,41,uploads/15043405_u1_asos_lag1_20130102_20251231.csv,1
+15043406_u1,15043406,하동보건소,1,경남 하동,40.0,inferred_kWh_legacy_label,4807,2013-01-01,2026-02-28,upload_ready,daily/15043406_u1.csv,0,0,7,uploads/15043406_u1_asos_lag1_20130102_20251231.csv,1
+15043407_u1,15043407,하동본부,1,경남 하동,998.4,inferred_kWh_legacy_label,4807,2013-01-01,2026-02-28,upload_ready,daily/15043407_u1.csv,0,0,74,uploads/15043407_u1_asos_lag1_20130102_20251231.csv,1
+15043407_u2,15043407,하동본부,2,경남 하동,1900.8,inferred_kWh_legacy_label,4807,2013-01-01,2026-02-28,upload_ready,daily/15043407_u2.csv,0,0,46,uploads/15043407_u2_asos_lag1_20130102_20251231.csv,1
+15043407_u3,15043407,하동본부,3,경남 하동,600.6,inferred_kWh_legacy_label,4807,2013-01-01,2026-02-28,upload_ready,daily/15043407_u3.csv,0,0,44,uploads/15043407_u3_asos_lag1_20130102_20251231.csv,1
+15043407_u4,15043407,하동본부,4,경남 하동,997.56,inferred_kWh_legacy_label,3012,2017-12-01,2026-02-28,upload_ready,daily/15043407_u4.csv,0,0,52,uploads/15043407_u4_asos_lag1_20171201_20251231.csv,1
+15043407_u6,15043407,하동본부,6,경남 하동,998.325,inferred_kWh_legacy_label,1916,2020-12-01,2026-02-28,upload_ready,daily/15043407_u6.csv,0,0,31,uploads/15043407_u6_asos_lag1_20201201_20251231.csv,1
+15043411_u1,15043411,행원소수력,1,제주 동부,6.0,inferred_kWh_legacy_label,4807,2013-01-01,2026-02-28,review_only,daily/15043411_u1.csv,440,0,2430,,0
+15095374_u1,15095374,무릉리,1,제주 서부,809.2,inferred_kWh_legacy_label,1765,2021-05-01,2026-02-28,upload_ready,daily/15095374_u1.csv,0,0,44,uploads/15095374_u1_asos_lag1_20210501_20251231.csv,1
+15095380_u1,15095380,부산역선상주차장,1,부산,834.0,inferred_kWh_legacy_label,2024,2020-08-15,2026-02-28,upload_ready,daily/15095380_u1.csv,0,0,22,uploads/15095380_u1_asos_lag1_20230526_20250630.csv,2
+15095404_u1,15095404,용수리,1,제주 서부,888.93,inferred_kWh_legacy_label,1977,2020-10-01,2026-02-28,upload_ready,daily/15095404_u1.csv,1,0,156,uploads/15095404_u1_asos_lag1_20211204_20251231.csv,2
+15096126_u1,15096126,송당리,1,제주 동부,996.93,inferred_kWh_legacy_label,2280,2019-12-03,2026-02-28,upload_ready,daily/15096126_u1.csv,0,0,149,uploads/15096126_u1_asos_lag1_20191203_20240229.csv,2
+15096129_u1,15096129,신인천1_2단계주차장,1,인천,296.1,inferred_kWh_legacy_label,1912,2020-12-05,2026-02-28,upload_ready,daily/15096129_u1.csv,249,0,9,uploads/15096129_u1_asos_lag1_20201205_20230331.csv,2
+15096131_u1,15096131,신인천북측부지,1,인천,302.4,inferred_kWh_legacy_label,1912,2020-12-05,2026-02-28,upload_ready,daily/15096131_u1.csv,0,0,0,uploads/15096131_u1_asos_lag1_20201205_20251231.csv,1
+15096132_u1,15096132,신인천주차장,1,인천,605.55,inferred_kWh_legacy_label,2258,2019-12-25,2026-02-28,upload_ready,daily/15096132_u1.csv,0,0,0,uploads/15096132_u1_asos_lag1_20191225_20251231.csv,1
+15096134_u1,15096134,이천D백사면B,1,경기 이천,995.0,inferred_kWh_legacy_label,1846,2021-02-09,2026-02-28,upload_ready,daily/15096134_u1.csv,0,0,22,uploads/15096134_u1_asos_lag1_20210209_20251231.csv,1
+15096136_u1,15096136,화촌주민참여형,1,경남 하동,999.6,inferred_kWh_legacy_label,1762,2021-05-04,2026-02-28,upload_ready,daily/15096136_u1.csv,0,0,28,uploads/15096136_u1_asos_lag1_20210504_20251231.csv,1
+15109994_u1,15109994,감우리,1,충북 음성,554.4,inferred_kWh_legacy_label,1669,2021-08-05,2026-02-28,upload_ready,daily/15109994_u1.csv,0,0,26,uploads/15109994_u1_asos_lag1_20211119_20240321.csv,1
+15109999_u1,15109999,이천시백사면A,1,경기 이천,1834.38,inferred_kWh_legacy_label,1651,2021-08-23,2026-02-28,upload_ready,daily/15109999_u1.csv,0,0,18,uploads/15109999_u1_asos_lag1_20210823_20251231.csv,1
+15124860_u1,15124860,세화리,1,제주 동부,999.6,explicit_kWh,1672,2021-12-02,2026-06-30,upload_ready,daily/15124860_u1.csv,1,0,34,uploads/15124860_u1_asos_lag1_20220417_20240229.csv,2
+15124861_u1,15124861,신인천본관주차장,1,인천,208.2,explicit_kWh,1647,2021-12-27,2026-06-30,upload_ready,daily/15124861_u1.csv,0,0,0,uploads/15124861_u1_asos_lag1_20211227_20251231.csv,1
+15140067_u1,15140067,와산리,1,제주 북부,816.0,explicit_kWh,1385,2022-09-15,2026-06-30,upload_ready,daily/15140067_u1.csv,0,0,55,uploads/15140067_u1_asos_lag1_20220915_20240229.csv,2
+15140095_u1,15140095,익산다송리,1,전북 익산,893.0,explicit_kWh,961,2024-01-01,2026-08-18,review_only,daily/15140095_u1.csv,570,0,20,,0

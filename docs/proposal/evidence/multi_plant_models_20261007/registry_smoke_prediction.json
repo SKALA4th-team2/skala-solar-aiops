@@ -1,0 +1,20 @@
+{
+  "plant_id": "15043384_u1",
+  "kind": "LSTM",
+  "source": "models:/Solar_15043384_u1_LSTM/2",
+  "historical_example": true,
+  "predictions": [
+    {
+      "target_date": "2025-01-01",
+      "prediction_kwh": 439.6496887207031
+    },
+    {
+      "target_date": "2025-01-02",
+      "prediction_kwh": 464.0970153808594
+    },
+    {
+      "target_date": "2025-01-03",
+      "prediction_kwh": 468.5933532714844
+    }
+  ]
+}

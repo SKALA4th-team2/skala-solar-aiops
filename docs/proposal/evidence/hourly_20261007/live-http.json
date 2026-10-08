@@ -1,0 +1,23 @@
+{
+  "health": {
+    "status": "ok",
+    "contract": "solar_hourly_24_jma_day2_v1",
+    "interval": "1h",
+    "forecast_hours": 24,
+    "worker_alive": true,
+    "worker_heartbeat": {
+      "name": "worker",
+      "updated_at": "2026-10-07T14:40:16.410391+00:00",
+      "pid": 28664
+    },
+    "plants": 31
+  },
+  "upload": {
+    "uploaded": true,
+    "rows": 696,
+    "start": "2026-01-30T00:00:00+09:00",
+    "end": "2026-02-27T23:00:00+09:00",
+    "uploaded_at": "2026-10-07T14:24:27.426901+00:00"
+  },
+  "portfolio_route_present": true
+}

@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "checks": [
+    "Three ordered, disjoint target splits and 1317 consecutive target dates",
+    "All target forecasts use Volume[T-1], never Volume[T]",
+    "Test labels and independently recomputed RuleC match source by date",
+    "All reported test metrics independently recomputed from daily forecasts",
+    "Selection predates final model forecasts; seed averages and frozen ensemble weights match",
+    "Final LSTM scalers fit only pre-test generation and forecast rows",
+    "All snapshotted original app/data files unchanged"
+  ],
+  "checked_input_files": 38
+}

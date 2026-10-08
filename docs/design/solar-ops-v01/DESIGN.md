@@ -1,3 +1,5 @@
+> **현행: 시간별31개소 UI.** 실행코드는 hourly-ui.js이며 [현재 연결](INTEGRATION.md), [새 검증 증빙](../../proposal/evidence/hourly_20261007/README.md)을 따른다. 아래는 이전 일별 디자인/시험 이력이다.
+
 ---
 name: Solar Field Journal
 description: 발전소 운전일지와 기상 관측표를 바탕으로 한 Solar Ops의 시각 언어

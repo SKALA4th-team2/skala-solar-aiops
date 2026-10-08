@@ -1,0 +1,94 @@
+{
+  "passed": true,
+  "partial": true,
+  "plants_checked": 20,
+  "registry_versions_checked": 0,
+  "checks": [
+    {
+      "plant_id": "15043409_u1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043384_u1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043385_u1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043386_u1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043386_u2",
+      "passed": true
+    },
+    {
+      "plant_id": "15043387_u1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043388_u1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043389_u1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043391_u1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043391_u2",
+      "passed": true
+    },
+    {
+      "plant_id": "15043391_u3",
+      "passed": true
+    },
+    {
+      "plant_id": "15043391_u4",
+      "passed": true
+    },
+    {
+      "plant_id": "15043394_u1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043395_u1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043396_u1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043399_u1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043400_u1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043401_u1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043402_u1",
+      "passed": true
+    },
+    {
+      "plant_id": "15043404_u1",
+      "passed": true
+    }
+  ],
+  "validation_selected_counts": {
+    "Ensemble": 19,
+    "XGBoost": 1
+  },
+  "lstm_beats_mean7_on_test": 20,
+  "lstm_beats_rulec_on_test": 11
+}

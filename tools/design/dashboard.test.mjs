@@ -111,10 +111,11 @@ test('saved dashboard routes forward only supported reads and validated single p
   const calls = [];
   const upstream = http.createServer(async (req, res) => {
     calls.push(req.url); res.setHeader('Content-Type', 'application/json');
-    if (req.url === '/predict') {
+    if (req.url === '/preview-api/dashboard/predict') {
       let raw = ''; for await (const chunk of req) raw += chunk;
-      assert.equal(JSON.parse(raw).sequence.length, 20);
-      res.end(JSON.stringify({ predicted_close: 160, model_version: 'test' }));
+      assert.equal(JSON.parse(raw).history.length, 24);
+      assert.equal(JSON.parse(raw).forecast.length, 24);
+      res.end(JSON.stringify({ total_kwh: 160, model_version: 'test' }));
     } else res.end(JSON.stringify({ verified: true }));
   });
   await new Promise(resolve => upstream.listen(0, '127.0.0.1', resolve));
@@ -126,11 +127,12 @@ test('saved dashboard routes forward only supported reads and validated single p
   for (const key of ['info','dataset','metrics','current','history','alerts','timeseries?window_sec=3600']) assert.equal((await fetch(prefix + key)).status, 200);
   assert.equal((await fetch(prefix + 'timeseries?window_sec=17')).status, 400);
   assert.equal((await fetch(prefix + 'arbitrary')).status, 404);
-  const predict = sequence => fetch(prefix + 'predict', { method: 'POST', headers: { Origin: origin, 'Content-Type': 'application/json' }, body: JSON.stringify({ sequence }) });
-  assert.equal((await predict([])).status, 400);
-  assert.equal((await predict(Array(20).fill(null))).status, 400);
-  assert.equal((await fetch(prefix + 'predict', { method: 'POST', headers: { Origin: origin, 'Content-Type': 'application/json' }, body: 'null' })).status, 400);
-  assert.equal((await predict(Array(20).fill({ close: 1, volume: -1 }))).status, 400);
-  assert.deepEqual(await (await predict(Array(20).fill({ close: 165, volume: 1200000 }))).json(), { predicted_close: 160, model_version: 'test' });
-  assert.deepEqual(calls, ['/system/info','/system/dataset','/metrics/summary','/models/current','/models/history?limit=100','/system/alerts?limit=100','/system/timeseries?window_sec=3600&buckets=12','/predict']);
+  const predict = payload => fetch(prefix + 'predict', { method: 'POST', headers: { Origin: origin, 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+  assert.equal((await predict({history:[],forecast:[]})).status,400);
+  assert.equal((await predict(null)).status,400);
+  const payload={plant_id:'hadong-sewage',history:Array.from({length:24},(_,i)=>({timestamp:`2026-02-26T${String(i).padStart(2,'0')}:00:00+09:00`,generation_kwh:0})),forecast:Array.from({length:24},(_,i)=>({timestamp:`2026-02-27T${String(i).padStart(2,'0')}:00:00+09:00`,shortwave_radiation:0,temperature_2m:10,cloud_cover:20,wind_speed_10m:2}))};
+  const invalid=structuredClone(payload);invalid.forecast[0].shortwave_radiation=-1;
+  assert.equal((await predict(invalid)).status,400);
+  assert.deepEqual(await (await predict(payload)).json(),{total_kwh:160,model_version:'test'});
+  assert.deepEqual(calls, ['info','dataset','metrics','current','history','alerts','timeseries?window_sec=3600','predict'].map(key=>'/preview-api/dashboard/'+key));
 });

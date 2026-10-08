@@ -1,0 +1,8 @@
+{
+  "filename": "solar-hourly-seed.zip",
+  "sha256": "08d7b98a042dd73167bdc3f4dd1a273abe1e54afce8d3151c88e392085a312df",
+  "bytes": 11356923,
+  "plant_count": 31,
+  "contract": "solar_hourly_24_jma_day2_v1",
+  "source_commit": "c96a10261936bd4b565109f07dd84dbe16ccb625"
+}

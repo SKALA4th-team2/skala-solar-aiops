@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "verified_days": 3,
+  "native_scaler_api_compatible": true,
+  "first_prediction_kwh": 223.9695281982422,
+  "target_date": "2026-02-26",
+  "max_abs_error_kwh": 1.8078804032484186e-05
+}

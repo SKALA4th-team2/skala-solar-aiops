@@ -1,0 +1,93 @@
+{
+  "yeongwol": {
+    "latitude": 37.18,
+    "longitude": 128.46,
+    "representative": "영월 ASOS 지역",
+    "coordinate_source": "https://www.weather.go.kr/download_01/climate_wind.pdf",
+    "mapping_type": "regional_proxy_not_individual_site"
+  },
+  "hadong": {
+    "latitude": 35.05885,
+    "longitude": 127.7799,
+    "representative": "하동 하수처리장 태양광",
+    "coordinate_source": "data.go.kr/15147894",
+    "mapping_type": "regional_proxy_not_individual_site"
+  },
+  "busan": {
+    "latitude": 35.11583,
+    "longitude": 129.0429,
+    "representative": "부산역 선상주차장 태양광",
+    "coordinate_source": "data.go.kr/15147894",
+    "mapping_type": "regional_proxy_not_individual_site"
+  },
+  "incheon": {
+    "latitude": 37.43648,
+    "longitude": 126.7295,
+    "representative": "신인천 수산정수장 태양광",
+    "coordinate_source": "data.go.kr/15147894",
+    "mapping_type": "regional_proxy_not_individual_site"
+  },
+  "icheon": {
+    "latitude": 37.33868,
+    "longitude": 127.4764,
+    "representative": "백사면A 태양광",
+    "coordinate_source": "data.go.kr/15147894",
+    "mapping_type": "regional_proxy_not_individual_site"
+  },
+  "eumseong": {
+    "latitude": 36.95956,
+    "longitude": 127.6493,
+    "representative": "감우리 태양광",
+    "coordinate_source": "data.go.kr/15147894",
+    "mapping_type": "regional_proxy_not_individual_site"
+  },
+  "jeju_west": {
+    "latitude": 33.27345,
+    "longitude": 126.2287,
+    "representative": "무릉리 태양광",
+    "coordinate_source": "data.go.kr/15147894",
+    "mapping_type": "regional_proxy_not_individual_site"
+  },
+  "jeju_south": {
+    "latitude": 33.30778,
+    "longitude": 126.6579,
+    "representative": "위미2리 태양광",
+    "coordinate_source": "data.go.kr/15147894",
+    "mapping_type": "regional_proxy_not_individual_site"
+  },
+  "jeju_east": {
+    "latitude": 33.44024,
+    "longitude": 126.7792,
+    "representative": "송당리 태양광",
+    "coordinate_source": "data.go.kr/15147894",
+    "mapping_type": "regional_proxy_not_individual_site"
+  },
+  "jeju_north": {
+    "latitude": 33.47526,
+    "longitude": 126.6829,
+    "representative": "와산리 태양광",
+    "coordinate_source": "data.go.kr/15147894",
+    "mapping_type": "regional_proxy_not_individual_site"
+  },
+  "samcheok": {
+    "latitude": 37.44056,
+    "longitude": 129.17084,
+    "representative": "Samcheok",
+    "coordinate_source": "https://geocoding-api.open-meteo.com/v1/search?name=Samcheok&count=10&language=en&countryCode=KR",
+    "mapping_type": "city_center_regional_proxy_not_individual_site"
+  },
+  "iksan": {
+    "latitude": 35.94389,
+    "longitude": 126.95444,
+    "representative": "Iksan",
+    "coordinate_source": "https://geocoding-api.open-meteo.com/v1/search?name=Iksan&count=10&language=en&countryCode=KR",
+    "mapping_type": "city_center_regional_proxy_not_individual_site"
+  },
+  "andong": {
+    "latitude": 36.56636,
+    "longitude": 128.72275,
+    "representative": "Andong",
+    "coordinate_source": "https://geocoding-api.open-meteo.com/v1/search?name=Andong&count=10&language=en&countryCode=KR",
+    "mapping_type": "city_center_regional_proxy_not_individual_site"
+  }
+}

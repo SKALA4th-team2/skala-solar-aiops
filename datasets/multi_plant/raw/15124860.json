@@ -1,0 +1,18 @@
+{
+  "source_id": "15124860",
+  "name": "세화리",
+  "landing_url": "https://www.data.go.kr/data/15124860/fileData.do",
+  "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000007649580&fileDetailSn=1&insertDataPrcus=N",
+  "retrieved_at_utc": "2026-10-07T08:48:24.111032+00:00",
+  "sha256": "6a46f94bbbbc919665bfc617a8d26dccb5e6e4d791d88d5e10ef1e0e25fd9cb5",
+  "bytes": 285849,
+  "metadata": {
+    "name": "한국남부발전(주)_세화리 태양광발전실적",
+    "description": "이 데이터는 한국남부발전 세화리 태양광발전소의 일자별 운영 실적을 체계적으로 수록한 자료입니다. 각 행에는 설비용량(kW), 하루 총발전량(kWh), 평균·최대·최소 발전량, 시간대별(0~24시) 전력 생산량 등이 포함되어 일조 조건과 기상 변화에 따른 생산 패턴을 정밀하게 비교할 수 있습니다. 계절·요일·특이일 분석, 피크 시간대 파악, 출력 변동성 진단, 고장·그늘 등 이상 징후 탐지, 예측모형 학습 데이터 구축, 수요관리 및 ESS 운영전략 수립, 전력시장 거래 계획 수립 등 실무 활용에 적합하며, 재생에너지 확대와 탄소중립 정책 평가의 근거 자료로도 활용 가능합니다.",
+    "dateModified": "2026-09-12",
+    "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+    "temporalCoverage": null,
+    "spatialCoverage": null
+  },
+  "usage_label": "이용허락범위 제한 없음"
+}

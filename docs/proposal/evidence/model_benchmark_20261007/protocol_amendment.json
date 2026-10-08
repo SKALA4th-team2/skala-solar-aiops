@@ -1,0 +1,8 @@
+{
+  "at_kst": "2026-10-07T18:06:45.463096+09:00",
+  "before_final_test": true,
+  "reason": "Pilot validation training stopped at epochs 17-18 on some seeds (best epoch 2-3) before learning radiation response. Complete all 120 epochs for each candidate, restore validation-best weights, and retain all three seeds. No test result was inspected.",
+  "old_patience": 15,
+  "new_patience": 120,
+  "other_models": "XGBoost and Prophet search spaces unchanged"
+}

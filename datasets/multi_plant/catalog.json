@@ -1,0 +1,3104 @@
+{
+  "summary": {
+    "candidate_sources": 39,
+    "daily_sources": 29,
+    "units": 35,
+    "upload_ready_units": 33,
+    "upload_files": 54,
+    "upload_rows": 89570,
+    "regions": [
+      "강원 삼척",
+      "강원 영월",
+      "경기 이천",
+      "경남 하동",
+      "부산",
+      "인천",
+      "제주 남부",
+      "제주 동부",
+      "제주 북부",
+      "제주 서부",
+      "충북 음성"
+    ],
+    "policy": {
+      "volume": "ASOS measured daily GSR at calendar date d-1, MJ/m2",
+      "minimum_contiguous_days": 365,
+      "sum_tolerance": "atol=0.05 kWh, rtol=1e-6",
+      "zero_segment_review_threshold": 0.25,
+      "capacity_screen": "peak hourly energy > 1.2 * reported kW, or daily energy > 24 * reported kW; heuristic, not outage truth"
+    }
+  },
+  "plants": [
+    {
+      "plant_id": "15043384_u1",
+      "source_id": "15043384",
+      "name": "남제주소내",
+      "unit": "1",
+      "region": "제주 서부",
+      "address": "서귀포시 안덕면 화순해안로 106번길 55",
+      "capacity_kw": 196.0,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          185
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15043384_u1.csv",
+      "rows": 4807,
+      "start": "2013-01-01",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 0,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 0,
+      "zero_days": 101,
+      "weather_missing_days": 60,
+      "fallback_weather_days": 0,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15043384_u1_asos_lag1_20130102_20251231.csv",
+          "rows": 4747,
+          "start": "2013-01-02",
+          "end": "2025-12-31",
+          "zero_days": 101,
+          "sha256": "210ba385456369f0a2894ebf93f7cdcff62cad0f9c78f4663876b764f091ee26"
+        }
+      ],
+      "primary_upload": "uploads/15043384_u1_asos_lag1_20130102_20251231.csv",
+      "excluded_segments": []
+    },
+    {
+      "plant_id": "15043385_u1",
+      "source_id": "15043385",
+      "name": "부산복합자재창고",
+      "unit": "1",
+      "region": "부산",
+      "address": "부산광역시 사하구 감천항로 7(감천동)",
+      "capacity_kw": 187.0,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          159
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15043385_u1.csv",
+      "rows": 4807,
+      "start": "2013-01-01",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 0,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 0,
+      "zero_days": 66,
+      "weather_missing_days": 153,
+      "fallback_weather_days": 0,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15043385_u1_asos_lag1_20130102_20180517.csv",
+          "rows": 1962,
+          "start": "2013-01-02",
+          "end": "2018-05-17",
+          "zero_days": 12,
+          "sha256": "c06a8ba15abc59a38735a3efd5b9c52b4ca5f7039ba1ff05a194d37347c2055b"
+        },
+        {
+          "file": "uploads/15043385_u1_asos_lag1_20180917_20200220.csv",
+          "rows": 522,
+          "start": "2018-09-17",
+          "end": "2020-02-20",
+          "zero_days": 0,
+          "sha256": "eb05e289ae5c1cb877c4a8398d318da6faa941640635cbbf7127aadc554f860b"
+        },
+        {
+          "file": "uploads/15043385_u1_asos_lag1_20210924_20221117.csv",
+          "rows": 420,
+          "start": "2021-09-24",
+          "end": "2022-11-17",
+          "zero_days": 1,
+          "sha256": "47299b96423c9767ccf0ed2079aaa5a1912a0852183a61b841b069e91b9d8b64"
+        },
+        {
+          "file": "uploads/15043385_u1_asos_lag1_20230526_20250630.csv",
+          "rows": 767,
+          "start": "2023-05-26",
+          "end": "2025-06-30",
+          "zero_days": 48,
+          "sha256": "e2147fa8e44c0a728813b3b64ab6986e194ca3e5072a381475b020befe53e3c0"
+        }
+      ],
+      "primary_upload": "uploads/15043385_u1_asos_lag1_20130102_20180517.csv",
+      "excluded_segments": [
+        {
+          "start": "2018-05-31",
+          "end": "2018-07-01",
+          "rows": 32,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2018-07-07",
+          "end": "2018-07-08",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2018-07-16",
+          "end": "2018-07-18",
+          "rows": 3,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2020-02-22",
+          "end": "2020-03-10",
+          "rows": 18,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2020-03-12",
+          "end": "2021-01-27",
+          "rows": 322,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2021-01-29",
+          "end": "2021-09-22",
+          "rows": 237,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2022-11-20",
+          "end": "2023-05-24",
+          "rows": 186,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-07-02",
+          "end": "2025-12-31",
+          "rows": 183,
+          "reason": "shorter_than_365_days"
+        }
+      ]
+    },
+    {
+      "plant_id": "15043387_u1",
+      "source_id": "15043387",
+      "name": "부산수처리장",
+      "unit": "1",
+      "region": "부산",
+      "address": "부산광역시 사하구 감천항로 7(감천동) 수처리실",
+      "capacity_kw": 110.5,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          159
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15043387_u1.csv",
+      "rows": 2981,
+      "start": "2018-01-01",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 0,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 0,
+      "zero_days": 39,
+      "weather_missing_days": 152,
+      "fallback_weather_days": 0,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15043387_u1_asos_lag1_20180917_20200220.csv",
+          "rows": 522,
+          "start": "2018-09-17",
+          "end": "2020-02-20",
+          "zero_days": 0,
+          "sha256": "4843c8d4d7e120ead1c7ed1d7573c6cd98ca3a6b051db64560d24a65bf4375b4"
+        },
+        {
+          "file": "uploads/15043387_u1_asos_lag1_20210924_20221117.csv",
+          "rows": 420,
+          "start": "2021-09-24",
+          "end": "2022-11-17",
+          "zero_days": 0,
+          "sha256": "d01422f0a0b61239409aeba5b9962b9a25dc0380e850df04a57861eea2e67281"
+        },
+        {
+          "file": "uploads/15043387_u1_asos_lag1_20230526_20250630.csv",
+          "rows": 767,
+          "start": "2023-05-26",
+          "end": "2025-06-30",
+          "zero_days": 9,
+          "sha256": "8661d1effef022a8a0b3d1b1f49654ca779b4f716658a032aeb1ce4987616529"
+        }
+      ],
+      "primary_upload": "uploads/15043387_u1_asos_lag1_20230526_20250630.csv",
+      "excluded_segments": [
+        {
+          "start": "2018-01-01",
+          "end": "2018-05-17",
+          "rows": 137,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2018-05-31",
+          "end": "2018-07-01",
+          "rows": 32,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2018-07-07",
+          "end": "2018-07-08",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2018-07-16",
+          "end": "2018-07-18",
+          "rows": 3,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2020-02-22",
+          "end": "2020-03-10",
+          "rows": 18,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2020-03-12",
+          "end": "2021-01-27",
+          "rows": 322,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2021-01-29",
+          "end": "2021-09-22",
+          "rows": 237,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2022-11-20",
+          "end": "2023-05-24",
+          "rows": 186,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-07-02",
+          "end": "2025-12-31",
+          "rows": 183,
+          "reason": "shorter_than_365_days"
+        }
+      ]
+    },
+    {
+      "plant_id": "15043391_u1",
+      "source_id": "15043391",
+      "name": "삼척소내",
+      "unit": "1",
+      "region": "강원 삼척",
+      "address": "강원도 삼척시 원덕읍 삼척로 734",
+      "capacity_kw": 999.0,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          130,
+          105
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15043391_u1.csv",
+      "rows": 2981,
+      "start": "2018-01-01",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 0,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 0,
+      "zero_days": 27,
+      "weather_missing_days": 85,
+      "fallback_weather_days": 2895,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15043391_u1_asos_lag1_20180101_20210820.csv",
+          "rows": 1328,
+          "start": "2018-01-01",
+          "end": "2021-08-20",
+          "zero_days": 23,
+          "sha256": "0e3a02ba7dad9075d1ec2293389711ddd797938cb853b84b4f573d58ee7d87a5"
+        },
+        {
+          "file": "uploads/15043391_u1_asos_lag1_20221210_20240609.csv",
+          "rows": 548,
+          "start": "2022-12-10",
+          "end": "2024-06-09",
+          "zero_days": 4,
+          "sha256": "ba083e3d25c3e40db56d4f73ae29930747853e5b61914a259f1c73cfddf94941"
+        }
+      ],
+      "primary_upload": "uploads/15043391_u1_asos_lag1_20180101_20210820.csv",
+      "excluded_segments": [
+        {
+          "start": "2021-08-22",
+          "end": "2022-05-17",
+          "rows": 269,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2022-05-19",
+          "end": "2022-11-30",
+          "rows": 196,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-06-11",
+          "end": "2025-04-24",
+          "rows": 318,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-04-26",
+          "end": "2025-07-16",
+          "rows": 82,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-07-18",
+          "end": "2025-09-18",
+          "rows": 63,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-09-20",
+          "end": "2025-09-21",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-10-03",
+          "end": "2025-12-31",
+          "rows": 90,
+          "reason": "shorter_than_365_days"
+        }
+      ]
+    },
+    {
+      "plant_id": "15043391_u2",
+      "source_id": "15043391",
+      "name": "삼척소내",
+      "unit": "2",
+      "region": "강원 삼척",
+      "address": "강원도 삼척시 원덕읍 삼척로 734",
+      "capacity_kw": 990.45,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          130,
+          105
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15043391_u2.csv",
+      "rows": 2852,
+      "start": "2018-05-09",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 1,
+      "invalid_generation_days": 0,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 0,
+      "zero_days": 21,
+      "weather_missing_days": 85,
+      "fallback_weather_days": 2766,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15043391_u2_asos_lag1_20180509_20191003.csv",
+          "rows": 513,
+          "start": "2018-05-09",
+          "end": "2019-10-03",
+          "zero_days": 0,
+          "sha256": "54b7293abcf1b5baa2ca20c74bb1ebf8f13c565a2feb26b62aad6d02d8e5e224"
+        },
+        {
+          "file": "uploads/15043391_u2_asos_lag1_20191005_20210820.csv",
+          "rows": 686,
+          "start": "2019-10-05",
+          "end": "2021-08-20",
+          "zero_days": 2,
+          "sha256": "b66e680a64dd15c0012cc2d29bbbed6cc045d8b46a2de3b35b77e0d79affe265"
+        },
+        {
+          "file": "uploads/15043391_u2_asos_lag1_20221210_20240609.csv",
+          "rows": 548,
+          "start": "2022-12-10",
+          "end": "2024-06-09",
+          "zero_days": 19,
+          "sha256": "876730eb223725e74452d46ba858c5416cb4f563c7c87032d802c37cf447f602"
+        }
+      ],
+      "primary_upload": "uploads/15043391_u2_asos_lag1_20191005_20210820.csv",
+      "excluded_segments": [
+        {
+          "start": "2021-08-22",
+          "end": "2022-05-17",
+          "rows": 269,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2022-05-19",
+          "end": "2022-11-30",
+          "rows": 196,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-06-11",
+          "end": "2025-04-24",
+          "rows": 318,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-04-26",
+          "end": "2025-07-16",
+          "rows": 82,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-07-18",
+          "end": "2025-09-18",
+          "rows": 63,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-09-20",
+          "end": "2025-09-21",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-10-03",
+          "end": "2025-12-31",
+          "rows": 90,
+          "reason": "shorter_than_365_days"
+        }
+      ]
+    },
+    {
+      "plant_id": "15043391_u3",
+      "source_id": "15043391",
+      "name": "삼척소내",
+      "unit": "3",
+      "region": "강원 삼척",
+      "address": "강원도 삼척시 원덕읍 삼척로 734",
+      "capacity_kw": 2002.32,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          130,
+          105
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15043391_u3.csv",
+      "rows": 2677,
+      "start": "2018-11-01",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 0,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 0,
+      "zero_days": 10,
+      "weather_missing_days": 85,
+      "fallback_weather_days": 2591,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15043391_u3_asos_lag1_20181101_20210820.csv",
+          "rows": 1024,
+          "start": "2018-11-01",
+          "end": "2021-08-20",
+          "zero_days": 1,
+          "sha256": "a0a581e96bee474bfe9be04fec4cf2175df78985547a3151796eedbcde3895d5"
+        },
+        {
+          "file": "uploads/15043391_u3_asos_lag1_20221210_20240609.csv",
+          "rows": 548,
+          "start": "2022-12-10",
+          "end": "2024-06-09",
+          "zero_days": 9,
+          "sha256": "01c0a7ae88fd066cbdf0d23878e4289deb38f8ebe09f72a76057f40b15c9ee64"
+        }
+      ],
+      "primary_upload": "uploads/15043391_u3_asos_lag1_20181101_20210820.csv",
+      "excluded_segments": [
+        {
+          "start": "2021-08-22",
+          "end": "2022-05-17",
+          "rows": 269,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2022-05-19",
+          "end": "2022-11-30",
+          "rows": 196,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-06-11",
+          "end": "2025-04-24",
+          "rows": 318,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-04-26",
+          "end": "2025-07-16",
+          "rows": 82,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-07-18",
+          "end": "2025-09-18",
+          "rows": 63,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-09-20",
+          "end": "2025-09-21",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-10-03",
+          "end": "2025-12-31",
+          "rows": 90,
+          "reason": "shorter_than_365_days"
+        }
+      ]
+    },
+    {
+      "plant_id": "15043394_u1",
+      "source_id": "15043394",
+      "name": "신인천소내",
+      "unit": "1",
+      "region": "인천",
+      "address": "인천광역시 서구 장도로 57 (청라동)",
+      "capacity_kw": 200.0,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          112
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15043394_u1.csv",
+      "rows": 4805,
+      "start": "2013-01-01",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 2,
+      "invalid_generation_days": 0,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 0,
+      "zero_days": 30,
+      "weather_missing_days": 60,
+      "fallback_weather_days": 0,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15043394_u1_asos_lag1_20130102_20160503.csv",
+          "rows": 1218,
+          "start": "2013-01-02",
+          "end": "2016-05-03",
+          "zero_days": 9,
+          "sha256": "99ce9b2e0950f8e46949163db5441efbdf68674ed8c347ad37bb33bd3f403824"
+        },
+        {
+          "file": "uploads/15043394_u1_asos_lag1_20160602_20251231.csv",
+          "rows": 3500,
+          "start": "2016-06-02",
+          "end": "2025-12-31",
+          "zero_days": 20,
+          "sha256": "f66d41d3c9966f4f2e211426b48bc09da99654b37d64e0bc36ee6e831fa29710"
+        }
+      ],
+      "primary_upload": "uploads/15043394_u1_asos_lag1_20160602_20251231.csv",
+      "excluded_segments": [
+        {
+          "start": "2016-05-05",
+          "end": "2016-05-31",
+          "rows": 27,
+          "reason": "shorter_than_365_days"
+        }
+      ]
+    },
+    {
+      "plant_id": "15043395_u1",
+      "source_id": "15043395",
+      "name": "신인천전망대",
+      "unit": "1",
+      "region": "인천",
+      "address": "인천광역시 서구 장도로 57 (청라동)",
+      "capacity_kw": 1742.0,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          112
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15043395_u1.csv",
+      "rows": 2981,
+      "start": "2018-01-01",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 30,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 30,
+      "zero_days": 24,
+      "weather_missing_days": 59,
+      "fallback_weather_days": 0,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15043395_u1_asos_lag1_20180101_20210720.csv",
+          "rows": 1297,
+          "start": "2018-01-01",
+          "end": "2021-07-20",
+          "zero_days": 8,
+          "sha256": "fe733a9bf11388f3c5b10df86a31a31372bbc757022d3bc3e8a0b48558031633"
+        },
+        {
+          "file": "uploads/15043395_u1_asos_lag1_20210811_20240430.csv",
+          "rows": 994,
+          "start": "2021-08-11",
+          "end": "2024-04-30",
+          "zero_days": 13,
+          "sha256": "9ef892773ff6ed43ccf2239cc31aa6862185138058059e9eeedc3ebb6fe5228f"
+        },
+        {
+          "file": "uploads/15043395_u1_asos_lag1_20241227_20251231.csv",
+          "rows": 370,
+          "start": "2024-12-27",
+          "end": "2025-12-31",
+          "zero_days": 3,
+          "sha256": "06c9e508d6786927c8683be0fe8be743979227b394064d49fe2fa2e588347863"
+        }
+      ],
+      "primary_upload": "uploads/15043395_u1_asos_lag1_20180101_20210720.csv",
+      "excluded_segments": [
+        {
+          "start": "2021-07-22",
+          "end": "2021-07-22",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2021-07-25",
+          "end": "2021-08-04",
+          "rows": 11,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2021-08-06",
+          "end": "2021-08-09",
+          "rows": 4,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-05-05",
+          "end": "2024-05-07",
+          "rows": 3,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-05-11",
+          "end": "2024-05-11",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-05-15",
+          "end": "2024-05-15",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-05-20",
+          "end": "2024-05-20",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-05-24",
+          "end": "2024-05-26",
+          "rows": 3,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-05-30",
+          "end": "2024-06-11",
+          "rows": 13,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-06-15",
+          "end": "2024-06-15",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-06-17",
+          "end": "2024-12-25",
+          "rows": 192,
+          "reason": "shorter_than_365_days"
+        }
+      ]
+    },
+    {
+      "plant_id": "15043399_u1",
+      "source_id": "15043399",
+      "name": "영월본부",
+      "unit": "1",
+      "region": "강원 영월",
+      "address": "영월군 영월읍 중앙로 411",
+      "capacity_kw": 76.0,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          121,
+          114
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15043399_u1.csv",
+      "rows": 4806,
+      "start": "2013-01-01",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 1,
+      "invalid_generation_days": 0,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 0,
+      "zero_days": 8,
+      "weather_missing_days": 66,
+      "fallback_weather_days": 4467,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15043399_u1_asos_lag1_20130102_20150830.csv",
+          "rows": 971,
+          "start": "2013-01-02",
+          "end": "2015-08-30",
+          "zero_days": 0,
+          "sha256": "3bef41440146b2fe2f025ac48ab6bb57745cd99affb45498c56f4206ff475d3f"
+        },
+        {
+          "file": "uploads/15043399_u1_asos_lag1_20170419_20251231.csv",
+          "rows": 3179,
+          "start": "2017-04-19",
+          "end": "2025-12-31",
+          "zero_days": 7,
+          "sha256": "d8e648d090c4deb3ebec8dc543a2557f216553d38374e74feca874837d9b6f74"
+        }
+      ],
+      "primary_upload": "uploads/15043399_u1_asos_lag1_20170419_20251231.csv",
+      "excluded_segments": [
+        {
+          "start": "2015-09-01",
+          "end": "2015-12-15",
+          "rows": 106,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2015-12-17",
+          "end": "2016-04-17",
+          "rows": 123,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2016-04-19",
+          "end": "2016-09-08",
+          "rows": 143,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2016-09-10",
+          "end": "2017-02-16",
+          "rows": 160,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2017-02-19",
+          "end": "2017-04-17",
+          "rows": 58,
+          "reason": "shorter_than_365_days"
+        }
+      ]
+    },
+    {
+      "plant_id": "15043400_u1",
+      "source_id": "15043400",
+      "name": "영월철도부지",
+      "unit": "1",
+      "region": "강원 영월",
+      "address": "강원도 영월군 영월읍 중앙로 411 정양리 일원(585)",
+      "capacity_kw": 1190.7,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          121,
+          114
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15043400_u1.csv",
+      "rows": 2891,
+      "start": "2018-04-01",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 0,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 0,
+      "zero_days": 22,
+      "weather_missing_days": 59,
+      "fallback_weather_days": 2558,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15043400_u1_asos_lag1_20180401_20251231.csv",
+          "rows": 2832,
+          "start": "2018-04-01",
+          "end": "2025-12-31",
+          "zero_days": 22,
+          "sha256": "7195f022949b4ba2be8ef6354abb5091ebbd86ac13502e871fe335eedfabedc2"
+        }
+      ],
+      "primary_upload": "uploads/15043400_u1_asos_lag1_20180401_20251231.csv",
+      "excluded_segments": []
+    },
+    {
+      "plant_id": "15043402_u1",
+      "source_id": "15043402",
+      "name": "인천수산정수장",
+      "unit": "1",
+      "region": "인천",
+      "address": "인천광역시 남동구 수산동 294-4",
+      "capacity_kw": 998.0,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          112
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15043402_u1.csv",
+      "rows": 4805,
+      "start": "2013-01-01",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 2,
+      "invalid_generation_days": 0,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 0,
+      "zero_days": 75,
+      "weather_missing_days": 60,
+      "fallback_weather_days": 0,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15043402_u1_asos_lag1_20130102_20160530.csv",
+          "rows": 1245,
+          "start": "2013-01-02",
+          "end": "2016-05-30",
+          "zero_days": 26,
+          "sha256": "9714f00cae7df1677e65080b16b85a25f98af3675aaa82bd2e85c1ff0cda3092"
+        },
+        {
+          "file": "uploads/15043402_u1_asos_lag1_20160601_20181123.csv",
+          "rows": 906,
+          "start": "2016-06-01",
+          "end": "2018-11-23",
+          "zero_days": 6,
+          "sha256": "ac4388a32defe9e9411e42c674699ac1ca4c665b5bf12f527faae1480e6e88db"
+        },
+        {
+          "file": "uploads/15043402_u1_asos_lag1_20181125_20251231.csv",
+          "rows": 2594,
+          "start": "2018-11-25",
+          "end": "2025-12-31",
+          "zero_days": 32,
+          "sha256": "799b63683b3bddddd77da83a1a7ec6a5f9b48984663de2da1572ab5cf8a723aa"
+        }
+      ],
+      "primary_upload": "uploads/15043402_u1_asos_lag1_20181125_20251231.csv",
+      "excluded_segments": []
+    },
+    {
+      "plant_id": "15043404_u1",
+      "source_id": "15043404",
+      "name": "하동공설운동장",
+      "unit": "1",
+      "region": "경남 하동",
+      "address": "하동군 적량면 고절리 1209-1",
+      "capacity_kw": 369.85,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          266,
+          192,
+          263
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15043404_u1.csv",
+      "rows": 4807,
+      "start": "2013-01-01",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 0,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 0,
+      "zero_days": 47,
+      "weather_missing_days": 60,
+      "fallback_weather_days": 5,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15043404_u1_asos_lag1_20130102_20251231.csv",
+          "rows": 4747,
+          "start": "2013-01-02",
+          "end": "2025-12-31",
+          "zero_days": 47,
+          "sha256": "fc82c83b1721a44fff5391dc164d81d0b5827fe06c999fa97239f37746d319c2"
+        }
+      ],
+      "primary_upload": "uploads/15043404_u1_asos_lag1_20130102_20251231.csv",
+      "excluded_segments": []
+    },
+    {
+      "plant_id": "15043405_u1",
+      "source_id": "15043405",
+      "name": "하동변전소",
+      "unit": "1",
+      "region": "경남 하동",
+      "address": "하동군 적량면 동산리 867",
+      "capacity_kw": 48.3,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          266,
+          192,
+          263
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15043405_u1.csv",
+      "rows": 4807,
+      "start": "2013-01-01",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 0,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 0,
+      "zero_days": 41,
+      "weather_missing_days": 60,
+      "fallback_weather_days": 5,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15043405_u1_asos_lag1_20130102_20251231.csv",
+          "rows": 4747,
+          "start": "2013-01-02",
+          "end": "2025-12-31",
+          "zero_days": 41,
+          "sha256": "d1d7d7e534416e5e5ee031193a249293fcb946de456dd9a6888fff7a48547268"
+        }
+      ],
+      "primary_upload": "uploads/15043405_u1_asos_lag1_20130102_20251231.csv",
+      "excluded_segments": []
+    },
+    {
+      "plant_id": "15043406_u1",
+      "source_id": "15043406",
+      "name": "하동보건소",
+      "unit": "1",
+      "region": "경남 하동",
+      "address": "하동군 하동읍 읍내리 149-1",
+      "capacity_kw": 40.0,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          266,
+          192,
+          263
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15043406_u1.csv",
+      "rows": 4807,
+      "start": "2013-01-01",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 0,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 0,
+      "zero_days": 7,
+      "weather_missing_days": 60,
+      "fallback_weather_days": 5,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15043406_u1_asos_lag1_20130102_20251231.csv",
+          "rows": 4747,
+          "start": "2013-01-02",
+          "end": "2025-12-31",
+          "zero_days": 7,
+          "sha256": "95dd43b0d549b4b77d76dd42bfb79a7cf5ebf1edaa30b7e15f0715dcf5a623ad"
+        }
+      ],
+      "primary_upload": "uploads/15043406_u1_asos_lag1_20130102_20251231.csv",
+      "excluded_segments": []
+    },
+    {
+      "plant_id": "15043407_u1",
+      "source_id": "15043407",
+      "name": "하동본부",
+      "unit": "1",
+      "region": "경남 하동",
+      "address": "하동군 금성면 가덕리 310",
+      "capacity_kw": 998.4,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          266,
+          192,
+          263
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15043407_u1.csv",
+      "rows": 4807,
+      "start": "2013-01-01",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 0,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 0,
+      "zero_days": 74,
+      "weather_missing_days": 60,
+      "fallback_weather_days": 5,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15043407_u1_asos_lag1_20130102_20251231.csv",
+          "rows": 4747,
+          "start": "2013-01-02",
+          "end": "2025-12-31",
+          "zero_days": 74,
+          "sha256": "1a1956f3c3852627f1a81d8a590862e596862977c612a3fa718a8dd291fd0aa8"
+        }
+      ],
+      "primary_upload": "uploads/15043407_u1_asos_lag1_20130102_20251231.csv",
+      "excluded_segments": []
+    },
+    {
+      "plant_id": "15043407_u2",
+      "source_id": "15043407",
+      "name": "하동본부",
+      "unit": "2",
+      "region": "경남 하동",
+      "address": "하동군 금성면 가덕리 310",
+      "capacity_kw": 1900.8,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          266,
+          192,
+          263
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15043407_u2.csv",
+      "rows": 4807,
+      "start": "2013-01-01",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 0,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 0,
+      "zero_days": 46,
+      "weather_missing_days": 60,
+      "fallback_weather_days": 5,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15043407_u2_asos_lag1_20130102_20251231.csv",
+          "rows": 4747,
+          "start": "2013-01-02",
+          "end": "2025-12-31",
+          "zero_days": 46,
+          "sha256": "69c1097860726749aec328b486ec886b254a7e14a8413655602c67ef6558c349"
+        }
+      ],
+      "primary_upload": "uploads/15043407_u2_asos_lag1_20130102_20251231.csv",
+      "excluded_segments": []
+    },
+    {
+      "plant_id": "15043407_u3",
+      "source_id": "15043407",
+      "name": "하동본부",
+      "unit": "3",
+      "region": "경남 하동",
+      "address": "하동군 금성면 가덕리 310",
+      "capacity_kw": 600.6,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          266,
+          192,
+          263
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15043407_u3.csv",
+      "rows": 4807,
+      "start": "2013-01-01",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 0,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 0,
+      "zero_days": 44,
+      "weather_missing_days": 60,
+      "fallback_weather_days": 5,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15043407_u3_asos_lag1_20130102_20251231.csv",
+          "rows": 4747,
+          "start": "2013-01-02",
+          "end": "2025-12-31",
+          "zero_days": 44,
+          "sha256": "2300e1b7f825c73fe17aa784aa22a9f3062fd92d3d84a35a787d838db9b59afe"
+        }
+      ],
+      "primary_upload": "uploads/15043407_u3_asos_lag1_20130102_20251231.csv",
+      "excluded_segments": []
+    },
+    {
+      "plant_id": "15043407_u4",
+      "source_id": "15043407",
+      "name": "하동본부",
+      "unit": "4",
+      "region": "경남 하동",
+      "address": "하동군 금남면 덕오길 173-176 금남면 대송리 482, 491, 492-2, 515, 527, 870, 산100",
+      "capacity_kw": 997.56,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          266,
+          192,
+          263
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15043407_u4.csv",
+      "rows": 3012,
+      "start": "2017-12-01",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 0,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 0,
+      "zero_days": 52,
+      "weather_missing_days": 59,
+      "fallback_weather_days": 4,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15043407_u4_asos_lag1_20171201_20251231.csv",
+          "rows": 2953,
+          "start": "2017-12-01",
+          "end": "2025-12-31",
+          "zero_days": 52,
+          "sha256": "8194b3b5a06eddd91e58b694caf0dfe7783f8ee7cab20cca4bfa6f7cadc503be"
+        }
+      ],
+      "primary_upload": "uploads/15043407_u4_asos_lag1_20171201_20251231.csv",
+      "excluded_segments": []
+    },
+    {
+      "plant_id": "15043407_u6",
+      "source_id": "15043407",
+      "name": "하동본부",
+      "unit": "6",
+      "region": "경남 하동",
+      "address": "하동군 금성면 가덕리 1321,309",
+      "capacity_kw": 998.325,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          266,
+          192,
+          263
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15043407_u6.csv",
+      "rows": 1916,
+      "start": "2020-12-01",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 0,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 0,
+      "zero_days": 31,
+      "weather_missing_days": 59,
+      "fallback_weather_days": 2,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15043407_u6_asos_lag1_20201201_20251231.csv",
+          "rows": 1857,
+          "start": "2020-12-01",
+          "end": "2025-12-31",
+          "zero_days": 31,
+          "sha256": "5eed4cece8d87f0f750b4f7caf821ddc01ee33f695bd2a5133ba449e28f94fc4"
+        }
+      ],
+      "primary_upload": "uploads/15043407_u6_asos_lag1_20201201_20251231.csv",
+      "excluded_segments": []
+    },
+    {
+      "plant_id": "15043411_u1",
+      "source_id": "15043411",
+      "name": "행원소수력",
+      "unit": "1",
+      "region": "제주 동부",
+      "address": "제주시 구좌읍 행원리 571-2",
+      "capacity_kw": 6.0,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          188,
+          184
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15043411_u1.csv",
+      "rows": 4807,
+      "start": "2013-01-01",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 440,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 440,
+      "zero_days": 2430,
+      "weather_missing_days": 62,
+      "fallback_weather_days": 4743,
+      "status": "review_only",
+      "uploads": [],
+      "primary_upload": null,
+      "excluded_segments": [
+        {
+          "start": "2013-01-13",
+          "end": "2013-01-13",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2013-04-26",
+          "end": "2013-04-28",
+          "rows": 3,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2013-05-22",
+          "end": "2013-05-22",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2013-05-25",
+          "end": "2013-05-27",
+          "rows": 3,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2013-05-30",
+          "end": "2013-05-30",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2013-06-15",
+          "end": "2013-07-07",
+          "rows": 23,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2013-07-09",
+          "end": "2013-07-14",
+          "rows": 6,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2013-07-21",
+          "end": "2013-07-21",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2013-07-31",
+          "end": "2013-08-04",
+          "rows": 5,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2013-08-10",
+          "end": "2013-08-11",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2013-08-14",
+          "end": "2013-08-15",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2013-08-17",
+          "end": "2013-08-18",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2013-08-20",
+          "end": "2013-08-22",
+          "rows": 3,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2013-08-24",
+          "end": "2013-08-25",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2013-08-31",
+          "end": "2013-09-01",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2013-09-07",
+          "end": "2013-09-08",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2013-09-14",
+          "end": "2013-09-27",
+          "rows": 14,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2013-09-29",
+          "end": "2013-09-30",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2013-10-02",
+          "end": "2013-11-17",
+          "rows": 47,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2013-11-23",
+          "end": "2013-12-03",
+          "rows": 11,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2013-12-05",
+          "end": "2013-12-25",
+          "rows": 21,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2013-12-27",
+          "end": "2013-12-31",
+          "rows": 5,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2014-01-02",
+          "end": "2014-01-24",
+          "rows": 23,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2014-01-26",
+          "end": "2014-01-26",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2014-02-01",
+          "end": "2014-02-02",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2014-02-07",
+          "end": "2014-02-09",
+          "rows": 3,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2014-02-22",
+          "end": "2014-02-25",
+          "rows": 4,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2014-03-01",
+          "end": "2014-03-01",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2014-03-08",
+          "end": "2014-03-08",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2014-03-15",
+          "end": "2014-03-15",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2014-03-22",
+          "end": "2014-03-22",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2014-03-28",
+          "end": "2014-03-29",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2014-04-05",
+          "end": "2014-04-05",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2014-04-08",
+          "end": "2014-04-08",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2014-04-11",
+          "end": "2014-04-12",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2014-04-19",
+          "end": "2014-04-19",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2014-04-25",
+          "end": "2014-04-26",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2014-05-04",
+          "end": "2014-05-05",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2014-05-10",
+          "end": "2014-05-11",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2014-05-13",
+          "end": "2014-05-13",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2014-05-17",
+          "end": "2014-05-17",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2014-05-19",
+          "end": "2014-08-26",
+          "rows": 100,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2014-09-07",
+          "end": "2014-09-10",
+          "rows": 4,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2014-09-13",
+          "end": "2014-09-14",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2014-09-20",
+          "end": "2014-09-21",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2014-09-27",
+          "end": "2014-09-28",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2014-10-03",
+          "end": "2023-09-24",
+          "rows": 3279,
+          "reason": "over_25_percent_zero_generation"
+        },
+        {
+          "start": "2023-09-26",
+          "end": "2023-09-26",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-09-28",
+          "end": "2023-10-05",
+          "rows": 8,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-10-07",
+          "end": "2023-10-09",
+          "rows": 3,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-10-20",
+          "end": "2023-10-22",
+          "rows": 3,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-10-24",
+          "end": "2023-10-31",
+          "rows": 8,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-11-02",
+          "end": "2023-11-05",
+          "rows": 4,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-11-07",
+          "end": "2023-11-07",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-11-11",
+          "end": "2023-11-12",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-11-14",
+          "end": "2023-11-15",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-11-18",
+          "end": "2023-11-19",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-11-21",
+          "end": "2023-11-21",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-11-25",
+          "end": "2023-12-14",
+          "rows": 20,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-12-16",
+          "end": "2023-12-25",
+          "rows": 10,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-12-30",
+          "end": "2024-01-01",
+          "rows": 3,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-01-06",
+          "end": "2024-01-07",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-01-09",
+          "end": "2024-01-29",
+          "rows": 21,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-02-04",
+          "end": "2024-02-04",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-02-10",
+          "end": "2024-02-21",
+          "rows": 12,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-02-24",
+          "end": "2024-02-25",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-03-03",
+          "end": "2024-10-12",
+          "rows": 224,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-10-14",
+          "end": "2025-03-09",
+          "rows": 147,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-03-15",
+          "end": "2025-03-16",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-03-22",
+          "end": "2025-03-24",
+          "rows": 3,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-03-29",
+          "end": "2025-03-30",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-04-05",
+          "end": "2025-04-06",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-04-08",
+          "end": "2025-04-23",
+          "rows": 16,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-04-26",
+          "end": "2025-04-28",
+          "rows": 3,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-05-01",
+          "end": "2025-05-06",
+          "rows": 6,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-05-08",
+          "end": "2025-05-18",
+          "rows": 11,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-05-20",
+          "end": "2025-05-25",
+          "rows": 6,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-05-31",
+          "end": "2025-06-16",
+          "rows": 17,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-06-18",
+          "end": "2025-11-19",
+          "rows": 155,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-11-21",
+          "end": "2025-11-25",
+          "rows": 5,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-11-29",
+          "end": "2025-11-30",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-12-04",
+          "end": "2025-12-07",
+          "rows": 4,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-12-09",
+          "end": "2025-12-15",
+          "rows": 7,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-12-17",
+          "end": "2025-12-17",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-12-19",
+          "end": "2025-12-21",
+          "rows": 3,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-12-25",
+          "end": "2025-12-25",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-12-27",
+          "end": "2025-12-28",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-12-30",
+          "end": "2025-12-30",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        }
+      ]
+    },
+    {
+      "plant_id": "15095374_u1",
+      "source_id": "15095374",
+      "name": "무릉리",
+      "unit": "1",
+      "region": "제주 서부",
+      "address": "서귀포시 대정읍 무릉리 1193-3 외 3필지",
+      "capacity_kw": 809.2,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          185
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15095374_u1.csv",
+      "rows": 1765,
+      "start": "2021-05-01",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 0,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 0,
+      "zero_days": 44,
+      "weather_missing_days": 59,
+      "fallback_weather_days": 0,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15095374_u1_asos_lag1_20210501_20251231.csv",
+          "rows": 1706,
+          "start": "2021-05-01",
+          "end": "2025-12-31",
+          "zero_days": 42,
+          "sha256": "38ac9ef2b575dcdb97490781f25eb5d868ee6618909295fa320aacc9323fb74b"
+        }
+      ],
+      "primary_upload": "uploads/15095374_u1_asos_lag1_20210501_20251231.csv",
+      "excluded_segments": []
+    },
+    {
+      "plant_id": "15095380_u1",
+      "source_id": "15095380",
+      "name": "부산역선상주차장",
+      "unit": "1",
+      "region": "부산",
+      "address": "부산광역시 동구 초량3동 1187-1 ",
+      "capacity_kw": 834.0,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          159
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15095380_u1.csv",
+      "rows": 2024,
+      "start": "2020-08-15",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 0,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 0,
+      "zero_days": 22,
+      "weather_missing_days": 65,
+      "fallback_weather_days": 0,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15095380_u1_asos_lag1_20210924_20221117.csv",
+          "rows": 420,
+          "start": "2021-09-24",
+          "end": "2022-11-17",
+          "zero_days": 0,
+          "sha256": "18da5cf3f83d008887424cb910fc7d418961b0aba3c46759ca75a073e15b39aa"
+        },
+        {
+          "file": "uploads/15095380_u1_asos_lag1_20230526_20250630.csv",
+          "rows": 767,
+          "start": "2023-05-26",
+          "end": "2025-06-30",
+          "zero_days": 6,
+          "sha256": "530190662badd4374c858bfb0623ad13c4c687f284c368383d2723f6231b9a8a"
+        }
+      ],
+      "primary_upload": "uploads/15095380_u1_asos_lag1_20230526_20250630.csv",
+      "excluded_segments": [
+        {
+          "start": "2020-08-15",
+          "end": "2021-01-27",
+          "rows": 166,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2021-01-29",
+          "end": "2021-09-22",
+          "rows": 237,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2022-11-20",
+          "end": "2023-05-24",
+          "rows": 186,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-07-02",
+          "end": "2025-12-31",
+          "rows": 183,
+          "reason": "shorter_than_365_days"
+        }
+      ]
+    },
+    {
+      "plant_id": "15095404_u1",
+      "source_id": "15095404",
+      "name": "용수리",
+      "unit": "1",
+      "region": "제주 서부",
+      "address": "제주시 한경면 용수리 457 외 2",
+      "capacity_kw": 888.93,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          185
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15095404_u1.csv",
+      "rows": 1977,
+      "start": "2020-10-01",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 1,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 1,
+      "zero_days": 156,
+      "weather_missing_days": 59,
+      "fallback_weather_days": 0,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15095404_u1_asos_lag1_20201001_20211202.csv",
+          "rows": 428,
+          "start": "2020-10-01",
+          "end": "2021-12-02",
+          "zero_days": 22,
+          "sha256": "4a9f066fddfe421d84c4bbcdd8bf8d5f69c4c67225314ef79b3d5e6d56c6a722"
+        },
+        {
+          "file": "uploads/15095404_u1_asos_lag1_20211204_20251231.csv",
+          "rows": 1489,
+          "start": "2021-12-04",
+          "end": "2025-12-31",
+          "zero_days": 134,
+          "sha256": "3a9d6fb2a00c78c36ef672f7d8823df320f89841bf23b9eca37bc8ffefe51bc6"
+        }
+      ],
+      "primary_upload": "uploads/15095404_u1_asos_lag1_20211204_20251231.csv",
+      "excluded_segments": []
+    },
+    {
+      "plant_id": "15096126_u1",
+      "source_id": "15096126",
+      "name": "송당리",
+      "unit": "1",
+      "region": "제주 동부",
+      "address": "제주시 구좌읍 송당리 2455",
+      "capacity_kw": 996.93,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          188,
+          184
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15096126_u1.csv",
+      "rows": 2280,
+      "start": "2019-12-03",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 0,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 0,
+      "zero_days": 149,
+      "weather_missing_days": 61,
+      "fallback_weather_days": 2219,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15096126_u1_asos_lag1_20191203_20240229.csv",
+          "rows": 1550,
+          "start": "2019-12-03",
+          "end": "2024-02-29",
+          "zero_days": 98,
+          "sha256": "779cd89c11f12a2622db9ddc37ca6f8a46dce17a6655cb7136c99592a29dc86a"
+        },
+        {
+          "file": "uploads/15096126_u1_asos_lag1_20241014_20251231.csv",
+          "rows": 444,
+          "start": "2024-10-14",
+          "end": "2025-12-31",
+          "zero_days": 44,
+          "sha256": "a83a0c8d1d11ac0c13c0eb4dd42b667ae0dccf6cecbc17ec6726c52da9997f6d"
+        }
+      ],
+      "primary_upload": "uploads/15096126_u1_asos_lag1_20191203_20240229.csv",
+      "excluded_segments": [
+        {
+          "start": "2024-03-02",
+          "end": "2024-10-12",
+          "rows": 225,
+          "reason": "shorter_than_365_days"
+        }
+      ]
+    },
+    {
+      "plant_id": "15096129_u1",
+      "source_id": "15096129",
+      "name": "신인천1_2단계주차장",
+      "unit": "1",
+      "region": "인천",
+      "address": "인천광역시 서구 장도로 57 (청라동)",
+      "capacity_kw": 296.1,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          112
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15096129_u1.csv",
+      "rows": 1912,
+      "start": "2020-12-05",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 249,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 249,
+      "zero_days": 9,
+      "weather_missing_days": 59,
+      "fallback_weather_days": 0,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15096129_u1_asos_lag1_20201205_20230331.csv",
+          "rows": 847,
+          "start": "2020-12-05",
+          "end": "2023-03-31",
+          "zero_days": 0,
+          "sha256": "7dade75ed7eea368a3729301b9c144e1c1107ae73e037a775c5c3f315d9d8489"
+        },
+        {
+          "file": "uploads/15096129_u1_asos_lag1_20240401_20251231.csv",
+          "rows": 640,
+          "start": "2024-04-01",
+          "end": "2025-12-31",
+          "zero_days": 0,
+          "sha256": "9c235395676787a1f4fa5e2e57b3b7e0c67a550ee29b87d3122efcc7fc49d0cf"
+        }
+      ],
+      "primary_upload": "uploads/15096129_u1_asos_lag1_20201205_20230331.csv",
+      "excluded_segments": [
+        {
+          "start": "2023-04-02",
+          "end": "2023-04-05",
+          "rows": 4,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-04-09",
+          "end": "2023-04-10",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-04-14",
+          "end": "2023-04-16",
+          "rows": 3,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-04-23",
+          "end": "2023-04-25",
+          "rows": 3,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-04-29",
+          "end": "2023-04-29",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-05-01",
+          "end": "2023-05-05",
+          "rows": 5,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-05-07",
+          "end": "2023-05-07",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-05-13",
+          "end": "2023-05-13",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-05-15",
+          "end": "2023-05-15",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-05-18",
+          "end": "2023-05-18",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-05-21",
+          "end": "2023-05-22",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-05-27",
+          "end": "2023-05-28",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-05-30",
+          "end": "2023-05-30",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-06-01",
+          "end": "2023-06-01",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-06-05",
+          "end": "2023-06-06",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-06-20",
+          "end": "2023-06-20",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-06-25",
+          "end": "2023-06-27",
+          "rows": 3,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-06-29",
+          "end": "2023-06-30",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-07-02",
+          "end": "2023-07-04",
+          "rows": 3,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-07-07",
+          "end": "2023-07-08",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-07-13",
+          "end": "2023-07-14",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-07-16",
+          "end": "2023-07-18",
+          "rows": 3,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-07-20",
+          "end": "2023-07-20",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-07-22",
+          "end": "2023-07-23",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-07-25",
+          "end": "2023-07-25",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-08-09",
+          "end": "2023-08-09",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-08-23",
+          "end": "2023-08-24",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-08-30",
+          "end": "2023-08-30",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-09-01",
+          "end": "2023-09-01",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-09-14",
+          "end": "2023-09-14",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-09-20",
+          "end": "2023-09-20",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-09-24",
+          "end": "2023-09-24",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-09-30",
+          "end": "2023-09-30",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-10-03",
+          "end": "2023-10-03",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-10-07",
+          "end": "2023-10-08",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-11-05",
+          "end": "2023-11-06",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-11-16",
+          "end": "2023-11-16",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-11-24",
+          "end": "2023-11-24",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-11-28",
+          "end": "2023-11-28",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-11-30",
+          "end": "2023-12-02",
+          "rows": 3,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-12-11",
+          "end": "2023-12-12",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-12-14",
+          "end": "2023-12-17",
+          "rows": 4,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-12-19",
+          "end": "2023-12-25",
+          "rows": 7,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2023-12-31",
+          "end": "2023-12-31",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-01-07",
+          "end": "2024-01-07",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-01-09",
+          "end": "2024-01-09",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-01-18",
+          "end": "2024-01-24",
+          "rows": 7,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-01-30",
+          "end": "2024-02-06",
+          "rows": 8,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-02-14",
+          "end": "2024-02-14",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-02-18",
+          "end": "2024-02-18",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-02-20",
+          "end": "2024-02-25",
+          "rows": 6,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-02-27",
+          "end": "2024-02-27",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-02-29",
+          "end": "2024-02-29",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-03-05",
+          "end": "2024-03-06",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-03-11",
+          "end": "2024-03-11",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-03-24",
+          "end": "2024-03-25",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-03-28",
+          "end": "2024-03-28",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        }
+      ]
+    },
+    {
+      "plant_id": "15096131_u1",
+      "source_id": "15096131",
+      "name": "신인천북측부지",
+      "unit": "1",
+      "region": "인천",
+      "address": "인천광역시 서구 장도로 57 (청라동)",
+      "capacity_kw": 302.4,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          112
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15096131_u1.csv",
+      "rows": 1912,
+      "start": "2020-12-05",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 0,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 0,
+      "zero_days": 0,
+      "weather_missing_days": 59,
+      "fallback_weather_days": 0,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15096131_u1_asos_lag1_20201205_20251231.csv",
+          "rows": 1853,
+          "start": "2020-12-05",
+          "end": "2025-12-31",
+          "zero_days": 0,
+          "sha256": "c83182c5039da4623b112259fdffebc321b9ccd3e79e52301ed395d8df8f6ff2"
+        }
+      ],
+      "primary_upload": "uploads/15096131_u1_asos_lag1_20201205_20251231.csv",
+      "excluded_segments": []
+    },
+    {
+      "plant_id": "15096132_u1",
+      "source_id": "15096132",
+      "name": "신인천주차장",
+      "unit": "1",
+      "region": "인천",
+      "address": "인천광역시 서구 장도로 57 (청라동)",
+      "capacity_kw": 605.55,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          112
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15096132_u1.csv",
+      "rows": 2258,
+      "start": "2019-12-25",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 0,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 0,
+      "zero_days": 0,
+      "weather_missing_days": 59,
+      "fallback_weather_days": 0,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15096132_u1_asos_lag1_20191225_20251231.csv",
+          "rows": 2199,
+          "start": "2019-12-25",
+          "end": "2025-12-31",
+          "zero_days": 0,
+          "sha256": "ff0637041301fb52008f27e610450970768db24231823e2b5dc82fa91ff79377"
+        }
+      ],
+      "primary_upload": "uploads/15096132_u1_asos_lag1_20191225_20251231.csv",
+      "excluded_segments": []
+    },
+    {
+      "plant_id": "15096134_u1",
+      "source_id": "15096134",
+      "name": "이천D백사면B",
+      "unit": "1",
+      "region": "경기 이천",
+      "address": "경기도 이천시 백사면 도립리 141-1",
+      "capacity_kw": 995.0,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          203,
+          119
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15096134_u1.csv",
+      "rows": 1846,
+      "start": "2021-02-09",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 0,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 0,
+      "zero_days": 22,
+      "weather_missing_days": 59,
+      "fallback_weather_days": 1787,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15096134_u1_asos_lag1_20210209_20251231.csv",
+          "rows": 1787,
+          "start": "2021-02-09",
+          "end": "2025-12-31",
+          "zero_days": 22,
+          "sha256": "227afd129e978d08b9b84713ce05196230b6f894720f6b8672c7da245d6c7ec7"
+        }
+      ],
+      "primary_upload": "uploads/15096134_u1_asos_lag1_20210209_20251231.csv",
+      "excluded_segments": []
+    },
+    {
+      "plant_id": "15096136_u1",
+      "source_id": "15096136",
+      "name": "화촌주민참여형",
+      "unit": "1",
+      "region": "경남 하동",
+      "address": "하동군 양보면 지례리 183-5 외 10필지",
+      "capacity_kw": 999.6,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          266,
+          192,
+          263
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15096136_u1.csv",
+      "rows": 1762,
+      "start": "2021-05-04",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 0,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 0,
+      "zero_days": 28,
+      "weather_missing_days": 59,
+      "fallback_weather_days": 1,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15096136_u1_asos_lag1_20210504_20251231.csv",
+          "rows": 1703,
+          "start": "2021-05-04",
+          "end": "2025-12-31",
+          "zero_days": 28,
+          "sha256": "54ca1e12ebcc9e9d895c15766f041ae6954c2babd3f7399e734312f22369b97c"
+        }
+      ],
+      "primary_upload": "uploads/15096136_u1_asos_lag1_20210504_20251231.csv",
+      "excluded_segments": []
+    },
+    {
+      "plant_id": "15109994_u1",
+      "source_id": "15109994",
+      "name": "감우리",
+      "unit": "1",
+      "region": "충북 음성",
+      "address": "충북 음성군 음성읍 감우리 23, 24",
+      "capacity_kw": 554.4,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          127
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15109994_u1.csv",
+      "rows": 1669,
+      "start": "2021-08-05",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 0,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 0,
+      "zero_days": 26,
+      "weather_missing_days": 175,
+      "fallback_weather_days": 0,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15109994_u1_asos_lag1_20211119_20240321.csv",
+          "rows": 854,
+          "start": "2021-11-19",
+          "end": "2024-03-21",
+          "zero_days": 23,
+          "sha256": "4df3329b2f360078d2afb3d03bad3a9d8c02dc098e78a191fb348d54dd4d2c48"
+        }
+      ],
+      "primary_upload": "uploads/15109994_u1_asos_lag1_20211119_20240321.csv",
+      "excluded_segments": [
+        {
+          "start": "2024-03-23",
+          "end": "2025-02-11",
+          "rows": 326,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-02-15",
+          "end": "2025-03-04",
+          "rows": 18,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-03-07",
+          "end": "2025-07-17",
+          "rows": 133,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-07-19",
+          "end": "2025-08-26",
+          "rows": 39,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-08-28",
+          "end": "2025-08-28",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-08-30",
+          "end": "2025-12-29",
+          "rows": 122,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-12-31",
+          "end": "2025-12-31",
+          "rows": 1,
+          "reason": "shorter_than_365_days"
+        }
+      ]
+    },
+    {
+      "plant_id": "15109999_u1",
+      "source_id": "15109999",
+      "name": "이천시백사면A",
+      "unit": "1",
+      "region": "경기 이천",
+      "address": "경기도 이천시 백사면 도립리 193",
+      "capacity_kw": 1834.38,
+      "capacity_source": "15030079",
+      "unit_basis": "inferred_kWh_legacy_label",
+      "weather_mapping": {
+        "station_priority": [
+          203,
+          119
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15109999_u1.csv",
+      "rows": 1651,
+      "start": "2021-08-23",
+      "end": "2026-02-28",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 0,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 0,
+      "zero_days": 18,
+      "weather_missing_days": 59,
+      "fallback_weather_days": 1592,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15109999_u1_asos_lag1_20210823_20251231.csv",
+          "rows": 1592,
+          "start": "2021-08-23",
+          "end": "2025-12-31",
+          "zero_days": 18,
+          "sha256": "92d55572721b06bea040cb8f0861733100ec5e7ffb5d28e9c8ede55ea03b703a"
+        }
+      ],
+      "primary_upload": "uploads/15109999_u1_asos_lag1_20210823_20251231.csv",
+      "excluded_segments": []
+    },
+    {
+      "plant_id": "15124860_u1",
+      "source_id": "15124860",
+      "name": "세화리",
+      "unit": "1",
+      "region": "제주 동부",
+      "address": "서귀포시 표선면 세화리 2349",
+      "capacity_kw": 999.6,
+      "capacity_source": "15124860",
+      "unit_basis": "explicit_kWh",
+      "weather_mapping": {
+        "station_priority": [
+          188,
+          184
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15124860_u1.csv",
+      "rows": 1672,
+      "start": "2021-12-02",
+      "end": "2026-06-30",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 1,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 1,
+      "zero_days": 34,
+      "weather_missing_days": 183,
+      "fallback_weather_days": 1489,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15124860_u1_asos_lag1_20220417_20240229.csv",
+          "rows": 684,
+          "start": "2022-04-17",
+          "end": "2024-02-29",
+          "zero_days": 32,
+          "sha256": "c31dc3e1d31dc0bae96bcc3be78fe7b1ffce9d9e6e5ca7e49432d8a71c536351"
+        },
+        {
+          "file": "uploads/15124860_u1_asos_lag1_20241014_20251231.csv",
+          "rows": 444,
+          "start": "2024-10-14",
+          "end": "2025-12-31",
+          "zero_days": 1,
+          "sha256": "777b7dec090e215bbc152c46761597a61a7ed14e855992a20873c00f71d65a39"
+        }
+      ],
+      "primary_upload": "uploads/15124860_u1_asos_lag1_20220417_20240229.csv",
+      "excluded_segments": [
+        {
+          "start": "2021-12-02",
+          "end": "2022-04-15",
+          "rows": 135,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-03-02",
+          "end": "2024-10-12",
+          "rows": 225,
+          "reason": "shorter_than_365_days"
+        }
+      ]
+    },
+    {
+      "plant_id": "15124861_u1",
+      "source_id": "15124861",
+      "name": "신인천본관주차장",
+      "unit": "1",
+      "region": "인천",
+      "address": "",
+      "capacity_kw": 208.2,
+      "capacity_source": "15124861",
+      "unit_basis": "explicit_kWh",
+      "weather_mapping": {
+        "station_priority": [
+          112
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15124861_u1.csv",
+      "rows": 1647,
+      "start": "2021-12-27",
+      "end": "2026-06-30",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 0,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 0,
+      "zero_days": 0,
+      "weather_missing_days": 181,
+      "fallback_weather_days": 0,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15124861_u1_asos_lag1_20211227_20251231.csv",
+          "rows": 1466,
+          "start": "2021-12-27",
+          "end": "2025-12-31",
+          "zero_days": 0,
+          "sha256": "1798c3417af36a05933bb8ea3b12228590ab2c29167631a9967326a347a148da"
+        }
+      ],
+      "primary_upload": "uploads/15124861_u1_asos_lag1_20211227_20251231.csv",
+      "excluded_segments": []
+    },
+    {
+      "plant_id": "15140067_u1",
+      "source_id": "15140067",
+      "name": "와산리",
+      "unit": "1",
+      "region": "제주 북부",
+      "address": "제주시 조천읍 와산리 1265",
+      "capacity_kw": 816.0,
+      "capacity_source": "15140067",
+      "unit_basis": "explicit_kWh",
+      "weather_mapping": {
+        "station_priority": [
+          184
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15140067_u1.csv",
+      "rows": 1385,
+      "start": "2022-09-15",
+      "end": "2026-06-30",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 0,
+      "sum_mismatch_days": 0,
+      "capacity_suspect_days": 0,
+      "zero_days": 55,
+      "weather_missing_days": 183,
+      "fallback_weather_days": 0,
+      "status": "upload_ready",
+      "uploads": [
+        {
+          "file": "uploads/15140067_u1_asos_lag1_20220915_20240229.csv",
+          "rows": 533,
+          "start": "2022-09-15",
+          "end": "2024-02-29",
+          "zero_days": 46,
+          "sha256": "7fe93d8b9dcbb0a7d352895434bafc58302f0bc5f00866b4ad07a7f4609d34cb"
+        },
+        {
+          "file": "uploads/15140067_u1_asos_lag1_20241014_20251231.csv",
+          "rows": 444,
+          "start": "2024-10-14",
+          "end": "2025-12-31",
+          "zero_days": 8,
+          "sha256": "fb7db8f5ed0b5b4b3bd13f4f67d9494ea6c23767862ae20f66e20b5b14944b41"
+        }
+      ],
+      "primary_upload": "uploads/15140067_u1_asos_lag1_20220915_20240229.csv",
+      "excluded_segments": [
+        {
+          "start": "2024-03-02",
+          "end": "2024-10-12",
+          "rows": 225,
+          "reason": "shorter_than_365_days"
+        }
+      ]
+    },
+    {
+      "plant_id": "15140095_u1",
+      "source_id": "15140095",
+      "name": "익산다송리",
+      "unit": "1",
+      "region": "전북 익산",
+      "address": "전북 익산시 함열읍 다송리 723-24",
+      "capacity_kw": 893.0,
+      "capacity_source": "15140095",
+      "unit_basis": "explicit_kWh",
+      "weather_mapping": {
+        "station_priority": [
+          140,
+          146
+        ],
+        "status": "regional_proxy_not_site_measurement"
+      },
+      "daily_file": "daily/15140095_u1.csv",
+      "rows": 961,
+      "start": "2024-01-01",
+      "end": "2026-08-18",
+      "invalid_date_rows": 0,
+      "duplicate_rows": 0,
+      "duplicate_conflict_dates": 0,
+      "missing_calendar_days": 0,
+      "invalid_generation_days": 570,
+      "sum_mismatch_days": 258,
+      "capacity_suspect_days": 570,
+      "zero_days": 20,
+      "weather_missing_days": 231,
+      "fallback_weather_days": 730,
+      "status": "review_only",
+      "uploads": [],
+      "primary_upload": null,
+      "excluded_segments": [
+        {
+          "start": "2024-01-01",
+          "end": "2024-01-14",
+          "rows": 14,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2024-02-19",
+          "end": "2024-02-20",
+          "rows": 2,
+          "reason": "shorter_than_365_days"
+        },
+        {
+          "start": "2025-08-09",
+          "end": "2025-12-31",
+          "rows": 145,
+          "reason": "shorter_than_365_days"
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "source_id": "15043390",
+      "name": "삼척사택",
+      "reason": "월별 자료: 일 단위 20일 시퀀스로 변환하지 않음"
+    },
+    {
+      "source_id": "15043396",
+      "name": "신인천해수구취수구",
+      "reason": "missing_unit_rows",
+      "rows": 365
+    },
+    {
+      "source_id": "15043397",
+      "name": "안동소내",
+      "reason": "월별 자료: 일 단위 20일 시퀀스로 변환하지 않음"
+    },
+    {
+      "source_id": "15140095",
+      "name": "익산다송리",
+      "reason": "missing_unit_rows",
+      "rows": 110
+    },
+    {
+      "source_id": "15156688",
+      "name": "부산철도2호기",
+      "reason": "별도 KPX 계량 형식: 수치 단위가 확인되지 않아 kWh 변환 보류"
+    }
+  ]
+}

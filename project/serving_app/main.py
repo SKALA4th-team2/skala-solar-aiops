@@ -13,6 +13,7 @@ StaticFiles를 "/"에 마지막으로 mount해야, /predict 같은 API 경로가
 import logging
 import math
 import os
+import time
 
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
@@ -21,7 +22,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
 from serving_app import model_loader
-from serving_app.routers import data, health, logs, predict
+from serving_app.routers import data, health, logs, predict, operations, dashboard
 
 # monitoring/retrain_trigger.py가 쓰는 "aiops" 로거를 logs/aiops.log 파일에 연결한다.
 # (routers/logs.py가 같은 디렉토리를 읽기 전용으로 노출한다.) 여기서 이 로거 하나만
@@ -49,6 +50,15 @@ app.include_router(predict.router)
 app.include_router(health.router)
 app.include_router(data.router)  # HAIC 데이터 업로드
 app.include_router(logs.router)  # 대시보드: 재학습 로그 파일 조회
+app.include_router(operations.router)
+app.include_router(dashboard.router)
+
+@app.middleware("http")
+async def record_request(request, call_next):
+    started=time.perf_counter()
+    response=await call_next(request)
+    dashboard.requests.append((time.time(),(time.perf_counter()-started)*1000,response.status_code))
+    return response
 
 _STATIC_DIR = os.path.join(os.path.dirname(__file__), "static")
 app.mount("/", StaticFiles(directory=_STATIC_DIR, html=True), name="static")  # 대시보드 UI
@@ -56,6 +66,9 @@ app.mount("/", StaticFiles(directory=_STATIC_DIR, html=True), name="static")  # 
 
 @app.on_event("startup")
 def startup():
+    from serving_app.aiops_adapter import configure_evaluator
+    from serving_app.monitoring.retrain_trigger import evaluate
+    if os.getenv('AIOPS_ENABLED','1')=='1':configure_evaluator(evaluate)
     # Day1 실습 포인트: LOADING_MODE=eager 로 켜고 서버 시작 시간을 lazy와 비교해보세요.
     if os.getenv("LOADING_MODE", "lazy") == "eager":
         model_loader.load_eager()

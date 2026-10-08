@@ -1,0 +1,15 @@
+{
+  "approved_options": 31,
+  "plant_switch": [
+    "hadong-sewage",
+    "15043384-u1"
+  ],
+  "prediction_hours": 24,
+  "hadong_replay_total_kwh": 90.46307229995728,
+  "uploaded_hours": 696,
+  "monitor": "normal",
+  "chart_hours": 72,
+  "forecast_table_rows": 24,
+  "console_errors": [],
+  "screenshot": "frontend-hourly.png"
+}

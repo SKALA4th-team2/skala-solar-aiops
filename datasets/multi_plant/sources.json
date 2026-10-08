@@ -1,0 +1,740 @@
+{
+  "15043385": {
+    "source_id": "15043385",
+    "name": "부산복합자재창고",
+    "landing_url": "https://www.data.go.kr/data/15043385/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623585&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:15.716707+00:00",
+    "sha256": "663bbe1df7c1e160e4a5bbb30730a540d8cbc26528e275b5d12ec776e0e444a8",
+    "bytes": 645330,
+    "metadata": {
+      "name": "한국남부발전(주)_부산복합자재창고 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 부산복합자재창고 태양광발전실적입니다. <br/>이 데이터는 부산복합자재창고의 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. <br/>특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-09",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15043384": {
+    "source_id": "15043384",
+    "name": "남제주소내",
+    "landing_url": "https://www.data.go.kr/data/15043384/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003620739&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:15.845296+00:00",
+    "sha256": "f9a084e92dfca436c079a2b275449b3fac39e86a6f0319afb90f3c461b8974ee",
+    "bytes": 720749,
+    "metadata": {
+      "name": "한국남부발전(주)_남제주소내 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 남제주소내태양광발전실적입니다. <br/>이 데이터는 한국남부발전(주) 남제주빛드림본부 내에 설치된 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. <br/>특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-03",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15043386": {
+    "source_id": "15043386",
+    "name": "부산본부",
+    "landing_url": "https://www.data.go.kr/data/15043386/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623584&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:16.010297+00:00",
+    "sha256": "72b07d2cef3d16cd25c29a03816d4fa31e0a0d0614c7140a7ff17e00c9ac6826",
+    "bytes": 1087573,
+    "metadata": {
+      "name": "한국남부발전(주)_부산본부 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 부산빛드림본부 태양광발전실적입니다. <br/>이 데이터는 한국남부발전 부산빛드림본부의 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. <br/>특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-10",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15043387": {
+    "source_id": "15043387",
+    "name": "부산수처리장",
+    "landing_url": "https://www.data.go.kr/data/15043387/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623582&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:15.579910+00:00",
+    "sha256": "9b0cb8c5294edf4277be1be82b97c9ddaa6045e0c6eba60cd561b1a521e476b8",
+    "bytes": 390781,
+    "metadata": {
+      "name": "한국남부발전(주)_부산수처리장 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 부산수처리장 태양광발전실적입니다. <br/>이 데이터는 한국남부발전(주) 부산빛드림본부의 부산수처리장의 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. <br/>특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-09",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15043390": {
+    "source_id": "15043390",
+    "name": "삼척사택",
+    "landing_url": "https://www.data.go.kr/data/15043390/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623579&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:16.440402+00:00",
+    "sha256": "8702427eb0f995083a3e7ad2dc02cd2e5ff670c4303e448af7819f257860d316",
+    "bytes": 2312,
+    "metadata": {
+      "name": "한국남부발전(주)_삼척사택 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 삼척사택 태양광발전실적입니다. <br/>이 데이터는 한국남부발전(주) 삼척사택의 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 월별 태양광 발전량(kw)로 구성되어 있습니다. 월별 발전량 정보를 기록하여 시계열 분석이 가능합니다. <br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-09",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15043389": {
+    "source_id": "15043389",
+    "name": "부산운동장",
+    "landing_url": "https://www.data.go.kr/data/15043389/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623580&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:16.709405+00:00",
+    "sha256": "6f1024e846ed4771fb76ef9eae886548dac7e7729a980ae21ae7b439e53c4ff5",
+    "bytes": 395170,
+    "metadata": {
+      "name": "한국남부발전(주)_부산운동장 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 부산운동장 태양광발전실적입니다. <br/>이 데이터는 부산운동장의 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. <br/>특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-09",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15043391": {
+    "source_id": "15043391",
+    "name": "삼척소내",
+    "landing_url": "https://www.data.go.kr/data/15043391/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623186&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:17.405373+00:00",
+    "sha256": "df0b900e45170e217ddaf96c1fc3bfd421dac673a77d58f58d0e5758a2c7c262",
+    "bytes": 1562611,
+    "metadata": {
+      "name": "한국남부발전(주)_삼척소내 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 삼척소내 태양광발전실적입니다. <br/>이 데이터는 삼척소내의 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. <br/>특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-09",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15043388": {
+    "source_id": "15043388",
+    "name": "부산신항",
+    "landing_url": "https://www.data.go.kr/data/15043388/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623581&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:16.615888+00:00",
+    "sha256": "bf9298da0b6a97b85e0fdbd4dd5525fadc84e1a5d5cfcc3cec1fb6fbfe3f5e85",
+    "bytes": 645157,
+    "metadata": {
+      "name": "한국남부발전(주)_부산신항 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 부산신항 태양광발전실적입니다. <br/>이 데이터는 부산신항의 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. <br/>특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-09",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15043394": {
+    "source_id": "15043394",
+    "name": "신인천소내",
+    "landing_url": "https://www.data.go.kr/data/15043394/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003620614&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:17.513084+00:00",
+    "sha256": "7093f03b2a93be8a4a5e6fce06fc8e1aa8505bf43fa4a8376a5aba77b20277b4",
+    "bytes": 743073,
+    "metadata": {
+      "name": "한국남부발전(주)_신인천소내 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 신인천소내 태양광발전실적입니다. <br/>이 데이터는 신인천소내의 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. <br/>특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-03",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15043397": {
+    "source_id": "15043397",
+    "name": "안동소내",
+    "landing_url": "https://www.data.go.kr/data/15043397/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623827&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:18.037227+00:00",
+    "sha256": "2242e9316fefb559dc3c7ff2f6c258028f25a24c633671801b52a1b218b69b30",
+    "bytes": 2032,
+    "metadata": {
+      "name": "한국남부발전(주)_안동소내 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 안동소내태양광발전실적입니다. <br/>이 데이터는 한국남부발전(주) 안동빛드림본부 내에 설치된 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월, 안동소내 태양광 1(kWh), 안동소내 태양광 2(kWh)로 구성되어 있습니다.<br/>데이터는 월별로 각 태양광별 발전량의 합계 정보를 제공합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-10",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15043396": {
+    "source_id": "15043396",
+    "name": "신인천해수구취수구",
+    "landing_url": "https://www.data.go.kr/data/15043396/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623576&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:17.652746+00:00",
+    "sha256": "80453d08647763a23c6c29458922ff2a3851d24b99c55bdccde4c3257e5f339b",
+    "bytes": 384632,
+    "metadata": {
+      "name": "한국남부발전(주)_신인천해수구취수구 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 신인천해수구취수구 태양광발전실적입니다. <br/>이 데이터는 신인천빛드림본부의 해수구 취수구의 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. <br/>특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-09",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15043395": {
+    "source_id": "15043395",
+    "name": "신인천전망대",
+    "landing_url": "https://www.data.go.kr/data/15043395/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623577&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:17.654758+00:00",
+    "sha256": "5bf558e17bff2bb3e6626d9b2e148bdb57901257645467606657ec7ed8238e7f",
+    "bytes": 407607,
+    "metadata": {
+      "name": "한국남부발전(주)_신인천전망대 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 신인천전망대 태양광발전실적입니다. <br/>이 데이터는 신인천전망대의 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. <br/>특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-09",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15043401": {
+    "source_id": "15043401",
+    "name": "위미2리",
+    "landing_url": "https://www.data.go.kr/data/15043401/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623763&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:18.658171+00:00",
+    "sha256": "3a09637471719f40585eb9c38318264ba00399c752e5a14172b4a52d138a028a",
+    "bytes": 351151,
+    "metadata": {
+      "name": "한국남부발전(주)_위미2리 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 위미2리 태양광발전실적입니다. <br/>이 데이터는 한국남부발전 위미2리에 설치된 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. <br/>특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-09",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15043399": {
+    "source_id": "15043399",
+    "name": "영월본부",
+    "landing_url": "https://www.data.go.kr/data/15043399/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623765&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:18.740795+00:00",
+    "sha256": "1092d2c36ab71883e76493f84440db945430db2158b695cb3a8943fd9061408e",
+    "bytes": 699985,
+    "metadata": {
+      "name": "한국남부발전(주)_영월본부 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 영월본부 태양광발전실적입니다. <br/>이 데이터는 한국남부발전(주) 영월빛드림본부 내 설치된 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. <br/>특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-09",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15043400": {
+    "source_id": "15043400",
+    "name": "영월철도부지",
+    "landing_url": "https://www.data.go.kr/data/15043400/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623764&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:18.707772+00:00",
+    "sha256": "e01e4a61d98de429986f42ed5ef14f898affe85296d2b903bc618c429279e2bf",
+    "bytes": 439481,
+    "metadata": {
+      "name": "한국남부발전(주)_영월철도부지 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 영월철도부지 태양광발전실적입니다. <br/>이 데이터는 한국남부발전 영월철도부지 내 설치된 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. <br/>특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-09",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15043402": {
+    "source_id": "15043402",
+    "name": "인천수산정수장",
+    "landing_url": "https://www.data.go.kr/data/15043402/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623762&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:19.008587+00:00",
+    "sha256": "146e311752b5ca8ab38447328b8c938f5082cf814bec6619adb0b49104a7813c",
+    "bytes": 786104,
+    "metadata": {
+      "name": "한국남부발전(주)_인천수산정수장 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 인천수산정수장 태양광발전실적입니다. <br/>이 데이터는 한국남부발전 인천수산정수장에 설치된 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. <br/>특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-09",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15043404": {
+    "source_id": "15043404",
+    "name": "하동공설운동장",
+    "landing_url": "https://www.data.go.kr/data/15043404/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623761&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:19.714768+00:00",
+    "sha256": "b60d30b42c6a65918b614fccaa80672eed1ff8c46679ef364e67ac43054061f9",
+    "bytes": 754738,
+    "metadata": {
+      "name": "한국남부발전(주)_하동공설운동장 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 하동공설운동장 태양광발전실적입니다. <br/>이 데이터는 하동공설운동장에 설치된 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. <br/>특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-09",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15043406": {
+    "source_id": "15043406",
+    "name": "하동보건소",
+    "landing_url": "https://www.data.go.kr/data/15043406/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623760&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:19.877232+00:00",
+    "sha256": "b736758a860458e23723935b44829858eb76a19aed3dbe0ebaedabb6f19c5126",
+    "bytes": 696108,
+    "metadata": {
+      "name": "한국남부발전(주)_하동보건소 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 하동보건소 태양광발전실적입니다. <br/>이 데이터는 하동보건소에 설치된 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. <br/>특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-09",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15043405": {
+    "source_id": "15043405",
+    "name": "하동변전소",
+    "landing_url": "https://www.data.go.kr/data/15043405/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623759&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:19.783402+00:00",
+    "sha256": "4e66e1e9f9e2aa3e9444fd052b744009aabe2983b4c70143a74fb24dcde3411b",
+    "bytes": 697283,
+    "metadata": {
+      "name": "한국남부발전(주)_하동변전소 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 하동변전소 태양광발전실적입니다. <br/>이 데이터는 하동변전소에 설치된 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. <br/>특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-09",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15043407": {
+    "source_id": "15043407",
+    "name": "하동본부",
+    "landing_url": "https://www.data.go.kr/data/15043407/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623758&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:21.510062+00:00",
+    "sha256": "c7e05983acfbbae74cf8203fc57781202fe10db757d17c3e73024efe31ba909e",
+    "bytes": 3442554,
+    "metadata": {
+      "name": "한국남부발전(주)_하동본부 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 하동빛드림본부 태양광발전실적입니다. <br/>이 데이터는 하동빛드림본부의 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. <br/>특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-09",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15043408": {
+    "source_id": "15043408",
+    "name": "하동정수장",
+    "landing_url": "https://www.data.go.kr/data/15043408/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623757&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:21.334414+00:00",
+    "sha256": "18b1e7d459fd0b8cf27927030607690d8665ae297af294d067c2e5178375bb54",
+    "bytes": 706133,
+    "metadata": {
+      "name": "한국남부발전(주)_하동정수장 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 하동정수장 태양광발전실적입니다. <br/>이 데이터는 하동정수장에 설치된 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. <br/>특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-09",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15043411": {
+    "source_id": "15043411",
+    "name": "행원소수력",
+    "landing_url": "https://www.data.go.kr/data/15043411/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623547&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:21.561464+00:00",
+    "sha256": "8e096a50df995c70b0955e37a3dabef3bff98ac6e377978e17cc3f2ac7e5b435",
+    "bytes": 511005,
+    "metadata": {
+      "name": "한국남부발전(주)_행원소수력 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 행원소수력 태양광발전실적입니다. <br/>이 데이터는 행원소수력의 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. <br/>특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-09",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15095374": {
+    "source_id": "15095374",
+    "name": "무릉리",
+    "landing_url": "https://www.data.go.kr/data/15095374/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003620740&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:21.415564+00:00",
+    "sha256": "900aca3800375de14402ea9f61496a5aec1863a9c2dcea325a5357e2936101ff",
+    "bytes": 290335,
+    "metadata": {
+      "name": "한국남부발전(주)_무릉리 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 무릉리 태양광발전실적입니다. <br/>이 데이터는 무릉리의 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. <br/>특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-03",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15095380": {
+    "source_id": "15095380",
+    "name": "부산역선상주차장",
+    "landing_url": "https://www.data.go.kr/data/15095380/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623513&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:22.149955+00:00",
+    "sha256": "ff11993947167c8d984db07b51f2fb8fd5bcee67549301f39eaca6923bc89606",
+    "bytes": 295013,
+    "metadata": {
+      "name": "한국남부발전(주)_부산역선상주차장 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 부산역선상주차장 태양광발전실적입니다. <br/>이 데이터는 부산역 선상주차장에 설치된 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. <br/>특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-09",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15095404": {
+    "source_id": "15095404",
+    "name": "용수리",
+    "landing_url": "https://www.data.go.kr/data/15095404/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623511&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:22.287956+00:00",
+    "sha256": "71b222c89a170a35bfa0157c50f00c67aee059df9afd2d17a238195ce2f3b5b7",
+    "bytes": 314901,
+    "metadata": {
+      "name": "한국남부발전(주)_용수리 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 용수리 태양광발전실적입니다. <br/>이 데이터는 용수리에 설치된 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. <br/>특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-09",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15096126": {
+    "source_id": "15096126",
+    "name": "송당리",
+    "landing_url": "https://www.data.go.kr/data/15096126/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623510&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:22.296184+00:00",
+    "sha256": "37b63a73d85677413f13010ec9b5d47fbe4f4a53d382a57216dc1f8a8b3a3a1d",
+    "bytes": 359461,
+    "metadata": {
+      "name": "한국남부발전(주)_송당리 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주)의 송당리 태양광발전실적입니다. <br/>이 데이터는 송당리 지역의 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. <br/>특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-09",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15096129": {
+    "source_id": "15096129",
+    "name": "신인천1_2단계주차장",
+    "landing_url": "https://www.data.go.kr/data/15096129/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623509&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:22.398897+00:00",
+    "sha256": "25139e03f2e958031935aacd15f7664c94529a2dbc3e7065338f8c997a2b6dae",
+    "bytes": 256983,
+    "metadata": {
+      "name": "한국남부발전(주)_신인천 1_2단계 주차장 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 신인천 1~2단계 주차장 태양광발전실적입니다. <br/>이 데이터는 한국남부발전 신인천빛드림본부의 1~2단계 주차장 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. <br/>특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-10",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15096131": {
+    "source_id": "15096131",
+    "name": "신인천북측부지",
+    "landing_url": "https://www.data.go.kr/data/15096131/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623506&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:23.031409+00:00",
+    "sha256": "048c3afd43fc1bf6291626fd29e5f762244278dee8eb69ce63267df69e380e33",
+    "bytes": 243879,
+    "metadata": {
+      "name": "한국남부발전(주)_신인천 북측부지 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 신인천 북측부지 태양광발전실적입니다. <br/>이 데이터는 신인천 북측부지 지역의 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. <br/>특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-09",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15096132": {
+    "source_id": "15096132",
+    "name": "신인천주차장",
+    "landing_url": "https://www.data.go.kr/data/15096132/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623503&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:23.197726+00:00",
+    "sha256": "5af22e8c7fb0a2d395f6530070d9b330de597c9d1d26eba042cbab2b8d4f5ef2",
+    "bytes": 375750,
+    "metadata": {
+      "name": "한국남부발전(주)_신인천 주차장 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주)의 신인천 주차장 태양광발전실적입니다. <br/>이 데이터는 신인천 지역의 주차장 부지에 설치된 태양광 발전 설비의 일별, 시간별 전력 생산량에 대한 자료입니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 시간대별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량을 기록합니다. 1시부터 24시까지의 매 시간대별 발전량을 상세하게 제공하여 정밀한 분석이 가능합니다.<br/><br/>이 데이터는 태양광 발전 시스템의 성능 평가, 발전 효율에 영향을 미치는 환경 요인 분석, 그리고 전력 수요-공급 예측 모델 구축에 활용될 수 있습니다.",
+      "dateModified": "2026-04-09",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15096134": {
+    "source_id": "15096134",
+    "name": "이천D백사면B",
+    "landing_url": "https://www.data.go.kr/data/15096134/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623502&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:23.125412+00:00",
+    "sha256": "9e3803571e0808326ec5cbcd3675b3f1513fec7b1e659e176649dd1084d92c8e",
+    "bytes": 307539,
+    "metadata": {
+      "name": "한국남부발전(주)_이천D(백사면B) 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주)의 이천D(백사면B) 태양광발전실적입니다. <br/>이 데이터는 경기도 이천 지역의 백사면B 부지에 설치된 태양광 발전 설비의 실제 전력 생산 결과를 기록한 것으로, 해당 지역 및 설비의 태양광 자원 활용 능력과 운영 상태를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. 데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. 특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-09",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15109994": {
+    "source_id": "15109994",
+    "name": "감우리",
+    "landing_url": "https://www.data.go.kr/data/15109994/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003620735&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:23.931459+00:00",
+    "sha256": "0e28678a0a04596effd16c26bf7d6f8ebd02fb72242cda13929b0b4e1d0cb7ba",
+    "bytes": 242912,
+    "metadata": {
+      "name": "한국남부발전(주)_감우리태양광 발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 감우리태양광발전실적입니다. <br/>이 데이터는 감우리에 설치된 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. <br/>특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-03",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15096136": {
+    "source_id": "15096136",
+    "name": "화촌주민참여형",
+    "landing_url": "https://www.data.go.kr/data/15096136/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623501&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:23.197726+00:00",
+    "sha256": "bbd561147d5fdab0c0ad7c7140a01bb44a4a12fe901c1c71f5bc4af22789bf93",
+    "bytes": 299538,
+    "metadata": {
+      "name": "한국남부발전(주)_화촌주민참여형 태양광발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주)의 화촌주민참여형 태양광발전실적입니다. <br/>이 데이터는 주민 참여 모델로 건설된 화촌 지역의 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 지역 사회와 함께하는 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. 데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. 특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 주민 참여형 사업 모델의 성과 분석 및 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-09",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15109998": {
+    "source_id": "15109998",
+    "name": "신풍리",
+    "landing_url": "https://www.data.go.kr/data/15109998/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623497&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:24.000064+00:00",
+    "sha256": "a97ee64fd1a49b8bfde7489097b1a0ae4eba23a4f1ff1290354c933f0334bb2e",
+    "bytes": 258069,
+    "metadata": {
+      "name": "한국남부발전(주)_신풍리태양광 발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 신풍리태양광발전실적입니다. <br/>이 데이터는 신풍리에 설치된 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. <br/>특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-09",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15109999": {
+    "source_id": "15109999",
+    "name": "이천시백사면A",
+    "landing_url": "https://www.data.go.kr/data/15109999/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003623495&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:24.063137+00:00",
+    "sha256": "5d01818598b767950f6c8d4c753dc9429a44c1f54e9c6db65d8bd2d0fb58550d",
+    "bytes": 288043,
+    "metadata": {
+      "name": "한국남부발전(주)_이천시 백사면A 태양광 발전실적",
+      "description": "본 파일 데이터는 한국남부발전(주) 이천시 백사면A 태양광발전실적입니다. <br/>이 데이터는 이천시 백사면A 태양광 발전 설비에서 실제로 생산된 전력 생산 결과를 기록한 것으로, 신재생에너지 사업의 운영 성과를 정량적으로 보여줍니다.<br/><br/>본 파일 데이터는 년월일, 호기, 총량(kw), 평균(kw), 최대(kw), 최소(kw), 최대(시간별_kw), 최소(시간별_kw), 그리고 1부터 24까지의 시간별 발전량(kw)으로 구성되어 있습니다. <br/>데이터는 일자별로 일간 총 발전량과 평균, 최대, 최소 발전량 등의 요약 통계를 제공합니다. <br/>특히, 1시부터 24시까지의 시간별 발전량 정보를 상세히 기록하여 정밀한 시계열 분석을 가능하게 합니다.<br/><br/>이 데이터는 지역별 태양광 발전소의 성능 비교 및 평가, 일조량 변화에 따른 발전 패턴 분석, 그리고 신재생에너지 발전량 예측 모델 구축을 위한 학습 데이터로 활용될 수 있습니다. <br/>또한, 발전소 운영 주체가 설비의 이상 징후를 감지하고 최적의 운영 전략을 수립하는 데 기여하며, 지역 에너지 자립 및 분산 전원 연구에 활용할 수 있습니다.",
+      "dateModified": "2026-04-09",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15124860": {
+    "source_id": "15124860",
+    "name": "세화리",
+    "landing_url": "https://www.data.go.kr/data/15124860/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000007649580&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:24.111032+00:00",
+    "sha256": "6a46f94bbbbc919665bfc617a8d26dccb5e6e4d791d88d5e10ef1e0e25fd9cb5",
+    "bytes": 285849,
+    "metadata": {
+      "name": "한국남부발전(주)_세화리 태양광발전실적",
+      "description": "이 데이터는 한국남부발전 세화리 태양광발전소의 일자별 운영 실적을 체계적으로 수록한 자료입니다. 각 행에는 설비용량(kW), 하루 총발전량(kWh), 평균·최대·최소 발전량, 시간대별(0~24시) 전력 생산량 등이 포함되어 일조 조건과 기상 변화에 따른 생산 패턴을 정밀하게 비교할 수 있습니다. 계절·요일·특이일 분석, 피크 시간대 파악, 출력 변동성 진단, 고장·그늘 등 이상 징후 탐지, 예측모형 학습 데이터 구축, 수요관리 및 ESS 운영전략 수립, 전력시장 거래 계획 수립 등 실무 활용에 적합하며, 재생에너지 확대와 탄소중립 정책 평가의 근거 자료로도 활용 가능합니다.",
+      "dateModified": "2026-09-12",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15124861": {
+    "source_id": "15124861",
+    "name": "신인천본관주차장",
+    "landing_url": "https://www.data.go.kr/data/15124861/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000007649582&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:24.716346+00:00",
+    "sha256": "8aa8ced0740f1ab182b07ae3f9c912a2847d9d6b7af808b0e64fe995044f7794",
+    "bytes": 243803,
+    "metadata": {
+      "name": "한국남부발전(주)_신인천본관주차장 태양광발전실적",
+      "description": "이 데이터는 한국남부발전 신인천본관 주차장에 설치된 태양광 발전소의 일자별 발전 실적을 정리한 자료입니다. 각 항목에는 설비용량(kW), 하루 총 발전량(kWh), 평균·최대·최소 발전량, 시간대별(0~24시) 발전량 정보가 포함되어 있으며, 일조 조건과 날씨 변화에 따른 발전 패턴을 확인할 수 있습니다. 이를 통해 특정 시점의 발전 효율을 비교하거나 계절별 발전량 특성을 분석할 수 있으며, 전력 수급 계획 및 에너지 관리 전략 수립에 활용할 수 있습니다. 또한 주차장 유휴공간을 활용한 친환경 에너지 생산 사례로서 의미가 있으며, 재생에너지 확대와 탄소중립 정책 추진을 위한 기초자료로 유용하게 쓰일 수 있습니다.",
+      "dateModified": "2026-09-12",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15140067": {
+    "source_id": "15140067",
+    "name": "와산리",
+    "landing_url": "https://www.data.go.kr/data/15140067/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000007663954&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:24.767017+00:00",
+    "sha256": "61af85711a72529878a25d785188deb9a618393bab9963c631771ab78bf2e7bc",
+    "bytes": 203129,
+    "metadata": {
+      "name": "한국남부발전(주)_와산리 태양광발전실적",
+      "description": "이 데이터는 와산리 태양광 발전소의 일별 발전 실적을 정리한 자료로, 설비용량(kW), 총 발전량(kWh), 평균·최대·최소 발전량과 더불어 0시부터 24시까지 시간대별 발전량이 포함되어 있습니다. 태양광 발전은 일사량과 기후 조건에 따라 발전량 변동이 크며, 이를 기록한 본 데이터는 특정 일자별 전력 생산 패턴과 효율성을 파악하는 데 유용합니다. 연구자와 정책 담당자는 이를 활용해 재생에너지 보급 효과, 전력 수급 안정성, 발전소 운영 최적화를 분석할 수 있으며, 일반 국민은 태양광 발전의 실제 운용 데이터를 통해 친환경 에너지의 중요성과 기여도를 쉽게 이해할 수 있습니다. 또한 시간대별 데이터를 제공하므로 전력 피크 시간과 에너지 활용 전략을 수립하는 데 기초 자료로 활용될 수 있습니다.",
+      "dateModified": "2026-09-18",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15140095": {
+    "source_id": "15140095",
+    "name": "익산다송리",
+    "landing_url": "https://www.data.go.kr/data/15140095/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000007663958&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:24.824109+00:00",
+    "sha256": "ac37d1b3b4027f4a5d80375d49429e7fdeb39487d65c90859f63d47d19be52c8",
+    "bytes": 165792,
+    "metadata": {
+      "name": "한국남부발전(주)_익산 다송리 태양광발전실적",
+      "description": "이 데이터는 익산 다송리 태양광 발전소의 일별 발전 실적을 기록한 자료로, 설비용량(kW), 총 발전량(kWh), 평균 발전량과 더불어 0시부터 24시까지 시간대별 발전량이 포함되어 있습니다. 태양광 발전은 일조량과 기상 조건에 따라 시간별 발전량이 크게 달라지므로, 본 데이터를 통해 특정 일자의 전력 생산 패턴과 효율성을 상세히 분석할 수 있습니다. 연구자와 정책 담당자는 이를 활용해 신재생에너지 보급 효과, 전력 수급 안정성, 지역별 발전 효율을 비교할 수 있으며, 일반 국민도 실제 태양광 발전소의 운영 데이터를 확인하며 친환경 에너지의 역할을 이해할 수 있습니다. 또한 시간대별 자료는 전력 피크 관리, 에너지 소비 최적화, 기후 변화에 따른 발전 변동성 연구에도 중요한 기초 자료로 활용될 수 있습니다.",
+      "dateModified": "2026-09-17",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15156688": {
+    "source_id": "15156688",
+    "name": "부산철도2호기",
+    "landing_url": "https://www.data.go.kr/data/15156688/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003565487&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:24.854937+00:00",
+    "sha256": "921775b83c38b63d1fd45dc67970875c44706ba10d5978f299750841669e62db",
+    "bytes": 54985,
+    "metadata": {
+      "name": "한국남부발전(주)_부산철도 2호기 태양광 발전실적",
+      "description": "본 데이터는 한국남부발전(주) 부산철도 2호기 태양광 발전실적 파일데이터입니다.<br/>해당 데이터는 한국남부발전(주)에서 운영하는 부산철도 2호기 태양광발전소의 일별 및 시간대별 세부 발전실적을 포함하고 있습니다.<br/>본 데이터는 일자, 발전소명(신재생사업본부), 발전기명(부산 철도태양광 #2), 계량구분(KPX), 일별 합계 발전량(단위: kWh) 및 1시부터 24시까지 각 시간대별 발전량(단위: kWh)으로 구성되어 있습니다.<br/>해당 데이터를 활용하여 부산철도 2호기의 일자별 및 시간대별 세부 발전량을 분석할 수 있습니다.",
+      "dateModified": "2025-12-18",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15030079": {
+    "source_id": "15030079",
+    "name": "태양광발전기사양",
+    "landing_url": "https://www.data.go.kr/data/15030079/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003225016&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:25.417588+00:00",
+    "sha256": "50d0cd21272f6d883eb3cfd31f26edf3c24cf957c6f5e07035b13aa03e9040c9",
+    "bytes": 6768,
+    "metadata": {
+      "name": "한국남부발전(주)_태양광발전기 사양정보",
+      "description": "이 데이터는 한국남부발전이 운영하는 태양광 발전기의 주요 사양을 정리한 자료입니다. 각 발전소별 명칭과 주소지, 설치된 총 발전 용량(kW), 모듈 및 인버터 구성, 설치 각도 등의 정보가 포함되어 있습니다. 제주, 부산 등 여러 지역에 설치된 발전소의 세부적인 설비 특성을 확인할 수 있으며, 모듈 출력, 인버터 용량, 설치 각도의 차이를 통해 발전 효율성을 비교할 수 있습니다. 이를 통해 태양광 발전 설비의 지역별 배치 현황과 운영 특성을 이해할 수 있으며, 재생에너지 보급 확대 및 친환경 에너지 전환을 위한 기초 자료로 활용할 수 있습니다. 또한 태양광 설비 기술 동향을 파악하고 향후 설비 투자 및 운영 전략 수립에 참고할 수 있는 유용한 데이터입니다.",
+      "dateModified": "2026-09-22",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  },
+  "15147894": {
+    "source_id": "15147894",
+    "name": "발전소위치",
+    "landing_url": "https://www.data.go.kr/data/15147894/fileData.do",
+    "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000007658546&fileDetailSn=1&insertDataPrcus=N",
+    "retrieved_at_utc": "2026-10-07T08:48:25.457020+00:00",
+    "sha256": "dee152ef2439a025f2300f4b6770d260a053ee5b6eefee2015fa530f23f9d987",
+    "bytes": 817,
+    "metadata": {
+      "name": "한국남부발전(주)_태양광발전소 위치 정보",
+      "description": "이 데이터는 국내에 설치된 한국남부발전 태양광발전소의 위치 정보를 정리한 자료입니다. 발전소명, 호기, 위도, 경도 값이 포함되어 있으며, 이를 통해 각 발전소의 정확한 지리적 위치를 확인할 수 있습니다. 예를 들어 감우리 태양광, 무릉리 태양광, 백사면 태양광, 부산 신항 태양광 등 다양한 지역의 발전소 좌표가 수록되어 있어 지도를 통해 시각화하거나 지역별 분포를 비교할 수 있습니다. 이 자료는 태양광발전의 보급 현황을 이해하고, 재생에너지 입지 분석, 지역별 전력망 연계 연구, 에너지 정책 수립, 학술 연구 등 다양한 분야에서 활용할 수 있는 기초 자료입니다. 특히 남녀노소 누구나 지도를 통해 쉽게 접근할 수 있는 데이터로서 공공성과 활용도가 높습니다.",
+      "dateModified": "2026-09-08",
+      "license": "https://data.go.kr/ugs/selectPortalPolicyView.do",
+      "temporalCoverage": null,
+      "spatialCoverage": null
+    },
+    "usage_label": "이용허락범위 제한 없음"
+  }
+}

@@ -6,6 +6,10 @@ SKALA 「모델 서빙 및 AIOps 구성」 과정의 조별 미니 프로젝트 
 
 `AGENTS.md` 와 `CLAUDE.md` 는 같은 문서다. 도구마다 읽는 파일이 달라 두 이름으로 둔다. 한쪽을 고치면 `cp CLAUDE.md AGENTS.md` 로 다른 쪽을 맞추고 같은 커밋에 넣는다.
 
+## 현행 시간별 계약
+
+결정0014가 과거 일별 계약을 대체한다. 입력·게이트·모니터링 변경은 serving_app/hourly/{schemas,model,policy,worker}.py, tools/hourly/, docs/backend-runbook.md, docs/proposal/5-api-spec.md, docs/design/solar-ops-v01/hourly-ui.js 및 생성된 static과 함께 맞춘다. 아래 스켈레톤 일별 경로 표는 과거 구현 추적용이다.
+
 ## 기준 문서
 
 - 평가 기준과 기획서 요건은 통합가이드(`SKALA_AIOps_통합가이드_최종_배포.pdf`)다. 강사 저작물이라 저장소에 넣지 않는다. 요건은 [`docs/proposal/README.md`](docs/proposal/README.md)에 옮겨 적었다.
@@ -28,7 +32,7 @@ SKALA 「모델 서빙 및 AIOps 구성」 과정의 조별 미니 프로젝트 
 
 ### 여러 발전소로 넓힐 때의 묶음
 
-서비스는 아직 발전소 한 곳만 다룬다. 여러 발전소로 넓히는 설계는 [`docs/proposal/multi-plant-extension.md`](docs/proposal/multi-plant-extension.md)에 있다. 그 작업을 할 때는 아래 묶음도 같은 변경에서 맞춘다.
+현재 서비스는 시간별 모델을 통과한 31개 발전소를 다룬다. 여러 발전소로 넓히는 설계는 [`docs/proposal/multi-plant-extension.md`](docs/proposal/multi-plant-extension.md)에 있다. 그 작업을 할 때는 아래 묶음도 같은 변경에서 맞춘다.
 
 | 바꾸는 것 | 함께 맞출 곳 |
 | --- | --- |
@@ -75,7 +79,7 @@ SKALA 「모델 서빙 및 AIOps 구성」 과정의 조별 미니 프로젝트 
 ## 문서
 
 - 기획서는 [`docs/proposal/`](docs/proposal/)에 항목별 파일로 쓴다. 여섯 항목은 앞 항목의 결과가 다음 항목의 근거가 되도록 이어져야 한다.
-- 여러 발전소로 넓히는 내용은 여섯 항목과 섞지 않는다. [`multi-plant-extension.md`](docs/proposal/multi-plant-extension.md), [`multi-plant-data-contract.md`](docs/proposal/multi-plant-data-contract.md), [`single-pc-operation.md`](docs/proposal/single-pc-operation.md)에 쓰고, 여섯 항목에는 "확장 제안" 절에만 적는다. 지금의 구현, 제안하는 설계, 직접 돌린 결과를 표기로 가른다.
+- 현재 구현된 다개소 시간별 기능은 제출용 여섯 항목에 반영한다. 과거 확장 제안은 보관 원문으로 분리한다. [`multi-plant-extension.md`](docs/proposal/multi-plant-extension.md), [`multi-plant-data-contract.md`](docs/proposal/multi-plant-data-contract.md), [`single-pc-operation.md`](docs/proposal/single-pc-operation.md)에 쓰고, 현행 여섯 항목과 구현·증빙을 맞춘다. 지금의 구현, 제안하는 설계, 직접 돌린 결과를 표기로 가른다.
 - 팀이 정한 것은 [`docs/decisions/`](docs/decisions/)에 한 건씩 남긴다. 기획서 ③ 의 숫자는 결정 기록을 근거로 가리킨다.
 - [`docs/research/`](docs/research/)의 보고서는 보관 자료다. 고치지 않는다. 판단이 바뀌면 결정 기록에 적는다.
 - 증빙 캡처와 로그는 `docs/proposal/evidence/` 에 둔다. 서버를 내리기 전에 먼저 남긴다.
@@ -92,5 +96,5 @@ SKALA 「모델 서빙 및 AIOps 구성」 과정의 조별 미니 프로젝트 
 ## 범위 밖
 
 - MLflow 서버, Prometheus·Grafana, Kubernetes 는 교재의 실습 범위가 아니다. MLflow 는 로컬 sqlite, 컨테이너는 단일 컨테이너다. 여러 발전소로 넓혀도 같다. FastAPI, 학습, MLflow, AIOps 를 PC 한 대에서 돌리고 메시지 브로커를 들이지 않는다.
-- 시간대별 예측, 전력거래소 제출, 정산금 계산은 범위 밖이다. 여러 발전소의 자료를 모아도 제도의 참여 요건을 채웠다고 쓰지 않는다.
+- 시간대별 예측은 사용자 요청으로 결정0014에서 구현 범위에 포함했다. 전력거래소 실제 제출과 지급액 확정은 범위 밖이다. 결정0015의 명시적 가정에 따른 인센티브 참고 지표·모의 금액 계산은 구현 범위다. 여러 발전소의 자료를 모아도 제도의 참여 요건을 채웠다고 쓰지 않는다.
 - 개인 서브노트와 개인 실습은 각자의 폴더에 둔다. 이 저장소에 넣지 않는다.

@@ -17,13 +17,14 @@ SEQ_LEN = 20  # LSTM 입력: 하루씩 이어진 최근 20일
 
 
 def load_rows(csv_path: str = "data/haic_prices.csv") -> list[dict]:
-    with open(csv_path, encoding="utf-8") as f:
+    with open(csv_path, encoding="utf-8-sig") as f:
         reader = csv.DictReader(f)
         rows = [
             {
                 "Date": r["Date"],
                 "Close": float(r["Close"]),
                 "Volume": float(r["Volume"]),
+                "Expected": float(r['Expected']) if r.get('Expected','').strip() else None,
             }
             for r in reader
         ]
