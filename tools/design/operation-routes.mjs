@@ -30,7 +30,7 @@ export async function handleOperationRoute(request, response, base, path) {
       upstreamPath = path === '/preview-api/logs' ? '/logs' : `/logs/${encodeURIComponent(name)}`;
     }
     const upstream = await fetch(new URL(upstreamPath, base), { method: isBatch ? 'POST' : 'GET', ...(isBatch ? { body, headers: { 'Content-Type': 'application/json' } } : {}), redirect: 'error', signal: AbortSignal.timeout(isBatch ? 120000 : 5000) });
-    if (!upstream.ok) { fail(502, 'upstream_unavailable'); return true; }
+    if (!upstream.ok) { fail(502, upstream.status === 422 ? 'upstream_input_mismatch' : upstream.status === 503 ? 'upstream_model_unavailable' : 'upstream_unavailable'); return true; }
     const result = await upstream.json();
     if (isBatch) {
       if (!Array.isArray(result.predictions) || result.predictions.length !== 21 || !result.predictions.every(Number.isFinite) || typeof result.drift_check?.status !== 'string') throw new Error('Invalid batch response');
