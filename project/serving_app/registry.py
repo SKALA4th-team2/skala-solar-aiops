@@ -49,7 +49,7 @@ def archive_bundle(plant_id, version):
     return receipt
 
 
-def activate(plant_id,version,*,expected_version=None,reason='gate_passed'):
+def activate(plant_id,version,*,expected_version=None,reason='gate_passed',archive=True):
     """Caller holds worker lock. Load first; restore registry on pointer write failure."""
     from serving_app.model_loader import load_bundle
     candidate=load_bundle(plant_id,str(version))
@@ -59,7 +59,8 @@ def activate(plant_id,version,*,expected_version=None,reason='gate_passed'):
     if expected_version is not None and (previous is None or str(previous['version'])!=str(expected_version)):
         raise ValueError('Current version changed during training')
     # New deployments require verified storage; rollback only loads an approved bundle.
-    if reason != 'manual_rollback':
+    # Seeds ship in Git, so seeding passes archive=False and first boot stays offline.
+    if archive and reason != 'manual_rollback':
         archive_bundle(plant_id, version)
     c=client();name=rt.model_name(plant_id)
     pointer=dict(version=str(version),previous_version=previous['version'] if previous else None,updated_at=rt.now(),reason=reason)
