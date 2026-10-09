@@ -1,0 +1,31 @@
+{
+  "plant_id": "hadong-sewage",
+  "model_version": "1",
+  "synthetic": true,
+  "scope": "AIOps functionality only; not forecast performance",
+  "rows": 696,
+  "start": "2027-02-28T00:00:00+09:00",
+  "end": "2027-03-28T23:00:00+09:00",
+  "source": "project\\data\\runtime-hourly\\history\\hadong-sewage.csv",
+  "source_sha256": "88e6b25a763df62946c035e63c54a29e0b0c6ae5994170cbf9f0c967df7000ee",
+  "source_range": [
+    "2026-01-30 00:00:00+09:00",
+    "2026-02-27 23:00:00+09:00"
+  ],
+  "transformation": "Shift timestamps after train_end and latest upload; generation = 0.5 * capped radiation reference",
+  "monitor": {
+    "state": "drift",
+    "reason": "forecast_conditioned_drop_and_error",
+    "rmse_kwh": 6.556029149298256,
+    "daylight_hours": 73,
+    "reference_ratio": 0.4999999733828052,
+    "limit_kwh": 5.463811556081687,
+    "scope": "forecast-conditioned residual; not observed-weather diagnosis"
+  },
+  "csv_sha256": "2bfea15ba712993525b8801819292ab1fe953aca1bde2d8014f466019050880e",
+  "training_validation": {
+    "gate_passed": true,
+    "evidence": "docs/proposal/evidence/r2-local-20261008/retrain-sample-validation.json",
+    "csv_sha256": "2bfea15ba712993525b8801819292ab1fe953aca1bde2d8014f466019050880e"
+  }
+}

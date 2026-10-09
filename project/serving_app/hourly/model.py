@@ -31,7 +31,8 @@ class HourlyModel:
 
 def load_bundle(pid,version):
     from tensorflow import keras
-    directory=rt.version_dir(pid,version);m=rt.read(directory/'manifest.json')
+    from serving_app.model_store import ensure_local
+    directory=ensure_local(pid,version);m=rt.read(directory/'manifest.json')
     if m['plant_id']!=pid or m['contract']!=CONTRACT or str(m['version'])!=str(version) or m['model_name']!=rt.model_name(pid):raise ValueError('Hourly bundle identity mismatch')
     for name in ['model.keras','scaler.pkl']:
         if rt.sha(directory/name)!=m['hashes'][name]:raise ValueError('Hourly bundle integrity mismatch')
