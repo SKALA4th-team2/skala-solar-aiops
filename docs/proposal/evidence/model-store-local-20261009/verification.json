@@ -1,0 +1,100 @@
+{
+  "verified_at": "2026-10-09T22:29:40+09:00",
+  "backend": "local",
+  "scope": "functional test of archive and restore; synthetic data, not forecast performance; real R2 not contacted",
+  "environment": {
+    "os": "macOS",
+    "python": "3.11.15",
+    "runtime": "isolated temporary SOLAR_STATE_DIR; operational runtime untouched"
+  },
+  "code": "main ef7ec9e plus PR #17 review follow-up",
+  "plant_id": "hadong-sewage",
+  "csv": "datasets/fixtures/retrain/hadong-synthetic-drift.csv",
+  "csv_sha256": "2bfea15ba712993525b8801819292ab1fe953aca1bde2d8014f466019050880e",
+  "unit_tests": {
+    "file": "tools/hourly/test_model_store.py",
+    "ran": 17,
+    "passed": 17
+  },
+  "first_boot": {
+    "seeded_plants": 31,
+    "archive_files_after_seed": 0,
+    "archive_files_after_seed_before_fix": 93
+  },
+  "archive_available": {
+    "upload_http_status": 200,
+    "monitor_state": "queued",
+    "job_status": "succeeded",
+    "promoted": true,
+    "new_version": "2",
+    "gate": {
+      "passed": true,
+      "rmse_kwh": 4.4678793073632805,
+      "limit_kwh": 5.463811556081687,
+      "incumbent_rmse_kwh": 6.556029030949468,
+      "validation_hours": 168,
+      "policy": "hourly-retrain-v1: <= initial gate and same-window incumbent"
+    },
+    "archive_key": "solar_hourly_24_jma_day2_v1/hadong-sewage/2/8ff77e3ab751c07728fd077aa4596503a952b6f84df52c0fdf707fce62b6f702",
+    "archived_files": [
+      "manifest.json",
+      "model.keras",
+      "scaler.pkl"
+    ],
+    "current_version_after_retrain": "2",
+    "rollback_to_v1_with_local_bundle": {
+      "http_status": 200,
+      "current_version": "1",
+      "archive_files_unchanged": true
+    },
+    "restore_v2_after_deleting_local_bundle_and_receipt": {
+      "http_status": 200,
+      "reference_source": "MLflow model version tags",
+      "restored_files": [
+        "manifest.json",
+        "model.keras",
+        "scaler.pkl"
+      ],
+      "receipt_rewritten": true,
+      "predictions_identical": true,
+      "forecast_hours": 24
+    },
+    "seed_v1_not_archived": {
+      "rollback_http_status_without_local_bundle": 404,
+      "current_version_unchanged": true,
+      "explicit_publish_exit_code": 0,
+      "restore_after_explicit_publish_http_status": 200,
+      "restored_hashes_identical": true
+    }
+  },
+  "archive_unavailable": {
+    "how": "SOLAR_MODEL_ARCHIVE_DIR pointed below a regular file",
+    "upload_http_status": 200,
+    "job_status": "failed",
+    "job_attempts": 1,
+    "current_version_after_failure": "1",
+    "candidate_bundle_kept_locally": [
+      "manifest.json",
+      "metadata.json",
+      "model.keras",
+      "scaler.pkl"
+    ],
+    "reupload_same_file": {
+      "http_status": 200,
+      "job_status": "failed",
+      "jobs_total": 1
+    },
+    "recovery": {
+      "manual_publish_exit_code": 0,
+      "archived_files": [
+        "manifest.json",
+        "model.keras",
+        "scaler.pkl"
+      ],
+      "apply_via_rollback_api_http_status": 200,
+      "current_version": "2",
+      "recorded_reason": "manual_rollback",
+      "predict_model_version": "2"
+    }
+  }
+}

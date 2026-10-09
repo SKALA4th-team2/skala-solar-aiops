@@ -17,6 +17,8 @@ def mode():
 
 class LocalStore:
     def __init__(self):
+        if not os.getenv('SOLAR_MODEL_ARCHIVE_DIR'):
+            raise ValueError('SOLAR_MODEL_ARCHIVE_DIR is required when SOLAR_MODEL_STORE=local')
         self.root = Path(os.environ['SOLAR_MODEL_ARCHIVE_DIR']).resolve()
 
     def get(self, key):
@@ -139,6 +141,9 @@ def ensure_local(pid, version):
     backend = store()
     if backend is None:
         return directory
+    # Never overwrite a partial or concurrently restored cache in place.
+    if directory.exists():
+        raise ValueError('Incomplete local bundle; move it aside before restoring')
     receipt = archive_reference(pid, version)
     expected_key = f'{rt.CONTRACT}/{pid}/{version}/{receipt["manifest_sha256"]}'
     if receipt['key'] != expected_key or not re.fullmatch(r'[0-9a-f]{64}', receipt['manifest_sha256']):
@@ -151,8 +156,7 @@ def ensure_local(pid, version):
         if rt.sha(stage / 'manifest.json') != receipt['manifest_sha256']:
             raise ValueError('Archive manifest hash mismatch')
         validate(stage, pid, version)
-        # Never overwrite a partial or concurrently restored cache in place.
-        if directory.exists():
+        if directory.exists():  # Restored concurrently while this download ran.
             raise ValueError('Incomplete local bundle; move it aside before restoring')
         stage.rename(directory)
     rt.write(receipt_path(pid, version), receipt)

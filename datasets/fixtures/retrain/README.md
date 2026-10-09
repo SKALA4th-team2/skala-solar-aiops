@@ -14,14 +14,35 @@
 
 ## 화면 테스트
 
-1. R2 설정을 읽는 `scripts/run_backend.py`로 로컬 앱과 작업자를 실행한다.
-2. 발전소를 하동하수처리장으로 선택한다.
+운영 runtime(`data/runtime-hourly`, 8077)에 올리지 않는다. 업로드는 그 runtime의 최신 실적을 합성 자료로 바꾸고, 통과하면 운영 버전도 바꾼다. 더 오래된 종료 시각의 파일은 409로 거절되므로 2027-03-28까지의 합성 자료를 올린 뒤에는 실제 자료(2026-02-27까지)를 다시 올릴 수 없고, 모델을 롤백해도 업로드 자료는 원복되지 않는다. 그래서 별도 runtime과 포트에서 확인한다.
+
+1. `project/`에서 별도 runtime으로 앱과 작업자를 실행한다. 보관소는 다른 폴더(local)를 쓴다.
+
+   ```powershell
+   $env:SOLAR_STATE_DIR = "$PWD\data\runtime-retrain-test"
+   $env:SOLAR_LOG_DIR = "$PWD\logs\retrain-test"
+   $env:SOLAR_MODEL_STORE = "local"
+   $env:SOLAR_MODEL_ARCHIVE_DIR = "$PWD\data\model-archive"
+   .venv\Scripts\python -X utf8 scripts/run_backend.py --port 8078
+   ```
+
+   ```bash
+   SOLAR_STATE_DIR="$PWD/data/runtime-retrain-test" SOLAR_LOG_DIR="$PWD/logs/retrain-test" \
+   SOLAR_MODEL_STORE=local SOLAR_MODEL_ARCHIVE_DIR="$PWD/data/model-archive" \
+   .venv/bin/python -X utf8 scripts/run_backend.py --port 8078
+   ```
+
+2. http://127.0.0.1:8078/ 에서 발전소를 하동하수처리장으로 선택한다.
 3. CSV 업로드에서 `hadong-synthetic-drift.csv`를 선택해 업로드한다.
 4. 서비스 운영에서 작업 대기 → 학습·검증 → 운영 반영 상태를 확인한다.
-5. 이력 · 알림에서 새 버전과 운영 적용 결과를 확인한다. 검증 또는 R2 업로드 실패 시 기존 버전을 유지한다.
+5. 이력 · 알림에서 새 버전과 운영 적용 결과를 확인한다. 검증 또는 보관 실패 시 기존 버전을 유지한다.
 
-업로드는 해당 로컬 runtime의 최신 실적을 합성 자료로 교체하고, 통과하면 실제 운영 버전도 바꾼다. 검증 뒤 이전 버전으로 롤백해도 업로드 자료까지 원복되는 것은 아니다. 같은 종료 시각의 파일을 다시 올리면 기존 작업을 재사용하며 새 모델을 매번 만들지 않는다. 새 작업이 필요하면 현재 학습 종료와 업로드 종료를 반영하여 도구로 다시 생성한다.
+끝나면 서버를 내리고 `data/runtime-retrain-test`를 지우면 처음 상태로 돌아간다. 이 폴더와 `data/model-archive`는 Git에 올라가지 않는다. 실제 R2까지 확인하려면 SOLAR_MODEL_STORE를 r2로 바꾼다. 이때 합성 자료로 만든 모델이 버킷에 남는다.
+
+같은 종료 시각의 파일을 다시 올리면 기존 작업을 재사용하며 새 모델을 매번 만들지 않는다. 새 작업이 필요하면 현재 학습 종료와 업로드 종료를 반영하여 도구로 다시 생성한다.
 
 2026-10-08 검증: 별도 임시 runtime에서 CSV 검사·작업 등록·5 epoch 학습·기존 게이트 통과·후보 모델 파일 생성을 확인했다. 모델 등록과 운영 적용은 모의 처리했고 실제 R2에는 새 후보를 업로드하지 않았다. [검증 기록](../../../docs/proposal/evidence/r2-local-20261008/retrain-sample-validation.json).
+
+2026-10-09 검증: 위 절차와 같은 별도 runtime과 로컬 폴더 보관소에서 업로드 → 드리프트 판정 → 재학습 → 게이트 통과 → 보관 → v2 운영 반영을 실제로 끝까지 실행했다. 실제 R2에는 연결하지 않았다. [검증 기록](../../../docs/proposal/evidence/model-store-local-20261009/verification.json).
 
 현재 CSV는 2027-02-28부터 2027-03-28까지 696시간이며, 하동 v1을 기반으로 격리 재학습을 실제 실행해 기존 승인 게이트 통과를 확인했다. CSV SHA와 검증 결과는 동명 JSON 및 검증 기록에 연결한다. 생성 도구는 드리프트 조건까지 검사하므로 다른 기간으로 재생성한 파일은 학습 게이트도 별도로 검증해야 한다.

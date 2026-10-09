@@ -141,6 +141,28 @@ class BundleArchiveTests(unittest.TestCase):
             result = registry.rollback(self.pid, '2')
         self.assertEqual(result['version'], '2')
 
+    def test_seed_activation_skips_archive(self):
+        loader = Mock(load_bundle=Mock(return_value=SimpleNamespace(manifest=self.manifest)))
+        with patch.dict(sys.modules, {'serving_app.model_loader': loader}), \
+             patch.object(model_store, 'store', side_effect=AssertionError('archive access')), \
+             patch.object(registry, 'client', return_value=Mock()):
+            result = registry.activate(self.pid, '2', archive=False)
+        self.assertEqual(result['version'], '2')
+        self.assertFalse(model_store.receipt_path(self.pid, '2').exists())
+
+    def test_partial_local_bundle_rejected_before_download(self):
+        model_store.publish(self.pid, '2')
+        (self.bundle / 'model.keras').unlink()
+        backend = Mock()
+        with patch.object(model_store, 'store', return_value=backend):
+            with self.assertRaises(ValueError): model_store.ensure_local(self.pid, '2')
+        backend.get.assert_not_called()
+
+    def test_local_store_names_missing_archive_dir(self):
+        with patch.dict(os.environ):
+            del os.environ['SOLAR_MODEL_ARCHIVE_DIR']
+            with self.assertRaisesRegex(ValueError, 'SOLAR_MODEL_ARCHIVE_DIR'): model_store.LocalStore()
+
     def test_restore_without_receipt_uses_registry_reference(self):
         receipt = model_store.publish(self.pid, '2')
         model_store.receipt_path(self.pid, '2').unlink()
