@@ -41,6 +41,7 @@ docs/proposal/evidence/aiops_backend_20261007/*.log
 
 # Hourly generated data and native model artifacts
 project/data/runtime-hourly/
+project/data/model-archive/
 datasets/hourly/plants/
 docs/proposal/evidence/hourly_20261007/**/*.keras
 docs/proposal/evidence/hourly_20261007/**/*.pkl
