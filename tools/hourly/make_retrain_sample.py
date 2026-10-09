@@ -52,7 +52,7 @@ def main():
     rt.write(args.out.with_suffix('.json'), dict(plant_id=args.plant, model_version=version,
         synthetic=True, scope='AIOps functionality only; not forecast performance',
         rows=len(validated), start=validated[0]['timestamp'], end=validated[-1]['timestamp'],
-        source=str(source.relative_to(ROOT)), source_sha256=rt.sha(source), source_range=source_range,
+        source=source.relative_to(ROOT).as_posix(), source_sha256=rt.sha(source), source_range=source_range,
         transformation='Shift timestamps after train_end and latest upload; generation = 0.5 * capped radiation reference',
         monitor=report, csv_sha256=rt.sha(args.out)))
     print(f'Synthetic sample generated: {args.out}; rows={len(validated)}; drift confirmed')

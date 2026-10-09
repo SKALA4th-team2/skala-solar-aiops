@@ -32,7 +32,7 @@ def main():
             if hourly:
                 target=rt.root()/'history'/f'{pid}.csv';target.parent.mkdir(exist_ok=True);shutil.copy2(seed/'history'/f'{pid}.csv',target)
             else:rt.write(rt.root()/'monitoring_config'/f'{pid}.json',meta['monitoring_config'])
-            registry.activate(pid,result['version'])
+            registry.activate(pid,result['version'],archive=False)
             print('SEEDED',pid,result['version'],flush=True)
             tf.keras.backend.clear_session()
 if __name__=='__main__':main()
