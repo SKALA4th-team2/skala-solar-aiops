@@ -1,0 +1,18 @@
+{
+  "started_at": "2026-10-10T15:02:17+09:00",
+  "target": "http://127.0.0.1:8099",
+  "interval_seconds": 1,
+  "requests": 600,
+  "succeeded": 600,
+  "success_rate_percent": 100.0,
+  "failures": [],
+  "duration_seconds": 600.0,
+  "latency_seconds": {
+    "median": 0.0164,
+    "p95": 0.0193,
+    "max": 0.2165
+  },
+  "health_checks": 60,
+  "health_ok_with_worker_alive": 60,
+  "scope": "single container on one Mac, one client, 1 request per second; not a monthly availability measurement"
+}

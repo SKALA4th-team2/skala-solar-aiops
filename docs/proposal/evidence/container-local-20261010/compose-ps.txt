@@ -1,0 +1,1 @@
+shot2jo-serving-app-1 | shot2jo-serving-app | running | Up 18 seconds | 127.0.0.1:8099->8099/tcp

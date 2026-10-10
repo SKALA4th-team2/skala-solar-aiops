@@ -76,3 +76,7 @@ project/serving_app/models/hourly-seed/**
 !project/serving_app/models/hourly-seed/models/*/model.keras
 !project/serving_app/models/hourly-seed/models/*/scaler.pkl
 !project/serving_app/models/hourly-seed/models/*/manifest.json
+
+# 2025년 다시 계산의 중간 산출물
+tools/proposal/eval2025/out/
+tools/proposal/eval2025/state/
