@@ -179,7 +179,9 @@ def dashboard(resource:str,plant_id:str=rt.DEFAULT_PLANT):
     m=model(plant_id)
     if resource=='current':return m.manifest
     if resource=='predictions':return prediction_history(plant_id,50)
-    if resource=='history':return [rt.read(p) for p in sorted((rt.plant_dir(plant_id)/'versions').glob('*/manifest.json'),key=lambda p:int(p.parent.name),reverse=True)]
+    if resource=='history':
+        from serving_app import model_store
+        return model_store.history(plant_id)
     if resource=='alerts':
         with rt.db() as conn:return [dict(r) for r in conn.execute('SELECT * FROM events WHERE plant_id=? ORDER BY id DESC LIMIT 30',(plant_id,))]
     if resource=='dataset':

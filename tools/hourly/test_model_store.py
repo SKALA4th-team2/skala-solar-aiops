@@ -34,6 +34,15 @@ class BundleArchiveTests(unittest.TestCase):
             hashes={name: rt.sha(self.bundle / name) for name in model_store.FILES[:2]})
         rt.write(self.bundle / 'manifest.json', self.manifest)
 
+    def make_bundle(self, version):
+        directory = rt.version_dir(self.pid, version)
+        directory.mkdir(parents=True)
+        (directory / 'model.keras').write_bytes(f'model {version}'.encode())
+        (directory / 'scaler.pkl').write_bytes(b'fixed scaler fixture')
+        rt.write(directory / 'manifest.json', dict(self.manifest, version=version,
+            hashes={name: rt.sha(directory / name) for name in model_store.FILES[:2]}))
+        return directory
+
     def test_publish_restore_and_idempotent_publish(self):
         receipt = model_store.publish(self.pid, '2')
         self.assertEqual(model_store.publish(self.pid, '2'), receipt)
@@ -162,6 +171,47 @@ class BundleArchiveTests(unittest.TestCase):
         with patch.dict(os.environ):
             del os.environ['SOLAR_MODEL_ARCHIVE_DIR']
             with self.assertRaisesRegex(ValueError, 'SOLAR_MODEL_ARCHIVE_DIR'): model_store.LocalStore()
+
+    def test_prune_keeps_current_previous_and_unarchived(self):
+        for version in ('3', '4', '5'): self.make_bundle(version)
+        for version in ('2', '3', '5'): model_store.publish(self.pid, version)  # 4 is never archived
+        rt.write(rt.plant_dir(self.pid) / 'current.json', {'version': '5', 'previous_version': '3'})
+        self.assertEqual(model_store.prune_local(self.pid), ['2'])
+        self.assertFalse(self.bundle.exists())
+        for version in ('3', '4', '5'): self.assertTrue(rt.version_dir(self.pid, version).exists())
+        self.assertEqual([(m['version'], m['storage']) for m in model_store.history(self.pid)],
+                         [('5', 'local'), ('4', 'local'), ('3', 'local'), ('2', 'archive')])
+        model_store.ensure_local(self.pid, '2')  # Selecting the pruned version brings it back.
+        self.assertEqual(model_store.validate(self.bundle, self.pid, '2'), self.manifest)
+        self.assertEqual(model_store.history(self.pid)[-1]['storage'], 'local')
+
+    def test_prune_keeps_local_copy_when_archive_differs(self):
+        self.make_bundle('3')
+        receipt = model_store.publish(self.pid, '2')
+        rt.write(rt.plant_dir(self.pid) / 'current.json', {'version': '3', 'previous_version': None})
+        (model_store.LocalStore().root / receipt['key'] / 'model.keras').write_bytes(b'corrupt')
+        self.assertEqual(model_store.prune_local(self.pid), [])
+        self.assertTrue(self.bundle.exists())
+
+    def test_prune_off_when_store_disabled_or_keep_all(self):
+        self.make_bundle('3')
+        model_store.publish(self.pid, '2')
+        rt.write(rt.plant_dir(self.pid) / 'current.json', {'version': '3', 'previous_version': None})
+        for setting in ({'SOLAR_MODEL_STORE': 'disabled'}, {'SOLAR_MODEL_KEEP_LOCAL': '1'}):
+            with patch.dict(os.environ, setting):
+                self.assertEqual(model_store.prune_local(self.pid), [])
+        self.assertTrue(self.bundle.exists())
+
+    def test_activation_survives_prune_failure(self):
+        rt.write(rt.plant_dir(self.pid) / 'current.json', {'version': '1'})
+        loader = Mock(load_bundle=Mock(return_value=SimpleNamespace(manifest=self.manifest)))
+        with patch.dict(sys.modules, {'serving_app.model_loader': loader}), \
+             patch.object(registry, 'client', return_value=Mock()), \
+             patch.object(model_store, 'prune_local', side_effect=OSError('disk')) as prune:
+            pointer = registry.activate(self.pid, '2', expected_version='1')
+            prune.assert_called_once_with(self.pid)
+        self.assertEqual(pointer['version'], '2')
+        self.assertEqual(rt.current(self.pid)['version'], '2')
 
     def test_restore_without_receipt_uses_registry_reference(self):
         receipt = model_store.publish(self.pid, '2')

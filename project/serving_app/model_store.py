@@ -2,6 +2,7 @@
 import os
 from pathlib import Path
 import re
+import shutil
 import tempfile
 from serving_app import runtime as rt
 
@@ -78,6 +79,10 @@ class R2Store:
                 raise
             if self.get(key) != data:
                 raise ValueError('Archive object already exists with different content') from None
+
+
+def keep_all_local():
+    return os.getenv('SOLAR_MODEL_KEEP_LOCAL', '0') == '1'
 
 
 def store():
@@ -161,3 +166,60 @@ def ensure_local(pid, version):
         stage.rename(directory)
     rt.write(receipt_path(pid, version), receipt)
     return directory
+
+
+def manifest_copy_path(pid, version):
+    rt.version_dir(pid, version)  # Validate plant and version before constructing paths.
+    return rt.plant_dir(pid) / 'archive' / f'{version}.manifest.json'
+
+
+def prune_local(pid):
+    """Drop local copies of archived versions except the current and previous ones.
+
+    A bundle is removed only after every file is read back from the archive and
+    matches the local bytes; anything unarchived or unverifiable stays on disk.
+    """
+    if mode() == 'disabled' or keep_all_local():
+        return []
+    pointer = rt.current(pid)
+    keep = {str(pointer['version']), str(pointer.get('previous_version'))}
+    candidates = [d for d in (rt.plant_dir(pid) / 'versions').iterdir()
+                  if d.is_dir() and d.name.isdigit() and d.name not in keep
+                  and receipt_path(pid, d.name).exists() and all((d / name).is_file() for name in FILES)]
+    if not candidates:
+        return []  # Seeding and ordinary rollbacks never open an archive connection.
+    backend = store()
+    removed = []
+    for directory in sorted(candidates, key=lambda d: int(d.name)):
+        version = directory.name
+        receipt = rt.read(receipt_path(pid, version))
+        try:
+            validate(directory, pid, version)
+            if rt.sha(directory / 'manifest.json') != receipt['manifest_sha256']:
+                continue
+            if any(backend.get(f'{receipt["key"]}/{name}') != (directory / name).read_bytes() for name in FILES):
+                continue
+        except Exception:  # Keep the local copy whenever the archive cannot be confirmed.
+            continue
+        # The manifest copy keeps the version listed and selectable after its files are gone.
+        rt.write(manifest_copy_path(pid, version), rt.read(directory / 'manifest.json'))
+        shutil.rmtree(directory)
+        removed.append(version)
+    return removed
+
+
+def history(pid):
+    """Version manifests, newest first; pruned versions stay listed so they can be re-applied."""
+    base = rt.plant_dir(pid)
+    items = {}
+    for path in (base / 'archive').glob('*.manifest.json'):
+        version = path.name.split('.')[0]
+        if version.isdigit():
+            items[version] = dict(rt.read(path), storage='archive')
+    for path in (base / 'versions').glob('*/manifest.json'):
+        if path.parent.name.isdigit():
+            try:
+                items[path.parent.name] = dict(rt.read(path), storage='local')
+            except FileNotFoundError:  # Pruned between the directory scan and the read.
+                pass
+    return [items[version] for version in sorted(items, key=int, reverse=True)]
