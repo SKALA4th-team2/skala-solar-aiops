@@ -36,7 +36,7 @@ py -3.11 -m venv .venv
 | GET /jobs 또는 /jobs/{id} | queued/running/succeeded/rejected/failed |
 | POST /plants/{plant_id}/rollback | {"version":1}; 저장된 통과 버전으로 복귀 |
 | POST /portfolios/all-approved/predict | inputs: {plant_id: Predict 본문}; 동일 대상시간의 31개 가상 합계 |
-| GET /preview-api/dashboard/{resource} | current/history/alerts/info/dataset/metrics/timeseries/predictions |
+| GET /preview-api/dashboard/{resource} | current/history/alerts/info/dataset/metrics/timeseries/predictions. history의 각 버전에는 storage(local 또는 archive)가 붙는다 |
 | GET /logs 및 /logs/aiops-hourly.log | 시간별 AIOps 이벤트 로그 |
 
 history 행은 timestamp, generation_kwh. forecast 행은 timestamp, shortwave_radiation, temperature_2m, cloud_cover, wind_speed_10m. timestamp는 2026-02-27T00:00:00+09:00 같은 KST 구간 시작이다. 두 배열은 전날 00~23시, 대상일 00~23시이며 빈 시간·중복·순서 오류를 거절한다. 야간 0은 정상 값이다. 발전량은 1시간 kWh, 기상 단위는 각각 W/m², °C, %, km/h다. 예보는 학습과 동일한 48시간 선행 자료여야 한다.
@@ -89,4 +89,4 @@ prepare는 tools/hourly/candidates.json의 기존 승인 등록부와 원본 시
 
 ### 이력에서 운영 버전 전환
 
-이력·알림의 `운영 적용`은 기존 `POST /plants/{plant_id}/rollback`에 `{"version": 1}` 형식으로 요청한다. 검증을 통과한 저장 버전만 선택할 수 있고, 현재 버전에는 적용 버튼이 없다. 서버가 모델·스케일러를 검증하고 운영 포인터와 MLflow 상태를 갱신한다. 프리뷰도 동일 출처 POST만 전달한다.
+이력·알림의 `운영 적용`은 기존 `POST /plants/{plant_id}/rollback`에 `{"version": 1}` 형식으로 요청한다. 검증을 통과한 저장 버전만 선택할 수 있고, 현재 버전에는 적용 버튼이 없다. 보관 기능을 켠 경우 로컬 사본을 지우고 보관소에만 둔 버전은 상태가 `외부 보관`으로 보이며, 적용하면 보관소에서 내려받아 검증한 뒤 반영한다. 서버가 모델·스케일러를 검증하고 운영 포인터와 MLflow 상태를 갱신한다. 프리뷰도 동일 출처 POST만 전달한다.
