@@ -4,6 +4,8 @@
 - 날짜: 2026-10-09
 - 정한 사람: 채수아(구현, PR #17), 박상명(병합)
 
+2026-10-10: 보관한 버전의 로컬 사본을 정리하는 기준은 [결정0018](0018-prune-archived-local-models.md)에 따로 적었다. 이 기록의 "로컬에도 둔다"는 전제는 거기서 바뀐다.
+
 ## 배경
 
 재학습으로 생긴 모델은 그 PC 의 runtime 폴더(`project/data/runtime-hourly`)와 로컬 MLflow 에만 있다. 초기 모델 31개는 [결정0016](0016-version-approved-model-seeds.md)으로 Git 에 넣었지만 재학습 산출물은 Git 에 넣지 않는다. PC 를 잃거나 runtime 을 지우면 재학습 버전으로 되돌릴 수 없다.

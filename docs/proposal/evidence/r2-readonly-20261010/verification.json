@@ -1,0 +1,102 @@
+{
+  "verified_at": "2026-10-10T14:24:18+09:00",
+  "backend": "r2",
+  "mode": "read-only: list and get only; nothing uploaded or deleted",
+  "environment": {
+    "os": "macOS",
+    "python": "3.11.15"
+  },
+  "bucket": {
+    "objects": 9,
+    "bundles": 3,
+    "plants": 1,
+    "objects_outside_bundle_layout": 0
+  },
+  "bundles": [
+    {
+      "plant_id": "hadong-sewage",
+      "version": "1",
+      "manifest_sha256": "221bfff8b577ef78dfb168286e2f99bcb6414adb906b4f6b726d793a1fcbafd4",
+      "files": [
+        "manifest.json",
+        "model.keras",
+        "scaler.pkl"
+      ],
+      "bytes": 48460,
+      "first_and_last_file_uploaded_utc": [
+        "07:42:23",
+        "07:42:24"
+      ]
+    },
+    {
+      "plant_id": "hadong-sewage",
+      "version": "2",
+      "manifest_sha256": "bb0bd4b515a53603d37ce275cba83dcef3a72a6d754617fba3508ed5b6fb5372",
+      "files": [
+        "manifest.json",
+        "model.keras",
+        "scaler.pkl"
+      ],
+      "bytes": 85084,
+      "first_and_last_file_uploaded_utc": [
+        "08:15:29",
+        "08:15:30"
+      ]
+    },
+    {
+      "plant_id": "hadong-sewage",
+      "version": "3",
+      "manifest_sha256": "622f4377900ef061135f9cdd404f64eb1211958cc742c19c9832177ae44e7ae8",
+      "files": [
+        "manifest.json",
+        "model.keras",
+        "scaler.pkl"
+      ],
+      "bytes": 85086,
+      "first_and_last_file_uploaded_utc": [
+        "08:14:09",
+        "08:14:10"
+      ]
+    }
+  ],
+  "downloaded_and_checked": [
+    {
+      "version": "1",
+      "manifest_hash_matches_key": true,
+      "model_hash_matches": true,
+      "scaler_hash_matches": true,
+      "identity_matches": true,
+      "gate_passed": true,
+      "gate_rmse_kwh": 4.450639474589595,
+      "parent_version": null,
+      "manifest_created_at": "2026-10-08T00:13:18.790888+00:00",
+      "model_loads_and_outputs_24_values": true
+    },
+    {
+      "version": "2",
+      "manifest_hash_matches_key": true,
+      "model_hash_matches": true,
+      "scaler_hash_matches": true,
+      "identity_matches": true,
+      "gate_passed": true,
+      "gate_rmse_kwh": 4.467879366235363,
+      "parent_version": "1",
+      "manifest_created_at": "2026-10-08T07:57:58.242464+00:00",
+      "model_loads_and_outputs_24_values": true
+    },
+    {
+      "version": "3",
+      "manifest_hash_matches_key": true,
+      "model_hash_matches": true,
+      "scaler_hash_matches": true,
+      "identity_matches": true,
+      "gate_passed": true,
+      "gate_rmse_kwh": 4.467879366235363,
+      "parent_version": "1",
+      "manifest_created_at": "2026-10-08T08:14:08.138530+00:00",
+      "model_loads_and_outputs_24_values": true
+    }
+  ],
+  "observation": "version 3 was uploaded 1 to 2 seconds after its manifest was created, in the order model, scaler, manifest; versions 1 and 2 were uploaded about 7 h 29 min and 17 min 31 s after creation",
+  "not_covered": "no upload was performed in this check; other plants have no bundles in the bucket"
+}

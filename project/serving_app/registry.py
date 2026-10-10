@@ -49,6 +49,19 @@ def archive_bundle(plant_id, version):
     return receipt
 
 
+def prune_local_models(plant_id):
+    """Housekeeping after the pointer switch; it must never undo a completed deployment."""
+    from serving_app import model_store
+    try:
+        removed = model_store.prune_local(plant_id)
+    except Exception as exc:
+        rt.event(plant_id, 'local_prune_failed', dict(error=type(exc).__name__))
+        return []
+    if removed:
+        rt.event(plant_id, 'local_models_pruned', dict(versions=removed))
+    return removed
+
+
 def activate(plant_id,version,*,expected_version=None,reason='gate_passed',archive=True):
     """Caller holds worker lock. Load first; restore registry on pointer write failure."""
     from serving_app.model_loader import load_bundle
@@ -75,6 +88,7 @@ def activate(plant_id,version,*,expected_version=None,reason='gate_passed',archi
             c.set_registered_model_alias(name,'champion',str(previous['version']))
         raise
     rt.event(plant_id,'production_changed',pointer)
+    prune_local_models(plant_id)
     return pointer
 
 def reconcile():

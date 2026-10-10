@@ -1,0 +1,238 @@
+{
+  "verified_at": "2026-10-10T14:41:30+09:00",
+  "backend": "local",
+  "scope": "functional test of pruning archived local bundles and re-applying a pruned version; synthetic data, not forecast performance; real R2 not written",
+  "environment": {
+    "os": "macOS",
+    "python": "3.11.15",
+    "runtime": "isolated temporary SOLAR_STATE_DIR on port 8177; operational runtime untouched"
+  },
+  "plant_id": "hadong-sewage",
+  "policy": "after every production switch keep the current and previous versions locally; remove other versions only when all three archived files match the local bytes",
+  "unit_tests": {
+    "file": "tools/hourly/test_model_store.py",
+    "ran": 21,
+    "passed": 21
+  },
+  "steps": {
+    "0_after_seed": {
+      "current": "1",
+      "previous": null,
+      "local_versions": [
+        "1"
+      ],
+      "local_versions_kb": 48.5,
+      "archived": [],
+      "history": [
+        [
+          "1",
+          "local"
+        ]
+      ],
+      "archive_files": 0
+    },
+    "1_first_retrain_v2": {
+      "upload": 200,
+      "job": "succeeded",
+      "version": "2",
+      "gate_rmse": 3.4062205505410383,
+      "current": "2",
+      "previous": "1",
+      "local_versions": [
+        "1",
+        "2"
+      ],
+      "local_versions_kb": 133.0,
+      "archived": [
+        "hadong-sewage/2"
+      ],
+      "history": [
+        [
+          "2",
+          "local"
+        ],
+        [
+          "1",
+          "local"
+        ]
+      ]
+    },
+    "2_rollback_to_v1": {
+      "status": 200,
+      "current": "1",
+      "previous": "2",
+      "local_versions": [
+        "1",
+        "2"
+      ],
+      "local_versions_kb": 133.0,
+      "archived": [
+        "hadong-sewage/2"
+      ],
+      "history": [
+        [
+          "2",
+          "local"
+        ],
+        [
+          "1",
+          "local"
+        ]
+      ]
+    },
+    "3_second_retrain_v3_prunes_v2": {
+      "upload": 200,
+      "job": "succeeded",
+      "version": "3",
+      "gate_rmse": 4.4678793073632805,
+      "current": "3",
+      "previous": "1",
+      "local_versions": [
+        "1",
+        "3"
+      ],
+      "local_versions_kb": 133.0,
+      "archived": [
+        "hadong-sewage/2",
+        "hadong-sewage/3"
+      ],
+      "history": [
+        [
+          "3",
+          "local"
+        ],
+        [
+          "2",
+          "archive"
+        ],
+        [
+          "1",
+          "local"
+        ]
+      ],
+      "manifest_copy_kept": true,
+      "latest_events": [
+        "hourly_job_finished",
+        "local_models_pruned",
+        "production_changed",
+        "hourly_monitor"
+      ]
+    },
+    "4_apply_pruned_v2": {
+      "status": 200,
+      "model_version": "2",
+      "predictions_identical": true,
+      "differs_from_v3": true,
+      "current": "2",
+      "previous": "3",
+      "local_versions": [
+        "1",
+        "2",
+        "3"
+      ],
+      "local_versions_kb": 216.0,
+      "archived": [
+        "hadong-sewage/2",
+        "hadong-sewage/3"
+      ],
+      "history": [
+        [
+          "3",
+          "local"
+        ],
+        [
+          "2",
+          "local"
+        ],
+        [
+          "1",
+          "local"
+        ]
+      ]
+    },
+    "5_publish_seed_v1": {
+      "exit_code": 0,
+      "archived": [
+        "hadong-sewage/1",
+        "hadong-sewage/2",
+        "hadong-sewage/3"
+      ]
+    },
+    "6_rollback_to_v3_prunes_v1": {
+      "status": 200,
+      "current": "3",
+      "previous": "2",
+      "local_versions": [
+        "2",
+        "3"
+      ],
+      "local_versions_kb": 167.5,
+      "archived": [
+        "hadong-sewage/1",
+        "hadong-sewage/2",
+        "hadong-sewage/3"
+      ],
+      "history": [
+        [
+          "3",
+          "local"
+        ],
+        [
+          "2",
+          "local"
+        ],
+        [
+          "1",
+          "archive"
+        ]
+      ],
+      "latest_events": [
+        "local_models_pruned",
+        "production_changed",
+        "production_changed"
+      ]
+    },
+    "7_manual_prune_command": {
+      "exit_code": 0,
+      "output": [
+        "prune: OK; backend=local; plant=hadong-sewage; removed=[]"
+      ],
+      "local_versions": [
+        "2",
+        "3"
+      ]
+    },
+    "8_apply_pruned_seed_v1": {
+      "status": 200,
+      "model_version": "1",
+      "current": "1",
+      "previous": "3",
+      "local_versions": [
+        "1",
+        "3"
+      ],
+      "local_versions_kb": 131.8,
+      "archived": [
+        "hadong-sewage/1",
+        "hadong-sewage/2",
+        "hadong-sewage/3"
+      ],
+      "history": [
+        [
+          "3",
+          "local"
+        ],
+        [
+          "2",
+          "archive"
+        ],
+        [
+          "1",
+          "local"
+        ]
+      ]
+    }
+  },
+  "screen": "history-external-archive.png (state after step 8: v1 in production, v2 only in the archive, v3 kept locally)",
+  "local_copies_still_kept": "MLflow logged-model artifacts are not pruned"
+}
